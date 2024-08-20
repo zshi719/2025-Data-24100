@@ -18,6 +18,7 @@ _Git and Github_
    * `status, fetch, pull, push, commit`
 2. Using branches for development and merging (`github`)
 3. Solving merge conflicts
+4. `.gitignore`
 
 
 
