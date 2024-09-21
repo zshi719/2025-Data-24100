@@ -1,9 +1,14 @@
-# 2024-Data-24100
-Software Engineering for Data Science
+# 2024-Data-24100: Software Engineering for Data Science
 
 ## Course Description
 
 This course is designed to equip students with the practical skills and theoretical knowledge necessary to excel at the intersection of data science and software engineering. Through a hands-on approach, students will delve into the core tools and concepts that form the backbone of this interdisciplinary field, including data modeling, building data pipelines and software development best-practices. Emphasis will be placed on real-world applications, enabling students to work on projects that simulate professional scenarios and challenges. This course is ideal for those looking to deepen their understanding of how data-focused technologies are developed and deployed.
+
+## Prerequisites
+
+This course assumes that you are familiar with the basic concepts of Python programming as you would find in the core data science courses. 
+
+If you are unsure or are looking for a refresher on what is expected, please take a look at this [prerequisite doc](./docs/prequisites.md).
 
 ## Course Outline
 
@@ -18,4 +23,15 @@ In this course we will cover the following topics which will enable us to build 
 
 ## Course Notes
 
-As this 
+* Week on writing code bases (scope, arguments, work flow with multiple files)
+* Programming
+* Pathlib
+  * Relative imports vs. absolute imports
+  * How to build a module
+* HTTP 
+* pip / pip freeze
+* pytest and asserts
+* Dealing with large files
+* merging
+* Conda vs pip vs pyenv
+* Debugging
