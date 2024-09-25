@@ -17,6 +17,7 @@ This document contains an outline of the concepts and techniques that are requir
 * Importing packages
 * Comparison operations
 * Defining Functions
+* Working with Files
 * Basic Python based data structures and how to manipulate them.
 * Strings
   * Slicing using square brackets and colons (e.g. `my_string_var[2:4]`)
@@ -43,3 +44,7 @@ This document contains an outline of the concepts and techniques that are requir
   * Using type-specific functions with accessor methods `.str`, `.dt`, etc.
   * Merging with `.merge` 
   * Grouping with `.groupby`
+
+If you need a refresher on any of the above Python topics you should consult the information in the [Data 12000 textbook](https://book.cs-apps.org). The section on Data structures specifically, which can be found [here](https://book.cs-apps.org/data_structures/index.html) is particularly useful for this course. 
+
+For refresher on the Pandas topics please refer to your notes from 118 and 119 and for SQL, there are plenty of easy references online. You can check out chapters 1, 2, 3, 5 and 8 of [this book](https://www.nickross.site/datamanagement/), but it is a bit over kill for our purposes.
