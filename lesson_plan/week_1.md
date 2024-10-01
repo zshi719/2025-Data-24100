@@ -5,6 +5,10 @@
 * However, on thursday you will need to verify that your computer is set up according to [the preliminary assignment](../assignments/prelims.md). This will be graded as a quiz (but out of 5 points).
 * TuTh will both be lectures.
 
+## Resources
+* Chapter \#1 of [Effective Computation in Physics](http://lilith.fisica.ufmg.br/~dickman/transfers/comp/textos/Effective%20Computation%20in%20Physics%20(Python).pdf) cover a lot of the ground here. 
+* You can also ask an LLM (ChatGPT, etc.) tons of questions and get good results. The information in this chapter is old, well-know and you can expect to get the correct results using any well-trained LLM.
+
 ## Day #1: Terminal, Command Line and Shell
 
 ### Learning objectives:
