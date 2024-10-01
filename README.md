@@ -1,4 +1,4 @@
-Software Engineering for Data Science
+# Software Engineering for Data Science
 
 Instructor: Nick Ross 
 
@@ -52,7 +52,7 @@ This grade is assigned individually.
 
 ### Project (Group)
 
-Over the course of the quarter you and your group will be working on a large software engineering project. This project will have multiple deliverables during the quarter that you will need to complete as we build up to our final API.
+Over the course of the quarter you and your group will be working on a large software engineering project. This project will have multiple deliverables during the quarter that you will need to complete as we build up to our final API and backend.
 
 This grade is assigned as a group.
 
@@ -78,9 +78,9 @@ This grade is assigned individually.
 
 ## Course Material
 
-Lectures will be traditional chalk-talks and computer-aided demonstrations. While there aren't slides, my lecture notes will be provided to students for reference. 
+Lectures will be traditional chalk-talks and computer-aided demonstrations. While there aren't slides, my lecture notes will be provided in this repository for reference.
 
-These notes represent what is covered in the course and what is expected to be covered on the quiz, I strongly recommend students attend the lecture for the full experience. 
+These notes represent the content of the course and what is expected to be covered on the quiz, I strongly recommend students attend the lecture for the full experience. 
 
 During lecture we will be doing some hands-on activities and verifications that, while described in the notes, are better experienced in-person rather than live. 
 
@@ -108,6 +108,10 @@ In this course we will cover the following topics which will enable us to build 
 | 7: Data Pipeline \#2 | <ul><li>SQLite</li><li>CRUD</li></ul> | 
 | 8: Debugging | <ul><li>pdb</li></ul> | 
 | 9: Auto-docs | <ul><li>Sphinx</li></ul> | 
+
+## Canvas
+
+All grade (and due date) information will be posted on Canvas. If you do not have access to Canvas please send me an email as soon as possible. 
 
 ## Odds and Ends
 

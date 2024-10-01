@@ -1,9 +1,9 @@
 # Week #1 Lesson Plan
 
-## Notes:
-* There is no quiz during week \#1.
-* However, on thursday you will need to verify that your computer is set up according to [the preliminary assignment](../assignments/prelims.md).
-* This will be graded as a quiz (but out of 5 points).
+## Overview
+* There is no _quiz_ during week \#1.
+* However, on thursday you will need to verify that your computer is set up according to [the preliminary assignment](../assignments/prelims.md). This will be graded as a quiz (but out of 5 points).
+* TuTh will both be lectures.
 
 ## Day #1: Terminal, Command Line and Shell
 
@@ -61,13 +61,13 @@
         </td>
         <tr>
         <td>
-        Write commands which do the followng
+        Write commands which do the following. Assuming your current working directory is <code>/users</code>.
         </td>
         <td>
         <ul>
-        <li>Copy all text files (those that end in txt) from the nick/data directory to the nick/notes directory
+        <li>Copy all text files (those that end in txt) from the <code>nick/data</code> directory to the <code>nick/notes</code> directory
         </li>
-        <li>Your current PWD is /users/nick/data. Change directories, using absolute paths to /users/nick.
+        <li>Assume your current working directory is <code>/users/nick/data</code>. Change directories, using absolute paths to <code>/users/nick</code>.
         </li>
         <li>Do the same with relative paths.
         </ul>
