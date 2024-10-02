@@ -30,6 +30,11 @@
   * `touch`
   * `mv`, `cp`
 
+### Lecture Notes
+
+[Day 1](../class_notes/01_terminal_cmd_line_shell.md)
+
+
 ### Quizable Concepts:
 
 * Create and remove directory

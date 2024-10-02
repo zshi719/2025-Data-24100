@@ -126,7 +126,7 @@ All grade (and due date) information will be posted on Canvas. If you do not hav
 
 - The quickest way to reach me is via email.
 
-- **Class participation is required.** This is a big part of your grade. I expect class to include discussions.
+- **Class participation is expected.**  I expect class to include discussions.
 
 - **Accommodations:** If you require any accommodations for this course, as soon as possible please provide the instructor with a copy of your Accommodation Determination Letter (provided to you by the Student Disability Services office) so that you may discuss with them how your accommodations may be implemented in this course. The University of Chicago is committed to ensuring the full participation of all students in its programs. If you have a documented disability (or think you may have a disability) and, as a result, need a reasonable accommodation to participate in class, complete course requirements, or benefit from the University's programs or services, you are encouraged to contact Student Disability Services as soon as possible. To receive reasonable accommodation, you must be appropriately registered with Student Disability Services. Please contact the office at (773) 702-6000, TTY (773) 795-1186, disabilities@uchicago.edu, or visit the website at [disabilities.uchicago.edu](https://disabilities.uchicago.edu). Student Disability Services is located at 5501 S. Ellis Avenue.
 
