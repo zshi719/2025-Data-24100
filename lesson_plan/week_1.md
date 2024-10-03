@@ -9,8 +9,6 @@
 * Chapter \#1 of [Effective Computation in Physics](http://lilith.fisica.ufmg.br/~dickman/transfers/comp/textos/Effective%20Computation%20in%20Physics%20(Python).pdf) cover a lot of the ground here. 
 * You can also ask an LLM (ChatGPT, etc.) tons of questions and get good results. The information in this chapter is old, well-know and you can expect to get the correct results using any well-trained LLM.
 
-## Day #1: Terminal, Command Line and Shell
-
 ### Learning objectives:
 
 * Describe why we use the shell and terminal rather than GUI-based systems.
@@ -29,13 +27,25 @@
   * `mkdir`,  `rmdir`
   * `touch`
   * `mv`, `cp`
+* Basic shell commands:
+  * `echo`
+  * Setting and referencing variables in the shell
+  * Listing variables (`env` and `set`)
+* Dealing with data in the terminal / files:
+  * Printer/Interact with using `more`, `less`, `cat`, `head`, `tail`
+  * Saving and appending to a file with `>`  and `>>`
+  * Redirecting terminal output with `|`
+  * Searching lines using `grep` 
+  * Counting with `wc`
+* Using `which` to identify what program is being run
+* The `PATH` environment variable
 
 ### Lecture Notes
 
 [Day 1](../class_notes/01_terminal_cmd_line_shell.md)
+[Day 1](../class_notes/02_more_shell_and_env.md)
 
-
-### Quizable Concepts:
+### Day 1: Quizable Concepts:
 
 * Create and remove directory
 * Copy, move and remove files (with and without wildcards)
@@ -85,5 +95,21 @@
         
 </table>
 
+### Day 2: Quizable Concepts:
 
+- Given a file, count the number of lines that a pattern occurs (or does not occur) keep in mind case-sensitivity
+- Redirect terminal output using any of `|`, `>` and `>>` 
+- Use `cat`, `head` and `tail` to cut up pieces of a file
+- Use any of our commands to create output and then use `grep` and `wc` to filter and count words.
+- Set an environment variable at both the `session` and `environment` level.
+- Explain the different between `set` and `env`.
+- Explain what the environment variable `PATH` does
 
+- Some more complex examples with answers:
+  - Use `ls` and `grep` to find all files in a directory which have `frank` in their name, but do not have `stein` in their name.
+    - Answer: `ls | grep frank | grep -v stein`
+  - Use `ls` and `grep` to find all `pdf` files in a directory which have `frank` in their name, but do not have `stein` in their name.
+    - Answer: `ls *.pdf | grep frank | grep -v stein`
+- The file `students.txt` contains a list of CNET ids (one per line).
+  - Count the number of times that `nickross` appears anywhere on a line
+  - Count the number of times `nick` appears on a line, but `ross` does not.
