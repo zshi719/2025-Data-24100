@@ -1,5 +1,21 @@
 # Terminal, Command Line and Shell
 
+- [Terminal, Command Line and Shell](#terminal-command-line-and-shell)
+  - [Motivation and Background](#motivation-and-background)
+  - [File systems and paths](#file-systems-and-paths)
+  - [Navigating the file system](#navigating-the-file-system)
+    - [pwd](#pwd)
+  - [ls](#ls)
+    - [Wildcards](#wildcards)
+    - [Relative vs. Absolute Paths](#relative-vs-absolute-paths)
+    - [Special Locations](#special-locations)
+  - [cd](#cd)
+  - [File \& Directory Manipulations](#file--directory-manipulations)
+    - [Directory Manipulations](#directory-manipulations)
+    - [File Manipulations](#file-manipulations)
+    - [Example Manipulations:](#example-manipulations)
+  - [Footnotes](#footnotes)
+
 ## Motivation and Background
 
 - Shells and terminals are the fundamental means of interacting with a computer.
