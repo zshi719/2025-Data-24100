@@ -98,6 +98,8 @@ For example: Consider two quiz objectives objectives of `use wildcards to match 
 
 In this course we will cover the following topics which will enable us to build a full data pipeline, diagnose issues and serve data via an API. Each topic will last approximately a week.
 
+Course Notes can be found linked inside each lesson plan.
+
 | Topic | Topics | Assignments | Notes \& Plan | 
 | --- | --- | --- | --- | 
 | 1: Introduction | <ul><li>The Terminal</li><li>File Management</li><li>Environments</li></ul> | [Preliminaries](./assignments/prelims.md) | <ul><li>[Lesson Plan](./lesson_plan/week_1.md)</li></ul>
