@@ -1,24 +1,12 @@
 # Week #2 Lesson Plan
 
-## Learning Objectives
+## Overview
+* First quiz is on Thursday of this week. It will be 20 minutes and cover the material from week #1. You can find information on the quizzable material [here](../lesson_plan/week_1.md#day-1-quizable-concepts) and [here](../lesson_plan/week_1.md#day-2-quizable-concepts).
 
-_Environments in Python_
+## Resources and Prereqs
+* This week we will cover Docker, Git and Make.
+* Please complete [this tutorial](https://docker-curriculum.com/#introduction) on docker up to and including the subsection entitled Dockerfile.
+* If you are unfamiliar with git, please look at a basic reference, such as [this one](https://www.freecodecamp.org/news/learn-the-basics-of-git-in-under-10-minutes-da548267cc91/). You will need to be familiar with:
+    - Repos, Branches and Merging
+    - git commands: pull, push, add, commit, checkout
 
-1. Why environments are required 
-2. Basics of `venv` (creating, listing, deleting, managing)
-
-_Environments via Docker_
-
-1.  `docker` 
-    * `Dockerfile`
-    * What are Images and Containers
-    * building Images and Docker Hub
-    * Mounting Volumes
-    * Ports and setting up a jupyter server
-
-
-_Make as an alias tool_
-
-1. `make` command
-    * What is it used for
-    * What we will use it for (and why)
