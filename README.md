@@ -58,7 +58,7 @@ This grade is assigned as a group.
 
 ### Quizzes (Ind.)
 
-Each Thursday (starting week \#2) there will be a short quiz (15-30 minutes) given at the start of the course. These quizzes are _cumulative_ over the course of the quarter. 
+Each Thursday (starting week \#2) there will be a short quiz (15-30 minutes) given at the start of the course. These quizzes are _cumulative_ over the course of the quarter. Note that the lowest quiz grade will be dropped at the end.
 
 More information on the quizzes is provided in the [course material](#course-material) section below.
 
