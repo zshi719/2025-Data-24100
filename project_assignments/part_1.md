@@ -32,9 +32,18 @@ Please organize yourself in a group in Canvas of between 2-4 members. I'd recomm
 
 The repository needs to:
     - Have the name in the following format: `data_241_autumn_2024_GROUP_NUMBER` is the number from the Canvas group.
-    - Must invite both TAs (`rrhuang`, `TA’s GitHub username here`) and the Professor (`nickross`).
+    - Must invite both TAs (`rrhuang`, `hszh01`) and the Professor (`nickross`).
     - Must be set to _private_.
     - Must have [a branch protection _rule_ on the main branch](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule) set which requires users to submit a pull request before merging. Note that this needs only apply to the _main_ branch.
+
+### Note on branch protections:
+
+If you are on the free tier of GitHub then branch protections are not available to you. There are three options:
+  1. Stay on the free plan and NOT use branch protections. No points will be taken away for not having the branch protections, but you will still be deducted points for committing directly to main.
+  2 You can pay for github for the quarter.
+  3. If **ONE person from your group emails me their github ID by Saturday night** I will create a private repo with them as the owner inside the paid DSI Org. This will allow you to get branch protections and you'll be able to administer the repo yourself.
+
+I'd strongly recommend doing either the second or the third, but it is your group's choice.
 
 ### Initial Code
 
