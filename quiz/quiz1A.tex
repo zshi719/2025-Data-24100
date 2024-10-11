@@ -1,0 +1,108 @@
+\documentclass[11pt]{article}
+\usepackage{fullpage, fancyhdr, ifthen, amssymb, amsfonts, amsmath, booktabs}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage[margin=0.25in]{geometry}
+\usepackage{forest}
+\usepackage{ulem}
+\usepackage{colortbl}
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{tabularx}{\textwidth}{l|X}
+\textbf{Quiz 1A} &   \textbf{Name: } \\
+\hline
+\end{tabularx}
+
+\medskip
+
+\begin{table}[h]
+\centering
+\arrayrulecolor{black!10} % Very light table outline
+\begin{tabular}{|p{0.3\textwidth}|p{0.6\textwidth}|}
+\hline
+\begin{minipage}[t]{0.3\textwidth}
+\vspace{0pt}  % This is crucial for top alignment
+\begin{forest}
+  for tree={
+    font=\ttfamily,
+    grow'=0,
+    child anchor=west,
+    parent anchor=south,
+    anchor=west,
+    calign=first,
+    edge path={
+      \noexpand\path [draw, \forestoption{edge}]
+      (!u.south west) +(7.5pt,0) |- node[fill,inner sep=1.25pt] {} (.child anchor)\forestoption{edge label};
+    },
+    before typesetting nodes={
+      if n=1
+        {insert before={[,phantom]}}
+        {}
+    },
+    fit=band,
+    before computing xy={l=15pt},
+  }
+[\underline{/}
+  [\underline{users}
+    [\underline{launa}
+    [profile.rc]
+    [confSettings.txt]    
+      [\underline{docs}
+        [MobyDick.txt]
+        [image1.jpg]
+        [image2.jpg]
+        [form1.pdf]
+        [form2.pdf]
+      ]
+      [\underline{images}]
+      [\underline{forms}]      
+    ]
+    [\underline{tim}
+      [\underline{scripts}]
+    ]
+  ]
+]
+\end{forest}
+\end{minipage}
+&
+\begin{minipage}[t]{0.55\textwidth}
+\vspace{0pt}  % This is crucial for top alignment
+\noindent \textbf{Instructions:} Please answer the following questions below making sure to write your answers legibly. If you run out of room or need to re-write please use the back of this quiz. Put your name on the line above.
+
+\vspace{10pt}
+
+The graphic on the left denotes the file system on a machine that we are using. We will use it to answer the questions below. A few important notes:
+\begin{itemize}
+    \item On the graphic \underline{directories} are underlined.
+    \item Any other object should be considered a file.
+    \item \textbf{For each question assume that you are starting from the original file system}. You should ignore any changes to the file system you made in previous questions.
+    \item You will be graded for being unnecessarily complex in your solutions. 
+    \item While you are welcome to use \texttt{bash} syntax we have not learned in class I will be testing any solution \emph{on my machine}. If it does not work or requires a non-standard package you will not receive credit.
+    \item Unless otherwise stated all questions are worth the same number of points.
+    \item All of the answers should be completed in a single line.
+\end{itemize}
+\end{minipage}
+\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{enumerate}
+
+\item Your current working directory is \texttt{/users/launa} please move all the \texttt{.pdf} files in the \texttt{docs} sub-directory to the \texttt{forms} directory. Use either absolute or relative pathing.
+\vspace{1.25cm}
+\item Your current working directory is \texttt{/users/launa/}. Please return all \emph{lines} in \texttt{MobyDick.txt} which have the word \texttt{whale} in it. This should be a case-insensitive search.
+\vspace{1.25cm}
+\item You are currently in the \texttt{/users/launa/images} sub-directory. Using a \emph{relative} path, list all the \texttt{.jpg} files which are in the \texttt{/users/launa/docs} sub-directory.
+\vspace{1.25cm}
+\item The directory \texttt{/users/tim/scripts} has over 500 files in it (which is why they are not shown in the diagram). Your current working directory is \texttt{/users/tim}. Please create a file \texttt{/users/tim/dir\_list.txt} which contains a list of all files (including hidden) in the \texttt{/users/tim/scripts} directory.
+\vspace{1.25cm}
+\item Please delete the file \texttt{image2.jpg}. You can assume that your current working directory is \texttt{/users/launa}.
+
+
+\end{enumerate}
+
+
+\end{document}
