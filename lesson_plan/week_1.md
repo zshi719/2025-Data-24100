@@ -43,6 +43,7 @@
 ### Lecture Notes
 
 [Day 1](../class_notes/01_terminal_cmd_line_shell.md)
+
 [Day 1](../class_notes/02_more_shell_and_env.md)
 
 ### Day 1: Quizable Concepts:

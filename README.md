@@ -103,7 +103,7 @@ Course Notes can be found linked inside each lesson plan.
 | Topic | Topics | Assignments | Notes \& Plan | 
 | --- | --- | --- | --- | 
 | 1: Introduction | <ul><li>The Terminal</li><li>File Management</li><li>Environments</li></ul> | [Preliminaries](./assignments/prelims.md) | <ul><li>[Lesson Plan](./lesson_plan/week_1.md)</li></ul>
-| 2: Docker, Make and git | <ul><li>Docker</li><li>Make</li><li>git</li><li>Environments</li></ul> | Quiz #1 | <ul><li>[Lesson Plan](./lesson_plan/week_2.md)</li></ul> |
+| 2: Docker, Make and git | <ul><li>Docker</li><li>Make</li><li>git</li><li>Environments</li></ul> | <ul><li>[Quiz #1A](./quiz/quiz1A.pdf)</li><li>[Quiz #1B](./quiz/quiz1B.pdf)</li><li>[AK](./quiz/Quiz1AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_2.md)</li></ul> |
 | 3: Flask | <ul><li>REST</li><li>Flask</li><li>Requests</li></ul> | [Project Part I Assigned](./project_assignments/part_1.md)  | 
 | 4: Data Pipeline \#1 | <ul><li>Loading data</li><li>Processing and intermediate data stages</li><li>Serving data</li></ul> | 
 | 6: Code quality control and organization | <ul><li>Abstraction</li><li>Linting</li><li>Testing</li></ul>
