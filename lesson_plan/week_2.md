@@ -35,6 +35,7 @@
 
 - This will be a relatively applied quiz based on the concepts above. 
 - You should be able to construct a simple Dockerfile, know what commands to `run` and `build` it for both interactive purposes and to just run `CMD`.
+- How to create environment variables at both run and build time. How to access them with Python.
 - You'll need to be able to read Dockerfiles and understand the environment that they create. 
 - You will _not_ be expected to know specific knowledge about different images that were pulled from the registery (e.g. `alpine`, `slim` or `bookworm`). If a Dockerfile appears in the quiz it will use the `python:3.10.15-bookworm` we have used so far.
 - Given a Dockerfile, a `docker build` and a `docker run` command describe the output. For example, consider the following where line numbers have been added for simplification.
