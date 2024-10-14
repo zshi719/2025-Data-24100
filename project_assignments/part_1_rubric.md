@@ -43,5 +43,6 @@
 
 1. Clone the repo locally.
 1. Verify that there are no commits directly to the main branch. You can do this by either clicking, on the main repo page the link which says something like `12 commits` or you can just go to `https://github.com/[ORG]/[REPO]/commits/main/` to see the commit history. Look to make sure that _everything_ is "Merge pull request #..." and not a direct commit. The initial commit into the repo maybe a single commit.
-2. Use the commit hash provided by the students in canvas. To checkout at a single location type in, at the command line, in the repository directory.
-  `git checkout COMMIT HASH`
+2. Use the commit hash provided by the students in canvas. To checkout at a single location type in, at the command line, in the repository directory: `git checkout COMMIT HASH`.
+3. You will be in a detached head state. If you want to verify you are at the correct location, type in `git log -1 --format=%H` which should display the last commit. `git status` should mention that head is detached and the tree is clean.
+
