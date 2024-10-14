@@ -38,31 +38,38 @@
 - You'll need to be able to read Dockerfiles and understand the environment that they create. 
 - You will _not_ be expected to know specific knowledge about different images that were pulled from the registery (e.g. `alpine`, `slim` or `bookworm`). If a Dockerfile appears in the quiz it will use the `python:3.10.15-bookworm` we have used so far.
 - Given a Dockerfile, a `docker build` and a `docker run` command describe the output. For example, consider the following where line numbers have been added for simplification.
+
+#### Dockerfile
+
 <div align="center">
-  <p style="margin-bottom: 5px; font-weight: bold;">Dockerfile</p>
-  <pre style="background-color: #f6f8fa; color: #24292e; padding: 16px; border-radius: 6px; border: 1px solid #e1e4e8; display: inline-block; text-align: left; max-width: 80%; overflow-x: auto;">
-<code>1. FROM python:3.10.15-bookworm
-1. WORKDIR /app
-<br>
-1. COPY quiz.py .
-2. ENV DF_ENV="Env Var set in Dockerfile"
-3. CMD ["python", "quiz.py"]
-</code>
-</pre>
+
+### Dockerfile
+
+```dockerfile
+1. FROM python:3.10.15-bookworm
+2. WORKDIR /app
+3. COPY quiz.py .
+4. ENV DF_ENV="Env Var set in Dockerfile"
+5. CMD ["python", "quiz.py"]
+```
+
 </div>
+
+
+#### 
 
 <div align="center">
   <p style="margin-bottom: 5px; font-weight: bold;">quiz.py</p>
   <pre style="background-color: #f6f8fa; color: #24292e; padding: 16px; border-radius: 6px; border: 1px solid #e1e4e8; display: inline-block; text-align: left; max-width: 80%; overflow-x: auto;">
 <code>1. import os
-2. 
-3. if __name__ == '__main__':
-4.    df_env = os.environ.get('DF_ENV')
-5.    df_env_command_line = os.environ.get('ENV_RUN')
-6.    # START SPACE
-7.    print(f"DF_ENV is set to: {df_env}")
-8.    print(f"ENV_RUN is set to: {df_env_command_line}")
-9.    # END SPACE    
+1. 
+2. if __name__ == '__main__':
+3.    df_env = os.environ.get('DF_ENV')
+4.    df_env_command_line = os.environ.get('ENV_RUN')
+5.    # START SPACE
+6.    print(f"DF_ENV is set to: {df_env}")
+7.    print(f"ENV_RUN is set to: {df_env_command_line}")
+8.    # END SPACE    
 </code>
 </pre>
 </div>
