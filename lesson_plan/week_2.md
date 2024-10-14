@@ -41,6 +41,17 @@
 
 #### Dockerfile
 
+| <div align="center">Dockerfile</div> |
+|:---:|
+| ```
+1. FROM python:3.10.15-bookworm
+2. WORKDIR /app
+3. COPY quiz.py .
+4. ENV DF_ENV="Env Var set in Dockerfile"
+5. CMD ["python", "quiz.py"]
+``` 
+|
+
 <div align="center">
 
 ### Dockerfile
