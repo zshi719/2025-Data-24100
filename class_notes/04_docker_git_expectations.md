@@ -40,7 +40,7 @@ Git is a complex piece of software and the first time you use it it can feel ove
 * Don't read the messages that git is sending you on the command line and make sure they are what you expect before continuing.
 * Blindly copy code from stack overflow or an LLM without understanding what it is trying to do.
 
-## Docker and passing data
+## Passing Data into Docker containers
 
 * We are going to focus on the isolation afforded by Docker.
 * One of the powerful features of Docker is that isolates the host computer from the container. This power also means that passing data and information from the host to the container can be complex. In this section we are going to begin a discussion about how to pass data.
@@ -106,16 +106,12 @@ Git is a complex piece of software and the first time you use it it can feel ove
 - In this section we'll demonstrate how to transfer data into a Docker container using environment variables at the time of build and at the time of run.
 - We will first start with our basic dockerfile that we have been working with this entire time.
 
-<div align="center">
-  <p style="margin-bottom: 5px; font-weight: bold;">Dockerfile</p>
-  <pre style="background-color: #f6f8fa; color: #24292e; padding: 16px; border-radius: 6px; border: 1px solid #e1e4e8; display: inline-block; text-align: left; max-width: 80%; overflow-x: auto;">
-<code>FROM python:3.10.15-bookworm
+```
+FROM python:3.10.15-bookworm
 WORKDIR /app
-<br>
+
 ENV DF_ENV="Env Var set in Dockerfile"
-</code>
-</pre>
-</div>
+```
 
 - In this example we are creating a debian-based python container with a current working directory of `/app`.
 - The only difference is that we have added a new command `ENV` which sets an environment variable inside the container. 
@@ -144,39 +140,33 @@ docker run -it -e BUILD_ENV='Set at Build! -- try 2' env_var_test /bin/bash
 echo $DF_ENV
 echo $BUILD_ENV
 ```
-- Lets write a python function to print the environment variables to the screen.
+- Lets write a python function to print the environment variables to the screen. Consider the following function which we will `env_test.py`:
 
 
-<div align="center">
-  <p style="margin-bottom: 5px; font-weight: bold;">env_test.py</p>
-  <pre style="background-color: #f6f8fa; color: #24292e; padding: 16px; border-radius: 6px; border: 1px solid #e1e4e8; display: inline-block; text-align: left; max-width: 80%; overflow-x: auto;">
-<code>import os
-<br>
+```
+import os
+
 if __name__ == '__main__':
     df_env = os.environ.get('DF_ENV')
     df_env_command_line = os.environ.get('BUILD_ENV')
-<br>
+
     print(f"DF_ENV is set to: {df_env}")
     print(f"BUILD_ENV is set to: {df_env_command_line}")
-<br></code></pre>
-</div>
+```
+
 
 - The python file above uses the `os` module to interact with the environment. We use the `.get()` method on the `environ` attribute of the `os` mode. `environ` behaves similar to a dictionary.
 
 - If we want to run this when using `docker run` we can change the Dockerfile to the following:
 
-<div align="center">
-  <p style="margin-bottom: 5px; font-weight: bold;">Dockerfile</p>
-  <pre style="background-color: #f6f8fa; color: #24292e; padding: 16px; border-radius: 6px; border: 1px solid #e1e4e8; display: inline-block; text-align: left; max-width: 80%; overflow-x: auto;">
-<code>FROM python:3.10.15-bookworm
+```
+FROM python:3.10.15-bookworm
 WORKDIR /app
 COPY env_test.py .
-<br>
+
 ENV DF_ENV="Env Var set in Dockerfile"
 CMD ["python", "env_test.py"]
-</code>
-</pre>
-</div>
+```
 
 - We can then execute the command by typing:
 

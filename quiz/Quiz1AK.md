@@ -5,7 +5,7 @@ There were two different versions of the quiz with slightly different naming. Th
 There were a few common errors / changes:
 
 1. Confusion between  `cat` and `ls` 
-2. When starting with relatives paths it is unnessary to add  `./` at the start. Just provide the  simplified path (e.g. `rm ./docs/image2.jpg` vs. `rm docs/image2.jpg`)
+2. When starting with relatives paths it is unnecessary to add  `./` at the start. Just provide the  simplified path (e.g. `rm ./docs/image2.jpg` vs. `rm docs/image2.jpg`)
 3. Changing directories (using `cd`) rather than just directly executing the command.
 
 

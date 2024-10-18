@@ -54,7 +54,8 @@ This grade is assigned individually.
 
 Over the course of the quarter you and your group will be working on a large software engineering project. This project will have multiple deliverables during the quarter that you will need to complete as we build up to our final API and backend.
 
-This grade is assigned as a group.
+This grade is assigned as a group. You can find the project regrade policy [here](./assignments/regrade_policy.md). Please read before asking for a regrade.
+
 
 ### Quizzes (Ind.)
 
@@ -62,7 +63,8 @@ Each Thursday (starting week \#2) there will be a short quiz (15-30 minutes) giv
 
 More information on the quizzes is provided in the [course material](#course-material) section below.
 
-This grade is assigned individually.
+This grade is assigned individually. You can find the quiz regrade policy [here](./assignments/regrade_policy.md). Please read before asking for a regrade.
+
 
 ### Final Project Deliverable (Group)
 
@@ -103,9 +105,9 @@ Course Notes can be found linked inside each lesson plan.
 | Topic | Topics | Assignments | Notes \& Plan | 
 | --- | --- | --- | --- | 
 | 1: Introduction | <ul><li>The Terminal</li><li>File Management</li><li>Environments</li></ul> | [Preliminaries](./assignments/prelims.md) | <ul><li>[Lesson Plan](./lesson_plan/week_1.md)</li></ul>
-| 2: Docker, Make and git | <ul><li>Docker</li><li>Make</li><li>git</li><li>Environments</li></ul> | <ul><li>[Quiz #1A](./quiz/quiz1A.pdf)</li><li>[Quiz #1B](./quiz/quiz1B.pdf)</li><li>[AK](./quiz/Quiz1AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_2.md)</li></ul> |
-| 3: Flask | <ul><li>REST</li><li>Flask</li><li>Requests</li></ul> | [Project Part I Due](./project_assignments/part_1.md)  | <ul><li>[Lesson Plan](./lesson_plan/week_3.md)</li></ul>
-| 4: Data Pipeline \#1 | <ul><li>Loading data</li><li>Processing and intermediate data stages</li><li>Serving data</li></ul> | 
+| 2: Docker, Make and git | <ul><li>Docker</li><li>Make</li><li>git</li><li>Environments</li></ul> | <ul><li>[Quiz #1A](./quiz/quiz1A.pdf)</li><li>[Quiz #1B](./quiz/quiz1B.pdf)</li><li>[Quiz #1 AK](./quiz/Quiz1AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_2.md)</li></ul> |
+| 3: Flask | <ul><li>REST</li><li>Flask</li><li>Requests</li></ul> | <ul><li>[Project Part I Due](./project_assignments/part_1.md)</li><li>[Quiz #2A](./quiz/quiz2A.pdf)</li><li>[Quiz #2 AK](./quiz/Quiz2AK.md)</li></ul>  | <ul><li>[Lesson Plan](./lesson_plan/week_3.md)</li></ul>
+| 4: Data Pipeline \#1 | <ul><li>Loading data</li><li>Processing data strategies</li><li>Serving data</li></ul> |  [Project Part II Due](./project_assignments/part_2.md) |
 | 6: Code quality control and organization | <ul><li>Abstraction</li><li>Linting</li><li>Testing</li></ul>
 | 7: Data Pipeline \#2 | <ul><li>SQLite</li><li>CRUD</li></ul> | 
 | 8: Debugging | <ul><li>pdb</li></ul> | 

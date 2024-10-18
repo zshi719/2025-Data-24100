@@ -1,6 +1,6 @@
 ## Regrade Policy
 
-The following document contains information about the regrade policy for this course. 
+The following document contains information about the regrade policy for this course. Please read _the entire_ document before submitting.
 
 Please direct all questions about grading and regrading via email to the professor. Some general guidelines:
 

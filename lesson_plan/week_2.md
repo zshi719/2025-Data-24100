@@ -29,12 +29,13 @@
 
 [Day 3](../class_notes/03_docker.md)
 
-[Day 4](../class_notes/03_docker.md)
+[Day 4](../class_notes/04_docker_git_expectations.md)
 
 ## Quizzable Concepts
 
 - This will be a relatively applied quiz based on the concepts above. 
 - You should be able to construct a simple Dockerfile, know what commands to `run` and `build` it for both interactive purposes and to just run `CMD`.
+  - Other commands that we need to know: `ENV`, `FROM`, `COPY` and `WORKDIR`.
 - How to create environment variables at both run and build time. How to access them with Python.
 - You'll need to be able to read Dockerfiles and understand the environment that they create. 
 - You will _not_ be expected to know specific knowledge about different images that were pulled from the registery (e.g. `alpine`, `slim` or `bookworm`). If a Dockerfile appears in the quiz it will use the `python:3.10.15-bookworm` we have used so far.
