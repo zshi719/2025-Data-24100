@@ -212,3 +212,8 @@ if __name__ == '__main__':
 
 - The first function `secret_route` also demonstrates an authorization tactic for blocking users you do not want in the system.
 - Specifically if the user does not provide, in the header, the password, they will receive a 500 response.
+
+### Important notes on Headers
+
+- Headers are case weird. While they should be case insensitive some applications which manipulate them in weird ways. Whenever you compare them it is best practice to handle case yourself.
+- Underscores cannot be in headers -- use `-` instead if you want break things up.

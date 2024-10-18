@@ -50,7 +50,7 @@ We will use the same data that we loaded in [Part I](part_1.md), the 2019 stock 
 - `/api/v1/row_by_market_count`: Should return (in the body) a JSON object: `{ 'NYSE': xxx, 'NASDAQ': yyy}` where xxx and yyy represent the number of rows for each. 
 
 These routes should _only_ respond to a GET request of the following form:
-- Has a `DATA_241_API_KEY` in the header, set from an environment variable _inside the host_, so has to be passed from the host through the `Makefile` and into the container.
+- Has a `DATA-241-API-KEY` in the header, set from an environment variable _inside the host_, so has to be passed from the host through the `Makefile` and into the container.
 
 Other requirements:
 - `flask` needs to be run on port 4000 and that port needs to be exposed when executing `flask` through the `Makefile`.
@@ -59,7 +59,7 @@ Other requirements:
 ### Environment variable information
 
 - You can assume that in the host machine the environment variable `DATA_241_API_KEY` set in the host. You will need to pull this in through the `make` command and into the Dockerfile. 
-- You should return an http status code of 401 if the request does NOT have the `DATA_241_API_KEY` set or is set to the wrong value.
+- You should return an http status code of 401 if the request does NOT have the `DATA-241-API-KEY` set or is set to the wrong value.
 
 ## How will this be graded
 
@@ -88,7 +88,7 @@ def make_get_request(endpoint, api_key):
 
     # Define the headers
     headers = {
-        'DATA_241_API_KEY': api_key,  # API key in the header
+        'DATA-241-API-KEY': api_key,  # API key in the header
         'Content-Type': 'application/json'
     }
 
