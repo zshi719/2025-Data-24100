@@ -1,14 +1,14 @@
 # Project Part #2
 
-This document outlines the requirements for the first part of the project that we will be working on during this quarter. 
-
-During this quarter we will build a data serving API in a number of parts. In this first part we will require you and your team to create an initial repository in Github, invite us (TAs and professor) to it, set it up properly and put some code inside.
+This document outlines the requirements for the next part of the project that we will be working on during this quarter. During this quarter we will build a data serving API in a number of parts.
 
 ## Coding Standards
 
 During the quarter, you will be expected to adhere to the coding standards found [here](https://github.com/dsi-clinic/the-clinic/blob/main/coding-standards/coding-standards.md) and we will frequently use [this rubric](https://github.com/dsi-clinic/the-clinic/blob/main/rubrics/final-technical-cleanup.md) as a checklist for your code.
 
-However, at this point we have NOT covered `black`, `flake8` or `pyflakes` so you can ignore all standards regarding those concepts. We also have not covered doc strings so that will not be graded at this point.
+At this point we have NOT covered `black`, `flake8` or `pyflakes` so you can ignore all standards regarding those concepts.
+
+However, for this assignment doc strings are required for each function.
 
 ## Branches
 
@@ -32,7 +32,7 @@ Please create a makefile (in the root) of your repository with the following com
 1. `build`: This should build the image from the dockerfile in your repo
 2. `interactive`: This should start an interactive bash session with the current working directory mounted to `/app/src`
 3. `notebook`: This should start a notebook server with the current working directory mounted `/app/src` and ports properly set up so that the notebook can be accessed.
-4. `flask`: This should start the flask server, making sure to expose port `4000` so that we can.
+4. `flask`: This should start the flask server, making sure to expose port `4000` so that we can ping the API from outside the container.
 
 Other `Makefile` requirements:
 - Each of `interactive`, `notebook` and `flask` should have a dependency on the `build` phony so that if the image is not built it will be built.
