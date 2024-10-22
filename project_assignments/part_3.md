@@ -1,8 +1,8 @@
 # Project Part #3
 
-This document outlines the requirements for the next part of the project that we will be working on during this quarter. During this quarter we will build a data serving API in a number of parts. 
+This document outlines the requirements for the next part of our data serving API.
 
-## Coding Standards
+### Coding Standards
 
 During the quarter, you will be expected to adhere to the coding standards found [here](https://github.com/dsi-clinic/the-clinic/blob/main/coding-standards/coding-standards.md) and we will frequently use [this rubric](https://github.com/dsi-clinic/the-clinic/blob/main/rubrics/final-technical-cleanup.md) as a checklist for your code.
 
@@ -10,11 +10,11 @@ At this point we have NOT covered `black`, `flake8` or `pyflakes` so you can ign
 
 However, for this assignment _doc strings are required for each function._
 
-## Branches
+### Branches
 
 During this quarter we will be using branches and pull requests in order to submit code. **Any commits directly to the main branch will result in points being deducted.** The one exception to this is the initial commit in the repo.
 
-## Grading
+### Grading
 
 All grading will be done based off a specific commit hash off of the main branch. At the time that an assignment is due students must submit the commit hash associated with their commit to canvas. You need to submit the _full_ commit hash which is a 40 digit long hash of letters and numbers. It will generally look something like this: `2a2a59af9feacbdd2cd772884b24641c3b75dff7`.
 
@@ -30,8 +30,8 @@ The goal of this assignment is to get the basic `make` commands up and running a
 
 Please create a makefile (in the root) of your repository with the following commands:
 
-1. `build`: This should build the image from the dockerfile in your repo
-2. `interactive`: This should start an interactive bash session with the current working directory mounted to `/app/src`
+1. `build`: This should build the image from the dockerfile in your repo.
+2. `interactive`: This should start an interactive bash session with the current working directory mounted to `/app/src`.
 3. `notebook`: This should start a notebook server with the current working directory mounted `/app/src` and ports properly set up so that the notebook can be accessed.
 4. `flask`: This should start the flask server, making sure to expose port `4000` so that we can ping the API from outside the container.
 
@@ -43,22 +43,23 @@ Other `Makefile` requirements:
 
 ### Flask 
 
-We will be using _all_ of the data in the `project_data` directory to build the routes listed below.
+We will be using _all yaers_ of the data in the `project_data` directory to build the routes listed below.
 
-As in part I your code will need to load the data, making sure to not store any intermediate files and then, once that processing is complete, should server the following routes via `flask`.
+As in part I your code will need to load the data, making sure to not store any intermediate files and then, once that processing is complete, should serve the following routes via `flask`.
 
 - **Note:** The `v1` api needs to be corrected with any feedback that was provided. Please look at [Part 2](part_2.md) to verify that your code is still compliant.
 
 - `/api/v2/{YEAR}`  
-  - Your code should accept any of the years question and return a `404` if a year is passed which is not in the data.
-  - This should return of the count of data for the specific year.
-  - It should return as a JSON object of the form `{'year' : INT, 'count': row_count}`
+  - Your code should accept any of the years in question and return a `404` if a year is passed which is not in the data. There should be a message in the body explaining what the error is.
+  - This should return the count of data for the specific year.
+  - It should return as a JSON object of the form `{'year' : INT, 'count': row_count}`.
 - `/api/v2/open/{SYMBOL}`
   - This should return all the open prices for a particular stock (across all years) in the following format:
     - {'symbol': XXXX, 'price_info' : [ {'date' : date, 'open': open_price}, {'date' : date, 'open' : open_price}, ...] }
-  - If the symbol provided is NOT in the data then it should return a `404`
+    - Make sure that the date is formatted as a string in ['Y-m-d'](https://strftime.org/) format.
+  - If the symbol provided is NOT in the data then it should return a `404`.
 - `/api/v2/close/{SYMBOL}` 
-  - This should return all the close prices and should have a similar format as the `open` API end point, but rather than saying `open` it should say `close`
+  - This should return all the close prices and should have a similar format as the `open` API end point, but rather than saying `open` it should say `close` and report the `close` price from the data.
 - `/api/v2/high/{SYMBOL}` 
   - This should return all the close prices and should have a similar format as the `open` API end point, but rather than saying `open` it should say `high` and report the `high` price from the data.
 - `/api/v2/low/{SYMBOL}` 
@@ -88,7 +89,7 @@ def create_app(config_class):
     
     return app
 
-app = create_app(Config)
+app = create_app()
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
@@ -110,7 +111,7 @@ if __name__ == '__main__':
   - `make notebook`
   - `make interactive`
   - `make flask`
-- Testing `Flask`. We will run `make flask` and then send API requests to the endpoints above and verify that the return the expected values. We will also send requests which do do not have the correct api key set to make sure that these errors are handled gracefully.
+- Testing `Flask`. We will run `make flask` and then send API requests to the endpoints above and verify that the return the expected values. We will also send requests which do not have the correct api key set to make sure that these errors are handled gracefully.
 
 ## Ways to test your Requests
 

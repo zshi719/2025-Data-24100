@@ -2,7 +2,7 @@
 
 ## Overview
 - Monday night the first part of the project is required to be turned in.
-- Thursday there will be a quiz. Quizzes are cumulative and while most of the material will be from Week #2 there will be questions from week #1 material on the quiz.
+- Thursday there will be a quiz. Quizzes are cumulative and cover the material up-to and including the previous week (Week 2).
 
 ## Resources
 

@@ -107,8 +107,8 @@ Course Notes can be found linked inside each lesson plan.
 | 1: Introduction | <ul><li>The Terminal</li><li>File Management</li><li>Environments</li></ul> | [Preliminaries](./assignments/prelims.md) | <ul><li>[Lesson Plan](./lesson_plan/week_1.md)</li></ul>
 | 2: Docker, Make and git | <ul><li>Docker</li><li>Make</li><li>git</li><li>Environments</li></ul> | <ul><li>[Quiz #1A](./quiz/quiz1A.pdf)</li><li>[Quiz #1B](./quiz/quiz1B.pdf)</li><li>[Quiz #1 AK](./quiz/Quiz1AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_2.md)</li></ul> |
 | 3: Flask | <ul><li>REST</li><li>Flask</li><li>Requests</li></ul> | <ul><li>[Project Part I Due](./project_assignments/part_1.md)</li><li>[Quiz #2A](./quiz/quiz2A.pdf)</li><li>[Quiz #2 AK](./quiz/Quiz2AK.md)</li></ul>  | <ul><li>[Lesson Plan](./lesson_plan/week_3.md)</li></ul>
-| 4: Data Pipeline \#1 | <ul><li>Loading data</li><li>Processing data strategies</li><li>Serving data</li></ul> |  [Project Part II Due](./project_assignments/part_2.md) |
-| 6: Code quality control and organization | <ul><li>Abstraction</li><li>Linting</li><li>Testing</li></ul>
+| 4: Flask & Code Quality | <ul><li>Additional Requests</li><li>Organizing code</li><li>Separation of Concerns</li><li>DRY</li></ul> |  [Project Part II Due](./project_assignments/part_2.md) | <ul><li>[Lesson Plan](./lesson_plan/week_4.md)</li></ul> |
+| 6: Code quality control and organization | <ul><li>Abstraction</li><li>Linting</li><li>Testing</li></ul> | [Project Part III Due](./project_assignments/part_3.md) | | 
 | 7: Data Pipeline \#2 | <ul><li>SQLite</li><li>CRUD</li></ul> | 
 | 8: Debugging | <ul><li>pdb</li></ul> | 
 | 9: Auto-docs | <ul><li>Sphinx</li></ul> | 
