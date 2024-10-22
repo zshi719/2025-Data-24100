@@ -1,12 +1,12 @@
-# Project Part #2
+# Project Part #3
 
-This document outlines the requirements for the next part of the project that we will be working on during this quarter. During this quarter we will build a data serving API in a number of parts.
+This document outlines the requirements for the next part of the project that we will be working on during this quarter. During this quarter we will build a data serving API in a number of parts. 
 
 ## Coding Standards
 
 During the quarter, you will be expected to adhere to the coding standards found [here](https://github.com/dsi-clinic/the-clinic/blob/main/coding-standards/coding-standards.md) and we will frequently use [this rubric](https://github.com/dsi-clinic/the-clinic/blob/main/rubrics/final-technical-cleanup.md) as a checklist for your code.
 
-At this point we have NOT covered `black`, `flake8` or `pyflakes` so you can ignore all standards regarding those concepts.
+At this point we have NOT covered `black`, `flake8` or `pyflakes` so you can ignore all standards regarding those concepts. 
 
 However, for this assignment _doc strings are required for each function._
 
@@ -35,6 +35,7 @@ Please create a makefile (in the root) of your repository with the following com
 3. `notebook`: This should start a notebook server with the current working directory mounted `/app/src` and ports properly set up so that the notebook can be accessed.
 4. `flask`: This should start the flask server, making sure to expose port `4000` so that we can ping the API from outside the container.
 
+
 Other `Makefile` requirements:
 - Each of `interactive`, `notebook` and `flask` should have a dependency on the `build` phony so that if the image is not built it will be built.
 - The image name should be set as an environment variable at the top of the `Makefile` and used throughout. 
@@ -42,20 +43,57 @@ Other `Makefile` requirements:
 
 ### Flask 
 
-We will use the same data that we loaded in [Part I](part_1.md), the 2019 stock data. As in part I your code will need to load the data, making sure to not store any intermediate files and then, once that processing is complete, should server the following three routes via `flask`: 
+We will be using _all_ of the data in the `project_data` directory to build the routes listed below.
 
-- `/api/v1/row_count`:
-  - Should return (in the body) a JSON object `{ 'row_count' : XXX }` where XXX is the number of rows from the loaded data (as in part I)
-- `/api/v1/unique_stock_count`:
-  - Should return (in the body) a JSON object `{ 'unique_stock_count' : XXX }` where XXX is the number of unique stocks in the data.
-- `/api/v1/row_by_market_count`: Should return (in the body) a JSON object: `{ 'NYSE': xxx, 'NASDAQ': yyy}` where xxx and yyy represent the number of rows for each. 
+As in part I your code will need to load the data, making sure to not store any intermediate files and then, once that processing is complete, should server the following routes via `flask`.
 
-These routes should _only_ respond to a GET request of the following form:
-- Has a `DATA-241-API-KEY` in the header, set from an environment variable _inside the host_, so has to be passed from the host through the `Makefile` and into the container.
+- **Note:** The `v1` api needs to be corrected with any feedback that was provided. Please look at [Part 2](part_2.md) to verify that your code is still compliant.
+
+- `/api/v2/{YEAR}`  
+  - Your code should accept any of the years question and return a `404` if a year is passed which is not in the data.
+  - This should return of the count of data for the specific year.
+  - It should return as a JSON object of the form `{'year' : INT, 'count': row_count}`
+- `/api/v2/open/{SYMBOL}`
+  - This should return all the open prices for a particular stock (across all years) in the following format:
+    - {'symbol': XXXX, 'price_info' : [ {'date' : date, 'open': open_price}, {'date' : date, 'open' : open_price}, ...] }
+  - If the symbol provided is NOT in the data then it should return a `404`
+- `/api/v2/close/{SYMBOL}` 
+  - This should return all the close prices and should have a similar format as the `open` API end point, but rather than saying `open` it should say `close`
+- `/api/v2/high/{SYMBOL}` 
+  - This should return all the close prices and should have a similar format as the `open` API end point, but rather than saying `open` it should say `high` and report the `high` price from the data.
+- `/api/v2/low/{SYMBOL}` 
+  - This should return all the close prices and should have a similar format as the `open` API end point, but rather than saying `open` it should say `low` and report the `low` price from the data.
+
+All of these routes should _only_ respond to a GET request of the following form:
+- Has a `DATA-241-API-KEY` in the header, set from an environment variable _inside the host_, so has to be passed from the host through the `Makefile` and into the container (same as in Part 2).
 
 Other requirements:
 - `flask` needs to be run on port 4000 and that port needs to be exposed when executing `flask` through the `Makefile`.
 - Your code must process the data from the original zip files, no intermediate files should be stored.
+- Your authorization code needs to be in the form of a decorator imported from a different file. 
+- The code needs to follow the DRY principle as described in class.
+- Your repo should use subdirectories to store python code of differing function. There should be a single `app.py` in the root of the repository and be only a few lines. It should look something like the following:
+
+```
+from flask import Flask
+from stock_app.api.v1.routes import register_v1_routes
+from stock_app.api.v1.routes import register_v2_routes
+
+def create_app(config_class):
+    app = Flask(__name__)
+
+    # Register routes
+    register_v1_routes(app)
+    register_v2_routes(app)
+    
+    return app
+
+app = create_app(Config)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=True)
+
+```
 
 ### Environment variable information
 
@@ -65,14 +103,13 @@ Other requirements:
 ## How will this be graded
 
 - We will check out the code at the commit hash that you submit.
-- All of the previous coding standards (as in [Part I](part_1_rubric.md)) will be checked. 
+- All of the previous coding standards (as in [Part I](part_1_rubric.md) and Part II) will be checked. 
 - All of the requirements listed above will be checked individually.
-- Testing `Makefile`. Additionally we will run the following from the command line:
+- Testing `Makefile`. Additionally we will run the following from the command line. Each should follow the behavior outlined in class and previous versions of the project.
   - `make build` 
   - `make notebook`
   - `make interactive`
   - `make flask`
-  - each of these command should run as expected.
 - Testing `Flask`. We will run `make flask` and then send API requests to the endpoints above and verify that the return the expected values. We will also send requests which do do not have the correct api key set to make sure that these errors are handled gracefully.
 
 ## Ways to test your Requests
