@@ -15,7 +15,16 @@
   - Separation of concerns
 - What is a decorator in Python and why do we use them?
 - Be able to write a decorator that implements logic before and after a function is called.
+- Work with functions as objects.
+- Positional vs. Keyword arguments: How are they different. How to pack and unpack with (`*` and `**`). How to use them to pass arbitrary argument information to functions.
  
 ## Lecture Notes
 
+[Day 7](../class_notes/07_decorators.md)
+
 ## Quizzable Concepts
+
+- You will _not_ be expected to reproduce a decorator from scratch, but you should be able to read the code in a decorator and interpret what it is doing.
+- Define positional vs. keyword arguments.
+- Describe and use `**kwargs` and `*args` for manipulating unknown or variable length arguments.
+- Be able to use `__name__`, `__doc__` and `__module__` on functions and know what the result is.
