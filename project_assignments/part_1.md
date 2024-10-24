@@ -31,10 +31,11 @@ Please organize yourself in a group in Canvas of between 2-4 members. I'd recomm
 ### Create a Github repo
 
 The repository needs to:
-    - Have the name in the following format: `data_241_autumn_2024_GROUP_NUMBER` is the number from the Canvas group.
-    - Must invite both TAs (`rrhuang`, `hszh01`), the grader (`giomhern`) and the Professor (`nickross`).
-    - Must be set to _private_.
-    - Must have [a branch protection _rule_ on the main branch](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule) set which requires users to submit a pull request before merging. Note that this needs only apply to the _main_ branch.
+
+  - Have the name in the following format: `data_241_autumn_2024_GROUP_NUMBER` is the number from the Canvas group.
+  - Must invite both TAs (`rrhuang`, `hszh01`), the grader (`giomhern`) and the Professor (`nickross`).
+  - Must be set to _private_.
+  - Must have [a branch protection _rule_ on the main branch](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule) set which requires users to submit a pull request before merging. Note that this needs only apply to the _main_ branch.
 
 ### Note on branch protections:
 
