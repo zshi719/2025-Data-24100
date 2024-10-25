@@ -83,7 +83,7 @@ This grade is assigned as a group.
 
 ### Final Exam (Ind.)
 
-There will be a final exam given according to the exam calendar. This will be cumulative from the material in the quarter and will be similar in style and difficulty to the quizzes. Per the [final exam calendar][https://registrar.uchicago.edu/calendars/final-exams/], but it looks like the Final Exam will is scheduled for Thursday December 12th from 10:00-12:00. Please make sure that you verify this for yourself.
+There will be a final exam given according to the exam calendar. This will be cumulative from the material in the quarter and will be similar in style and difficulty to the quizzes. Per the [final exam calendar](https://registrar.uchicago.edu/calendars/final-exams/), but it looks like the Final Exam will is scheduled for Thursday December 12th from 10:00-12:00. Please make sure that you verify this for yourself.
 
 This grade is assigned individually.
 
