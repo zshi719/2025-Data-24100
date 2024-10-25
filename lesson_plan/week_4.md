@@ -15,6 +15,7 @@
 - Be able to write a decorator that implements logic before and after a function is called.
 - Work with functions as objects.
 - Positional vs. Keyword arguments: How are they different. How to pack and unpack with (`*` and `**`). How to use them to pass arbitrary argument information to functions.
+- Understand the `dir` command
  
 ## Lecture Notes
 
@@ -29,3 +30,21 @@
 - Describe and use `**kwargs` and `*args` for manipulating unknown or variable length arguments.
 - Be able to use `__name__`, `__doc__` and `__module__` on functions and know what the result is.
 - Define separation of concerns and code complexity. 
+- Explain what the `dir` command does and use it.
+- Use functions as objects. Example question: please write a function `g` which takes in, as arguments `f` and `x` where `f` is a function and `x` is an integer. if `x` is even it should return `x` and if `x` is odd it should return the function `f` with `x` provided as the first positional argument:
+
+```
+def g(f, x):
+    if x % 2 == 0:
+        return x
+    else:
+        return f(x)
+```
+
+- Use `args` and `kwargs` to work with function arguments. Example: please write a function `g` which print out all the keyword arguments that were sent given to it. It should print them item by item in the format: `f"Keyword: {key} \t Value: {value}"` where `key` and `value` and the key-value pair associated with the argument. It should not accept any position arguments
+
+```
+def g(**kwargs):
+    for k, v in kwargs.items():
+        print(f"Keyword: {k} \t Value: {v}")
+```
