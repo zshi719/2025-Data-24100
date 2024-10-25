@@ -1,9 +1,7 @@
 # Week #4 Lesson Plan
 
 ## Overview
-
-## Overview
-- Monday night the first part of the project is required to be turned in.
+- Monday night the next part of the project is required to be turned in.
 - Thursday there will be a quiz. Quizzes are cumulative and cover the material up-to and including the previous week (Week 3).
 
 ## Resources
@@ -21,6 +19,7 @@
 ## Lecture Notes
 
 [Day 7](../class_notes/07_decorators.md)
+[Day 8](../class_notes/08_flask_soc.md)
 
 ## Quizzable Concepts
 

@@ -32,6 +32,7 @@
 ## Quizzable Concepts
 - As always, the quiz is cumulative.
 - Given a `bash` based-command, how do I create a Make command based on it?
+- List the parts of a request and response object. Describe what each is.
 - In `flask` create a route which responds to a GET command with a particular status code.
 - In `flask` create a route which parses the header of a GET request and applies a specific python based transformation / change to the body.
 - In `flask` create a route which returns a particular status code conditional on the header.

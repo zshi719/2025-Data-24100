@@ -43,7 +43,7 @@ Other `Makefile` requirements:
 
 ### Flask 
 
-We will be using _all yaers_ of the data in the `project_data` directory to build the routes listed below.
+We will be using _all years_ of the data in the `project_data` directory to build the routes listed below.
 
 As in part I your code will need to load the data, making sure to not store any intermediate files and then, once that processing is complete, should serve the following routes via `flask`.
 
@@ -80,7 +80,7 @@ from flask import Flask
 from stock_app.api.v1.routes import register_v1_routes
 from stock_app.api.v1.routes import register_v2_routes
 
-def create_app(config_class):
+def create_app():
     app = Flask(__name__)
 
     # Register routes

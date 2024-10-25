@@ -8,6 +8,15 @@ Office Location: Ryerson 257H
 
 How to contact: My contact information is on canvas.
 
+<details style="padding: 10px; background-color: var(--color-canvas-subtle); border-radius: 5px;">
+<summary>💡 <strong>Updates for next year</strong></summary>
+This box contains a list of changes that should be done for next year<br>
+
+1. For the group names make sure that people are not putting "GROUP" and instead just putting the numbers there.
+2. Everyone uses a DSI Clinic Repo with branch protections and no is an admin.
+3. When using flask -- just always start with `python app.py` rather than `flask run`
+</details>
+
 ## Course Description
 
 This course is designed to equip students with the practical skills and theoretical knowledge necessary to excel at the intersection of data science and software engineering. Through a hands-on approach, students will delve into the core tools and concepts that form the backbone of this interdisciplinary field, including data modeling, building data pipelines and software development best-practices. Emphasis will be placed on real-world applications, enabling students to work on projects that simulate professional scenarios and challenges. This course is ideal for those looking to deepen their understanding of how data-focused technologies are developed and deployed.
@@ -107,10 +116,11 @@ Course Notes can be found linked inside each lesson plan.
 | 1: Introduction | <ul><li>The Terminal</li><li>File Management</li><li>Environments</li></ul> | [Preliminaries](./assignments/prelims.md) | <ul><li>[Lesson Plan](./lesson_plan/week_1.md)</li></ul>
 | 2: Docker, Make and git | <ul><li>Docker</li><li>Make</li><li>git</li><li>Environments</li></ul> | <ul><li>[Quiz #1A](./quiz/quiz1A.pdf)</li><li>[Quiz #1B](./quiz/quiz1B.pdf)</li><li>[Quiz #1 AK](./quiz/Quiz1AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_2.md)</li></ul> |
 | 3: Flask | <ul><li>REST</li><li>Flask</li><li>Requests</li></ul> | <ul><li>[Project Part I Due](./project_assignments/part_1.md)</li><li>[Quiz #2A](./quiz/quiz2A.pdf)</li><li>[Quiz #2 AK](./quiz/Quiz2AK.md)</li></ul>  | <ul><li>[Lesson Plan](./lesson_plan/week_3.md)</li></ul>
-| 4: Flask & Code Quality | <ul><li>Additional Requests</li><li>Organizing code</li><li>Separation of Concerns</li><li>DRY</li></ul> |  [Project Part II Due](./project_assignments/part_2.md) | <ul><li>[Lesson Plan](./lesson_plan/week_4.md)</li></ul> |
-| 6: Code quality control and organization | <ul><li>Abstraction</li><li>Linting</li><li>Testing</li></ul> | [Project Part III Due](./project_assignments/part_3.md) | | 
-| 7: Data Pipeline \#2 | <ul><li>SQLite</li><li>CRUD</li></ul> | 
-| 8: Debugging | <ul><li>pdb</li></ul> | 
+| 4: Flask & Code Quality | <ul><li>Additional Requests</li><li>Organizing code</li><li>Separation of Concerns</li><li>DRY</li></ul> |  <ul><li>[Project Part II Due](./project_assignments/part_2.md)</li><li>[Quiz #3A](./quiz/quiz3A.pdf)</li><li>[Quiz #3A AK](./quiz/Quiz3AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_4.md)</li></ul> |
+| 5: Code quality control and organization | <ul><li>Abstraction</li><li>Linting</li><li>Testing</li></ul> | [Project Part III Due](./project_assignments/part_3.md) | | 
+| 6: Data Pipeline \#2 | <ul><li>SQLite</li><li>CRUD</li></ul> | 
+| 7: Testing | <ul><li>pdb</li></ul> | 
+| 8: Debugging | <ul><li>Sphinx</li></ul> | 
 | 9: Auto-docs | <ul><li>Sphinx</li></ul> | 
 
 ## Canvas
