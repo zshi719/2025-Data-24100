@@ -306,21 +306,15 @@ if __name__ == "__main__":
 ├── app
 │   ├── __init__.py
 │   ├── api
-│   │   ├── __init__.py
 │   │   ├── colleges
-│   │   │   ├── __init__.py
 │   │   │   └── routes.py
 │   │   ├── players
-│   │   │   ├── __init__.py
 │   │   │   └── routes.py
 │   │   └── teams
-│   │       ├── __init__.py
 │   │       └── routes.py
 │   ├── data_utils
-│   │   ├── __init__.ppy
 │   │   └── loading_utils.py
 │   └── route_utils
-│       ├── __init__.py
 │       └── decorators.py
 ├── app.py
 ├── data
@@ -393,6 +387,8 @@ def register_team_routes(app):
   1. Use and import of the decorator to handle validation of team name (DRY Principle).
   2. Use of a `register_college_routes` function and global `BASE_URL` to specify a single location to base everything off of. Since the `BASE_URL` applies to everything in this file and is important for readability it is generally okay to use it as a global.
   3. We moved the loading data command to a single function, rather than have the read csv in all files.
+  4. The `__init__.py` file in the route of the app. This file tells python that the directory in question is importable. Inside the docker container to run flask we only need to add this one, but depending on how other imports are structured others maybe required. (Note that these files are also python version dependent. Newer versions of python require less of these files to be present).
+
 
 - While there are additional ways that we can make this better and more abstracted this is probably a good enough level. There is very little code repetition and, another hallmark of well structured code, the imports required for each file are boxed in:
   - Our `loading_utils.py` file only requires pandas which makes sense given it loads the data.

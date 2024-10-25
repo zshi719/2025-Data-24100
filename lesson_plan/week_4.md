@@ -19,11 +19,13 @@
 ## Lecture Notes
 
 [Day 7](../class_notes/07_decorators.md)
+
 [Day 8](../class_notes/08_flask_soc.md)
 
 ## Quizzable Concepts
 
-- You will _not_ be expected to reproduce a decorator from scratch, but you should be able to read the code in a decorator and interpret what it is doing.
+- You will _not_ be expected to reproduce a decorator from scratch, but you should be able to read the code in a decorator, interpret what it is doing and make minor modifications.
 - Define positional vs. keyword arguments.
 - Describe and use `**kwargs` and `*args` for manipulating unknown or variable length arguments.
 - Be able to use `__name__`, `__doc__` and `__module__` on functions and know what the result is.
+- Define separation of concerns and code complexity. 
