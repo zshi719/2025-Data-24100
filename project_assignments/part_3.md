@@ -22,7 +22,7 @@ To find the commit hash, you can either use the command line or check GitHub’s
 
 Note that any changes requested in the grading of the previous part need to be corrected.
 
-## Part II: Running Flask and basic Make commands
+## Part III: Running Flask and basic Make commands
 
 The goal of this assignment is to get the basic `make` commands up and running and to create a mini flask server which sends us back information. You will also be required to leverage environment variables to create an API key for validation.
 
