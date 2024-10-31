@@ -16,6 +16,8 @@
  
 ## Lecture Notes
 
+[Day 9](../class_notes/09_static_analysis.md)
+
 
 
 ## Quizzable Concepts
