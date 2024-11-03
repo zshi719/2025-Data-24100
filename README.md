@@ -18,6 +18,7 @@ This box contains a list of changes that should be done for next year<br>
 4. When using flask -- just always start with `python app.py` rather than `flask run`
 5. use `uv` inside the container
 6. use pyenv and python 3.15 or something new which requires the env
+7. Fix Part 3 to only load ~5 of the years. It is too many for some machines
   
 </details>
 
