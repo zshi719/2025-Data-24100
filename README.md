@@ -13,10 +13,12 @@ How to contact: My contact information is on canvas.
 This box contains a list of changes that should be done for next year<br>
 
 1. For the group names make sure that people are not putting "GROUP" and instead just putting the numbers there.
-2. Everyone uses a DSI Clinic Repo with branch protections and no is an admin.
-3. When using flask -- just always start with `python app.py` rather than `flask run`
-4. use `uv` inside the container
-5. use pyenv and python 3.15 or something new which requires the env
+2. Have everyone put their data in a location on the host set by ENV rather than zips inside the repo
+3. Everyone uses a DSI Clinic Repo with branch protections and no is an admin.
+4. When using flask -- just always start with `python app.py` rather than `flask run`
+5. use `uv` inside the container
+6. use pyenv and python 3.15 or something new which requires the env
+  
 </details>
 
 ## Course Description

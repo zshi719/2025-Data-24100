@@ -24,6 +24,10 @@ The goal of this assignment is to get your code up to the standards required by 
 
 Your code must conform to all the requirements of [Part III](./part_3.md) and there does not need to be any changes to the API, the goal is to get your code in a good space before we begin our next bit addition.
 
+### Additional Fixes
+
+Please correct all of the feedback for Part III. A portion of the grade will be set to making sure that your code continues to pass the standards set by Part III.
+
 ## How will this be graded
 
 - We will check out the code at the commit hash that you submit.
