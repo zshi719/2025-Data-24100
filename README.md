@@ -122,7 +122,7 @@ Course Notes can be found linked inside each lesson plan.
 | 2: Docker, Make and git | <ul><li>Docker</li><li>Make</li><li>git</li><li>Environments</li></ul> | <ul><li>[Quiz #1A](./quiz/quiz1A.pdf)</li><li>[Quiz #1B](./quiz/quiz1B.pdf)</li><li>[Quiz #1 AK](./quiz/Quiz1AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_2.md)</li></ul> |
 | 3: Flask | <ul><li>REST</li><li>Flask</li><li>Requests</li></ul> | <ul><li>[Project Part I Due](./project_assignments/part_1.md)</li><li>[Quiz #2A](./quiz/quiz2A.pdf)</li><li>[Quiz #2 AK](./quiz/Quiz2AK.md)</li></ul>  | <ul><li>[Lesson Plan](./lesson_plan/week_3.md)</li></ul>
 | 4: Flask & Code Quality | <ul><li>Additional Requests</li><li>Organizing code</li><li>Separation of Concerns</li><li>DRY</li><li>Separation of Concerns</li></ul> |  <ul><li>[Project Part II Due](./project_assignments/part_2.md)</li><li>[Quiz #3A](./quiz/quiz3A.pdf)</li><li>[Quiz #3A AK](./quiz/Quiz3AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_4.md)</li></ul> |
-| 5: Code quality control and organization | <ul><li>Abstraction</li><li>Linting</li></ul> | <ul><li>[Project Part III Due](./project_assignments/part_3.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_5.md)</li></ul> | 
+| 5: Code quality control and organization | <ul><li>Abstraction</li><li>Linting</li></ul> | <ul><li>[Project Part III Due](./project_assignments/part_3.md)</li><li>[Quiz #4](./quiz/quiz4A.pdf)</li><li>[Quiz #4 AK](./quiz/Quiz4AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_5.md)</li></ul> | 
 | 6: Data Pipeline \#2 | <ul><li>SQLite</li><li>CRUD</li></ul> |  <ul><li>[Project Part IV Due](./project_assignments/part_4.md)</li></ul> |
 | 7: Testing | <ul><li>pytest</li></ul> | 
 | 8: Debugging | <ul><li>pdb</li></ul> | 

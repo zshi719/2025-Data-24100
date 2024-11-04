@@ -1,0 +1,104 @@
+\documentclass[11pt]{article}
+\usepackage{fullpage, fancyhdr, ifthen, amssymb, amsfonts, amsmath, booktabs}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage[margin=0.25in]{geometry}
+\usepackage{upquote}
+\usepackage{forest}
+\usepackage{ulem}
+\usepackage{colortbl}
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{table}[h]
+\centering
+\arrayrulecolor{black!10} % Very light table outline
+\begin{tabular}{|p{\textwidth}|}
+\hline
+\begin{minipage}[t]{\textwidth}
+\vspace{0pt}  % This is crucial for top alignment
+\noindent \textbf{Instructions:} Please answer the following questions making sure to write your answers legibly on the second page. The code below is the contents of python file that we will work with.
+\begin{itemize}
+\item Since we are writing python code please be careful about spacing / indent. Leave enough room that it is obvious when you want things indented. 
+\item Make sure to write legibly.
+\item If you are unfamiliar with the \texttt{time} module, \texttt{time.time()} returns an integer representation of time, subtracting two of these objects, as we do in the code below will return the number of elapsed seconds.
+\item Similarly, \texttt{time.sleep()} when provided an integer will ``pause" the program for that many seconds.
+\end{itemize}
+\end{minipage} 
+\\
+\hline
+\end{tabular}
+\end{table}
+
+{\color{lightgray}\hrule}
+\begin{verbatim}
+import time
+	
+def timing_decorator(func):
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        end = time.time()
+        print(f'QUESTION 1: {kwargs}')
+        print(f"{func.__name__}")
+        print(f"took {end - start} seconds")
+        return result
+    return wrapper
+    
+
+def add_two(a, b):
+    return a + b
+
+def add_three(a, b, c):
+    return a + b + c
+
+
+@timing_decorator
+def calc_function(var1, var2, var3='Processor', var4=1):
+    print(f"Calc Type: {var3}, number: {var4}")
+    time.sleep(var1 + var2)
+    
+    
+if __name__ == "__main__":
+    calc_function(1, 2, var3='computer', var4=3)
+
+\end{verbatim}
+{\color{lightgray}\hrule}
+
+
+\clearpage
+
+\begin{tabularx}{\textwidth}{l|X}
+\textbf{Quiz 4A} &   \textbf{Name: } \\
+\hline
+\end{tabularx}
+
+\vspace{1cm}
+
+\begin{enumerate}
+\item The decorator above reports the time that it takes for the function to complete. The line 
+
+\texttt{print(f'QUESTION 1: {kwargs}')} 
+
+will print something to the terminal. 
+	\begin{enumerate} 
+		\item In this line of code what \emph{type} of python object does \texttt{kwargs} behave like?
+		\vspace{2.5cm}
+		\item When the code is executed what will be printed to the terminal by this line (only return what will be printed by this specific line)?
+		\vspace{2.5cm}
+	\end{enumerate}
+\item In the second f-string in the decorator is the phrase \texttt{func.\_\_name\_\_}. If the code above is run, what will be printed here?
+		\vspace{2.5cm}
+
+\item The functions \texttt{add\_two} and \texttt{add\_three} are defined above. Please write a function (\texttt{F}) which accepts either function and arguments. It should send those arguments to the function specified and return the result of that function multiplied by two. 
+
+In other words \texttt{F(add\_two, 1, 2)} should return $2 \cdot (1 + 2) = 6$ and \texttt{F(add\_three, 1, 2, 3)} should return $2 \cdot (1 + 2 + 3) = 12$. 
+
+	\vspace{3.5cm}
+	
+	 
+\end{enumerate}
+
+
+\end{document}
