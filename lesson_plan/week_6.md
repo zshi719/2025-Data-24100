@@ -19,14 +19,20 @@
 - When and why do we need to `commit`?
 - What is the format of data returned by a `fetch`-like command?
 - Install sqlite
+- What is `argparse` and how is it used?
+- Why do we use Management commands?
+- `CRUD`, sending and receiving a `POST` command and using it to insert data into a database.
+
   
 ## Lecture Notes
 
+- [Day 11](../class_notes/11_sqlite.md)
+- [Day 12](../class_notes/12_mgmt_and_post.md)
 
 
 ## Quizzable Concepts
 
-- You should be able to write a simple function which manipulates query results using simple SQL statements. For example: given a database schema, write a query which selects specific rows and columns and then print them to the screen or lightly reshape them.
+- You should be able to write a function which manipulates query results using SQL statements. For example: given a database schema, write a query which selects specific rows and columns and then print them to the screen or lightly reshape them.
   - The table `cls` has two columns: `student_age` and `student_name`. Please write a function which returns the names of all students who are between 30 and 32 years old (inclusive). This function should take an sqlite connection and return only the names of the students. If there are no students who meet this criteria the function should print "No students found" while returning an empty list.
 
 ```

@@ -51,3 +51,12 @@ If you need a refresher on any of the above Python topics you should consult the
 For refresher on the Pandas topics please refer to your notes from 118 and 119 and for SQL, there are plenty of easy references online. You can check out chapters 1, 2, 3, 5 and 8 of [this book](https://www.nickross.site/datamanagement/), but it is a bit over kill for our purposes.
 
 Other resources for SQL include [Code Academy](https://www.codecademy.com/learn/learn-sql), which has a solid introduction and [This one](https://sqlbolt.com/) which I found on reddit, so ymmv.
+
+## Some example questions
+
+An unscientific selection of questions that you will be expected to answer without using a computer:
+
+1. Given a list of n-elements `['a', 'b', 'c', 'd', 'e']` be able to convert that list to a dictionary of the form `{ 1: 'a', 2: 'b', 3: 'c', 4: 'd', 5: 'e'}`. 
+2. Given a list of tuples, such as `[('a', 3), ('b', 4), ('c', 5)]` be able to convert that to a dictionary of the form `{ 'a' : 3, 'b': 4, 'c': 5}` or `{3 : 'a', 4: 'b', 5: 'c'}` using a dictionary comprehension. 
+
+Both of the above were on quizzes (closed book, closed computer) so an inability to do them quickly will limit your performance in the course.
