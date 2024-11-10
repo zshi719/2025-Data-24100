@@ -1,0 +1,120 @@
+\documentclass[11pt]{article}
+\usepackage{fullpage, fancyhdr, ifthen, amssymb, amsfonts, amsmath, booktabs}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage[margin=0.25in]{geometry}
+\usepackage{upquote}
+\usepackage{forest}
+\usepackage{ulem}
+\usepackage{colortbl}
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{table}[h]
+\centering
+\arrayrulecolor{black!10} % Very light table outline
+\begin{tabular}{|p{\textwidth}|}
+\hline
+\begin{minipage}[t]{\textwidth}
+\vspace{0pt}  % This is crucial for top alignment
+\noindent \textbf{Instructions:} Please answer the following questions making sure to write your answers legibly on the second page. The code below is the contents of python file that runs flask, similar to the one in class
+\begin{itemize}
+\item Since we are writing python code please be careful about spacing / indent. Leave enough room that it is obvious when you want things indented. 
+\item Make sure to write legibly.
+
+\end{itemize}
+\end{minipage} 
+\\
+\hline
+\end{tabular}
+\end{table}
+
+{\color{lightgray}\hrule}
+\begin{verbatim}
+from flask import (
+    Flask,
+    jsonify
+)
+
+from score_processor import (
+    api_high_score_interface,
+    api_location_interface,
+    api_score_user_info
+)
+
+app = Flask(__name__)
+
+@app.route('/api/v1/score/<user>', methods=['GET'])
+def user_score(user):
+
+    final_result = {}
+    level_1_dict, level_2_dict = api_score_user_info(user)  
+    # Each is a dictionary of info: { 'score' : int, 
+    # 'start_time' : int, 'end_time': int }
+
+    level_1_dict['time_in_seconds'] =(
+        level_1_dict['end_time'] - level_1_dict['start_time'])
+    level_2_dict['time_in_seconds'] =(
+        level_2_dict['end_time'] - level_2_dict['start_time'])
+    
+    final_result['user'] = user
+
+    # Score needs to be rescaled
+    level_1_dict['score'] = int(level_1_dict['score']/100)
+    level_2_dict['score'] = int(level_2_dict['score']/100)
+
+    final_result['max'] = max(level_1_dict['score'],
+        level_2_dict['score'] )
+        
+    final_result['total_time'] = (
+        level_1_dict['time_in_seconds'] + 
+            level_2_dict['time_in_seconds'] )
+
+    return jsonify(final_result), 200
+
+
+@app.route('/api/v1/location', methods=['GET'])
+def return_location_info():
+    location_info_dict = api_location_interface()
+
+    return jsonify(location_info_dict), 200
+\end{verbatim}
+{\color{lightgray}\hrule}
+
+
+\clearpage
+
+\begin{tabularx}{\textwidth}{l|X}
+\textbf{Quiz 5A} &   \textbf{Name: } \\
+\hline
+\end{tabularx}
+
+\vspace{1cm}
+
+\begin{enumerate}
+\item {\bf Create a new route:} The function \texttt{api\_high\_score\_interface} returns the top 3 high scorers of a particular video game in the form:
+\begin{verbatim}
+['name1', 'name2', 'name3']
+\end{verbatim}
+
+We want to create a Flask route \texttt{/api/v1/top\_3\_users} to return this in the format:
+
+\begin{verbatim}
+{ 1: 'name1', 2: 'name2', 3: 'name3'}
+\end{verbatim}
+
+For example, if \texttt{api\_high\_score\_interface()} returns \verb|['nick', 'anna', 'tina']| then the Flask app should respond with \verb|{1: 'nick', 2: 'anna', 3: 'tina'}|.
+
+Please write the code for this route.
+
+\vspace{6cm}
+
+\item What is the DRY principle in coding?
+\vspace{1cm}
+\item The code in the route \texttt{/api/v1/score/<user>} violates the DRY principle. Please rewrite the code in the section below. Write the {\it entire} route, including the decorator all the way to the return statement to fix the issue. Feel free to write on the back if you want more space.
+
+\end{enumerate}
+
+
+\end{document}
