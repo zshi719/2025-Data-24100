@@ -99,6 +99,7 @@ Repo/Git Grading:
 Code Quality:
   - We will read your code making sure that it fulfills the code quality checklists above (ignore the sections that we have not gotten to yet).
   - We will also look to make sure that the code followed the requirements above.
+  - No errors or warning should occur in normal operations.
 
 Other:
   - Add you and your team to Canvas.

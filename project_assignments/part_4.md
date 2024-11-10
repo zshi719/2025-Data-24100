@@ -37,3 +37,4 @@ Please correct all of the feedback for Part III. A portion of the grade will be 
 - Your code will also be read over to make sure that it conforms to the standards laid out in class. If you want to receive full credit make sure that your code has sound logic, is easy to read, maintains a good separation of concerns and does not violate the DRY principle.
 - All documented code needs to have good faith level of effort that briefly explains the required purpose. Doc strings that say `This is the doc string` or other low-effort submissions will be graded accordingly.
 - Your code should also be responsive to changes requested by previous submissions. If you received feedback previously to make a change to the code this change should be present.
+- No errors or warning should occur in normal operations.

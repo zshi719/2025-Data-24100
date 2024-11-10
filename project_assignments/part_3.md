@@ -112,6 +112,7 @@ if __name__ == '__main__':
   - `make interactive`
   - `make flask`
 - Testing `Flask`. We will run `make flask` and then send API requests to the endpoints above and verify that the return the expected values. We will also send requests which do not have the correct api key set to make sure that these errors are handled gracefully.
+- No errors or warning should occur in normal operations.
 
 ## Ways to test your Requests
 

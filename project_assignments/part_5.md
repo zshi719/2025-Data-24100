@@ -76,3 +76,4 @@ Please correct all of the feedback for Part IV. A portion of the grade will be s
 - We will run the `make` commands outlined above and verify that they work according to the standards set out above. 
 - We will run an autograder on the endpoints to make sure that they return the correct data and information.
 - Finally, your code will also be read to make sure that all documentation is up to date and that the code has a consistent set of abstraction standards. 
+- No errors or warning should occur in normal operations.
