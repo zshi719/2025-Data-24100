@@ -15,6 +15,9 @@
 
 ## Lecture Notes
 
+[Day 13](../class_notes/13_more_crud.md)
+
+
 ## Quizzable Concepts
 
 - Since no quiz, there are not quiz-able concepts, HA!
