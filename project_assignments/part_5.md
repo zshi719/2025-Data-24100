@@ -41,6 +41,7 @@ Your code must conform to all the requirements of all previous parts, including 
   - `make db_load`: this loads the data from zip files to the table in `stocks`.
   - `make db_rm`: this deletes the database file.
   - `make db_clean`: this deletes the sqlite database file and reloads the data. In other words it should run the `rm`, `create` and `load` commands in order. If the database does not already exist it should _not_ return an error.
+  - `make db_interactive`: This should run an interactive session of the database with the correct database open.
 - All of the above make commands should be accessed via a python script `db_manage.py` that is called from the makefile and executed _inside the docker container_.
   - `db_manage.py` should take a single argument (`db_create`, `db_load`, etc.) and then run python code to achieve the goals of the program. So it will be called, via `make` with a command of the form below which will depend on where the file is located, etc. 
 
@@ -56,6 +57,8 @@ db_load: build
 - `pandas` should _not_ be used in any of the creation, loading or direct accessing commands. E.g. when you need data there should (eventually, behind some levels of abstraction) an SQL query executed (and specifically an SQL query that _you_ wrote). 
 - Do NOT use the `pandas.read_sql` command (or any other `pandas` command that directly communicates with the database). Part of the task at hand is building your own non-pandas connector.
 - Make sure to think through the code before writing it down. What abstraction level do you want? How do you define it? Where are you defining your separation of concerns?
+- There should not be a global data frame variable or a global connection. When a route calls the database it should be using sql.
+- When running flask via `make flask` the server should start up quickly (less than 10 seconds). Responses should should all take less than 2 seconds.
 
 #### Other Notes:
 
