@@ -82,6 +82,8 @@ CREATE TABLE stocks_owned (
 #### Additional Details
 
 - As mentioned in class I strongly advise you to add an index to the `stocks` table to make sure that your code is performant.
+- All dates will be of the format ['Y-m-d'](https://strftime.org/), as in the previous parts.
+- A trading day as defined as one that is in the dataset. If the date exists in the `stocks` table (e.g. in the original zip files) then you should consider it a trading day.
 - No request should take more than a few seconds (say 5). If it does you should add an index to the table to make sure that the query is faster.
 - To calculate the return you will take the `close` price for the stocks on the day that they were sold and subtract the `open` price for the day that they were bought. Multiply this by the number of shares that they owned. Since an account can have multiple stock holdings, the above calculation should be repeated for all stocks owned by the specific account. 
 
