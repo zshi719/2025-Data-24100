@@ -91,6 +91,8 @@ $$ \mathrm{return} = \sum_{\mathrm{holdings}} \mathrm{num\_shares} \left( \mathr
 
 - To determine a "valid" date when adding a stock to an account you should verify that the symbol-date combination exists in the data. If the combination does not exist then return a 400. This is important since if the date does not exist then calculating the return would not be possible.
 
+- You should not be able to add stocks to an account that does not exist.
+
 ### Additional Fixes
 
 Please correct all of the feedback for Part IV. A portion of the grade will be set to making sure that your code continues to pass those standards.
