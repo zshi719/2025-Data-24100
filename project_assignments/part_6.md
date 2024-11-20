@@ -76,7 +76,7 @@ CREATE TABLE stocks_owned (
 | `accounts/<INT>` | GET | This list all stocked owned by an account. The integer in the url should correspond to the account id | The response should contain, in the body, a JSON object of the form `{ 'account_id' : INT, 'name' : string, 'stock_holdings' = [{'symbol' : str, 'purchase_date' : str, 'sale_date' : str, 'number_of_shares': int}, ...]}`. Note the `stock_holdings` are a list of JSON objects. | If the account does not exist then it should return a 404. If the account does not hold any stocks the `stock_holdings` should be an empty list. |
 | `stocks/<symbol>` | GET | The should list details of all stock holdings across _all_ accounts. | The response should be a JSON object of the form: `{ 'symbol': str, 'holdings': [{'account_id' : int, 'purchase_date' : str, 'sale_date' : str, 'number_of_shares': int }, ...]}` This is a dictionary which contains a list inside the `holdings` key. | If there are no holdings associated with the stock it should return an empty list. The status code should be 200. | 
 | `stocks` | POST | Request body should contain a JSON object of the form `{ 'account_id' : int, 'symbol': str, 'purchase_date' : str, 'sale_date': str, 'number_of_shares': INT}` | This should return the appropriate status code and nothing more. | An account can own the same stock multiple times with the same or different dates. Account id and symbol are _not_ to be assumed unique. A 201 status code should be returned upon success. If the date is not a valid date (not a trading day), then return a 400. | 
-| `stocks` | DELETE | Request body should contain a JSON object of the form `{ 'account_id' : int, 'symbol': str, 'purchase_date' : str, 'sale_date': str, 'number_of_shares': INT}` | This should return the appropriate status code and nothing else. | This should delete a single holding from an account. Note that if the full information (dates, account and symbol) does not match then a 404 should e returned. |
+| `stocks` | DELETE | Request body should contain a JSON object of the form `{ 'account_id' : int, 'symbol': str, 'purchase_date' : str, 'sale_date': str, 'number_of_shares': INT}` | This should return the appropriate status code and nothing else. | This should delete a single holding from an account. Note that if the full information (dates, account and symbol) does not match then a 404 should be returned. If the delete is successful then it should return a 204. |
 | `accounts/return/<int>` | GET | | This should return the nominal return (how much the account made) across all their holdings. The format should be `{'account_id' : int, 'return': float}`. More information on the calculation is below. | If the account id does not exist it should return status code 404, otherwise it should return 200. | 
 
 #### Additional Details
@@ -90,6 +90,8 @@ CREATE TABLE stocks_owned (
 $$ \mathrm{return} = \sum_{\mathrm{holdings}} \mathrm{num\_shares} \left( \mathrm{close}_{\mathrm{sales\_date}} - \mathrm{open}_{\mathrm{purchase\_date}} \right) $$
 
 - To determine a "valid" date when adding a stock to an account you should verify that the symbol-date combination exists in the data. If the combination does not exist then return a 400. This is important since if the date does not exist then calculating the return would not be possible.
+
+- You should not be able to add stocks to an account that does not exist.
 
 ### Additional Fixes
 
