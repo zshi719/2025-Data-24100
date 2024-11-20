@@ -33,9 +33,7 @@ def list_colleges():
 def list_colleges_per_team(
     team,
 ):
-    """test
-
-    """
+    """Test"""
     df = load_data()
 
     list_of_players = df.loc[

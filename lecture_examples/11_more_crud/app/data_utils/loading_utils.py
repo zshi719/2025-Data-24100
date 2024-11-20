@@ -28,8 +28,7 @@ def load_data_pandas():
 
 
 def load_data():
-    """Loading data with SQL
-    """
+    """Loading data with SQL"""
     conn = create_db_connection()
 
     query = """select id, player_name,
@@ -58,8 +57,7 @@ def create_db_connection(db_path=None):
 
 
 def execute_query_return_list_of_dicts_lm(conn, sql_query):
-    """Low memory version of loading command command
-    """
+    """Low memory version of loading command command"""
     cursor = conn.cursor()
     cursor.execute(sql_query)
     description_info = cursor.description
@@ -206,7 +204,7 @@ def add_player(player_info):
     params = (
         player_info["player_name"],
         player_info["team"],
-        player_info.get("college"),  
+        player_info.get("college"),
         # '2022-23' is hardcoded in the query
     )
 

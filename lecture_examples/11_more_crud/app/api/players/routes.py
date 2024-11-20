@@ -1,4 +1,5 @@
 """Player based routes"""
+
 from flask import jsonify, request
 
 from app.data_utils.loading_utils import add_player, delete_player, load_data
@@ -9,10 +10,11 @@ BASE_URL = "/api/players"
 def list_players_route():
     try:
         df = load_data()
-        players_list = (df.loc[:, ["id", "player_name"]]
-                        .drop_duplicates()
-                        .to_dict("records")
-                        )
+        players_list = (
+            df.loc[:, ["id", "player_name"]]
+            .drop_duplicates()
+            .to_dict("records")
+        )
         return jsonify({"players": players_list}), 200
 
     except Exception as e:
@@ -22,7 +24,7 @@ def list_players_route():
 def delete_player_route(player_id):
     try:
         player_name = delete_player(player_id)
-        return '', 204
+        return "", 204
     except Exception as e:
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500
 
@@ -37,26 +39,26 @@ def add_player_route():
         return jsonify({"error": "team is required"}), 400
 
     # Add player with optional college
-    add_player(
-        data
-    )
+    add_player(data)
 
-    return jsonify({
-        "message": f"Successfully added player: {data['player_name']}",
-        "player": {
-            "name": data["player_name"],
-            "team": data["team"],
-            "college": data.get("college")
+    return jsonify(
+        {
+            "message": f"Successfully added player: {data['player_name']}",
+            "player": {
+                "name": data["player_name"],
+                "team": data["team"],
+                "college": data.get("college"),
+            },
         }
-    }), 201
+    ), 201
 
 
 def get_player_info_route(player_id):
     try:
         df = load_data()
-        players_list = (df.loc[(df.loc[:, "id"] == player_id), :]
-                        .to_dict("records")
-                        )
+        players_list = df.loc[(df.loc[:, "id"] == player_id), :].to_dict(
+            "records"
+        )
         # assert len(players_list) == 1, "Player ID Unknown"
 
         if len(players_list) != 1:
@@ -71,12 +73,11 @@ def get_player_info_route(player_id):
 
 
 def register_player_routes(app):
-
-    @app.route(f"{BASE_URL}", methods=['GET', 'POST'])
+    @app.route(f"{BASE_URL}", methods=["GET", "POST"])
     def base_url_handler():
-        if request.method == 'GET':
+        if request.method == "GET":
             return list_players_route()
-        if request.method == 'POST':
+        if request.method == "POST":
             return add_player_route()
 
     @app.route(f"{BASE_URL}/<int:player_id>", methods=["DELETE"])
