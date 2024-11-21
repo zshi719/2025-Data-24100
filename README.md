@@ -18,7 +18,8 @@ This box contains a list of changes that should be done for next year<br>
 4. When using flask -- just always start with `python app.py` rather than `flask run`
 5. use `uv` inside the container
 6. use pyenv and python 3.15 or something new which requires the env
-7. Fix Part 3 to only load ~5 of the years. It is too many for some machines
+7. Fix Part 3 to only load ~5 of the years. It is too many for some machines.
+8. Move pdb to autodocs lectures. It is short.
   
 </details>
 
@@ -125,8 +126,8 @@ Course Notes can be found linked inside each lesson plan.
 | 5: Code quality control and organization | <ul><li>Abstraction</li><li>Linting</li></ul> | <ul><li>[Project Part III Due](./project_assignments/part_3.md)</li><li>[Quiz #4](./quiz/quiz4A.pdf)</li><li>[Quiz #4 AK](./quiz/quiz4AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_5.md)</li></ul> | 
 | 6: Data Pipeline | <ul><li>SQLite</li><li>CRUD</li></ul> |  <ul><li>[Project Part IV Due](./project_assignments/part_4.md)</li><li>[Quiz #5](./quiz/quiz5A.pdf)</li><li>[Quiz #5 AK](./quiz/quiz5AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_6.md)</li></ul> |
 | 7: Data Pipeline \#2 | <ul><li>More CRUD</li><li>Testing</li></ul> | <ul><li>[Project Part V Due](./project_assignments/part_5.md)</li></ul> |  <ul><li>[Lesson Plan](./lesson_plan/week_7.md)</li></ul> | 
-| 8: Debugging and Testing | <ul><li>pdb</li><li>Testing</li></ul> | <ul><li>[Project Part VI Due](./project_assignments/part_6.md)</li></ul> | 
-| 9: Auto-docs | <ul><li>Sphinx</li></ul> | 
+| 8: Adding Features | <ul><li>Logging in Python</li><li>Autodocs with mkdocs</li></ul> | <ul><li>[Project Part VI Due](./project_assignments/part_6.md)</li><li>[Quiz #6](./quiz/quiz6A.pdf)</li><li>[Quiz #6 AK](./quiz/quiz6AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_8.md)</li></ul> |
+| 9: Testing and Merging | <ul><li>pdb</li><li>PyTest</li><li>Merging Data</li></ul> | 
 
 ## Canvas
 
