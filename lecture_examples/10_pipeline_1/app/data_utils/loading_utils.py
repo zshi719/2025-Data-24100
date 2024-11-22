@@ -210,7 +210,7 @@ def add_player(player_info):
     params = (
         player_info["player_name"],
         player_info["team"],
-        player_info.get("college"),  
+        player_info.get("college"),
         # '2022-23' is hardcoded in the query
     )
 

@@ -1,8 +1,4 @@
-from app.data_utils.loading_utils import (
-   load_data,
-   delete_player,
-   add_player
-)
+from app.data_utils.loading_utils import load_data, delete_player, add_player
 from flask import jsonify, request
 
 BASE_URL = "/api/players"
@@ -40,18 +36,18 @@ def add_player_route():
             return jsonify({"error": "team is required"}), 400
 
         # Add player with optional college
-        add_player(
-            data
-        )
+        add_player(data)
 
-        return jsonify({
-            "message": f"Successfully added player: {data['player_name']}",
-            "player": {
-                "name": data["player_name"],
-                "team": data["team"],
-                "college": data.get("college")
+        return jsonify(
+            {
+                "message": f"Successfully added player: {data['player_name']}",
+                "player": {
+                    "name": data["player_name"],
+                    "team": data["team"],
+                    "college": data.get("college"),
+                },
             }
-        }), 201
+        ), 201
 
     except Exception as e:
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500

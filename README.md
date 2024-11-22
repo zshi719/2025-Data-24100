@@ -20,6 +20,7 @@ This box contains a list of changes that should be done for next year<br>
 6. use pyenv and python 3.15 or something new which requires the env
 7. Fix Part 3 to only load ~5 of the years. It is too many for some machines.
 8. Move pdb to autodocs lectures. It is short.
+9. Add information about log rotation to logs
   
 </details>
 

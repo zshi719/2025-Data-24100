@@ -28,13 +28,13 @@ def create_app():
     """
     app = Flask(__name__)
 
-    # Debug Level:
-    debug_level = logging.DEBUG
+    # Logging Level to use (default DEBUG for now)
+    logging_level = logging.DEBUG
     # Initialize logger
     app.logger = custom_logger  # Attach logger to Flask app
-    app.logger.setLevel(debug_level)
+    app.logger.setLevel(logging_level)
     werkzeug_logger = logging.getLogger("werkzeug")
-    werkzeug_logger.setLevel(debug_level)
+    werkzeug_logger.setLevel(logging_level)
     werkzeug_logger.handlers = []
     werkzeug_logger.addHandler(app.logger.handlers[0])
 
