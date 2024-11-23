@@ -128,7 +128,13 @@ Course Notes can be found linked inside each lesson plan.
 | 6: Data Pipeline | <ul><li>SQLite</li><li>CRUD</li></ul> |  <ul><li>[Project Part IV Due](./project_assignments/part_4.md)</li><li>[Quiz #5](./quiz/quiz5A.pdf)</li><li>[Quiz #5 AK](./quiz/quiz5AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_6.md)</li></ul> |
 | 7: Data Pipeline \#2 | <ul><li>More CRUD</li><li>Testing</li></ul> | <ul><li>[Project Part V Due](./project_assignments/part_5.md)</li></ul> |  <ul><li>[Lesson Plan](./lesson_plan/week_7.md)</li></ul> | 
 | 8: Adding Features | <ul><li>Logging in Python</li><li>Autodocs with mkdocs</li></ul> | <ul><li>[Project Part VI Due](./project_assignments/part_6.md)</li><li>[Quiz #6](./quiz/quiz6A.pdf)</li><li>[Quiz #6 AK](./quiz/quiz6AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_8.md)</li></ul> |
-| 9: Testing and Merging | <ul><li>pdb</li><li>PyTest</li><li>Merging Data</li></ul> | 
+| 9: Testing and Merging | <ul><li>pdb</li><li>PyTest</li><li>Merging Data</li></ul> | <ul><li>[Project Part VII Due](./project_assignments/part_7.md)</li><ul> | <ul><li>[Lesson Plan](./lesson_plan/week_9.md)</li></ul> | 
+
+### Final Information
+
+There are two components of the final:
+1. Delivering on the final part of the project. Information on this assignment can be found in [Part VIII](./project_assignments/part_8.md)
+2. An in-person final exam. 
 
 ## Canvas
 
