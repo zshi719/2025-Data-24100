@@ -3,6 +3,7 @@ nav:
   - Home: index.md
   - About: about.md
   - APIDocs: api_docs.md
+# theme: terminal
 
 docs_dir: docs
 theme:
