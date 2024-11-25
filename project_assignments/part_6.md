@@ -38,6 +38,7 @@ Your code must conform to all the requirements of all previous parts, including 
 #### Updates to Make / Docker
 - In addition to existing `make` commands your `db_create` command now needs to create an `accounts` and `stocks_owned` table with the data definition spelled out below. When you create these they should be empty.
 - Implement these changes using the `db_manage.py` command.
+- Please also create a make command db management command called `db_clean_account` which only resets the `account` and `stocks_owned` tables. 
 
 #### Table definitions
 
@@ -106,3 +107,5 @@ Please correct all of the feedback for Part V. A portion of the grade will be se
 - We will run an autograder on the endpoints to make sure that they return the correct data and information.
 - Finally, your code will also be read to make sure that all documentation is up to date and that the code has a consistent set of abstraction standards. 
 - No errors or warning should occur in normal operations.
+- The database file itself should _NOT_ be committed to the repo.
+- You should never load the entire dataset into a dataframe. You need to use sql commands to only select the relevant data.

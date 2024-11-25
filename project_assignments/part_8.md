@@ -50,3 +50,5 @@ Please correct all of the feedback for Part VII. A portion of the grade will be 
 - We will run an autograder on the endpoints to make sure that they return the correct data and information. This includes types and casing.
 - Finally, your code will also be read to make sure that all documentation is up to date and that the code has a consistent set of abstraction standards. 
 - No errors or warning should occur in normal operations.
+- The database file itself should _NOT_ be committed to the repo.
+- You should never load the entire dataset into a dataframe. You need to use sql commands to only select the relevant data.

@@ -21,7 +21,8 @@ This box contains a list of changes that should be done for next year<br>
 7. Fix Part 3 to only load ~5 of the years. It is too many for some machines.
 8. Move pdb to autodocs lectures. It is short.
 9. Add information about log rotation to logs
-  
+10. Add "F" to pyproject.toml
+11. Update late policy on assignments if more than 5 hours => 50% off.
 </details>
 
 ## Course Description

@@ -4,7 +4,7 @@ This document outlines the requirements for the next part of our data serving AP
 
 ### Coding Standards
 
-During the quarter, you will be expected to adhere to the coding standards found [here](https://github.com/dsi-clinic/the-clinic/blob/main/coding-standards/coding-standards.md) and we will frequently use [this rubric](https://github.com/dsi-clinic/the-clinic/blob/main/rubrics/final-technical-cleanup.md) as a checklist for your code.
+During the quarter, you will be expected to adhere to the coding s- You should never load the entire dataset into a dataframe. You need to use sql commands to only select the relevant data.tandards found [here](https://github.com/dsi-clinic/the-clinic/blob/main/coding-standards/coding-standards.md) and we will frequently use [this rubric](https://github.com/dsi-clinic/the-clinic/blob/main/rubrics/final-technical-cleanup.md) as a checklist for your code.
 
 ### Branches
 
@@ -38,3 +38,4 @@ Please correct all of the feedback for Part III. A portion of the grade will be 
 - All documented code needs to have good faith level of effort that briefly explains the required purpose. Doc strings that say `This is the doc string` or other low-effort submissions will be graded accordingly.
 - Your code should also be responsive to changes requested by previous submissions. If you received feedback previously to make a change to the code this change should be present.
 - No errors or warning should occur in normal operations.
+- You should never load the entire dataset into a dataframe. You need to use sql commands to only select the relevant data.
