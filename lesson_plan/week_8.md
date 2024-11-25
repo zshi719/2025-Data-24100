@@ -23,6 +23,7 @@
 ## Lecture Notes
 
 [Day 14](../class_notes/14_logging_project_issues.md)
+
 [Day 15](../class_notes/15_autodocs.md)
 
 
