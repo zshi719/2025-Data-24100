@@ -24,7 +24,7 @@ The goal of this assignment is to _remove the dependency on `pandas` for storing
 
 While you are welcome to use `pandas` to manipulate data _after_ a select statement, you may NOT use it to load data into the database.
 
-**IMPORTANT NOTE:** Depending on the age of your group members computers you may struggle to load and use all the data. If this is the case for your group, you can create an environment variable called "DOWNSAMPLE" which when set equal to 1 will only load data from 2016 and 2017. This smaller subset of the data should be performant on everyone's computer. Using "DOWNSAMPLE" is optional, the environment variable is a flag for the grader to know what is testable.
+**IMPORTANT NOTE:** Depending on the age of your group members computers you may struggle to load and use all the data. If this is the case for your group, you can create an environment variable called "DOWNSAMPLE" which when set equal to 1 will only load data from 2016 and 2017. This smaller subset of the data should be performant on everyone's computer. Using "DOWNSAMPLE" is optional, the environment variable is a flag for the grader to know what is testable. Keep in mind that if DOWNSAMPLE is set to 0 it needs to load and process the entire dataset.
 
 Your code must conform to all the requirements of all previous parts, including [Part IV](./part_4.md) 
 
