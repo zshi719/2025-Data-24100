@@ -93,7 +93,7 @@ This grade is assigned as a group.
 
 ### Final Exam (Ind.)
 
-There will be a final exam given according to the exam calendar. This will be cumulative from the material in the quarter and will be similar in style and difficulty to the quizzes. Per the [final exam calendar](https://registrar.uchicago.edu/calendars/final-exams/), but it looks like the Final Exam will is scheduled for Thursday December 12th from 10:00-12:00. Please make sure that you verify this for yourself.
+There will be a final exam given according to the exam calendar. This will be cumulative from the material in the quarter and will be similar in style and difficulty to the quizzes. Per the [final exam calendar](https://registrar.uchicago.edu/calendars/final-exams/), it looks like it is scheduled for Thursday December 12th from 10:00-12:00. Please make sure that you verify this for yourself.
 
 This grade is assigned individually. There is more information about the final [here](./lesson_plan/finals_week.md).
 
@@ -132,7 +132,7 @@ Course Notes can be found linked inside each lesson plan.
 | 7: Data Pipeline \#2 | <ul><li>More CRUD</li><li>Testing</li></ul> | <ul><li>[Project Part V Due](./project_assignments/part_5.md)</li></ul> |  <ul><li>[Lesson Plan](./lesson_plan/week_7.md)</li></ul> | 
 | 8: Adding Features | <ul><li>Logging in Python</li><li>Autodocs with mkdocs</li></ul> | <ul><li>[Project Part VI Due](./project_assignments/part_6.md)</li><li>[Quiz #6](./quiz/quiz6A.pdf)</li><li>[Quiz #6 AK](./quiz/quiz6AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_8.md)</li></ul> |
 | 9: Testing and Merging | <ul><li>pdb</li><li>PyTest</li></ul> | <ul><li>[Project Part VII Due](./project_assignments/part_7.md)</li><ul> | <ul><li>[Lesson Plan](./lesson_plan/week_9.md)</li></ul> | 
-| 10: Finals Week | |<ul><li>[Project Part VIII Due](./project_assignments/part_8.md)</li><li>[In person Final Exam](#final-information)<ul>  |
+| 10: Finals Week | |<ul><li>[Project Part VIII Due](./project_assignments/part_8.md)</li><li>[In person Final Exam](./lesson_plan/finals_week.md)<ul>  |
 
 
 ## Canvas
