@@ -54,9 +54,10 @@ Other resources for SQL include [Code Academy](https://www.codecademy.com/learn/
 
 ## Some example questions
 
-An unscientific selection of questions that you will be expected to answer without using a computer:
+An unscientific selection of questions that you will be expected to answer without using a computer. These questions were given on quizzes so being able to write them efficiently is important:
 
-1. Given a list of n-elements `['a', 'b', 'c', 'd', 'e']` be able to convert that list to a dictionary of the form `{ 1: 'a', 2: 'b', 3: 'c', 4: 'd', 5: 'e'}`. 
-2. Given a list of tuples, such as `[('a', 3), ('b', 4), ('c', 5)]` be able to convert that to a dictionary of the form `{ 'a' : 3, 'b': 4, 'c': 5}` or `{3 : 'a', 4: 'b', 5: 'c'}` using a dictionary comprehension. 
-
-Both of the above were on quizzes (closed book, closed computer) so an inability to do them quickly will limit your performance in the course.
+1. [Python] Given a list of n-elements `['a', 'b', 'c', 'd', 'e']` be able to convert that list to a dictionary of the form `{ 1: 'a', 2: 'b', 3: 'c', 4: 'd', 5: 'e'}`. 
+2. [Python] Given a list of tuples, such as `[('a', 3), ('b', 4), ('c', 5)]` be able to convert that to a dictionary of the form `{ 'a' : 3, 'b': 4, 'c': 5}` or `{3 : 'a', 4: 'b', 5: 'c'}` using a dictionary comprehension. 
+3. [SQL] The table stocks contains two columns: `ticker` which is a ticker symbol (such as `AAPL` or `MSFT`) which is text and a number, `price` of the form `18.22`. There is one row per symbol, so the symbols are unique. 
+   1. Write a function which returns all tickers and tickers only for stocks with a price greater than 50.00.
+   2. Write a function which returns all tickers and tickers only for stocks with a price less than 12.

@@ -57,7 +57,7 @@ Note that any changes requested in the grading of the previous part need to be c
     "value_2" : Price Target,
     "operator" : LT or LTE,
     "purchase_type": B or S,
-    "start_date": date ,
+    "start_date": date,
     "end_date": date
 }
 ```

@@ -23,6 +23,8 @@ This box contains a list of changes that should be done for next year<br>
 9. Add information about log rotation to logs
 10. Add "F" to pyproject.toml
 11. Update late policy on assignments if more than 5 hours => 50% off.
+12. Options to add: Merging data
+13. Options to add: github actions with testing & coding standards
 </details>
 
 ## Course Description
@@ -93,7 +95,7 @@ This grade is assigned as a group.
 
 There will be a final exam given according to the exam calendar. This will be cumulative from the material in the quarter and will be similar in style and difficulty to the quizzes. Per the [final exam calendar](https://registrar.uchicago.edu/calendars/final-exams/), but it looks like the Final Exam will is scheduled for Thursday December 12th from 10:00-12:00. Please make sure that you verify this for yourself.
 
-This grade is assigned individually.
+This grade is assigned individually. There is more information about the final [here](./lesson_plan/finals_week.md).
 
 ## Course Material
 
@@ -121,7 +123,7 @@ Course Notes can be found linked inside each lesson plan.
 
 | Topic | Topics | Assignments | Notes \& Plan | 
 | --- | --- | --- | --- | 
-| 1: Introduction | <ul><li>The Terminal</li><li>File Management</li><li>Environments</li></ul> | [Preliminaries](./assignments/prelims.md) | <ul><li>[Lesson Plan](./lesson_plan/week_1.md)</li></ul>
+| 1: Introduction | <ul><li>The Terminal</li><li>File Management</li><li>Environments</li></ul> | <ul><li>[Preliminaries](./assignments/prelims.md)</li><li>[Prereqs](./docs/prequisites.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_1.md)</li></ul>
 | 2: Docker, Make and git | <ul><li>Docker</li><li>Make</li><li>git</li><li>Environments</li></ul> | <ul><li>[Quiz #1A](./quiz/quiz1A.pdf)</li><li>[Quiz #1B](./quiz/quiz1B.pdf)</li><li>[Quiz #1 AK](./quiz/quiz1AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_2.md)</li></ul> |
 | 3: Flask | <ul><li>REST</li><li>Flask</li><li>Requests</li></ul> | <ul><li>[Project Part I Due](./project_assignments/part_1.md)</li><li>[Quiz #2A](./quiz/quiz2A.pdf)</li><li>[Quiz #2 AK](./quiz/quiz2AK.md)</li></ul>  | <ul><li>[Lesson Plan](./lesson_plan/week_3.md)</li></ul>
 | 4: Flask & Code Quality | <ul><li>Additional Requests</li><li>Organizing code</li><li>Separation of Concerns</li><li>DRY</li><li>Separation of Concerns</li></ul> |  <ul><li>[Project Part II Due](./project_assignments/part_2.md)</li><li>[Quiz #3A](./quiz/quiz3A.pdf)</li><li>[Quiz #3A AK](./quiz/quiz3AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_4.md)</li></ul> |
@@ -129,13 +131,9 @@ Course Notes can be found linked inside each lesson plan.
 | 6: Data Pipeline | <ul><li>SQLite</li><li>CRUD</li></ul> |  <ul><li>[Project Part IV Due](./project_assignments/part_4.md)</li><li>[Quiz #5](./quiz/quiz5A.pdf)</li><li>[Quiz #5 AK](./quiz/quiz5AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_6.md)</li></ul> |
 | 7: Data Pipeline \#2 | <ul><li>More CRUD</li><li>Testing</li></ul> | <ul><li>[Project Part V Due](./project_assignments/part_5.md)</li></ul> |  <ul><li>[Lesson Plan](./lesson_plan/week_7.md)</li></ul> | 
 | 8: Adding Features | <ul><li>Logging in Python</li><li>Autodocs with mkdocs</li></ul> | <ul><li>[Project Part VI Due](./project_assignments/part_6.md)</li><li>[Quiz #6](./quiz/quiz6A.pdf)</li><li>[Quiz #6 AK](./quiz/quiz6AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_8.md)</li></ul> |
-| 9: Testing and Merging | <ul><li>pdb</li><li>PyTest</li><li>Merging Data</li></ul> | <ul><li>[Project Part VII Due](./project_assignments/part_7.md)</li><ul> | <ul><li>[Lesson Plan](./lesson_plan/week_9.md)</li></ul> | 
+| 9: Testing and Merging | <ul><li>pdb</li><li>PyTest</li></ul> | <ul><li>[Project Part VII Due](./project_assignments/part_7.md)</li><ul> | <ul><li>[Lesson Plan](./lesson_plan/week_9.md)</li></ul> | 
+| 10: Finals Week | |<ul><li>[Project Part VIII Due](./project_assignments/part_8.md)</li><li>[In person Final Exam](#final-information)<ul>  |
 
-### Final Information
-
-There are two components of the final:
-1. Delivering on the final part of the project. Information on this assignment can be found in [Part VIII](./project_assignments/part_8.md)
-2. An in-person final exam. 
 
 ## Canvas
 
@@ -160,8 +158,8 @@ All grade (and due date) information will be posted on Canvas. If you do not hav
 
 - As an instructor, one of my responsibilities is to help create a safe learning environment on our campus. I also have a mandatory reporting responsibility related to my role as a faculty member. I am required to share information regarding sexual misconduct or information about a crime that may have occurred with the University.
 
-The University of Chicago is a community of scholars dedicated to research, academic excellence, and the pursuit and cultivation of learning. Members of the University community cannot thrive unless each is accepted as an autonomous individual and is treated without regard to characteristics irrelevant to participation in the life of the University. Our university is committed to fostering a safe, productive learning environment. Title IX and our school policy prohibits discrimination on the basis of sex. Sexual misconduct — including harassment, domestic and dating violence, sexual assault, and stalking — is also prohibited at our university.
+- The University of Chicago is a community of scholars dedicated to research, academic excellence, and the pursuit and cultivation of learning. Members of the University community cannot thrive unless each is accepted as an autonomous individual and is treated without regard to characteristics irrelevant to participation in the life of the University. Our university is committed to fostering a safe, productive learning environment. Title IX and our school policy prohibits discrimination on the basis of sex. Sexual misconduct — including harassment, domestic and dating violence, sexual assault, and stalking — is also prohibited at our university.
 
-Our university encourages anyone experiencing sexual misconduct to talk to someone about what happened, so they can get the support they need and our university can respond appropriately. If you wish to speak confidentially about an incident of sexual misconduct, want more information about filing a report, or have questions about school policies and procedures, please contact Bridget Collier (Associate Provost for Equal Opportunity Programs and Title IX Coordinator for the University) at [bcollier@uchicago.edu](mailto:bcollier@uchicago.edu) or (773) 834-6367.
+- Our university encourages anyone experiencing sexual misconduct to talk to someone about what happened, so they can get the support they need and our university can respond appropriately. If you wish to speak confidentially about an incident of sexual misconduct, want more information about filing a report, or have questions about school policies and procedures, please contact Bridget Collier (Associate Provost for Equal Opportunity Programs and Title IX Coordinator for the University) at [bcollier@uchicago.edu](mailto:bcollier@uchicago.edu) or (773) 834-6367.
 
-Our university is legally obligated to investigate reports of sexual misconduct, and therefore it cannot guarantee the confidentiality of a report, but it will consider a request for confidentiality and respect it to the extent possible. As instructors, we are also required by our school to report incidents of sexual misconduct and thus cannot guarantee confidentiality. We must provide our Title IX coordinator with relevant details such as the names of those involved in the incident.
+- Our university is legally obligated to investigate reports of sexual misconduct, and therefore it cannot guarantee the confidentiality of a report, but it will consider a request for confidentiality and respect it to the extent possible. As instructors, we are also required by our school to report incidents of sexual misconduct and thus cannot guarantee confidentiality. We must provide our Title IX coordinator with relevant details such as the names of those involved in the incident.

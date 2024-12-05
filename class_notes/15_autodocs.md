@@ -205,13 +205,15 @@ plugins:
 - This is yet another reason to put code inside functions.
 
 ### Finding Modules
-- Autodoc module discovery tends to be a bit different than the normal python interpret. 
-- You generally will need to be more explicit, especially about modules in the same directory. 
-- For example, the file [db_manage.py](../lecture_examples/14_autodocs/app/data_utils/db_manage.py) references the module in the same directory as it (`loading_utils`). We are calling this with a relative path and thus we need to add `.`, so that the import look like `from .loading_utils import ...` instead of `from loading_utils import ...`.
-- Why do we need to do this? 
-  - Because the parser is being called from another directory (in this case the root of the repo) it will look in the root of the repo for `loading_utils` and not find it. 
-  - All the rest of our imports are called using the full path `app.data_utils.loading_utils` which is consistent with how `mkdocs` is being called.
-  - When we call `db_manage.py` we are just running the script directly in a way that affords us not having to specify the full path.
+- Autodoc module discovery tends to be a bit different than the normal python interpret. Specifically, mkdocs, like a lot of other python tools will treat the directory as a package which has some important consequences for file discovery.
+- There are two consequences of this:
+    1. When doing relative imports you need to be explicit:
+       - For example, the file [db_manage.py](../lecture_examples/14_autodocs/app/data_utils/db_manage.py) references the module in the same directory as it (`loading_utils`). We are calling this with a relative path and thus we need to add `.`, so that the import look like `from .loading_utils import ...` instead of `from loading_utils import ...`.
+       - Why do we need to do this? 
+       - Because the parser is being called from another directory (in this case the root of the repo) it will look in the root of the repo for `loading_utils` and not find it. 
+       - When we call `db_manage.py` we were running the script directly in a way that affords us not having to specify the full path, but now with mkdocs we need to add the `.` to make the dependence explicit.
+    2. Use the full path in the rest of our imports (which you were probably doing already).
+        - Use the full path `app.data_utils.loading_utils` which is consistent with how `mkdocs` is being called.
 
 ## Running the autodocs
 

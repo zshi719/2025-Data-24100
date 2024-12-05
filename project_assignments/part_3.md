@@ -49,7 +49,7 @@ As in part I your code will need to load the data, making sure to not store any 
 
 - **Note:** The `v1` api needs to be corrected with any feedback that was provided. Please look at [Part 2](part_2.md) to verify that your code is still compliant.
 
-- `/api/v2/{YEAR}`  
+- `/api/v2/{YEAR}`
   - Your code should accept any of the years in question and return a `404` if a year is passed which is not in the data. There should be a message in the body explaining what the error is.
   - This should return the count of data for the specific year.
   - It should return as a JSON object of the form `{'year' : INT, 'count': row_count}`.
