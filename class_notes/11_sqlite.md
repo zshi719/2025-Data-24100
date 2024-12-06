@@ -83,7 +83,8 @@ graph LR
 
 - Refer to the notebook [here](../lecture_examples/10_pipeline_1/notebooks/lect11.ipynb) for specifics of what was covered in class.
 - To use sqlite3 in Python we import it and then set up a connection:
-```
+
+```python
 import sqlite3
 conn = sqlite3.connect(file_name_of_db)
 ```
@@ -100,7 +101,7 @@ conn = sqlite3.connect(file_name_of_db)
 
 - As an example consider creating a table and then inserting data as below:
 
-```
+```python
 create_table_query = """create table cls (bname text, bage int); """
 cursor.execute( create_table_query )
 
@@ -121,7 +122,7 @@ conn.commit()
 
 - Once we have run the commands above we can verify that the data is in the tables:
 
-```
+```python
 cursor.execute("select bage, bname from cls;")
 data = cursor.fetchall()
 print(data)
@@ -130,17 +131,20 @@ print(data)
 which will return all of the data in our table.
 
 - Note that the above does _not_ have the names from the columns it only returns the data as a list of tuples. If we want to get the column names we need to look at the `cursor.description`. For, after running the above we can then execute:
-```
+
+```python
 print(cursor.description)
 ```
 
 which will print:
-```
+
+```python
 (('bage', None, None, None, None, None, None), ('bname', None, None, None, None, None, None))
 ```
+
 which is a tuple of tuples. For the purposes of this class we are only interested in the first item in each of the nested tuples which is the column name of the returned data. We can leverage this to create a function which returns a list of dictionaries containing the information from our query. 
 
-```
+```python
 def execute_query_return_list_of_dicts(conn, sql_query):
 
     cursor = conn.cursor()
@@ -162,7 +166,7 @@ def execute_query_return_list_of_dicts(conn, sql_query):
 
 The code above takes in two arguments, a connection and an sql query. What it does is then execute the query, grab all the data, using `fetchall` and then turn it into a list of dictionaries where each dictionary contains the data from a row in the table. For example:
 
-```
+```python
 execute_query_return_list_of_dicts( conn, "select * from cls;")
 
 [{'bname': 'John Smith', 'bage': 28},
@@ -179,7 +183,7 @@ execute_query_return_list_of_dicts( conn, "select * from cls;")
 - For larger queries this will use quite a bit of memory. We can avoid some of that memory usage by instead of using `fetchall` we use `fetchone`, which grabs rows one-by-one. 
 - Rewriting our function:
 
-```
+```python
 def execute_query_return_list_of_dicts_lm( conn, sql_query):
     """
     Low memory version of pvs command
@@ -214,7 +218,8 @@ def execute_query_return_list_of_dicts_lm( conn, sql_query):
 - These types of queries are used because they help avoid [sql injection attacks](https://en.wikipedia.org/wiki/SQL_injection).
 - The way they work is that you separate the data that is changing from the query that is executing on the data and put markers inside the query to denote what values are changed.
 - Consider the following example:
-```
+
+```python
 new_names = ['a', 'b', 'c', 'd', 'e']
 new_ages  = [1, 2, 3, 4, 5]
 data_to_insert = list(zip(names, ages))
@@ -226,7 +231,7 @@ cursor.executemany(insert_query_string, data_to_insert)
 
 - This code works by substituting the data from data_to_insert, tuple by tuple into the query. It is equivalent to running the following sql command.
 
-```
+```sql
 insert into cls (bname, bage) values (a, 1);
 insert into cls (bname, bage) values (b, 2);
 insert into cls (bname, bage) values (c, 3);
@@ -243,13 +248,14 @@ insert into cls (bname, bage) values (e, 5);
 - Indexes are specific to columns or sets of columns and they can be very complex structures. 
 - These structures are also dependent on the SQL variant that are you using. The available options for an index are different if you are using Postgres vs. using Sqlite. 
 - The basic create index command looks like:
-```
+
+```sql
 create index {index_name} on {table_name} ({list_of_columns_to_index}).
 ```
 
 For example if we wanted to create an index on our `cls` table on the `age` column we could do something like:
 
-```
+```sql
 create index idx_cls_bage on cls (bage);
 ```
 
@@ -257,7 +263,7 @@ create index idx_cls_bage on cls (bage);
 
 - You can have indexes on multiple columns on a table and you can create indexes on groups of columns, such as:
 
-```
+```sql
 create index idx_cls_bage_bname on cls (bage, bname);
 ```
 

@@ -21,12 +21,14 @@
 - What is the `strip` code doing?
 
   - Specific small functionality: Take a look at the function `def strip` in the function. What is it actually doing? 
-  ```
+  
+  ```python
       @forbid_nonstring_types(["bytes"])
       def strip(self, to_strip=None):
           result = self._data.array._str_strip(to_strip)
           return self._wrap_result(result)
   ```
+
     - The decorator `forbid_nonstring_types` we saw from the top of the file returns an error based on if the type isn't correct.
     - All this function does is _map_ the `strip` accessor function to the `_str_strip` function on `_data.array`. 
     - Think a lot about that: The only thing this function does is _map_. The implementation of strip is elsewhere. 
@@ -86,7 +88,7 @@ flowchart LR
 - For example, consider the following code (which is similar to code that I have seen from new engineers):
 
 
-``` 
+```python
 def process_data(data_list):
     temp_list = []
     for item in data_list:
@@ -103,7 +105,7 @@ def process_data(data_list):
 
 And compare that to:
 
-```
+```python
 def process_data(data_list):
     return [2 * x for x in data if x > 0 and 2*x < 100]
 ```
@@ -119,7 +121,7 @@ Both pieces of code do the same thing:
 - A second common cause of code complexity for new engineers is poor abstractions. 
 - A poor abstraction can take multiple forms, the most common I see is what I would term "uneven" where the interface has requires some specifics but not others. Consider the following piece of code:
 
-```
+```python
 def process_data(file_to_process, minimum_weight=50):
 
     df = pd.read_csv(file_to_process)
@@ -139,7 +141,7 @@ def process_data(file_to_process, minimum_weight=50):
   - The code has one magic number (125) inside in a manner that cannot be changed but has one magic number (50) as an argument.
 - We could rewrite this and it would have a much more even level of abstraction in the arguments:
 
-```
+```python
 def process_data(file_to_process, map_file_to_process, minimum_weight=50, max_distance=125):
 
     df = pd.read_csv(file_to_process)
@@ -191,7 +193,7 @@ Does the specific style guide matter? I'd argue that it is more important to hav
   - One that lists all players, as a function of specific teams.
 - We will start with the following `app.py` [file](../lecture_examples/08_soc/app.py) which contains most of our code. 
 
-```
+```python
 from flask import Flask, jsonify
 import pandas as pd
 
@@ -326,7 +328,7 @@ if __name__ == "__main__":
 
 There are two files I want to look at to show the effect of this refactoring. First we'll start with our `app.py` file:
 
-```
+```python
 from flask import Flask
 from app.api.players.routes import register_player_routes
 from app.api.teams.routes import register_team_routes
@@ -353,7 +355,7 @@ if __name__ == '__main__':
 
 - The other file I want to look at is `/app/api/colleges/routes.py`, which we can find below.
 
-```
+```python
 from flask import jsonify
 from app.data_utils.loading_utils import load_data
 from app.route_utils.decorators import validate_team

@@ -51,6 +51,7 @@ flowchart LR
 
 - The directory called [autodoc](../lecture_examples/14_autodocs/) contains a working example of using autodocs. We will use this to cover how to set up `MkDocs`
 - Just like any other project we will have to add some packages to our `requirements.txt` file. In this case we added the following:
+
 ```
 mkdocs==1.6.1
 mkdocs-get-deps==0.2.0

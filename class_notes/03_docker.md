@@ -87,12 +87,10 @@ graph LR;
   - The file name needs to be `Dockerfile` with out an extension. 
 - The second command that we used is `WORKDIR`. This command does two things: it creates the directory if it does not exist AND it sets the current working directory.
 
-<div align="center">
-  <pre style="background-color: #f6f8fa; color: #24292e; padding: 16px; border-radius: 6px; border: 1px solid #e1e4e8; display: inline-block; text-align: left; max-width: 80%;">
-<code>FROM python:3.10.15-bookworm
+```
+FROM python:3.10.15-bookworm
 WORKDIR /app</code>
-</pre>
-</div>
+```
 
 ## Building and Running
 
@@ -136,16 +134,13 @@ docker run [options] image-to-build [optional executable file]
   - On the host machine (_outside the container_) create a file `requirements.txt` and add the line `art==6.3` to it.
 - Now that we have the file we need to incorporate it into our build process using the `Dockerfile` by adding the following lines:
 
-<div align="center">
-  <p style="margin-bottom: 5px; font-weight: bold;">Dockerfile</p>
-  <pre style="background-color: #f6f8fa; color: #24292e; padding: 16px; border-radius: 6px; border: 1px solid #e1e4e8; display: inline-block; text-align: left; max-width: 80%; overflow-x: auto;">
-<code>FROM python:3.10.15-bookworm
+```
+FROM python:3.10.15-bookworm
 WORKDIR /app
-<br>
+
 COPY requirements.txt .
-RUN pip install -r requirements.txt</code>
-</pre>
-</div>
+RUN pip install -r requirements.txt
+```
 
 - The `COPY` command in a Dockerfile copies a file from the host machine (outside the image) to inside the image.
 - The `RUN` command runs, inside the container the command that follows. In this case it is going to run the pip install command which should then instal the `art` package.
@@ -164,41 +159,32 @@ Once we are inside the container, execute `python` and test by checking to see i
 - We want it to print the current date using the `text2art` in the `art` package. 
 
 
-<div align="center">
-  <p style="margin-bottom: 5px; font-weight: bold;">print_date.py</p>
-  <pre style="background-color: #f6f8fa; color: #24292e; padding: 16px; border-radius: 6px; border: 1px solid #e1e4e8; display: inline-block; text-align: left; max-width: 80%; overflow-x: auto;">
-<code>from datetime import datetime
+```python
+from datetime import datetime
 from art import text2art
-<br>
+
 def todays_date_in_str_art():
     date_str = datetime.now().strftime('%m/%Y')
     ascii_art_date = text2art(date_str, font='block')
     return ascii_art_date
-<br>
-<br>
+
 if __name__ == "__main__":
     print(todays_date_in_str_art())
-</code>
-</pre>
-</div>
+```
 
 - To get this to run we add the following to our Dockerfile to get it to execute the python file above
 
-<div align="center">
-  <p style="margin-bottom: 5px; font-weight: bold;">Dockerfile</p>
-  <pre style="background-color: #f6f8fa; color: #24292e; padding: 16px; border-radius: 6px; border: 1px solid #e1e4e8; display: inline-block; text-align: left; max-width: 80%; overflow-x: auto;">
-<code>FROM python:3.10.15-bookworm
+```
+FROM python:3.10.15-bookworm
 WORKDIR /app
-<br>
+
 COPY requirements.txt .
 RUN pip install -r requirements.txt
-<br>
+
 copy print_date.py .
 COPY print_date.py
 CMD ["python", "print_date.py"]
-</code>
-</pre>
-</div>
+```
 
 - The `COPY` command we have seen before, but `CMD` is new. 
 

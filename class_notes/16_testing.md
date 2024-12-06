@@ -1,4 +1,33 @@
-INCOMPLETE -- IGNORE
+# Testing
+
+- Testing is the process of systematically evaluating software to:
+  1. Verify performance
+  2. ID defects and other issues
+  3. Validate technical and business requirements
+  4. Ensure software components work together as expected.
+
+- Testing can cover both:
+  - _functional_ aspects of the code "Does the code work?"
+  - _non-functional_ aspects of the code "How _well_ does it work?"
+
+- In general the way testing works is that we specify an action in our code, the expected result and then compare. 
+
+- The following is an example
+
+```python
+def sum_two(x,y):
+    """Sum Two Functions"""
+    return x + y
+
+def test_sum_two():
+    """Test for our function"""
+    assert sum_two(1,2) == 3
+    assert sum_two(-1,1) == 0
+```
+
+
+
+
 # JSON Schema Validation
 
 - In testing we want a method to describe data in a light manner for validation purposes. There are a lot of tools for doing this (Pydantic and Cerberus are two others), but we will use [Json Schema](https://json-schema.org/) which is a bit simpler and, IMO, a bit easier to use.

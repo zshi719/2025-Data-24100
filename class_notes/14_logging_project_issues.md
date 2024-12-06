@@ -135,7 +135,7 @@ _Important_
 - The line `if not logger.handlers` makes sure that once the handlers are created, they are only created a single time. Basically the line `logger = logging.getLogger("flask_app")` will either return a new logging object or a previously created one. The conditional below it adds the specific handler to the logger object only if you are in the case when `getLogger` created an object.
 - At the end we will import `custom_logger` when we want to have a logger as we will see in the code below.
 
-```
+```python
 def setup_logging():
     """Set up logging and return the custom logger"""
     logger = logging.getLogger("flask_app")
@@ -155,7 +155,7 @@ custom_logger = setup_logging()
 
 - When we start the app we will initialize the custom logger. There are a number of lines of code that demonstrate how this occurs:
 
-```
+```python
     # Debug Level:
     logging_level = logging.DEBUG
     # Initialize logger
@@ -171,6 +171,7 @@ custom_logger = setup_logging()
 - The lines associated with [werkzeug](https://werkzeug.palletsprojects.com/en/stable/) are done to override the logging mechanism that was already in place. Werkzeug is a library that handles the information interchange between the flask server and the underlying network on the computer. 
     - It is a complex piece of software and because of that it has its own built in logging.
     - When you start a flask server the lines that look like the below are set up as logs from the Werkzeug system:
+
 ```
  * Serving Flask app 'app'
  * Debug mode: on

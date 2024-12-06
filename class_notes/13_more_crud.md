@@ -47,7 +47,7 @@
 
 - Using the example from an updated version of our [basketball flask](../lecture_examples/11_more_crud/) lets take a look at how to do this:
 
-```
+```python
 from flask import jsonify, request
 
 from app.data_utils.loading_utils import add_player, delete_player, load_data
@@ -143,7 +143,7 @@ def register_player_routes(app):
 - This is well organized and keeps a consistent abstraction level. 
 - This is not the only way that we could have broken up the routes. We could, instead choose a different abstraction layer but forcing the decision point of the request further down. For example:
 
-```
+```python
 def register_player_routes(app):
     @app.route(f"{BASE_URL}", methods=["GET", "POST"])
     def base_routes():

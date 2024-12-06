@@ -93,7 +93,7 @@ Looking at the above we can see a few changes additions from the previous exampl
 
 - Looking at [`db_manage.py`](../lecture_examples/10_pipeline_1/app/data_utils/db_manage.py) we find the following at the bottom inside the `main` logic:
   
-```
+```python
 
 if __name__ == "__main__":
     command_list = ["db_create", "db_load", "db_rm", "db_clean"]
@@ -154,7 +154,7 @@ graph LR
 
 - If we look at [our loading utilities file](../lecture_examples/10_pipeline_1/app/data_utils/loading_utils.py) we can find two functions of interest:
 
-```
+```python
 
 def load_data_pandas():
     """Previous code
@@ -217,7 +217,7 @@ def load_data():
 
 - If we send a post request with a JSON object in the body, such as demonstrated in the python code below (or you can use postman or another tool for sending requests) we can see that the data is being inserted into the database and stored there. 
 
-```
+```python
 import requests
 import json
 
@@ -241,7 +241,7 @@ print(response.text)
 
 The code in the player route file looks like:
 
-```
+```python
 def add_player_route():
     try:
         data = request.get_json()
@@ -276,4 +276,3 @@ def add_player_route():
 - What we see is that the route loads the data from the request body using the `request.get_json()` function. This is important to note, if we send the request with an improper `Content-type`, this method will not be available and the request will not be processed correctly. 
 
 - This route level command calls the function `add_player` which does exactly what you think, it inserts the player information into the table.
-- 

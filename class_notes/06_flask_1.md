@@ -106,7 +106,7 @@ CMD ["flask", "run", "--host=0.0.0.0"]
 
 - In our Makefile we specified that our `Flask` app location was `/app/src/app.py` so we will name this file `app.py`
 
-```
+```python
 from flask import (
     Flask,
     request,
@@ -139,7 +139,7 @@ if __name__ == '__main__':
 
 - The version of `app.py` below is a more complex version that handles printing the body, query parameters and headers. 
 
-```
+```python
 from flask import (
     Flask,
     request,

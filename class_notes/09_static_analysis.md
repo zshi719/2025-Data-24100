@@ -34,7 +34,7 @@ By adding the space and breaking up the sections according to their function the
 
 - This was also found in the Python code where different code functions would be mixed together, such as in the example below where a variable is set between two functions, making it much more difficult to find. Putting it _before_ the function definitions is a better strategy.
 
-```
+```python
 def func1():
     ...
 
@@ -57,7 +57,7 @@ def func4():
 
 - Consider the code below, which is taken from [Quiz 3](../quiz/quiz3A.tex)
 
-```
+```python
 
 @app.route('/api/v1/status', methods=['GET'])
 def api_status():
@@ -77,7 +77,7 @@ def api_status():
 Lets focus on the inside blow. Multiple people wrote code that looked like:
 
 
-```
+```python
 if status_code == 0:
     return Response(status=500)
 
@@ -89,7 +89,7 @@ else status_code == 2:
 
 or
 
-```
+```python
 if status_code == 0:
     return Response(status=500)
 elif status_code == 1:
@@ -103,7 +103,7 @@ Given that `status_code` is equal to 0, 1 or 2 then all of the above are functio
 
 There are multiple ways for this code to be written. For example, below is also a response that is consistent internally:
 
-```
+```python
 if status_code == 0:
     return Response(status=500)
 
@@ -128,7 +128,7 @@ Mixing the logic however is a bad idea as it implies that the code connects in a
 - Another example of this would be python code that looks like the following:
 
 
-```
+```python
 
 API_KEY = os.environ['DATA-241-API-KEY']
 

@@ -1,6 +1,8 @@
-INCOMPLETE -- IGNORE
+# Pytest 
 
-## Running Pytest
+
+
+## Ou
 
 The command that we use to run `pytest` in our `makefile` is a bit complex. In this section we will analyze what each piece of this command does. Note that this does require `pytest-cov` to be installed to handle the coverage reporting.
 

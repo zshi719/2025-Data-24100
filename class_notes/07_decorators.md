@@ -15,7 +15,7 @@
 - One way to think about functions is that they are just like any other object in python except that they have a special `call` method denoted by parenthesis which execute an an action defined by itself.
 - Consider the following example:
 
-```
+```python
 def sq(base):
     '''
     Return the square
@@ -33,12 +33,13 @@ def cube(base):
 - In this example we have two functions which return the cube and square of a number.
 - We can look at the methods and attributes available to the function using the [`dir` command](https://docs.python.org/3/library/functions.html#dir):
 
-```
+```python
 dir(sq)
 ```
 
 - Among the methods and attributes are three that should be highlighted:
-```
+
+```python
 sq.__doc__
 sq.__module__
 sq.__name__
@@ -50,14 +51,15 @@ sq.__name__
 
 We can also use the type command see what the object is:
 
-```
+```python
 type(sq)
 ```
 
 which returns `function`. NOTE: If you are unfamiliar with the commands above you should take some time to become familiar with both as they are useful for debugging purposes.
 
 - More powerfully we can refer to functions in the same way that we refer to any other object:
-```
+
+```python
 def sq_or_cube(power):
     if power == 2:
         return sq
@@ -69,7 +71,7 @@ def sq_or_cube(power):
 
 In this example we return the function as we would return any other object. Given that this is a function we can execute it:
 
-```
+```python
 sq_or_cube(3)(4)
 ```
 
@@ -77,7 +79,7 @@ The result of this will be `4 ** 3 = 64` since the first function call will retu
 
 - We can also do the following:
   
-```
+```python
 result_function = sq_or_cube(2)
 result_function(5)
 ```
@@ -93,7 +95,7 @@ result_function(5)
 - For our specific situation we will model a function that doesn't behave consistently. You can think of this as a function that may attempt to do something over the internet, dealing with an unhealthy database or if race conditions occasionally arise that retrying is best suited to solve.
 - We will use the following code to model our function:
 
-```
+```python
 import random
 
 def sus_func(x)
@@ -110,7 +112,7 @@ def sus_func(x)
 - This function uses a uniform random number generator to fail 20% of the time. 
 - We can test this out by building a quick simulation:
 
-```
+```python
 for i in range(0,10):
     try:
         print(sus_func(i))
@@ -128,7 +130,7 @@ This function executes the function 10 times and print the number of times it fa
 
 - Now that we know the basic structure of the function we can begin writing it.
 
-```
+```python
 import time
 
 def retry_sus_func(x, max_attempts=5, wait_time=3):
@@ -153,7 +155,7 @@ def retry_sus_func(x, max_attempts=5, wait_time=3):
 
 - Using our knowledge of functions as objects we can generalize this further to be able to work with _any_ function that accepts a single parameter with the following abstraction:
 
-```
+```python
 def retry_sus_func_general(f, x, max_attempts=5, wait_time=3):
     '''
     retry logic for sus function
@@ -189,7 +191,7 @@ def retry_sus_func_general(f, x, max_attempts=5, wait_time=3):
 - Because we have two different structures for the arguments we'll need to handle both in our code. 
 - To this we use `*` and `**` in order to pack and unpack the argument information. Let's do an example of two first to understand how this works:
 
-```
+```python
 def arg_print(*args, **kwargs):
     print(args)
     print(kwargs)
@@ -203,7 +205,7 @@ def arg_print(*args, **kwargs):
 - The names `args` and `kwargs` are just like any other variable -- we could call them `bananna` if we want; the important part is the star being used to pack them from the argument into the specific data structures.
 - Take a look at this example:
 
-```
+```python
 def arg_print_named(v1, *args, v2='nick', **kwargs):
     print(args)
     print(kwargs)
@@ -221,7 +223,7 @@ In this example  `args` only contains the 2nd and 3rd positional arguments and `
 
 - Using this we can update our retry function:
 
-```
+```python
 def retry_func(f, **args, max_attempts=5, wait_time=3, **kwargs):
     '''
     retry logic for sus function
@@ -243,14 +245,14 @@ This looks similar to our last version but we, once again, have changed the func
 
 - We can use it with our `sus_func` as below which will implement the function.
 
-```
+```python
 retry_func(sus_func, 3)
 ```
 
 - One other thing that we will probably want to do is update the error logic to handle the name of the function properly since we can now operate on any function, we can use the `__name__` attribute to do this:
 
 
-```
+```python
 def retry_func(f, **args, max_attempts=5, wait_time=3, **kwargs):
     '''
     retry logic for sus function
@@ -276,7 +278,7 @@ def retry_func(f, **args, max_attempts=5, wait_time=3, **kwargs):
 
 - Specifically if we have a number of functions that we want to apply the retry logic to then we would have to do something like:
 
-```
+```python
 def sus_func(...)
     ...
 
@@ -288,7 +290,7 @@ def sus_func_with_retries():
 Which adds a LOT of names and function definitions to the name space. We avoid this by using the `@` sign and creating a decorator. Lets do a simple one first.
 
 
-```
+```python
 def retry_function(func):
     def wrapper(*args, **kwargs):
         max_attempts=5
@@ -321,7 +323,7 @@ def sus_func(x):
 
 - If we want to add `max_attempts` and `wait_times` as parameters we'll need to add third level of functions to properly return a function with the correct input at each stage in the process:
 
-```
+```python
 def retry_function(max_attempts=5, wait_time=3):
     def decorator(func):
         def wrapper(*args, **kwargs):
@@ -364,7 +366,8 @@ def sus_func_2(x):
 ## Using functool decorator to preserver metadata
 
 - Take a look at the following example:
-```
+
+```python
 def decorator(func):
     def wrapper(*args, **kwargs):
         wait_time=3
@@ -402,14 +405,16 @@ print(sus_func.__name__)
 - What do we expect the final `print` to display? 
 - We would generally expect that this would display `sus_func` -- but unfortunately it does not! This is because the decorator `wrapper` takes precedence and ends up being the entry point for the function and thus the name is now `wrapper`.
 - To have the function point to the correctly named function (as well as do some additional clean up) we can use the `wraps` function from `functools`. `wraps` preserves important attributes like:
-```
+
+```python
 __name__
 __doc__
 __module__
 ```
 
 - To add wraps we do the following:
-```
+
+```python
 from functools import wraps
 
 def decorator(func):
@@ -446,7 +451,6 @@ def sus_func(x):
 
 
 print(sus_func.__name__)
-
 ```
 
 Now, when we run the command we will see that the returned object has the proper meta data
@@ -457,7 +461,7 @@ Now, when we run the command we will see that the returned object has the proper
 
 - Lets assume that we have some data process which takes an unknown amount of time and we want to record, in our logs, how long it takes.
 
-```
+```python
 import time
 import random
 from datetime import datetime
