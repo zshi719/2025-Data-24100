@@ -41,13 +41,12 @@ def list_colleges_per_team(team):
         ["player_name", "college", "team_abbreviation"],
     ]
 
-    if team not in df.loc[:, 'team_abbreviation'].unique():
-        return jsonify({'Error': f'Team {team} does not exist'})
+    if team not in df.loc[:, "team_abbreviation"].unique():
+        return jsonify({"Error": f"Team {team} does not exist"})
 
-    list_of_players = (df
-                       .loc[(df.team_abbreviation == team), 'player_name']
-                       .to_list()
-                       )
+    list_of_players = df.loc[
+        (df.team_abbreviation == team), "player_name"
+    ].to_list()
 
     to_return = {team: list_of_players}
     return jsonify(to_return), 200
