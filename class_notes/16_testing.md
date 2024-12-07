@@ -305,6 +305,52 @@ def test_process_and_load():
 }
 ```
 
-## Demonstration
+## Demonstration & Coverage calculation
 
-- Not that we have a good understanding of foundations of testing we 
+- Not that we have a good understanding of foundations of testing we will take a look at the example [here](../lecture_examples/15_testing/) which contains a working example of the testing framework on our basketball API.
+- When you run `make test` in this directory you will see something like the following appear.
+
+```
+============================= test session starts ==============================
+platform linux -- Python 3.10.15, pytest-8.3.4, pluggy-1.5.0 -- /usr/local/bin/python3.10
+cachedir: .pytest_cache
+rootdir: /app/src
+configfile: pyproject.toml
+plugins: anyio-4.6.2.post1, cov-6.0.0
+collecting ... collected 3 items
+
+test/test.py::test_app_exists PASSED                                     [ 33%]
+test/test.py::test_app_is_testing PASSED                                 [ 66%]
+test/test.py::test_player_response PASSED                                [100%]
+
+---------- coverage: platform linux, python 3.10.15-final-0 ----------
+Name                                Stmts   Miss  Cover   Missing
+-----------------------------------------------------------------
+app/__init__.py                         0      0   100%
+app/api/__init__.py                     0      0   100%
+app/api/colleges/__init__.py            0      0   100%
+app/api/colleges/routes.py             21      9    57%   21-25, 45-46, 59, 64
+app/api/players/__init__.py             0      0   100%
+app/api/players/routes.py              44     25    43%   28-29, 41-45, 57-66, 87-93, 108-109, 114, 119
+app/api/teams/__init__.py               0      0   100%
+app/api/teams/routes.py                15      4    73%   31-33, 46
+app/data_utils/__init__.py              0      0   100%
+app/data_utils/db_manage.py            23     23     0%   6-47
+app/data_utils/loading_utils.py        80     45    44%   25-35, 44-54, 74, 123-138, 148-150, 159-185, 200-212, 223-230, 242-244
+app/data_utils/sql_utils.py            43     30    30%   25-43, 65, 83-99, 114-144, 153-160, 172-179
+app/logger_utils/__init__.py            0      0   100%
+app/logger_utils/custom_logger.py      12      0   100%
+app/route_utils/__init__.py             0      0   100%
+app/route_utils/decorators.py          35     14    60%   32-35, 52-57, 74-84
+-----------------------------------------------------------------
+TOTAL                                 273    150    45%
+
+
+============================== 3 passed in 0.94s ===============================
+```
+
+This demonstrates a few features we want to highlight:
+
+- It shows the tests that were run, how long they took, how many passed and failed.
+- One of the interesting features that pytest has (with an optional module that we will install) is the notion of _coverage_ which is a representation of how much of the code base has been tested. 
+- Coverage is an important concept and is often baked into github. If you go to the pandas github page for example you'll see a badge stating the `codecov` level which is a measure of this concept.

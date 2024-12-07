@@ -68,8 +68,8 @@ def test_player_response(client):
     json_data = response.get_json()
     validate(instance=json_data, schema=schema)
 
-# Tests below should be used in the 2nd part of the lecture. 
-# They work 
+# Tests below should be used in the 2nd part of the lecture.
+# They work
 
 # def test_list_players_per_team_response(client, team_to_test="WAS"):
 #     schema = {

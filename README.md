@@ -26,6 +26,9 @@ This box contains a list of changes that should be done for next year<br>
 12. Options to add: Merging data
 13. Options to add: github actions with testing & coding standards
 14. TDD
+15. For testing more about coverage, provide some examples and different types. End of lecture 16.
+16. Add the ability to reset accounts via makefile in the assignment (part 5? part 6?)
+17. Maybe lean into pyproject.toml, its way more modern. Use it for testing and requirements.
 </details>
 
 ## Course Description
