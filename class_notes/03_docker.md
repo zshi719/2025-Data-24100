@@ -97,7 +97,7 @@ WORKDIR /app</code>
 - Now that we have a Dockerfile we want to build the image and then run it, creating a container.
 - To build the Dockerfile we type in:
 
-```
+```bash
 docker build . -t myfirstdocker
 ```
 
@@ -106,7 +106,7 @@ docker build . -t myfirstdocker
 - Once the container is built then we can run or execute it using the `docker run` command. 
 - We'll start by creating an interactive bash session inside the container by telling docker to run the container interactively and pointing to `/bin/bash` as the command to execute:
 
-```
+```bash
 docker run -i -t myfirstdocker /bin/bash
 ```
 
@@ -117,7 +117,7 @@ docker run -i -t myfirstdocker /bin/bash
 - Running the container that we can verify that there is nothing in it by typing `ls`. While there are files in the directory in the host machine that we created the container in there are no files in the container itself -- that is because the container is isolated. 
 - The syntax of `docker run` that we are using is:
 
-```
+```bash
 docker run [options] image-to-build [optional executable file]
 ```
   
@@ -146,7 +146,7 @@ RUN pip install -r requirements.txt
 - The `RUN` command runs, inside the container the command that follows. In this case it is going to run the pip install command which should then instal the `art` package.
 - We can then re-build the container and verify by:
 
-```
+```bash
 docker build . -t myfirstdocker
 docker run -it myfirstdocker /bin/bash
 ```
@@ -190,7 +190,7 @@ CMD ["python", "print_date.py"]
 
 - Now, after re-building the container and running it we will see the ascii art of today's date!
 
-```
+```bash
 docker build . -t myfirstdocker
 docker run myfirstdocker
 ```

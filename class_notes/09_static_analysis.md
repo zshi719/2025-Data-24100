@@ -150,7 +150,7 @@ In this code the same functionality (extracting the API Key) is repeated in two 
 
 - There were two big examples of this in the submitted code. First I saw a lot of `EXPOSE` in Dockerfiles. This command does not do anything and given we didn't use it in class I suspect it was placed in the file because there was an issue with the ports. `EXPOSE` was used more frequently in the past, but is not used as much now.
 
-- (I think) that a lot of beginners code by trying something and then when they aren't sure where to proceed they google (or chatgpt) the answer and then followint he
+- (I think) that a lot of beginners code by trying something and then when they aren't sure where to proceed they google (or chatgpt) the answer and then following it directly without verification.
 
 ```mermaid
 ---

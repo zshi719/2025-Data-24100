@@ -4,13 +4,13 @@
 
 - In this course you will be expected to use git and GitHub, using branches and merges, in order to work with your peers.
 - In terms of the commands you would be expected to know:
-  - git pull
-  - git push
-  - git checkout
-  - git commit
-  - git add 
-  - git status
-  - git fetch
+  - `git pull`
+  - `git push`
+  - `git checkout`
+  - `git commit`
+  - `git add`
+  - `git status`
+  - `git fetch`
 - These commands have tons of options so you don't need to know everything about them, but you do need to know their core functionality. If you don't recall these specifically from your previous classes, please spend some time getting up to speed the best way you know how, be that videos, book or your previous class notes.
 
 ### Git Grading
@@ -80,7 +80,7 @@ Git is a complex piece of software and the first time you use it it can feel ove
 ### Transfer at build 
 
 - The first time that we can put data into the container is at build.
-- We use this frequently when wet up our initial environment inside the container, but because of the cons listed below this has very limited use beyond this purpose.
+- We use this frequently when set up our initial environment inside the container, but because of the cons listed below this has very limited use beyond this purpose.
 - **PROS:** The biggest pro of putting data into the container at the time of the build is ease. This is, by far, the easiest and most consistent way to get things into the container.
 - **CONS:** The major con is that if you put data into the container at the time of the build then every time your data changes you'll need to rebuild the container which is a time consuming process which can impede developer efforts.
 
@@ -117,7 +117,7 @@ ENV DF_ENV="Env Var set in Dockerfile"
 - The only difference is that we have added a new command `ENV` which sets an environment variable inside the container. 
 - We can test this by running the following:
 
-```
+```bash
 docker build . -t env_var_test
 docker run -it env_var_test /bin/bash
 ```
@@ -125,7 +125,7 @@ docker run -it env_var_test /bin/bash
 - Once we are inside the container, we can type `echo $DF_ENV` which will then display the environment variable we set in the Dockerfile.
 - Upon Exiting the container lets set a different environment variable at `run` time, rather than build time.
 
-```
+```bash
 docker run -it -e BUILD_ENV='Set at Build!' env_var_test /bin/bash
 echo $DF_ENV
 echo $BUILD_ENV
@@ -135,7 +135,7 @@ echo $BUILD_ENV
 
 - We can easily change the variable at the time that we run the `docker run` command and see how it changes:
 
-```
+```bash
 docker run -it -e BUILD_ENV='Set at Build! -- try 2' env_var_test /bin/bash
 echo $DF_ENV
 echo $BUILD_ENV
@@ -143,7 +143,7 @@ echo $BUILD_ENV
 - Lets write a python function to print the environment variables to the screen. Consider the following function which we will `env_test.py`:
 
 
-```
+```python
 import os
 
 if __name__ == '__main__':
@@ -155,7 +155,7 @@ if __name__ == '__main__':
 ```
 
 
-- The python file above uses the `os` module to interact with the environment. We use the `.get()` method on the `environ` attribute of the `os` mode. `environ` behaves similar to a dictionary.
+- The python file above uses the `os` module to interact with the environment. We use the `.get()` method on the `environ` attribute of the `os` module. `environ` behaves similar to a dictionary.
 
 - If we want to run this when using `docker run` we can change the Dockerfile to the following:
 
@@ -170,7 +170,7 @@ CMD ["python", "env_test.py"]
 
 - We can then execute the command by typing:
 
-```
+```bash
 docker build . -t env_var_test
 docker run -e BUILD_ENV="set at env" env_var_test
 ```

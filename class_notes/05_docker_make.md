@@ -30,7 +30,7 @@ art==6.3
 
 - As before we can build and run this container with the following commands which launches the container in interactive mode at the command line.
 
-```
+```bash
 docker build . -t voltest
 docker run -it voltest /bin/bash
 ```
@@ -41,14 +41,14 @@ docker run -it voltest /bin/bash
 - The way that we specify this is with the command line option `-v` we then add the location _on the host_ first followed by the location _inside_ the container that we want the location to mount to. We colon separate them.
 - On my computer I run `pwd` to get the current directory:
 
-```
+```bash
 pwd
 /Users/nickross/git/2024-Data-24100/lecture_examples/docker_volume
 ```
 
 - This can then be used in the `docker` command:
 
-```
+```bash
 docker run -it \
 -v /Users/nickross/git/2024-Data-24100/lecture_examples/docker_volume:/app/src \
 voltest /bin/bash
@@ -81,7 +81,9 @@ voltest /bin/bash
 - In the above example we had a very long string to mount the `PWD` inside the container. This string was also tied to my computer and wouldn't work on another person's computer. 
 - To avoid being tied to my own computer we can reference, in the `docker run` command, the present working directory directly:
 
-```docker run -it -v $(pwd):/app/src voltest /bin/bash`
+```bash
+docker run -it -v $(pwd):/app/src voltest /bin/bash
+```
 
 - In `bash` we use notation like the above to pass commands to be expanded. In this case, this will fully expand the present working directory.
 - Why would we do this? Because if we write the above, then anyone who checks out the repository will be able to run build and run the image without having to change anything.
@@ -120,13 +122,13 @@ RUN pip install -r requirements.txt
 
 - We can verify that `docker build` works:
 
-```
+```bash
 docker build . -t voltest
 ```
 
 - To expose the port inside the container for the `docker run` we will need to map the port to the host:
 
-```
+```bash
 docker run -it -p 8888:8888 voltest /bin/bash
 ```
 
@@ -134,7 +136,7 @@ docker run -it -p 8888:8888 voltest /bin/bash
 
 - Once the container spins up, we can run `jupyter` using the following command.
 
-```
+```bash
 jupyter notebook --ip=0.0.0.0 --allow-root --no-browser --port 8888
 ```
 
@@ -148,7 +150,7 @@ jupyter notebook --ip=0.0.0.0 --allow-root --no-browser --port 8888
 
 - Importantly if you look at the `docker run` command we did above you will notice that we did not map a volume, which means that any file that we create inside the container will disappear as soon as shut down the container. Let's put together a full docker run command that includes the volume mount:
 
-```
+```bash
 docker run -it -p 8888:8888 -v $(pwd):/app/src voltest \
     jupyter notebook --ip=0.0.0.0 --allow-root --no-browser --port 8888 \ 
 
@@ -223,6 +225,7 @@ notebook: build
 
 - If we have an environment variable, such as an API key or other secret that we want to pass into the container we can pass them in through the Makefile by specifying it in the `docker run` command.
 - For example, assume that the host machine has an environment variable called `API_KEY` and we wish to pass it to the container. If we model our code from the previous Makefile we could do something like this:
+
 ```
 
 ...

@@ -147,7 +147,7 @@
 - So, how does the operating system know that this Python should be run?
   - The environment variable `PATH` tells the operating system the order of directories to look at. When I type `echo $PATH` I see:
 
-```
+```bash
 echo $PATH
 /Users/nickross/.pyenv/shims:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/
 App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/

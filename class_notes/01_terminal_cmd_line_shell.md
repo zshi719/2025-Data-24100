@@ -84,7 +84,7 @@ In this section we'll cover a few core commands required to move around the file
   - `ls -lt /Users/nickross/*/*.pdf` : This will return any `.pdf` file located in any sub-directory of `/Users/nickross`, printing the results in long format and sorting by time they were last changed.
 - Unlike an `ls` command without a wildcard, the `ls` command with wildcards will return an error if no files are found:
 
-```
+```bash
 bash-3.2$ ls *.asdf
 ls: *.asdf: No such file or directory
 ```

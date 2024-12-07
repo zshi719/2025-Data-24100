@@ -25,6 +25,7 @@ This box contains a list of changes that should be done for next year<br>
 11. Update late policy on assignments if more than 5 hours => 50% off.
 12. Options to add: Merging data
 13. Options to add: github actions with testing & coding standards
+14. TDD
 </details>
 
 ## Course Description
