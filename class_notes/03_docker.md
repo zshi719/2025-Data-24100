@@ -33,9 +33,9 @@
   - **Dockerfile:** This is the step-by-step code which we will use to define the environment we want to create.
   - **Image:** The image is the software template that is created ("built") by the Dockerfile
   - **Container:** A container is an image that is "live" and running.
-<!-- \ markdown-link-check-disable -->
+<!-- markdown-link-check-disable -->
   - **Registry/Hub:** A registry of containers that is already built so that we do not have to start from scratch each time we build a new container. The most commonly used one is [DockerHub](https://hub.docker.com/) which you logged into when you installed Docker.
-<!-- \ markdown-link-check-enable -->
+<!-- markdown-link-check-enable -->
 ```mermaid
 graph LR;
     A[Dockerfile] -- build --> B[Image]
@@ -51,7 +51,7 @@ graph LR;
 - The final working example can be found in the [lecture examples docker](../lecture_examples/03_docker_art/) directory.
 - When we begin a Dockerfile we (almost always) start from another image that someone else built. 
 - We use the command `FROM` to designate what image we want to be our "base" image. 
-<!-- \ markdown-link-check-disable -->
+<!-- markdown-link-check-disable -->
   - We usually get base images from an image registry. The default when using docker is [dockerhub](https://www.dockerhub.com). When you install docker you are asked to register for an account from this site. 
 <!-- markdown-link-check-enable -->
   - Images follow the the naming convention where there is a `:` followed by a _tag_. The tag denotes a specification of the image. 
