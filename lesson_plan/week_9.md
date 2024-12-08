@@ -11,7 +11,7 @@
 - [JSON Schema Official Website](https://json-schema.org/)
 - [Understanding JSON Schema](https://json-schema.org/understanding-json-schema/)
 - [JSON Schema Validator](https://www.jsonschemavalidator.net/)
-
+- [PyTest Testing with Flask](https://flask.palletsprojects.com/en/stable/testing/)
 
 ## Learning Objectives
 1. Understand what JSON Schema is and its purpose

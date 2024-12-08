@@ -57,6 +57,17 @@ Using a mirror strategy like this works well for unit tests because they align w
 
 Depending on the volume of the tests this can be an effective strategy, however I have seen others as test scope expands.
 
+- Given the simpler nature of what we are doing here (and the small number of tests) we will add only a `test` directory and a `test.py` file inside that directory:
+
+```
+|── app/
+└── test/
+    └── test.py
+```
+
+- The one downside of this structure is that to be able to import things from the `app` directory we will need to modify our python path. Because the `test.py` file is down the file system path from `app` it will not naturally have access to things inside the `app` directory which is where the code lies. 
+- We will see hot address this issue within the `test/test.py` file below.
+
 ## Our Makefile command
 
 - The command that we use to run `pytest` in our `makefile` is a bit complex. In this section we will analyze what each piece of this command does. Note that this does require `pytest-cov` to be installed to handle the coverage reporting.
@@ -161,3 +172,119 @@ def test_player_response(client):
     json_data = response.get_json()
     validate(instance=json_data, schema=schema)
 ```
+
+
+### Imports: app.py vs. flask_app.py
+
+- The first section of the code is a bit complex but sets up the proper imports and import structure.
+- Be starting note that in our code base we have renamed `app.py` to `flask_app.py`. Why did we do this?
+  - We needed to do this because there is a directory `app` at the same level as `app.py` which makes it difficult to import structures from.
+  - If we tried to import form `app` at this level python would not know which to import from -- the directory `app` or the file `app.py`
+  - To avoid this we rename `app.py` to `flask_app.py`
+- First, notice the line beginning `sys.path...`.
+  - This lines adds the additional parent directories to the python path so that the current code is able to find them. 
+  - Without this file we will not be able to import the flask app.
+- Reading over the first few lines we can see that we end with importing the `create_app` function from the original `app.py` now renamed `flask_app.py`.
+
+### Fixtures & Test Client
+
+- The next section of the code is are two decorated functions: `client` and `app`.
+- These two functions are decorated with `@pytest.fixtures`. 
+- Fixtures are a special decorator which creates reusable components across tests.
+  - These components can be anything: functions, data, other objects.
+- Fixtures are required because tests often require specific assets which we want to reuse and tests are (by design) built in an isolated manner. We want our tests to run independently so that the result of one test does not effect the result of another.
+- That same silo effect means that when we want to reuse something (such as run multiple tests against the same flask app) we need to use special language to define these objects as such.
+- There are multiple reasons why we want reusability:
+  - In our case, starting the flask app takes time and because we know the flask app has no state to worry about we can just start it once and then pass it around.
+  - Mocking up a specific dataset is annoying and being able to reuse it over and over allows us to avoid wasting developer time.
+- Looking over the code you can see that once the functions (`client` and `app`) are defined as fixtures we can pass them into the rest of the test functions. 
+- You can see the flow in the diagram below.
+
+```mermaid
+graph TB
+    A["flask_app.py"] -->|contains| B["create_app function"]
+    B -->|test.py imports| C["app fixture"]
+    C -->|argument to| D["client fixture"]
+    D -->E["Test 1"]
+    D -->F["Test 2"]
+    D -->G["Test 3"]
+```
+
+- A final note on this -- when you look at the `client` fixture you'll see that it returns a client of the form `test_client`.
+- This `test_client` is a simplified version of the flask server designed for testing. You can find more information about how it works [here](https://flask.palletsprojects.com/en/stable/testing/).
+
+### Tests functions
+
+- Once the client is created we can then set up test _functions_.
+- A test function always begins with the name `test_`. Pytest uses this to find tests in the file. If you name it something else you may need to reconfigure `pytest` to be able to find the file.
+- There are three test functions in the above file:
+
+1. `test_app_exists` 
+2. `test_app_is_testing`
+3. `test_player_response`
+
+
+- The first one verifies that the `app` fixture exists. This is a good check to make sure that the flask test app is working properly. 
+- The second one verifies that the config property that we set on the app fixture is set to testing. Once again, this is just verifying that we are seeing what we should expect before launching into the more functional tests.
+- The third test function `test_player_response` contains _three_ specific tests:
+    1. Verify the status code using an assert on `response.status_code`
+    2. Verify the content returned is what we expect using `response.content_type`
+    3. Use the `validate` function to verify that the schema that the data returned by the response matches the schema specified.
+   
+- Importantly we want to make a difference between test _functions_ which can encapsulate multiple tests. Most test functions that we write will have multiple tests inside of them to verify the specific behavior.
+
+- Looking closely at the last test function we can see that it accepts a _client_ as an argument. This client is _not_ defined in the "standard" manner in the python file, it is instead defined using the `fixture`.
+
+### Exact Tests vs. Schema Tests
+
+- In the homework assignment you will be asked to write both schema tests and _exact_ tests. An exact test, for the purpose of this class is one that validates the specific numbers that are returned by the application.
+- Consider the following test, which is is in `test.py`. We will discuss it a bit below.
+
+```python
+def test_WAS_colleges_exact_response(client):
+    expected_response = {
+        "colleges": [
+            "Texas A&M",
+            "Iowa State",
+            "Winthrop",
+            "Southern California",
+            "Kansas",
+            "None",
+            "Utah",
+            "Arkansas",
+            "Virginia",
+            "Florida",
+            "Gonzaga",
+            "Oakland",
+            "San Francisco",
+            "St. Louis",
+            "San Diego State",
+            "Wisconsin"
+        ]
+    }
+
+    response = client.get('/api/colleges/WAS/list')
+    assert response.status_code == 200
+    assert response.content_type == 'application/json'
+
+    # Get the actual response data
+    actual_response = response.get_json()
+
+    # Verify the structure
+    assert "colleges" in actual_response
+    assert isinstance(actual_response["colleges"], list)
+
+    # Sort both lists and compare
+    assert sorted(actual_response["colleges"]) \
+        == sorted(expected_response["colleges"])
+```
+
+- In this test we can see that there are five asserts inside the test function. As such, we would state that this has five tests inside the test function.
+
+- There is not schema validation here, in the sense of using `jsonscheam`, since another function handled schema validation.
+
+- This test focuses on the _exact_ response returned by the route. 
+
+- Importantly, the final `assert` uses a `sorted` function on the response. The `sorted` is required because the API does not guarantee the order of the colleges being returned. So the API could still be working and the lists not be equal in that the elements could be in different orders.
+
+- To avoid raising an error due to the order of the elements in the list, we sort both sides of the assert equality to make sure that they align.

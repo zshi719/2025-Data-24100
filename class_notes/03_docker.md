@@ -49,8 +49,10 @@ graph LR;
 - In this section we are going to create a Dockerfile and associated code which will print ASCII art of today's date using the [art module](https://pypi.org/project/art/).
 - The final working example can be found in the [lecture examples docker](../lecture_examples/docker_art/) directory.
 - When we begin a Dockerfile we (almost always) start from another image that someone else built. 
-- We use the command `FROM` to designate what image we want to be our "base" image.
-  - We usually get base images from an image registry. The default when using docker is [dockerhub](https://www.dockerhub.com). When you install docker you are asked to register for an account from this site.
+- We use the command `FROM` to designate what image we want to be our "base" image. 
+<!-- \ markdown-link-check-disable -->
+  - We usually get base images from an image registry. The default when using docker is [dockerhub](https://www.dockerhub.com). When you install docker you are asked to register for an account from this site. 
+<!-- markdown-link-check-enable -->
   - Images follow the the naming convention where there is a `:` followed by a _tag_. The tag denotes a specification of the image. 
   - When looking at tags on a image registry such as dockerhub there are a number of common tagging structures.
   - For example, consider the image provided for [python](https://hub.docker.com/_/python). On this page the tags look like `3.10.15-bookworm`. The first number in this example (`3.10.15`) represents the version of python that is going to be installed if you use the image with this tag. The second component `bookworm` is the nickname for a version of [Debian](https://wiki.debian.org/DebianReleases), one of the most common versions of Linux used to build images. 

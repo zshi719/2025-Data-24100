@@ -11,7 +11,9 @@
 - For example, in our Flask App we will send and receive information about stocks. There are many other useful sql functions that we will want to execute that don't fit into this paradigm and forcing them into the Flask framework would create a bad abstraction. 
 - Since we want the access to the database to be available outside of `flask` we will put the configuration inside an environment variable that we pass through to the dockerfile as we have done in the past. 
 - We will create a set of `make` commands inside our makefile which will call a python file called `db_manage.py` that handles the management commands. 
+<!-- markdown-link-check-disable -->
 - To tell the management command which of the operations we are interested in it running we will use [`argparse`](`https://docs.python.org/3/library/argparse.html) to allow for passing of arguments to the python function.
+<!-- markdown-link-check-enable -->
 - The following management commands will be created:
 
 | Command | Description | 
