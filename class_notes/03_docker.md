@@ -33,8 +33,9 @@
   - **Dockerfile:** This is the step-by-step code which we will use to define the environment we want to create.
   - **Image:** The image is the software template that is created ("built") by the Dockerfile
   - **Container:** A container is an image that is "live" and running.
+<!-- \ markdown-link-check-disable -->
   - **Registry/Hub:** A registry of containers that is already built so that we do not have to start from scratch each time we build a new container. The most commonly used one is [DockerHub](https://hub.docker.com/) which you logged into when you installed Docker.
-
+<!-- \ markdown-link-check-enable -->
 ```mermaid
 graph LR;
     A[Dockerfile] -- build --> B[Image]

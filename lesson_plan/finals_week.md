@@ -1,7 +1,7 @@
 # Final Week Information
 
 There are two components of finals week:
-1. Delivering on the final part of the project. Information on this assignment can be found in [Part VIII](./project_assignments/part_8.md)
+1. Delivering on the final part of the project. Information on this assignment can be found in [Part VIII](../project_assignments/part_8.md)
 2. An in-person final exam. 
 
 ## In-person final exam information.
