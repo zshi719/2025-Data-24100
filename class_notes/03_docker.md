@@ -48,7 +48,7 @@ graph LR;
 ## Our first Dockerfile
 
 - In this section we are going to create a Dockerfile and associated code which will print ASCII art of today's date using the [art module](https://pypi.org/project/art/).
-- The final working example can be found in the [lecture examples docker](../lecture_examples/docker_art/) directory.
+- The final working example can be found in the [lecture examples docker](../lecture_examples/03_docker_art/) directory.
 - When we begin a Dockerfile we (almost always) start from another image that someone else built. 
 - We use the command `FROM` to designate what image we want to be our "base" image. 
 <!-- \ markdown-link-check-disable -->
@@ -92,7 +92,7 @@ graph LR;
 
 ```
 FROM python:3.10.15-bookworm
-WORKDIR /app</code>
+WORKDIR /app
 ```
 
 ## Building and Running
@@ -184,8 +184,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-copy print_date.py .
-COPY print_date.py
+COPY print_date.py .
 CMD ["python", "print_date.py"]
 ```
 
