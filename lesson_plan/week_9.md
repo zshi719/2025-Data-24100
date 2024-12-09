@@ -21,6 +21,12 @@
 
 ## Lecture Notes
 
+[Day 16](../class_notes/16_testing.md)
+
+[Day 17](../class_notes/17_testing_2.md)
 
 
 ## Quizzable Concepts
+
+- Understand and write and `assert` statements.
+- Read simple `jsonschema` and understand what it is trying to do.

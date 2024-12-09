@@ -270,3 +270,26 @@ create index idx_cls_bage_bname on cls (bage, bname);
 - The index here would increase the performance of joint lookups of both `bage` and `bname`
 
 - **Note: For the project I would recommend creating an index on the year and symbol.**
+
+- An _important_ note around indexes is that they can often take time to initialize in two different ways:
+  - Creating the initial index. If there is data in the table then creating the initial index can time time
+  - Every time data is loaded. Whenever data is loaded into the machine the index will have to be updated, which can take a significant amount of time depending on the type of index, the data and the current shape of that data.
+- What this means is that if your code to low things is slow it can be the case that changing _when_ the index is created can have an outsized effect.
+- How will you know? You will need to test. 
+- Moving from:
+
+```python
+create_empty_tables()
+create_index()
+load_data()
+```
+
+to
+
+```python
+create_empty_tables()
+load_data()
+create_index()
+```
+
+can often improve your loading times significantly.
