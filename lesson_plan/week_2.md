@@ -31,7 +31,7 @@
 
 [Day 4](../class_notes/04_docker_git_expectations.md)
 
-## Quizzable Concepts
+### Quizable Concepts
 
 - This will be a relatively applied quiz based on the concepts above. 
 - You should be able to construct a simple Dockerfile, know what commands to `run` and `build` it for both interactive purposes and to just run `CMD`.

@@ -27,7 +27,8 @@ Day 10: This content of this lecture will be continued on Day 11. At that point 
 
 ## Quizzable Concepts
 
-- What is Linting? 
-- What is Ruff? 
-- What is Static Analysis?
+- What is linting? 
+- What is `ruff`? 
+- What is static analysis?
+- Please provide a list of examples of things that static analysis tools can do to provide feedback on your code. 
 - What is a pre-commit hook and why is it useful?

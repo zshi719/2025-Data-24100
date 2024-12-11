@@ -46,7 +46,7 @@
 
 [Day 1](../class_notes/02_more_shell_and_env.md)
 
-### Day 1: Quizable Concepts:
+### Quizable Concepts
 
 * Create and remove directory
 * Copy, move and remove files (with and without wildcards)
@@ -95,8 +95,6 @@
         </tr>
         
 </table>
-
-### Day 2: Quizable Concepts:
 
 - Given a file, count the number of lines that a pattern occurs (or does not occur) keep in mind case-sensitivity
 - Redirect terminal output using any of `|`, `>` and `>>` 

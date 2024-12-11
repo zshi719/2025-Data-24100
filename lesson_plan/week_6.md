@@ -7,6 +7,8 @@
 
 ## Resources
 
+- Make sure you understand basic SQL commands. You can find more information on what is required for the course [in this note](../docs/prequisites.md).
+
 ## Learning Objectives
 
 - What are connections and cursors and how do we use them to query a database?
@@ -27,6 +29,7 @@
 ## Lecture Notes
 
 - [Day 11](../class_notes/11_sqlite.md)
+
 - [Day 12](../class_notes/12_mgmt_and_post.md)
 
 
@@ -47,3 +50,5 @@ def return_30_through_32_students(conn):
     
     return filtered_student_name_list
 ```
+
+- As a reminder, keep in mind you are required to understand and be able to write simple SQL statements such as the above.
