@@ -36,21 +36,39 @@ Please refer to the notes about how to set up autodocs. When the autodoc server 
 
 Leveraging the `pytest` library, please write end-to-end tests for every `v1`, `v2` and `v4` route. NOTE: This does **NOT** include `v3` routes. 
 
-For each route you need to write a schema test using `jsonschema` library. This should be a complete schema for what is returned and should include status code. There are 3 `v1` routes (0-2), 5 `v2` routes (3-8) and `v4` route (9), for a total of 9 test functions.
+For each route you need to write a schema test using `jsonschema` library. This should be a complete schema for what is returned and should include status code. There are 3 `v1` routes (0-2), 5 `v2` routes (3-7) and `v4` route (8), for a total of 9 test functions.
 
 NOTE: When you name the test, please use a naming convention which identifies the route based on the numbers above. So the `v1` routes should have names like `test_0_v1_row_count`, `test_1_v1_...`, `test_2_v1_..` where the enumerated numbers align with the numbers in parenthesis above. 
 
 Please also write tests which do the following:
-- Send a request without any API Key and verify what is returned is correct (for one `v1` route, one `v2` route and the `v4` route). In other words this is three different calls, but _within a single test function_. This is a single test function (test number 10).
-- Send a request against the `/api/v2/{YEAR}` with an incorrect year (such as 1980) and verify that it returns the correct status code. This is a single test function (test number 11).
-- Send a request with an invalid API Key and verify what is returned is correct (for one `v1` route, one `v2` route and the `v4` route). In other words this is three different calls, but _within a single test function_. This is a single test function (test number 12).
-- For the `v4` back-testing route, please write an exact, explicit test. In this case what I mean is that you calculate an actual expected (non-zero, non-empty) value of a specific back test and then verify that the numbers, not just the schema are correct. This is a single test function (test number 13)
+- Send a request without any API Key and verify what is returned is correct (for one `v1` route, one `v2` route and the `v4` route). In other words this is three different calls, but _within a single test function_. This is a single test function (test number 9).
+- Send a request against the `/api/v2/{YEAR}` with an incorrect year (such as 1980) and verify that it returns the correct status code. This is a single test function (test number 10).
+- Send a request with an invalid API Key and verify what is returned is correct (for one `v1` route, one `v2` route and the `v4` route). In other words this is three different calls, but _within a single test function_. This is a single test function (test number 11).
+- For the `v4` back-testing route, please write an exact, explicit test. In this case what I mean is that you calculate an actual expected (non-zero, non-empty) value of a specific back test and then verify that the numbers, not just the schema are correct. This is a single test function (test number 12)
 
-Adding up the above, There should be 9 + 1 + 1 + 1 + 1  = 13 test functions in your test suite. Please make sure to name them properly. All of these tests should both reflect the rubric as well as pass.
+- Adding up the above, There should be 9 + 1 + 1 + 1 + 1  = 13 test functions in your test suite. Please make sure to name them properly. All of these tests should both reflect the rubric as well as pass.
 
-In terms of names they should all follow the convention: `test_{test-number:int}_{whatever you want to name it}`. You can name them whatever you would like as long as it follows good naming practices.
+- In terms of names they should all follow the convention: `test_{test-number:int}_{whatever you want to name it}`. You can name them whatever you would like as long as it follows good naming practices.
 
-You will also need to instal `pytest-cov` to have the coverage report created, which is required. 
+- You will also need to instal `pytest-cov` to have the coverage report created, which is required. 
+
+- You can find a breakdown of all tests and their numbers in the chart here:
+
+| Test Number | Route | Info | 
+| --- | --- | --- |
+| 0 | `/api/v1/row_count` | Schema Test | 
+| 1 | `/api/v1/unique_stock_count` | Schema Test | 
+| 2 | `/api/v1/row_by_market_count` | Schema Test | 
+| 3 | `/api/v2/{YEAR}` | Schema Test | 
+| 4 | `/api/v2/open/{SYMBOL}` | Schema Test | 
+| 5 | `/api/v2/close/{SYMBOL}` | Schema Test |  
+| 6 | `/api/v2/high/{SYMBOL}` | Schema Test | 
+| 7 | `/api/v2/low/{SYMBOL}` | Schema Test | 
+| 8 | `/api/v4/back_test` | Schema Test |
+| 9 | `v1`, `v2` and `v4` | One route of each `v`-type to test a missing API Key |
+| 10 | `/api/v2/{YEAR}` | Incorrect year |
+| 11 | `v1`, `v2` and `v4` | One route of each `v`-type to test an _invalid_ API Key |
+| 12 | `/api/v4/back_test` | Exact Test |
 
 ### Specifications:
 
