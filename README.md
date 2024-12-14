@@ -20,7 +20,7 @@ This box contains a list of changes that should be done for next year<br>
 6. use pyenv and python 3.15 or something new which requires the env
 7. Fix Part 3 to only load ~5 of the years. It is too many for some machines.
 8. Move pdb to autodocs lectures. It is short.
-9. Add information about log rotation to logs
+9.  Add information about log rotation to logs
 10. Add "F" to pyproject.toml
 11. Update late policy on assignments if more than 5 hours => 50% off.
 12. Options to add: Merging data
@@ -28,6 +28,11 @@ This box contains a list of changes that should be done for next year<br>
 14. TDD
 15. For testing more about coverage, provide some examples and different types. End of lecture 16.
 16. Add the ability to reset accounts via makefile in the assignment (part 5? part 6?)
+```bash
+db_truncate: build
+	docker run $(COMMON_DOCKER_FLAGS) $(IMAGE_NAME) \
+	sqlite3 $(DB_PATH) "DELETE FROM accounts; DELETE FROM stocks_owned;"
+```
 17. Maybe lean into pyproject.toml, its way more modern. Use it for testing and requirements.
 </details>
 
@@ -136,8 +141,7 @@ Course Notes can be found linked inside each lesson plan.
 | 7: Data Pipeline \#2 | <ul><li>More CRUD</li><li>Testing</li></ul> | <ul><li>[Project Part V Due](./project_assignments/part_5.md)</li></ul> |  <ul><li>[Lesson Plan](./lesson_plan/week_7.md)</li></ul> | 
 | 8: Adding Features | <ul><li>Logging in Python</li><li>Autodocs with mkdocs</li></ul> | <ul><li>[Project Part VI Due](./project_assignments/part_6.md)</li><li>[Quiz #6](./quiz/quiz6A.pdf)</li><li>[Quiz #6 AK](./quiz/quiz6AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_8.md)</li></ul> |
 | 9: Testing and Merging | <ul><li>pdb</li><li>PyTest</li></ul> | <ul><li>[Project Part VII Due](./project_assignments/part_7.md)</li><ul> | <ul><li>[Lesson Plan](./lesson_plan/week_9.md)</li></ul> | 
-| 10: Finals Week | |<ul><li>[Project Part VIII Due](./project_assignments/part_8.md)</li><li>[In person Final Exam](./lesson_plan/finals_week.md)<ul>  |
-
+| 10: Finals Week | |<ul><li>[Project Part VIII Due](./project_assignments/part_8.md)</li><li>[In person Final Exam](./lesson_plan/finals_week.md)</li><li>[Exam](./quiz/FinalExam.pdf)</li><li>[Exam AK](./quiz/FinalExamAK.md)</li><ul>  |
 
 ## Canvas
 
