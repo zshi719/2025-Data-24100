@@ -35,8 +35,9 @@ db_truncate: build
 	docker run $(COMMON_DOCKER_FLAGS) $(IMAGE_NAME) \
 	sqlite3 $(DB_PATH) "DELETE FROM accounts; DELETE FROM stocks_owned;"
 ```
-1.  Maybe lean into pyproject.toml, its way more modern. Use it for testing and requirements.
-2.  Rewrite rubrics to help graders. Be more specific on a number of ongoing issues (branch protection violations, separation of concerns, unused code, inconsistent abstractions, etc.)
+19.  Maybe lean into pyproject.toml, its way more modern. Use it for testing and requirements.
+20.  Rewrite rubrics to help graders. Be more specific on a number of ongoing issues (branch protection violations, separation of concerns, unused code, inconsistent abstractions, etc.)
+21. Learning objectives need to be expanded for each week, especially toward the end. Focus on hard skills. Per conversation with other faculty increase pre-req questions.
 </details>
 
 ## Course Description
