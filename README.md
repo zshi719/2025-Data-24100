@@ -14,7 +14,7 @@ This box contains a list of changes that should be done for next year<br>
 
 1. For the group names make sure that people are not putting "GROUP" and instead just putting the numbers there.
 2. Have everyone put their data in a location on the host set by ENV rather than zips inside the repo
-3. Everyone uses a DSI Clinic Repo with branch protections and no is an admin.
+3. Everyone uses a DSI Clinic Repo with branch protections and not an admin.
 4. When using flask -- just always start with `python app.py` rather than `flask run`
 5. use `uv` inside the container
 6. use pyenv and python 3.15 or something new which requires the env
@@ -27,13 +27,16 @@ This box contains a list of changes that should be done for next year<br>
 13. Options to add: github actions with testing & coding standards
 14. TDD
 15. For testing more about coverage, provide some examples and different types. End of lecture 16.
-16. Add the ability to reset accounts via makefile in the assignment (part 5? part 6?)
+16. Final Exam was WAY too easy and short.
+17. Quizzes need to be more consistent on difficulty level. 2-3 easy questions and one hard question requiring writing python code.
+18. Add the ability to reset accounts via makefile in the assignment (part 5? part 6?)
 ```bash
 db_truncate: build
 	docker run $(COMMON_DOCKER_FLAGS) $(IMAGE_NAME) \
 	sqlite3 $(DB_PATH) "DELETE FROM accounts; DELETE FROM stocks_owned;"
 ```
-17. Maybe lean into pyproject.toml, its way more modern. Use it for testing and requirements.
+1.  Maybe lean into pyproject.toml, its way more modern. Use it for testing and requirements.
+2.  Rewrite rubrics to help graders. Be more specific on a number of ongoing issues (branch protection violations, separation of concerns, unused code, inconsistent abstractions, etc.)
 </details>
 
 ## Course Description
@@ -134,14 +137,14 @@ Course Notes can be found linked inside each lesson plan.
 | --- | --- | --- | --- | 
 | 1: Introduction | <ul><li>The Terminal</li><li>File Management</li><li>Environments</li></ul> | <ul><li>[Preliminaries](./assignments/prelims.md)</li><li>[Prereqs](./docs/prequisites.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_1.md)</li></ul>
 | 2: Docker, Make and git | <ul><li>Docker</li><li>Make</li><li>git</li><li>Environments</li></ul> | <ul><li>[Quiz #1A](./quiz/quiz1A.pdf)</li><li>[Quiz #1B](./quiz/quiz1B.pdf)</li><li>[Quiz #1 AK](./quiz/quiz1AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_2.md)</li></ul> |
-| 3: Flask | <ul><li>REST</li><li>Flask</li><li>Requests</li></ul> | <ul><li>[Project Part I Due](./project_assignments/part_1.md)</li><li>[Quiz #2A](./quiz/quiz2A.pdf)</li><li>[Quiz #2 AK](./quiz/quiz2AK.md)</li></ul>  | <ul><li>[Lesson Plan](./lesson_plan/week_3.md)</li></ul>
-| 4: Flask & Code Quality | <ul><li>Additional Requests</li><li>Organizing code</li><li>Separation of Concerns</li><li>DRY</li><li>Separation of Concerns</li></ul> |  <ul><li>[Project Part II Due](./project_assignments/part_2.md)</li><li>[Quiz #3A](./quiz/quiz3A.pdf)</li><li>[Quiz #3A AK](./quiz/quiz3AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_4.md)</li></ul> |
-| 5: Code quality control and organization | <ul><li>Abstraction</li><li>Linting</li></ul> | <ul><li>[Project Part III Due](./project_assignments/part_3.md)</li><li>[Quiz #4](./quiz/quiz4A.pdf)</li><li>[Quiz #4 AK](./quiz/quiz4AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_5.md)</li></ul> | 
-| 6: Data Pipeline | <ul><li>SQLite</li><li>CRUD</li></ul> |  <ul><li>[Project Part IV Due](./project_assignments/part_4.md)</li><li>[Quiz #5](./quiz/quiz5A.pdf)</li><li>[Quiz #5 AK](./quiz/quiz5AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_6.md)</li></ul> |
-| 7: Data Pipeline \#2 | <ul><li>More CRUD</li><li>Testing</li></ul> | <ul><li>[Project Part V Due](./project_assignments/part_5.md)</li></ul> |  <ul><li>[Lesson Plan](./lesson_plan/week_7.md)</li></ul> | 
-| 8: Adding Features | <ul><li>Logging in Python</li><li>Autodocs with mkdocs</li></ul> | <ul><li>[Project Part VI Due](./project_assignments/part_6.md)</li><li>[Quiz #6](./quiz/quiz6A.pdf)</li><li>[Quiz #6 AK](./quiz/quiz6AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_8.md)</li></ul> |
-| 9: Testing and Merging | <ul><li>pdb</li><li>PyTest</li></ul> | <ul><li>[Project Part VII Due](./project_assignments/part_7.md)</li><ul> | <ul><li>[Lesson Plan](./lesson_plan/week_9.md)</li></ul> | 
-| 10: Finals Week | |<ul><li>[Project Part VIII Due](./project_assignments/part_8.md)</li><li>[In person Final Exam](./lesson_plan/finals_week.md)</li><li>[Exam](./quiz/FinalExam.pdf)</li><li>[Exam AK](./quiz/FinalExamAK.md)</li><ul>  |
+| 3: Flask | <ul><li>REST</li><li>Flask</li><li>Requests</li></ul> | <ul><li>[Project Part I Due](./project_assignments/part_1.md)</li><li>[Project Part I Rubric](./project_assignments/part_1_rubric.md)</li><li>[Quiz #2A](./quiz/quiz2A.pdf)</li><li>[Quiz #2 AK](./quiz/quiz2AK.md)</li></ul>  | <ul><li>[Lesson Plan](./lesson_plan/week_3.md)</li></ul>
+| 4: Flask & Code Quality | <ul><li>Additional Requests</li><li>Organizing code</li><li>Separation of Concerns</li><li>DRY</li><li>Separation of Concerns</li></ul> |  <ul><li>[Project Part II Due](./project_assignments/part_2.md)</li><li>[Project Part II Rubric](./project_assignments/part_2_rubric.md)</li><li>[Quiz #3A](./quiz/quiz3A.pdf)</li><li>[Quiz #3A AK](./quiz/quiz3AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_4.md)</li></ul> |
+| 5: Code quality control and organization | <ul><li>Abstraction</li><li>Linting</li></ul> | <ul><li>[Project Part III Due](./project_assignments/part_3.md)</li><li>[Project Part III Rubric](./project_assignments/part_3_rubric.md)</li><li>[Quiz #4](./quiz/quiz4A.pdf)</li><li>[Quiz #4 AK](./quiz/quiz4AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_5.md)</li></ul> | 
+| 6: Data Pipeline | <ul><li>SQLite</li><li>CRUD</li></ul> |  <ul><li>[Project Part IV Due](./project_assignments/part_4.md)</li><li>[Project Part IV Rubric](./project_assignments/part_4_rubric.md)</li><li>[Quiz #5](./quiz/quiz5A.pdf)</li><li>[Quiz #5 AK](./quiz/quiz5AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_6.md)</li></ul> |
+| 7: Data Pipeline \#2 | <ul><li>More CRUD</li><li>Testing</li></ul> | <ul><li>[Project Part V Due](./project_assignments/part_5.md)</li><li>[Project Part V Rubric](./project_assignments/part_5_rubric.md)</li></ul> |  <ul><li>[Lesson Plan](./lesson_plan/week_7.md)</li></ul> | 
+| 8: Adding Features | <ul><li>Logging in Python</li><li>Autodocs with mkdocs</li></ul> | <ul><li>[Project Part VI Due](./project_assignments/part_6.md)</li><li>[Project Part VI Rubric](./project_assignments/part_6_rubric.md)</li><li>[Quiz #6](./quiz/quiz6A.pdf)</li><li>[Quiz #6 AK](./quiz/quiz6AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_8.md)</li></ul> |
+| 9: Testing and Merging | <ul><li>pdb</li><li>PyTest</li></ul> | <ul><li>[Project Part VII Due](./project_assignments/part_7.md)</li><li>[Project Part VII Rubric](./project_assignments/part_7_rubric.md)</li><ul> | <ul><li>[Lesson Plan](./lesson_plan/week_9.md)</li></ul> | 
+| 10: Finals Week | |<ul><li>[Project Part VIII Due](./project_assignments/part_8.md)</li><li>[Project Part VIII Rubric](./project_assignments/part_8_rubric.md)</li><li>[Exam](./quiz/FinalExam.pdf)</li><li>[Exam AK](./quiz/FinalExamAK.md)</li><ul>  | <ul><li>[Finals Info](./lesson_plan/finals_week.md)</li></ul> | 
 
 ## Canvas
 

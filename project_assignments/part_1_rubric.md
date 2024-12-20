@@ -46,3 +46,26 @@
 2. Use the commit hash provided by the students in canvas. To checkout at a single location type in, at the command line, in the repository directory: `git checkout COMMIT HASH`.
 3. You will be in a detached head state. If you want to verify you are at the correct location, type in `git log -1 --format=%H` which should display the last commit. `git status` should mention that head is detached and the tree is clean.
 
+## Rubric
+
+| Category | Criteria | Points |
+|----------|----------|---------|
+| Repository Setup | Group on Canvas | 5 |
+| | Private Repo Named Properly | 5 |
+| | Proper hash in Canvas | 5 |
+| | Invited TAs & Instructors | 5 |
+| | Branch Protections (not required) | 0 |
+| | No Commits to Main | 5 |
+| | README with basic info | 5 |
+| Directory / File | General Hygiene (no unnecessary files, directories, no name, v2, etc.) | 10 |
+| | data folder contains data | 2 |
+| | utils folder contains script | 2 |
+| | requirements.txt | 2 |
+| | Correct Dockerfile | 4 |
+| Code Execution | Code Run -> generates output | 20 |
+| | Output Correct | 10 |
+| Code Quality | Everything in functions | 5 |
+| | Proper Naming Conventions (pep8) | 5 |
+| | Any comments need to be descriptive | 0 |
+| | All calling done with main block | 5 |
+| **Total** | | **95** |

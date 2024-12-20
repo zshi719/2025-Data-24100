@@ -41,3 +41,24 @@
 2. Use the commit hash provided by the students in canvas. To checkout at a single location type in, at the command line, in the repository directory: `git checkout COMMIT HASH`.
 3. You will be in a detached head state. If you want to verify you are at the correct location, type in `git log -1 --format=%H` which should display the last commit. `git status` should mention that head is detached and the tree is clean.
 
+## Part 2 Rubric 
+
+| Category | Criteria | Points |
+|----------|----------|---------|
+| Repository Rules | Proper hash in Canvas | 2 |
+| | No Commits to Main | 5 |
+| Directory / File | General Hygiene (no unnecessary files, directories, no name, v2, etc.) | 5 |
+| | Correct Makefile (Proper env variable, image name, general format.) | 5 |
+| | Correct Dockerfile (Proper conventions, port exposures, file calling, etc) | 5 |
+| | README.md is up to date with how to run info | 5 |
+| | Code Organization (Most in utils folder) | 3 |
+| Code Execution | make build (properly builds docker container) | 5 |
+| | make notebook (should be able to utilize notebook on the web) | 10 |
+| | make interactive (starts interactive bash session) | 10 |
+| | make flask (initializes app.py properly) | 15 |
+| API Calls | API rowcount call | 5 |
+| | API unique_stock_count call | 5 |
+| | API row_by_market_count call | 5 |
+| | Handles incorrect API key exception | 5 |
+| Code Quality | Follows Part 1 conventions (pep8, functions, main block calling) | 10 |
+| **Total** | | **100** |
