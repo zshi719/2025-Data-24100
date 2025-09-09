@@ -2,59 +2,59 @@
 
 Instructor: Nick Ross 
 
-Office Hours: My current office hours will be from 9-10AM on Wed and Fri. However, I'm generally around and strongly recommend emailing me to schedule rather than just show up.
+Office Hours: I am on campus most days of the week and will have office hours right after class. However, the best way to get help is by emailing.
 
 Office Location: Ryerson 257H
 
-How to contact: My contact information is on canvas.
+How to contact: My contact information is on Canvas.
 
 <details style="padding: 10px; background-color: var(--color-canvas-subtle); border-radius: 5px;">
 <summary>💡 <strong>Updates for next year</strong></summary>
-This box contains a list of changes that should be done for next year<br>
+This box contains a list of changes that should be made for next year:
 
-1. For the group names make sure that people are not putting "GROUP" and instead just putting the numbers there.
-2. Have everyone put their data in a location on the host set by ENV rather than zips inside the repo
-3. Everyone uses a DSI Clinic Repo with branch protections and not an admin.
-4. When using flask -- just always start with `python app.py` rather than `flask run`
-5. use `uv` inside the container
-6. use pyenv and python 3.15 or something new which requires the env
-7. Fix Part 3 to only load ~5 of the years. It is too many for some machines.
-8. Move pdb to autodocs lectures. It is short.
-9.  Add information about log rotation to logs
+1. For group names, omit "GROUP"; use only the number.
+2. Have everyone put their data in a host location set by an environment variable rather than ZIP archives inside the repo
+3. Everyone should use a DSI Clinic repository with branch protections; do not grant admin rights.
+4. When using Flask — start with `python app.py` rather than `flask run`
+5. Use `uv` inside the container
+6. Use pyenv and Python 3.15 (or a newer version) that requires an environment
+7. Fix Part 3 to load only ~5 years; loading all years is too much for some machines.
+8. Move `pdb` to the autodocs lectures.
+9. Add information about log rotation to the logging section
 10. Add "F" to pyproject.toml
-11. Update late policy on assignments if more than 5 hours => 50% off.
-12. Options to add: Merging data
-13. Options to add: github actions with testing & coding standards
+11. Update late policy on assignments — if more than 5 hours late — 50% off.
+12. Add option: data merging
+13. Add option: GitHub Actions with testing and coding standards
 14. TDD
-15. For testing more about coverage, provide some examples and different types. End of lecture 16.
-16. Final Exam was WAY too easy and short.
-17. Quizzes need to be more consistent on difficulty level. 2-3 easy questions and one hard question requiring writing python code.
-18. Add the ability to reset accounts via makefile in the assignment (part 5? part 6?)
+15. For testing, add more on coverage; provide examples and types. End of lecture 16.
+16. Final Exam was too easy and too short.
+17. Quizzes need to be more consistent in difficulty. Include 2–3 easy questions and one hard question requiring writing Python code.
+18. Add the ability to reset accounts via Makefile in the assignment (part 5? part 6?)
 ```bash
 db_truncate: build
 	docker run $(COMMON_DOCKER_FLAGS) $(IMAGE_NAME) \
 	sqlite3 $(DB_PATH) "DELETE FROM accounts; DELETE FROM stocks_owned;"
 ```
-19.  Maybe lean into pyproject.toml, its way more modern. Use it for testing and requirements.
-20.  Rewrite rubrics to help graders. Be more specific on a number of ongoing issues (branch protection violations, separation of concerns, unused code, inconsistent abstractions, etc.)
-21. Learning objectives need to be expanded for each week, especially toward the end. Focus on hard skills. Per conversation with other faculty increase pre-req questions.
+19. Maybe lean into pyproject.toml; it's much more modern. Use it for testing and requirements.
+20. Rewrite rubrics to help graders. Be more specific about several ongoing issues (branch protection violations, separation of concerns, unused code, inconsistent abstractions, etc.).
+21. Learning objectives need to be expanded for each week, especially toward the end. Focus on hard skills. Per conversation with other faculty, increase prerequisite questions.
 </details>
 
 ## Course Description
 
-This course is designed to equip students with the practical skills and theoretical knowledge necessary to excel at the intersection of data science and software engineering. Through a hands-on approach, students will delve into the core tools and concepts that form the backbone of this interdisciplinary field, including data modeling, building data pipelines and software development best-practices. Emphasis will be placed on real-world applications, enabling students to work on projects that simulate professional scenarios and challenges. This course is ideal for those looking to deepen their understanding of how data-focused technologies are developed and deployed.
+This course is designed to equip students with the practical skills and theoretical knowledge necessary to excel at the intersection of data science and software engineering. Through a hands-on approach, students will delve into the core tools and concepts that form the backbone of this interdisciplinary field, including data modeling, building data pipelines, and software development best practices. Emphasis will be placed on real-world applications, enabling students to work on projects that simulate professional scenarios and challenges. This course is ideal for those looking to deepen their understanding of how data-focused technologies are developed and deployed.
 
 ## Prerequisites
 
 This course assumes that you are familiar with the basic concepts of Python programming as you would find in the core data science courses. 
 
-If you are unsure or are looking for a refresher on what is expected, please take a look at this [prerequisite doc](./docs/prequisites.md).
+If you are unsure or are looking for a refresher on what is expected, please take a look at this [prerequisite doc](./docs/prerequisites.md).
 
 ## Course Overview
 
-This course is designed to expose data science students to deeper computing concepts that are likely need throughout their careers. We will do this in a project-based method where students will work in small groups using common data science tools to build an entire pipeline from raw data to putting the data into a relational database to serving that data through an API.
+This course is designed to expose data science students to deeper computing concepts that are likely needed throughout their careers. We will do this in a project-based approach where students will work in small groups using common data science tools to build an entire pipeline from raw data to putting the data into a relational database to serving that data through an API.
 
-As a by product of this effort, after taking this course students should have experience managing their own computing environment and be able to build software with an understanding of best practices. 
+As a by-product of this effort, after taking this course, students should have experience managing their own computing environment and be able to build software with an understanding of best practices. 
 
 ## Course Assessment
 
@@ -78,7 +78,7 @@ In this class professionalism means:
 - Being responsible to your group when doing group work
 - Communicating respectfully and appropriately to your peers, TAs and faculty
 
-Students who show up on time and pay attention in class have a tendency to do extremely well in this class. The opposite if also true; students who fail to make an effort, fail to contribute in class and fail to pay attention have a tendency to do poorly in this class. 
+Students who show up on time and pay attention in class have a tendency to do extremely well in this class. The opposite is also true; students who fail to make an effort, fail to contribute in class, and fail to pay attention have a tendency to do poorly in this class. 
 
 This grade is assigned individually.
 
@@ -91,7 +91,7 @@ This grade is assigned as a group. You can find the project regrade policy [here
 
 ### Quizzes (Ind.)
 
-Each Thursday (starting week \#2) there will be a short quiz (15-30 minutes) given at the start of the course. These quizzes are _cumulative_ over the course of the quarter. Note that the lowest quiz grade will be dropped at the end.
+Each Thursday (starting week \#2) there will be a short quiz (15–30 minutes) given at the start of the class. These quizzes are _cumulative_ over the course of the quarter. Note that the lowest quiz grade will be dropped at the end.
 
 More information on the quizzes is provided in the [course material](#course-material) section below.
 
@@ -100,13 +100,13 @@ This grade is assigned individually. You can find the quiz regrade policy [here]
 
 ### Final Project Deliverable (Group)
 
-At the end of the quarter your final group's final github repo will undergo a significant assessment to make sure that it meets the criteria established during the course. 
+At the end of the quarter your group's final github repo will undergo a significant assessment to make sure that it meets the criteria established during the course. 
 
 This grade is assigned as a group.
 
 ### Final Exam (Ind.)
 
-There will be a final exam given according to the exam calendar. This will be cumulative from the material in the quarter and will be similar in style and difficulty to the quizzes. Per the [final exam calendar](https://registrar.uchicago.edu/calendars/final-exams/), it looks like it is scheduled for Thursday December 12th from 10:00-12:00. Please make sure that you verify this for yourself.
+There will be a final exam given according to the exam calendar. This will be cumulative from the material in the quarter and will be similar in style and difficulty to the quizzes. The final will be held per the [final exam calendar](https://registrar.uchicago.edu/calendars/final-exams/).  Please make sure that you verify your availability.
 
 This grade is assigned individually. There is more information about the final [here](./lesson_plan/finals_week.md).
 
@@ -114,42 +114,42 @@ This grade is assigned individually. There is more information about the final [
 
 Lectures will be traditional chalk-talks and computer-aided demonstrations. While there aren't slides, my lecture notes will be provided in this repository for reference.
 
-These notes represent the content of the course and what is expected to be covered on the quiz, I strongly recommend students attend the lecture for the full experience. 
+These notes represent the content of the course and what is expected to be covered on the quiz. I strongly recommend students attend the lecture for the full experience. 
 
-During lecture we will be doing some hands-on activities and verifications that, while described in the notes, are better experienced in-person rather than live. 
+During lecture we will be doing some hands-on activities and verifications that, while described in the notes, are better experienced in-person rather than via the notes.
 
 ### Quiz Material
 
 After each lecture (roughly) the lecture notes will be provided. Appended to the end of the lecture notes will be a set of quiz objectives that describe the material that can appear on the quiz. 
 
-These quiz objectives _do not_ cover the entire material from the lecture but are the only material that will be asked for on the quiz.
+These quiz objectives _do not_ cover all of the material from the lecture but are the only material that will be asked for on the quiz.
 
-That being said, it is important to internalize these concepts because, while the list of learning objectives at the end describe the basic building blocks of what is asked, they may be asked in conjunction to generate a quiz question. 
+That being said, it is important to internalize these concepts because, while the list of learning objectives at the end describe the basic building blocks of what is asked, they may combined into a single quiz question.
 
-For example: Consider two quiz objectives objectives of `use wildcards to match files which follow a pattern` and another  `move files within a file system`. It is perfectly reasonable to ask a question on the quiz such as `move all .txt files from the /data subdirectory to the /text_data subdirectory` which would require using both. 
+For example: Consider two quiz objectives of `use wildcards to match files which follow a pattern` and another  `move files within a file system`. It is perfectly reasonable to ask a question on the quiz such as `move all .txt files from the /data subdirectory to the /text_data subdirectory` which would require using both. 
 
 ## Course Outline
 
-In this course we will cover the following topics which will enable us to build a full data pipeline, diagnose issues and serve data via an API. Each topic will last approximately a week.
+In this course we will cover the following topics which will enable us to build a full data pipeline, diagnose issues, and serve data via an API. Each topic will last approximately a week.
 
 Course Notes can be found linked inside each lesson plan.
 
 | Topic | Topics | Assignments | Notes \& Plan | 
 | --- | --- | --- | --- | 
-| 1: Introduction | <ul><li>The Terminal</li><li>File Management</li><li>Environments</li></ul> | <ul><li>[Preliminaries](./assignments/prelims.md)</li><li>[Prereqs](./docs/prequisites.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_1.md)</li></ul>
-| 2: Docker, Make and git | <ul><li>Docker</li><li>Make</li><li>git</li><li>Environments</li></ul> | <ul><li>[Quiz #1A](./quiz/quiz1A.pdf)</li><li>[Quiz #1B](./quiz/quiz1B.pdf)</li><li>[Quiz #1 AK](./quiz/quiz1AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_2.md)</li></ul> |
+| 1: Introduction | <ul><li>The Terminal</li><li>File Management</li><li>Environments</li></ul> | <ul><li>[Preliminaries](./assignments/prelims.md)</li><li>[Prerequisites](./docs/prerequisites.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_1.md)</li></ul>
+| 2: Docker, Make and Git | <ul><li>Docker</li><li>Make</li><li>Git</li><li>Environments</li></ul> | <ul><li>[Quiz #1A](./quiz/quiz1A.pdf)</li><li>[Quiz #1B](./quiz/quiz1B.pdf)</li><li>[Quiz #1 AK](./quiz/quiz1AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_2.md)</li></ul> |
 | 3: Flask | <ul><li>REST</li><li>Flask</li><li>Requests</li></ul> | <ul><li>[Project Part I Due](./project_assignments/part_1.md)</li><li>[Project Part I Rubric](./project_assignments/part_1_rubric.md)</li><li>[Quiz #2A](./quiz/quiz2A.pdf)</li><li>[Quiz #2 AK](./quiz/quiz2AK.md)</li></ul>  | <ul><li>[Lesson Plan](./lesson_plan/week_3.md)</li></ul>
-| 4: Flask & Code Quality | <ul><li>Additional Requests</li><li>Organizing code</li><li>Separation of Concerns</li><li>DRY</li><li>Separation of Concerns</li></ul> |  <ul><li>[Project Part II Due](./project_assignments/part_2.md)</li><li>[Project Part II Rubric](./project_assignments/part_2_rubric.md)</li><li>[Quiz #3A](./quiz/quiz3A.pdf)</li><li>[Quiz #3A AK](./quiz/quiz3AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_4.md)</li></ul> |
-| 5: Code quality control and organization | <ul><li>Abstraction</li><li>Linting</li></ul> | <ul><li>[Project Part III Due](./project_assignments/part_3.md)</li><li>[Project Part III Rubric](./project_assignments/part_3_rubric.md)</li><li>[Quiz #4](./quiz/quiz4A.pdf)</li><li>[Quiz #4 AK](./quiz/quiz4AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_5.md)</li></ul> | 
+| 4: Flask & Code Quality | <ul><li>Advanced Requests</li><li>Organizing code</li><li>DRY</li><li>Separation of Concerns</li></ul> |  <ul><li>[Project Part II Due](./project_assignments/part_2.md)</li><li>[Project Part II Rubric](./project_assignments/part_2_rubric.md)</li><li>[Quiz #3A](./quiz/quiz3A.pdf)</li><li>[Quiz #3A AK](./quiz/quiz3AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_4.md)</li></ul> |
+| 5: Code Quality Control and Organization | <ul><li>Abstraction</li><li>Linting</li></ul> | <ul><li>[Project Part III Due](./project_assignments/part_3.md)</li><li>[Project Part III Rubric](./project_assignments/part_3_rubric.md)</li><li>[Quiz #4](./quiz/quiz4A.pdf)</li><li>[Quiz #4 AK](./quiz/quiz4AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_5.md)</li></ul> | 
 | 6: Data Pipeline | <ul><li>SQLite</li><li>CRUD</li></ul> |  <ul><li>[Project Part IV Due](./project_assignments/part_4.md)</li><li>[Project Part IV Rubric](./project_assignments/part_4_rubric.md)</li><li>[Quiz #5](./quiz/quiz5A.pdf)</li><li>[Quiz #5 AK](./quiz/quiz5AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_6.md)</li></ul> |
 | 7: Data Pipeline \#2 | <ul><li>More CRUD</li><li>Testing</li></ul> | <ul><li>[Project Part V Due](./project_assignments/part_5.md)</li><li>[Project Part V Rubric](./project_assignments/part_5_rubric.md)</li></ul> |  <ul><li>[Lesson Plan](./lesson_plan/week_7.md)</li></ul> | 
-| 8: Adding Features | <ul><li>Logging in Python</li><li>Autodocs with mkdocs</li></ul> | <ul><li>[Project Part VI Due](./project_assignments/part_6.md)</li><li>[Project Part VI Rubric](./project_assignments/part_6_rubric.md)</li><li>[Quiz #6](./quiz/quiz6A.pdf)</li><li>[Quiz #6 AK](./quiz/quiz6AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_8.md)</li></ul> |
-| 9: Testing and Merging | <ul><li>pdb</li><li>PyTest</li></ul> | <ul><li>[Project Part VII Due](./project_assignments/part_7.md)</li><li>[Project Part VII Rubric](./project_assignments/part_7_rubric.md)</li><ul> | <ul><li>[Lesson Plan](./lesson_plan/week_9.md)</li></ul> | 
-| 10: Finals Week | |<ul><li>[Project Part VIII Due](./project_assignments/part_8.md)</li><li>[Project Part VIII Rubric](./project_assignments/part_8_rubric.md)</li><li>[Exam](./quiz/FinalExam.pdf)</li><li>[Exam AK](./quiz/FinalExamAK.md)</li><ul>  | <ul><li>[Finals Info](./lesson_plan/finals_week.md)</li></ul> | 
+| 8: Adding Features | <ul><li>Logging in Python</li><li>Autodocs with MkDocs</li></ul> | <ul><li>[Project Part VI Due](./project_assignments/part_6.md)</li><li>[Project Part VI Rubric](./project_assignments/part_6_rubric.md)</li><li>[Quiz #6](./quiz/quiz6A.pdf)</li><li>[Quiz #6 AK](./quiz/quiz6AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_8.md)</li></ul> |
+| 9: Testing and Merging | <ul><li>pdb</li><li>pytest</li></ul> | <ul><li>[Project Part VII Due](./project_assignments/part_7.md)</li><li>[Project Part VII Rubric](./project_assignments/part_7_rubric.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_9.md)</li></ul> | 
+| 10: Finals Week |  | <ul><li>[Project Part VIII Due](./project_assignments/part_8.md)</li><li>[Project Part VIII Rubric](./project_assignments/part_8_rubric.md)</li><li>[Exam](./quiz/FinalExam.pdf)</li><li>[Exam AK](./quiz/FinalExamAK.md)</li></ul>  | <ul><li>[Finals Info](./lesson_plan/finals_week.md)</li></ul> | 
 
 ## Canvas
 
-All grade (and due date) information will be posted on Canvas. If you do not have access to Canvas please send me an email as soon as possible. 
+All grades (and due dates) will be posted on Canvas. If you do not have access to Canvas, please send me an email as soon as possible. 
 
 ## Odds and Ends
 
@@ -164,7 +164,7 @@ All grade (and due date) information will be posted on Canvas. If you do not hav
 
 - The quickest way to reach me is via email.
 
-- **Class participation is expected.**  I expect class to include discussions.
+- **Class participation is expected.**
 
 - **Accommodations:** If you require any accommodations for this course, as soon as possible please provide the instructor with a copy of your Accommodation Determination Letter (provided to you by the Student Disability Services office) so that you may discuss with them how your accommodations may be implemented in this course. The University of Chicago is committed to ensuring the full participation of all students in its programs. If you have a documented disability (or think you may have a disability) and, as a result, need a reasonable accommodation to participate in class, complete course requirements, or benefit from the University's programs or services, you are encouraged to contact Student Disability Services as soon as possible. To receive reasonable accommodation, you must be appropriately registered with Student Disability Services. Please contact the office at (773) 702-6000, TTY (773) 795-1186, disabilities@uchicago.edu, or visit the website at [disabilities.uchicago.edu](https://disabilities.uchicago.edu). Student Disability Services is located at 5501 S. Ellis Avenue.
 
