@@ -11,5 +11,5 @@ Please follow the instructions [here](https://clinic.ds.uchicago.edu/tutorials/c
 5. Make
 6. SSH / No-AI Cluster
 
-Note that you do NOT need to deal with the cluster.
+Note that you do **NOT** need to deal with the cluster, but you need to be able to use git at the terminal.
 

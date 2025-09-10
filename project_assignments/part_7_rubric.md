@@ -3,7 +3,7 @@
 | Category | Criteria | Points |
 |----------|----------|---------|
 | Directory / File | General Hygiene (no unnecessary files, directories, no name, v2, etc.) | 5 |
-| | Correct makefile, dockerfile, and requirements.txt | 5 |
+| | Correct Makefile, Dockerfile, and requirements.txt | 5 |
 | | .pre_commit_hook.yaml in directory | 5 |
 | | README.md is up to date with all details up to Part 7, including details on v4 endpoint | 5 |
 | Linting | Passes ruff with pyproject.toml | 10 |

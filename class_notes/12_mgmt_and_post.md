@@ -5,12 +5,12 @@
 
 ## Manipulating the database outside of Flask
 
-- Last time we worked on connecting our sqlite database to python.
+- Last time we worked on connecting our SQLite database to Python.
 - Our API, based on the Flask library will use similar functionality
 - In practice we frequently use commands to access our services in ways that aren't necessary aligned with the core functionality of our service. 
 - For example, in our Flask App we will send and receive information about stocks. There are many other useful sql functions that we will want to execute that don't fit into this paradigm and forcing them into the Flask framework would create a bad abstraction. 
 - Since we want the access to the database to be available outside of `flask` we will put the configuration inside an environment variable that we pass through to the dockerfile as we have done in the past. 
-- We will create a set of `make` commands inside our makefile which will call a python file called `db_manage.py` that handles the management commands. 
+- We will create a set of `make` commands inside our Makefile which will call a Python file called `db_manage.py` that handles the management commands.
 <!-- markdown-link-check-disable -->
 - To tell the management command which of the operations we are interested in it running we will use [`argparse`](`https://docs.python.org/3/library/argparse.html) to allow for passing of arguments to the python function.
 <!-- markdown-link-check-enable -->
@@ -23,7 +23,7 @@
 | `db_load` | This will create the specific tables that we want to load as well load the the data into those tables |
 | `db_clean` | The clean command is a placeholder for running `db_rm`, `db_create` and `db_load` in order. It is a convenience function that just calls the other functions above. | 
 
-Another command will be created `db_interactive` which is _not_ an official management command but will be used to access the sqlite database.
+Another command will be created `db_interactive`, which is not an official management command but will be used to access the SQLite database.
 
 - Lets parse how this works using the example code in [this example repository](../lecture_examples/10_pipeline_1/). 
 
@@ -89,7 +89,7 @@ Looking at the above we can see a few changes additions from the previous exampl
 
 1. We added a variable representing the docker flags that we use on all of our commands. This helps us avoid violating te DRY principle. 
 2. We created a new environment variable `DB_PATH` which specifies a location (inside the container) where the database file will exist.
-3. We added another command to enter the sqlite database interactively.
+3. We added another command to enter the SQLite database interactively.
 4. For the database management commands we have an argument after the command that is going to be passed that command. In the next section we'll analyze `db_manage.py` command.
 
 
@@ -127,8 +127,8 @@ The first few lines of this command specify the available commands that can be u
 
 ## Converting our code base to SQLite
 
-- If we run `make create` and `make load` we should now have our data loaded into sqlite. 
-- Currently our code base is using pandas and `read_csv` to load all of our data (much like our project). We now want to change that to use the sqlite database.
+- If we run `make create` and `make load` we should now have our data loaded into SQLite.
+- Currently our codebase is using pandas and `read_csv` to load all of our data (much like our project). We now want to change that to use the SQLite database.
 - Luckily we have a _very good abstraction_ for how to load that data. That very good abstraction is that we have all of our data loading run through a single file.
 - If we replace that single file with something that points to our SQL database rather than the CSV file then we will, with only a small number of lines of code being changed be able to run our DB off of SQL!
 

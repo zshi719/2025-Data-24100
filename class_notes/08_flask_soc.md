@@ -13,8 +13,8 @@
 - We want the code that we write to have a similar well-defined structure.
 - Today we are going to consider separation of concerns at the _file_ level, which is the most powerful method we have of delineating sections of code.
 - Python, like a lot of other programming languages, leverages the file system (directories and files) to help us break code into pieces.
-- Before starting to dig into our own examples, lets look at an example from Pandas:
-  - [Link to Main Pandas Library](https://github.com/pandas-dev/pandas/tree/main)
+- Before starting to dig into our own examples, let's look at an example from pandas:
+  - [Link to main pandas repository](https://github.com/pandas-dev/pandas/tree/main)
   - [String Accessor Method](https://github.com/pandas-dev/pandas/blob/main/pandas/core/strings/accessor.py)
     - Look at the first function `forbid_nonstring_types`
     - Look at the line `def strip(self, to_strip=None)`

@@ -3,7 +3,7 @@
 | Category | Criteria | Points |
 |----------|----------|---------|
 | Directory / File | General Hygiene (no unnecessary files, directories, no name, v2, etc.) | 5 |
-| | Correct makefile, dockerfile, and requirements.txt | 5 |
+| | Correct Makefile, Dockerfile, and requirements.txt | 5 |
 | | .pre_commit_hook.yaml in directory | 5 |
 | | The README file is up to date with all current information | 5 |
 | | Only one branch (main) left | 5 |

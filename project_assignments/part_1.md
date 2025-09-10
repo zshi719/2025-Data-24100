@@ -41,8 +41,8 @@ The repository needs to:
 
 If you are on the free tier of GitHub then branch protections are not available to you. There are three options:
   1. Stay on the free plan and NOT use branch protections. No points will be taken away for not having the branch protections, but you will still be deducted points for committing directly to main.
-  2 You can pay for github for the quarter.
-  3. If **ONE person from your group emails me their github ID by Saturday night** I will create a private repo with them as the owner inside the paid DSI Org. This will allow you to get branch protections and you'll be able to administer the repo yourself.
+  2. You can pay for GitHub for the quarter.
+  3. If **ONE person from your group emails me their GitHub ID by Saturday night** I will create a private repo with them as the owner inside the paid DSI Org. This will allow you to get branch protections and you'll be able to administer the repo yourself.
 
 I'd strongly recommend doing either the second or the third, but it is your group's choice.
 

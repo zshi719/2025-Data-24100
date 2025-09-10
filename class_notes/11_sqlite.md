@@ -29,7 +29,7 @@
   - If we are comfortable with making sacrifices of the above we can often build faster and cheaper systems (at a cost)
   - For example: If we are facebook and we have a database table which tracks the number of likes a post receives than we may be okay with the actual count being occasionally off by a small amount if it saves us lots of money. OTOH, if we are a bank and our table tracks account balances than we are _not_ willing to make such as trade-off.
 - What is important is that when we use NoSQL Databases we know what trade-off we are making, otherwise we could end up with a system which doesn't satisfy our needs.
-- In this class we are going to use [SQLite](https://www.sqlite.org/) which is a lightweight and designed for small scale application. 
+- In this class we are going to use [SQLite](https://www.sqlite.org/), which is lightweight and designed for small-scale applications.
 
 ## SQLite
 
@@ -50,7 +50,7 @@ which will install the program. The command `apt-get` is a command line tool for
 
 - Once the program is installed we can run this on the command line. Start with running `make inter` (e.g. enter an interactive session) and then type in, at the resulting command line `sqlite3` to star the session.
 - To exit an interactive session we use `.q`. Commands inside the `sqlite3` interactive session begin with a `.`
-- If we type `sqlite3 test.db` this will connect to file called `test.db` which will store the databases's data. While there is no forced file extension, we common use `.db`, `.sqlite`, `.sqlite3` or `.db3` as file extensions for sqlite3 files.
+- If we type `sqlite3 test.db` this will connect to a file called `test.db`, which will store the database's data. While there is no forced file extension, we commonly use `.db`, `.sqlite`, `.sqlite3`, or `.db3` as file extensions for SQLite files.
 - Note that until you make a change (such as creating a table), the file is not created. 
 
 ## Connecting databases to Python

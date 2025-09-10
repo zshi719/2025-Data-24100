@@ -28,7 +28,7 @@ The goal of this assignment is to get the basic `make` commands up and running a
 
 ### Required Make commands
 
-Please create a makefile (in the root) of your repository with the following commands:
+Please create a Makefile (in the root) of your repository with the following commands:
 
 1. `build`: This should build the image from the dockerfile in your repo.
 2. `interactive`: This should start an interactive bash session with the current working directory mounted to `/app/src`.

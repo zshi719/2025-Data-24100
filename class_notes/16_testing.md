@@ -352,5 +352,5 @@ TOTAL                                 273    150    45%
 This demonstrates a few features we want to highlight:
 
 - It shows the tests that were run, how long they took, how many passed and failed.
-- One of the interesting features that pytest has (with an optional module that we will install) is the notion of _coverage_ which is a representation of how much of the code base has been tested. 
-- Coverage is an important concept and is often baked into github. If you go to the pandas github page for example you'll see a badge stating the `codecov` level which is a measure of this concept.
+- One of the interesting features that pytest has (with an optional module that we will install) is the notion of _coverage_, which represents how much of the codebase has been tested.
+- Coverage is an important concept and is often baked into GitHub. If you go to the pandas GitHub page, for example, you'll see a badge stating the `codecov` level, which is a measure of this concept.

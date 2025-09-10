@@ -42,7 +42,7 @@ Your code must conform to all the requirements of all previous parts, including 
   - `make db_rm`: this deletes the database file.
   - `make db_clean`: this deletes the sqlite database file and reloads the data. In other words it should run the `rm`, `create` and `load` commands in order. If the database does not already exist it should _not_ return an error.
   - `make db_interactive`: This should run an interactive session of the database with the correct database open.
-- All of the above make commands should be accessed via a python script `db_manage.py` that is called from the makefile and executed _inside the docker container_.
+- All of the above make commands should be accessed via a Python script `db_manage.py` that is called from the Makefile and executed inside the Docker container.
   - `db_manage.py` should take a single argument (`db_create`, `db_load`, etc.) and then run python code to achieve the goals of the program. So it will be called, via `make` with a command of the form below which will depend on where the file is located, etc. 
 
 ```

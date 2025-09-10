@@ -7,10 +7,10 @@
 
 ## Expected Data
 
-- In our previous lectures we had defined the parts of an http request and specifically mentioned a few places where we could pass data:
+- In our previous lectures we defined the parts of an HTTP request and specifically mentioned a few places where we could pass data:
 
-1. Through the url directly:
-   1. Either the url itself (path parameter, URL Parameter)
+1. Through the URL directly:
+   1. Either the URL itself (path parameter, URL parameter)
    2. Query parameters
 2. Through the body of the request (as we do in POST requests)
 3. Through the header of the request (as we do with our authentication)
@@ -28,16 +28,16 @@
 | PUT/PATCH | <ul><li>**URL**: Resource ID</li><li>**Body**: Updated fields (complete resource for PUT, partial for PATCH)</li><li>**Headers**: Authentication tokens</li><li>**Headers**: Content-Type specification</li></ul> |
 | DELETE | <ul><li>**URL**: Resource ID</li><li>**Headers**: Authentication tokens</li><li>**Body**: Generally none</li><li>**Query**: Sometimes used for bulk operations</li></ul> |
 
-## Accessing each data
+## Accessing each data type
 
-- When we use flask we access data type differently. When using flask there are a few access patterns for each that we should know:
+- When we use Flask we access each data type differently. When using Flask there are a few access patterns for each that we should know:
 
 | Data object | Example | Accessor | Description | 
 | --- | --- | --- | --- | 
-| Query Parameters | `https://www.google.com/search?q=uchicago` | `requests.args` | This returns a dictionary like object. To convert it to an actual dictionary you can use `request.args.to_dict` though if there are multiply defined query parameters you will lose them. |
+| Query Parameters | `https://www.google.com/search?q=uchicago` | `request.args` | This returns a dictionary-like object. To convert it to an actual dictionary you can use `request.args.to_dict`, though if there are multiply defined query parameters you will lose them. |
 | URL Parameters | `https://github.com/NickRoss` | `https://github.com/<string:username>` | The parameter is then passed to the function inside the route handler. | 
-| Body | Usually a JSON object | In flask there are accessor methods on the request that are specific to the data type. For json we can use either `request.get_json` or `request.json` | We use different methods depending on the context (e.g. uploading a file vs. simply sending some json data). There are lots of different ways to handle these things. | 
-| Headers | Similar to the body it is usually described as dictionary like object | `requests.headers` is a dictionary like object for accessing the headers. | This is not a dictionary and there are some important differences. Headers are not case-sensitive, for example. | 
+| Body | Usually a JSON object | In Flask there are accessor methods on the request that are specific to the data type. For JSON we can use either `request.get_json` or `request.json`. | We use different methods depending on the context (e.g., uploading a file vs. simply sending some JSON data). There are lots of different ways to handle these things. | 
+| Headers | Similar to the body, it is usually described as a dictionary-like object | `request.headers` is a dictionary-like object for accessing the headers. | This is not a dictionary and there are some important differences. Headers are not case-sensitive, for example. |
 
 ## Multiple request types 
 
@@ -45,7 +45,7 @@
 - One thing to keep in mind as you work through your own code is that it is very easy to violate the DRY principle when writing boilerplate code for routes abstraction.
 - In the case of using multiple methods at a single endpoint there are a number of different methods for doing it, the key, like all code that we try to write is to keep it simple and consistent.
 
-- Using the example from an updated version of our [basketball flask](../lecture_examples/11_more_crud/) lets take a look at how to do this:
+- Using the example from an updated version of our basketball Flask app, let's take a look at how to do this:
 
 ```python
 from flask import jsonify, request

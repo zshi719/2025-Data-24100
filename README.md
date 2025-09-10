@@ -22,22 +22,21 @@ This box contains a list of changes that should be made for next year:
 8. Move `pdb` to the autodocs lectures.
 9. Add information about log rotation to the logging section
 10. Add "F" to pyproject.toml
-11. Update late policy on assignments — if more than 5 hours late — 50% off.
-12. Add option: data merging
-13. Add option: GitHub Actions with testing and coding standards
-14. TDD
-15. For testing, add more on coverage; provide examples and types. End of lecture 16.
-16. Final Exam was too easy and too short.
-17. Quizzes need to be more consistent in difficulty. Include 2–3 easy questions and one hard question requiring writing Python code.
-18. Add the ability to reset accounts via Makefile in the assignment (part 5? part 6?)
+11. Add option: data merging
+12. Add option: GitHub Actions with testing and coding standards
+13. TDD
+14. For testing, add more on coverage; provide examples and types. End of lecture 16.
+15. Final Exam was too easy and too short.
+16. Quizzes need to be more consistent in difficulty. Include 2–3 easy questions and one hard question requiring writing Python code.
+17. Add the ability to reset accounts via Makefile in the assignment (part 5? part 6?)
 ```bash
 db_truncate: build
 	docker run $(COMMON_DOCKER_FLAGS) $(IMAGE_NAME) \
 	sqlite3 $(DB_PATH) "DELETE FROM accounts; DELETE FROM stocks_owned;"
 ```
-19. Maybe lean into pyproject.toml; it's much more modern. Use it for testing and requirements.
-20. Rewrite rubrics to help graders. Be more specific about several ongoing issues (branch protection violations, separation of concerns, unused code, inconsistent abstractions, etc.).
-21. Learning objectives need to be expanded for each week, especially toward the end. Focus on hard skills. Per conversation with other faculty, increase prerequisite questions.
+1.  Maybe lean into pyproject.toml; it's much more modern. Use it for testing and requirements.
+2.  Rewrite rubrics to help graders. Be more specific about several ongoing issues (branch protection violations, separation of concerns, unused code, inconsistent abstractions, etc.).
+3.  Learning objectives need to be expanded for each week, especially toward the end. Focus on hard skills. Per conversation with other faculty, increase prerequisite questions.
 </details>
 
 ## Course Description
@@ -86,7 +85,7 @@ This grade is assigned individually.
 
 Over the course of the quarter you and your group will be working on a large software engineering project. This project will have multiple deliverables during the quarter that you will need to complete as we build up to our final API and backend.
 
-This grade is assigned as a group. You can find the project regrade policy [here](./assignments/regrade_policy.md). Please read before asking for a regrade.
+This grade is assigned as a group. You can find the project's grading and late policy [here](./assignments/regrade_policy.md). Please read before asking for a regrade.
 
 
 ### Quizzes (Ind.)
@@ -100,7 +99,7 @@ This grade is assigned individually. You can find the quiz regrade policy [here]
 
 ### Final Project Deliverable (Group)
 
-At the end of the quarter your group's final github repo will undergo a significant assessment to make sure that it meets the criteria established during the course. 
+At the end of the quarter your group's final GitHub repository will undergo a significant assessment to make sure that it meets the criteria established during the course. 
 
 This grade is assigned as a group.
 

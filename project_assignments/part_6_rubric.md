@@ -3,7 +3,7 @@
 | Category | Criteria | Points |
 |----------|----------|---------|
 | Directory / File | General Hygiene (no unnecessary files, directories, no name, v2, etc.) | 5 |
-| | Correct Makefile updates (Updates makefile with new specifications to db_create) | 5 |
+| | Correct Makefile updates (updates Makefile with new specifications to db_create) | 5 |
 | | Correct Dockerfile/requirements.txt updates (Proper conventions, port exposures, file calling, installs sqlite3) | 5 |
 | | .pre_commit_hook.yaml in directory | 5 |
 | | README.md is up to date with all details up to Part 6, including details on v3 endpoints | 5 |

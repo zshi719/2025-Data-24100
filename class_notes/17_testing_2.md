@@ -98,7 +98,7 @@ When run, this command will:
 - You should verify that the options do what they are expected -- if you run without `-v` what does the output look like? What about the other options?
 
 
-## PyTest File
+## pytest file
 
 - There are a number of features that we want to call out in our `test/test.py` file. We will reproduce the file [here](../lecture_examples/15_testing/test/test.py).
 

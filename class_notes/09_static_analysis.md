@@ -190,7 +190,7 @@ flowchart TD
 
 - In the case of the Dockerfile and `EXPOSE` it was most likely a port issue that the was trying to be fixed. The `EXPOSE` was added, it did nothing, but was never removed. 
 
-- Another example of this is that I saw a number of students had `?=` in their makefile rather than `=`. The first of these commands `?=` does something different (and not what we want) than a simple assignment operator. 
+- Another example of this is that I saw a number of students had `?=` in their Makefile rather than `=`. The first of these commands, `?=`, does something different (and not what we want) than a simple assignment operator.
 
 | Grading Note | 
 | --- | 
@@ -217,21 +217,21 @@ flowchart TD
   - Linters / Style / Code Convention Enforcers:
     - Make sure that the code conforms (stylistically) to specific systems and expectations.
 
-- We will focus on (what are probably) the most common tools for static analysis in python which include [Black](https://github.com/psf/black), [PyFlakes](https://pypi.org/project/pyflakes/) and [iSort](https://pycqa.github.io/isort/).
+- We will focus on (what are probably) the most common tools for static analysis in Python, which include [Black](https://github.com/psf/black), [Pyflakes](https://pypi.org/project/pyflakes/), and [isort](https://pycqa.github.io/isort/).
 
 - Each of these tools enforces different coding standards and style requirements. 
 
-- Previously one would have to install each of these tools and run them individually. Lucky for us, however, a single tool can now control all of them: [ruff](https://github.com/astral-sh/ruff). This is python static analysis tool written in the rust programming language.
+- Previously, one would have to install each of these tools and run them individually. Luckily for us, however, a single tool can now control all of them: [Ruff](https://github.com/astral-sh/ruff). This is a Python static analysis tool written in the Rust programming language.
 
-- While Ruff is frequently celebrated for its speed, it's biggest contribution IMO is centralizing all of these tools into a single configuration file. 
+- While Ruff is frequently celebrated for its speed, its biggest contribution, in my opinion, is centralizing all of these tools into a single configuration file.
 
-- Ruff can be installed via pip: `pip install ruff` onto your host machine.
+- Ruff can be installed via pip onto your host machine: `pip install ruff`.
 
 - Ruff is controlled via a file called `pyproject.toml` 
   - [`toml`](https://en.wikipedia.org/wiki/TOML) files are a file format frequently used for configuration information. 
   - For this class we will use the one [here](../project_assignments/pyproject.toml)
 
-- If you look at the configuration file you will see that the format of checks begin with a letter and then have a number. For example, the check `D104` checks to make sure that there is dock string at the module level. You can find definitions for all checks and why they are important [on this page](https://docs.astral.sh/ruff/rules/).
+- If you look at the configuration file you will see that the format of checks begins with a letter and then has a number. For example, the check `D104` ensures that there is a docstring at the module level. You can find definitions for all checks and why they are important on the Ruff docs page.
 
 - There are two important commands when you use ruff: `ruff check .` (`ruff check . --fix`) and `ruff format .` (`ruff format . --diff`).
 

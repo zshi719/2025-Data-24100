@@ -28,7 +28,7 @@
 | [Swagger](https://swagger.io/) | <ul><li>Swagger docs are used for documenting APIs</li><li>Swagger docs are also used an inputs to other systems, such as Postman.</li></ul>
 | [Jupyter Book](https://jupyterbook.org/en/stable/intro.html) | <ul><li>A relative newcomer, but gaining steam especially for documentation that is to be printed.</li></ul> | 
     
-- If I was starting a project today and I expected to work on it for more than 1 year I would use Sphinx, but for anything smaller I would use MkDocs. In my experience it is just a touch easier to set up and get running and while there are some limitations, you probably won't him them on a smaller project. Sphinx (for example) uses something called [reStructuredText](https://docutils.sourceforge.io/rst.html) rather than markdown. While reStructuredText is not difficult, since we already use markdown for github it is another thing that needs to be learned.
+- If I were starting a project today and expected to work on it for more than one year, I would use Sphinx; for anything smaller I would use MkDocs. In my experience, it is slightly easier to set up and get running, and while there are some limitations, you probably won't hit them on a smaller project. Sphinx (for example) uses [reStructuredText](https://docutils.sourceforge.io/rst.html) rather than Markdown. While reStructuredText is not difficult, since we already use Markdown for GitHub it is another thing that needs to be learned.
 
 ## How does it work
 
