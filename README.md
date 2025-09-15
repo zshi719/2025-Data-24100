@@ -12,23 +12,22 @@ How to contact: My contact information is on Canvas.
 <summary>💡 <strong>Updates for next year</strong></summary>
 This box contains a list of changes that should be made for next year:
 
-1. For group names, omit "GROUP"; use only the number.
-2. Have everyone put their data in a host location set by an environment variable rather than ZIP archives inside the repo
-3. Everyone should use a DSI Clinic repository with branch protections; do not grant admin rights.
-4. When using Flask — start with `python app.py` rather than `flask run`
-5. Use `uv` inside the container
-6. Use pyenv and Python 3.15 (or a newer version) that requires an environment
-7. Fix Part 3 to load only ~5 years; loading all years is too much for some machines.
-8. Move `pdb` to the autodocs lectures.
-9. Add information about log rotation to the logging section
-10. Add "F" to pyproject.toml
-11. Add option: data merging
-12. Add option: GitHub Actions with testing and coding standards
-13. TDD
-14. For testing, add more on coverage; provide examples and types. End of lecture 16.
-15. Final Exam was too easy and too short.
-16. Quizzes need to be more consistent in difficulty. Include 2–3 easy questions and one hard question requiring writing Python code.
-17. Add the ability to reset accounts via Makefile in the assignment (part 5? part 6?)
+1. Have everyone put their data in a host location set by an environment variable rather than ZIP archives inside the repo
+2. Everyone should use a DSI Clinic repository with branch protections; do not grant admin rights.
+3. When using Flask — start with `python app.py` rather than `flask run`
+4. Use `uv` inside the container
+5. Use pyenv and Python 3.15 (or a newer version) that requires an environment
+6. Fix Part 3 to load only ~5 years; loading all years is too much for some machines.
+7. Move `pdb` to the autodocs lectures.
+8. Add information about log rotation to the logging section
+9.  Add "F" to pyproject.toml
+10. Add option: data merging
+11. Add option: GitHub Actions with testing and coding standards
+12. TDD
+13. For testing, add more on coverage; provide examples and types. End of lecture 16.
+14. Final Exam was too easy and too short.
+15. Quizzes need to be more consistent in difficulty. Include 2–3 easy questions and one hard question requiring writing Python code.
+16. Add the ability to reset accounts via Makefile in the assignment (part 5? part 6?)
 ```bash
 db_truncate: build
 	docker run $(COMMON_DOCKER_FLAGS) $(IMAGE_NAME) \

@@ -12,7 +12,7 @@ However, for this assignment, docstrings are required for each function.
 
 ### Branches
 
-During this quarter we will be using branches and pull requests in order to submit code. **Any commits directly to the main branch will result in points being deducted.** The one exception to this is the initial commit in the repo.
+During this quarter we will be using branches and pull requests in order to submit code. **Any commits directly to the main branch will result in points being deducted.** 
 
 ### Grading
 

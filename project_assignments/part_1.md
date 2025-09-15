@@ -14,17 +14,17 @@ However, at this point we have NOT covered `black`, `flake8`, or `pyflakes`, so 
 
 During this quarter we will be using branches and pull requests in order to submit code. **Any commits directly to the main branch will result in points being deducted.** The one exception to this is the initial commit in the repo.
 
+### A note on branch protections
+
+Branch protections are turned on for your branch, meaning that all commits must be completed with a pull request. Branch protections are a common method of (1) preventing accidental changes to your most important code, (2) enforcing better documentation, and (3) providing a standard pathway for code deployment.
+
+Because of branch protections it is imperative (unless you like reduplicating your work) that you pull your code frequently and have intentionality around your coding practices.
+
 ## Grading
 
 All grading will be done based on a specific commit hash off of the main branch. At the time that an assignment is due, students must submit the commit hash associated with their commit to Canvas. You need to submit the full commit hash, which is a 40-digit hash of letters and numbers. It will generally look something like this: `2a2a59af9feacbdd2cd772884b24641c3b75dff7`.
 
 To find the commit hash, you can either use the command line or check GitHub’s commit history.
-
-## A note on branch protections
-
-Branch protections are turned on for your branch, meaning that all commits must be completed with a pull request. Branch protections are a common method of (1) preventing accidental changes to your most important code, (2) enforcing better documentation, and (3) providing a standard pathway for code deployment.
-
-Because of branch protections it is imperative (unless you like reduplicating your work) that you pull your code frequently and have intentionality around your coding practices.
 
 ### Initial Code
 
@@ -80,6 +80,3 @@ Code Quality:
   - We will read your code making sure that it fulfills the code quality checklists above (ignore the sections that we have not gotten to yet).
   - We will also look to make sure that the code followed the requirements above.
   - No errors or warnings should occur in normal operations.
-
-Other:
-  - Add you and your team to Canvas.

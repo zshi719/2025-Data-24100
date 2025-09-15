@@ -8,7 +8,7 @@ During the quarter, you will be expected to adhere to the coding standards found
 
 ### Branches
 
-During this quarter we will be using branches and pull requests in order to submit code. **Any commits directly to the main branch will result in points being deducted.** The one exception to this is the initial commit in the repo.
+During this quarter we will be using branches and pull requests in order to submit code. **Any commits directly to the main branch will result in points being deducted.** 
 
 ### Grading
 
