@@ -2,7 +2,7 @@
 
 This document outlines the requirements for the next part of our data serving API.
 
-### Coding Standards
+### Coding standards
 
 During the quarter, you will be expected to adhere to the coding standards found [here](https://github.com/dsi-clinic/the-clinic/blob/main/coding-standards/coding-standards.md) and we will frequently use [this rubric](https://github.com/dsi-clinic/the-clinic/blob/main/rubrics/final-technical-cleanup.md) as a checklist for your code.
 
@@ -12,42 +12,42 @@ During this quarter we will be using branches and pull requests in order to subm
 
 ### Grading
 
-All grading will be done based off a specific commit hash off of the main branch. At the time that an assignment is due students must submit the commit hash associated with their commit to Canvas. You need to submit the _full_ commit hash which is a 40 digit long hash of letters and numbers. It will generally look something like this: `2a2a59af9feacbdd2cd772884b24641c3b75dff7`.
+All grading will be done based on a specific commit hash off of the main branch. At the time that an assignment is due, students must submit the commit hash associated with their commit to Canvas. You need to submit the full commit hash, which is a 40-digit hash of letters and numbers. It will generally look something like this: `2a2a59af9feacbdd2cd772884b24641c3b75dff7`.
 
 To find the commit hash, you can either use the command line or check GitHub’s commit history.
 
 Note that any changes requested in the grading of the previous part need to be corrected.
 
-## Part VII: Logging and Back-Testing
+## Part VII: Logging and backtesting
 
-- Your code must conform to all the requirements of all previous parts, including [Part VI](./part_6.md) 
+- Your code must conform to all the requirements of all previous parts, including [Part VI](./part_6.md).
 
 ### Logging
 
-- Update all logs that use a custom logger. As in the demonstration in class the log format should be `log_format = "%(asctime)s | %(levelname)s | %(message)s"`.
+- Update all logs to use a custom logger. As in the demonstration in class, the log format should be `log_format = "%(asctime)s | %(levelname)s | %(message)s"`.
 - The log specification is as follows:
 
 | System | Level | Description | 
 | --- | --- | --- | 
-| All `manage_db` commands | INFO | <ul><li>When a command starts and what command</li><li>When a command ends (and how long it took the management command took</li></ul> | 
-| `manage_db` loading commands | DEBUG | <ul><li>As each _year_ and Market is loaded there should be a log with the time it took to load that year and market</li></ul> | 
-| `manage_db` table creation commands | DEBUG | <ul><li>Notification that the table was created with its name</li></ul> | 
-| All Routes | DEBUG | <ul><li>Time it took to respond to the route</li><li>The body, header and route</li><li>The response</li></ul> | 
-| All Routes | INFO | <ul><li>All non-2xx responses (so 500, 404, etc.)</li></ul>| 
-| All Routes | WARN | <ul><li>Any time the incorrect (or no) API key is provided</li></ul> | 
+| All `manage_db` commands | INFO | <ul><li>When a command starts (and which command)</li><li>When a command ends (and how long it took)</li></ul> | 
+| `manage_db` loading commands | DEBUG | <ul><li>As each year and market is loaded, log the time it took to load that year and market</li></ul> | 
+| `manage_db` table creation commands | DEBUG | <ul><li>Notification that the table was created (with its name)</li></ul> | 
+| All routes | DEBUG | <ul><li>Time it took to respond to the route</li><li>The body, header, and route</li><li>The response</li></ul> | 
+| All routes | INFO | <ul><li>All non-2xx responses (e.g., 500, 404)</li></ul>| 
+| All routes | WARN | <ul><li>Any time the incorrect (or no) API key is provided</li></ul> | 
 
-- All logs should contain specific and useful information regarding the process written in a professional manner. 
-- No other `print` statements should exist. If there are additional things you want to have reported please use an appropriate log command.
+- All logs should contain specific and useful information regarding the process, written in a professional manner. 
+- No other `print` statements should exist. If there are additional things you want to report, please use an appropriate log command.
 - You do not need to override the Werkzeug library logging if you do not wish to. 
 
 ### Backtesting API
 
-- In this section we will add a `v4` route which will back test a trading strategy based on our data. 
-- Given a base url of `/api/v4/` implement the following endpoint with the functionality below. Note that _all_ requests need to go through the same authentication as `v1`, `v2` and `v3` (e.g. using the `DATA-241-API-KEY` environment variable). If the key is invalid or not present in the header, the request should return a status code of 401.
+- In this section we will add a `v4` route which will backtest a trading strategy based on our data.
+- Given a base URL of `/api/v4/`, implement the following endpoint with the functionality below. Note that all requests need to go through the same authentication as `v1`, `v2`, and `v3` (e.g., using the `DATA-241-API-KEY` environment variable). If the key is invalid or not present in the header, the request should return a status code of 401.
 
 | Endpoint name | Request Type | Request Info | Expected Response | Other Notes |
 | --- | --- | --- | --- | --- | 
-| `back_test` | POST |  Returns the nominal value of a specific trading strategy.  | It should respond with a json object of the form: `{ 'return' : "float(2)" \| example: 123.45, 'num_observations': int }`. | More info about the request below.
+| `back_test` | POST |  Returns the nominal value of a specific trading strategy.  | It should respond with a JSON object of the form: `{ 'return' : "float(2)" \| example: 123.45, 'num_observations': int }`. | More info about the request below. |
 
 - The POST request body should have the following schema:
 
@@ -62,17 +62,17 @@ Note that any changes requested in the grading of the previous part need to be c
 }
 ```
 
-- The object of this exercise is that you will define a condition (based on `value_1`, `value_2` and the `operator`) and, if that condition is met between the dates specified then you will either buy or sell a share of the stock, depending on the `purchase_type`.
+- The objective of this exercise is to define a condition (based on `value_1`, `value_2`, and the `operator`) and, if that condition is met between the dates specified, to either buy or sell a share of the stock depending on the `purchase_type`.
 
-- The price target consists of two components: A price type (`O`, `C`, `L`, `H`) and a number (`1-10`) which represents n days in the past day. 
+- The price target consists of two components: a price type (`O`, `C`, `L`, `H`) and a number (`1–10`) which represents n days in the past.
 
-- The operator consists of either less than (`LT` which represents &lt;) or less than or equal (`LTE` which represents &le;).
+- The operator consists of either less than (`LT`, which represents <) or less than or equal (`LTE`, which represents ≤).
 
-- The way that we build our back testing is that for every day between the `start_date` and `end_date` (inclusive on both sides) we evaluate the metrics and decide to buy or sell that stock that day (by sell we mean short the stock -- selling a share to someone else) based on the if the condition is met.
+- For every day between the `start_date` and `end_date` (inclusive on both sides) evaluate the metrics and decide to buy or sell that stock that day (by sell we mean short the stock — selling a share to someone else) if the condition is met.
 
-- How to interpret the condition. To interpret the condition we take `value_` and `value_2` and then use the operator to compare. 
+- How to interpret the condition: take `value_1` and `value_2` and then use the operator to compare.
 
-- Lets consider the example here:
+- Let's consider the example here:
 
 ```
 {
@@ -85,9 +85,9 @@ Note that any changes requested in the grading of the previous part need to be c
 }
 ```
 
-- In this case we can read this as we will Buy (since the `B`) if `O1 LT C1` or if the previous trading day's open is less than (strictly) its close. We will do this on a single day.
+- In this case we can read this as: Buy (since `B`) if `O1 LT C1`, i.e., if the previous trading day's open is strictly less than its close. We will do this on a single day.
   
-- Lets consider the following example to help us understand how to do the calculation for a particular stock:
+- Let's consider the following example to help us understand how to do the calculation for a particular stock:
 
 
 <table>
@@ -111,13 +111,13 @@ MSFT    15-Jan-2020  162.62   163.18  163.94   162.57
 </tr>
 </table>
 
-- To calculate what to return we will need to go through every stock which has data on January 3rd (such as `MSFT`) see if the condition is met. In this case, the `O1` price is `158.78` and the `C1` price is `160.62`. In this case our condition is met `158.78 < 160.62` so Microsoft _will_ be included in our calculations.
+- To calculate the return, go through every stock that has data on January 3rd (such as `MSFT`) and see if the condition is met. In this case, the `O1` price is `158.78` and the `C1` price is `160.62`. Our condition is met (`158.78 < 160.62`), so Microsoft will be included in our calculations.
 
-- Since we are buying the stock, we will, as we did in the previous assignment "buy" the stock at the open and "sell" the stock at night of the 3rd which would be equal to a return of `158.62 - 158.32 = .30`
+- Since we are buying the stock, we will, as we did in the previous assignment, buy the stock at the open and sell the stock at the close of the 3rd, which yields a return of `158.62 - 158.32 = 0.30`.
 
-- This would be repeated over all stocks that exists on January 3rd and the total return would be added up and sent back as part of the response. 
+- Repeat this over all stocks that exist on January 3rd and sum the total return to send back in the response.
 
-- Lets do another one:
+- Let's do another one:
 
 ```
 {
@@ -138,36 +138,36 @@ MSFT    15-Jan-2020  162.62   163.18  163.94   162.57
 | January 14th | <ul><li>O1 (open from yesterday - Jan 13): 161.76</li><li>O2 (open from 2 days ago - Jan 10): 162.82</li><li>161.76 ≤ 162.82 (condition MET)</li><li>Since this is a sell/short strategy:</li><li>Sell at open (163.39), buy back at close (162.13)</li><li>Return = 163.39 - 162.13 = 1.26</li></ul> |
 
 
-- The other piece of the response is the `num_observations` piece of the response. This should count the number of stock-days that _met_ the criteria. So, continuing on the last example, Microsoft would add 1 to the number of observations reported because only 1 of the 2 days met the criteria and were counted.
+- The other piece of the response is the `num_observations`. This should count the number of stock-days that met the criteria. Continuing the last example, Microsoft would add 1 to the number of observations reported because only 1 of the 2 days met the criteria and was counted.
 
 ### Specifications:
 
 #### Updates to Make / Docker
-- There are no required updates to the `make` and `docker` components.
+- There are no required updates to the Make and Docker components.
 
-#### Additional Details
+#### Additional details
 
 - If either the start or end date is not a trading day, your route should return an error (status code 400).
 - As mentioned in class I strongly advise you to add an index to the `stocks` table to make sure that your code is performant.
 - All dates will be of the format ['Y-m-d'](https://strftime.org/), as in the previous parts.
-- A trading day as defined as one that is in the dataset. If the date exists in the `stocks` table (e.g. in the original zip files) then you should consider it a trading day.
+- A trading day is defined as one that is in the dataset. If the date exists in the `stocks` table (e.g., in the original ZIP files), then you should consider it a trading day.
 - No request should take more than a few seconds (say 5). If it does you should add an index to the table to make sure that the query is faster.
 - You can assume that the back-testing window will never be more than 10 days. 
 - You should not include any stock-date combination as an observation unless all of the required dates are there. For example, if `O3` is requested, but the stock was just created in the dataset (such as they just had an IPO) then than stock would _not_ be included as an observation. 
 - Make sure that your code is performant (less than a few seconds per request) by adding appropriate indexes to the tables. You are also welcome to add additional columns to the `stocks` table if there is a clear path to making this site faster.
-- Starting the flask server should _not_ pre load any data. Each request should be send an SQL statement. Do not use pandas `read_sql` to interface with the database. You are welcome to put data from SQL into a dataframe, but that action and code must be written by the group. This is similar to what we did in class).
+- Starting the Flask server should not preload any data. Each request should send an SQL statement. Do not use pandas `read_sql` to interface with the database. You are welcome to put data from SQL into a DataFrame, but that action and code must be written by the group (similar to what we did in class).
 
-### Additional Fixes
+### Additional fixes
 
 Please correct all of the feedback for Part VI. A portion of the grade will be set to making sure that your code continues to pass those standards.
 
 ## How will this be graded
 
 - We will check out the code at the commit hash that you submit.
-- All of the previous coding standards will be checked and the all of the previous APIs (`v1`, `v2` and `v3`) will also be tested.
-- Your code will also be read over to make sure that it conforms to the standards laid out in class. If you want to receive full credit make sure that your code has sound logic, is easy to read, maintains a good separation of concerns and does not violate the DRY principle.
-- We will run the `make` commands outlined above and verify that they work according to the standards set out above. 
+- All of the previous coding standards will be checked, and all of the previous APIs (`v1`, `v2`, and `v3`) will also be tested.
+- Your code will also be read over to make sure that it conforms to the standards laid out in class. If you want to receive full credit, make sure that your code has sound logic, is easy to read, maintains a good separation of concerns, and does not violate the DRY principle.
+- We will run the `make` commands outlined above and verify that they work according to the standards set out above.
 - We will run an autograder on the endpoints to make sure that they return the correct data and information. This includes types and casing.
-- Finally, your code will also be read to make sure that all documentation is up to date and that the code has a consistent set of abstraction standards. 
-- No errors or warning should occur in normal operations.
-- The database file itself should _NOT_ be committed to the repo.
+- Finally, your code will also be read to make sure that all documentation is up to date and that the code has a consistent set of abstraction standards.
+- No errors or warnings should occur in normal operations.
+- The database file itself should not be committed to the repo.

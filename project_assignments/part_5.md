@@ -31,16 +31,16 @@ Your code must conform to all the requirements of all previous parts, including 
 ### Specific Details:
 
 #### Updates to Make / Docker
-- You will need to install all necessary packages (`sqlite3`) inside your container by updating your dockerfile.
+- You will need to install all necessary packages (`sqlite3`) inside your container by updating your Dockerfile.
 - You need to add the following `make` commands:
   - `make db_create`: This creates the database file (`stocks.db`) and associated tables.
     - This creates a database file (but only if one does not exist, it should raise an error if the file exists)
     - This should also create a table (`stocks`) for storing the stocks data. 
     - Should be placed in a location that makes sense given your overall file structure
     - Should be in a location that is _mounted as a volume_ so that when your container is destroyed the data is not lost. 
-  - `make db_load`: this loads the data from zip files to the table in `stocks`.
+  - `make db_load`: this loads the data from ZIP files to the table in `stocks`.
   - `make db_rm`: this deletes the database file.
-  - `make db_clean`: this deletes the sqlite database file and reloads the data. In other words it should run the `rm`, `create` and `load` commands in order. If the database does not already exist it should _not_ return an error.
+  - `make db_clean`: this deletes the SQLite database file and reloads the data. In other words, it should run the `rm`, `create` and `load` commands in order. If the database does not already exist it should not return an error.
   - `make db_interactive`: This should run an interactive session of the database with the correct database open.
 - All of the above make commands should be accessed via a Python script `db_manage.py` that is called from the Makefile and executed inside the Docker container.
   - `db_manage.py` should take a single argument (`db_create`, `db_load`, etc.) and then run python code to achieve the goals of the program. So it will be called, via `make` with a command of the form below which will depend on where the file is located, etc. 
@@ -53,26 +53,26 @@ db_load: build
 
 #### Updates to Flask
 
-- None of the end point definitions should change.
-- `pandas` should _not_ be used in any of the creation, loading or direct accessing commands. E.g. when you need data there should (eventually, behind some levels of abstraction) an SQL query executed (and specifically an SQL query that _you_ wrote). 
+- None of the endpoint definitions should change.
+- `pandas` should _not_ be used in any of the creation, loading or direct accessing commands. For example, when you need data there should (eventually, behind some levels of abstraction) be an SQL query executed (and specifically an SQL query that you wrote). 
 - Do NOT use the `pandas.read_sql` command (or any other `pandas` command that directly communicates with the database). Part of the task at hand is building your own non-pandas connector.
 - Make sure to think through the code before writing it down. What abstraction level do you want? How do you define it? Where are you defining your separation of concerns?
-- There should not be a global data frame variable or a global connection. When a route calls the database it should be using sql.
-- When running flask via `make flask` the server should start up quickly (less than 10 seconds). Responses should should all take less than 2 seconds.
+- There should not be a global DataFrame variable or a global connection. When a route calls the database it should be using SQL.
+- When running Flask via `make flask` the server should start up quickly (less than 10 seconds). Responses should all take less than 2 seconds.
 
-#### Other Notes:
+#### Other notes
 
 - As mentioned in class I strongly advise you to add an index to the `stocks` table to make sure that your code is performant.
 - No request should take more than a few seconds (say 5). If it does you should add an index to the table to make sure that the query is faster.
 
-### Additional Fixes
+### Additional fixes
 
 Please correct all of the feedback for Part IV. A portion of the grade will be set to making sure that your code continues to pass those standards.
 
 ## How will this be graded
 
 - We will check out the code at the commit hash that you submit.
-- All of the previous coding standards will be checked and the API as in [Part III](../project_assignments/part_3.md) should be functional. This includes testing the `Makefile` behavior and the flask API endpoints that were required in Part IV
+- All of the previous coding standards will be checked and the API as in [Part III](../project_assignments/part_3.md) should be functional. This includes testing the `Makefile` behavior and the Flask API endpoints that were required in Part IV
 - We will run `ruff`, using the `pyproject.toml` file above to make sure that your code conforms to the standards therein.
 - We will also verify that the `.pre-commit-hook.yaml` is in the repo and able to be installed and used.
 - Your code will also be read over to make sure that it conforms to the standards laid out in class. If you want to receive full credit make sure that your code has sound logic, is easy to read, maintains a good separation of concerns and does not violate the DRY principle.
@@ -81,4 +81,4 @@ Please correct all of the feedback for Part IV. A portion of the grade will be s
 - Finally, your code will also be read to make sure that all documentation is up to date and that the code has a consistent set of abstraction standards. 
 - No errors or warning should occur in normal operations.
 - The database file itself should _NOT_ be committed to the repo.
-- You should never load the entire dataset into a dataframe. You need to use sql commands to only select the relevant data.
+- You should never load the entire dataset into a DataFrame. You need to use SQL commands to only select the relevant data.
