@@ -66,6 +66,8 @@ The final grade of this course will be determined by five components:
 | Final Project Deliverable (Group) | 15\% | 
 | Final Exam (Ind.) | 20\% | 
 
+Note that you can find historical examples of all assignments on the [previous year's Github page](https://github.com/NickRoss/2024-Data-24100). Keep in mind that nearly everything has changed. From last year I know which quizzes, exams and issues were too difficult as well as too easy and have adjusted accordingly.
+
 ### Professionalism (Ind.)
 
 In this class professionalism means:
