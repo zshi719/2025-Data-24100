@@ -169,13 +169,11 @@ condabin:/opt/homebrew/bin:/opt/homebrew/sbin:/Applications/iTerm.app/Contents/R
     - If you want to see the _actual_ location of the `python` file that is executed, type the following in a Python terminal: `import sys; sys.executable` which will return the actual location.
     - You can also see this same phenomena when importing packages by using the `__versions__` or `__file__` on an imported package:
 
-| <pre><code>
->>> import pandas
+<pre><code>>>> import pandas
 >>> pandas.__version__
 '2.1.3'
 >>> pandas.__file__
 '/Users/nickross/.pyenv/versions/3.11.4/lib/python3.11/site-packages/pandas/__init__.py'
-</pre></code> | 
-| --- | 
+</pre></code> 
 
 - Looking at the above you can see that my environment has features that point to these specific versions of the packages.
