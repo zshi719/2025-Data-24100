@@ -3,7 +3,7 @@
 ## Overview
 * There is no _quiz_ during week \#1.
 * However, on Thursday you will need to verify that your computer is set up according to [the preliminary assignment](../assignments/prelims.md). This will be graded as a quiz (out of 5 points).
-* Tuesday and Thursday will both be lectures.
+* Monday and Wednesday will both be lectures.
 
 ## Resources
 * Chapter \#1 of [Effective Computation in Physics](http://lilith.fisica.ufmg.br/~dickman/transfers/comp/textos/Effective%20Computation%20in%20Physics%20(Python).pdf) covers a lot of the ground here. 

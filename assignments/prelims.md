@@ -1,4 +1,4 @@
-## Preliminaries
+## Software Preliminaries
 
 This document contains a list of software and set up that needs to be completed by the end of the first week.
 

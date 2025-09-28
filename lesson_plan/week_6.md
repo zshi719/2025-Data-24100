@@ -1,5 +1,7 @@
 # Week #6 Lesson Plan
 
+VERIFY LEARNING OBJECTIVES ARE DEEP ENOUGH
+
 ## Overview
 
 - Wednesday night the next part of the project is due (Part IV). You can find the assignment [here](../project_assignments/part_4.md).

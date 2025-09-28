@@ -1,5 +1,8 @@
 ## Part 5 Rubric
 
+NOTE: Rewrite rubrics to help graders. Be more specific about several ongoing issues (branch protection violations, separation of concerns, unused code, inconsistent abstractions, etc.).
+
+
 | Category | Criteria | Points |
 |----------|----------|---------|
 | Directory / File | General Hygiene (no unnecessary files, directories, no name, v2, etc.) | 5 |

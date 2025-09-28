@@ -15,7 +15,8 @@
   - [Counting Frankenstein](#counting-frankenstein)
   - [API Key and Security Discussion](#api-key-and-security-discussion)
   - [Environments and PATH](#environments-and-path)
-    - [Python and Paths](#python-and-paths)
+  - [Python and Environments](#python-and-environments)
+    - [Python Environment Management with `uv`](#python-environment-management-with-uv)
 
 ## Basic programming
 
@@ -138,13 +139,23 @@
   - The command `which` returns the location of what file is being run.
   - In this case, the `grep` command is located in the `/usr/bin` directory.
 
-### Python and Paths
-- Most users of Python have run into environment management problems, where the system isn't playing well with the installation of Python.
+## Python and Environments
+
+- There are two major concepts to understand Python Environment Management:
+  - `PATH` and executable management
+  - `PYTHONPATH` and the location of `site-packages` or where we have things installed.
+  
+- Most users will use something to manage Python Environments such as Conda, Pip, PyEnv, etc.
+- What these tools do is manipulate the values of `PATH` and `PYTHONPATH` to force Python to use certain executables and site-path locations. 
 - When you type in `which python` it will display a location for where Python exists. In my case I see:
   - `/Users/nickross/.pyenv/shims/python`
+  - This means that the above location, specified in my `PATH` environment variable is the version of `python` that is run when I type in `python` in the command line. 
   - If you use `conda` or `virtualenv` or another environment management system you will probably see references to it in this path.
-  - This means that when I run Python the command above is executed. 
-- So, how does the operating system know that this Python should be run?
+  - `PYTHONPATH` is then specified as part of this environment so that the executable knows where to look for packages.
+
+- Difficulties arise when I have _multiple_ site-package locations (such as if I install things via `pip` globally and then use `conda` for some packages) or use multiple conflicting environment management settings.
+
+- So, how does `PATH` work?
   - The environment variable `PATH` tells the operating system the order of directories to look at. When I type `echo $PATH` I see:
 
 ```bash
@@ -177,3 +188,11 @@ condabin:/opt/homebrew/bin:/opt/homebrew/sbin:/Applications/iTerm.app/Contents/R
 </pre></code> 
 
 - Looking at the above you can see that my environment has features that point to these specific versions of the packages.
+
+### Python Environment Management with `uv`
+
+- In this course we will use `docker` and `uv` in order to handle environment management. We will talk more about this next week, but the main idea is that we will have isolation and only a single environment to use, rather than trying to switch and deal with other classes.
+- `uv` is a modern tool that replaces `pip`, `pyenv`, `conda`.
+- We will use `pyproject.toml` file to hold all of our environment information (this will replace `requirements.txt`) as well as additional details required about our project. 
+- Why are we using this:
+  - `uv` is modern, fast and has learned a lot from some of the issues of `pip`, `conda` and `pyenv`.

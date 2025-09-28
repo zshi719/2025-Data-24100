@@ -44,7 +44,7 @@ Your repository should have the following structure:
 project_root/
 ├── README.md
 ├── Dockerfile
-├── requirements.txt
+├── pyproject.toml
 ├── utils/
 │   └── eda_2019.py
 └── data/

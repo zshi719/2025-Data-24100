@@ -1,5 +1,7 @@
 # Week #5 Lesson Plan
 
+VERIFY LEARNING OBJECTIVES ARE DEEP ENOUGH
+
 ## Overview
 - Wednesday night the next part of the project is due.
 - Thursday there will be a quiz. Quizzes are cumulative and cover the material up to and including the previous week (Week 4).

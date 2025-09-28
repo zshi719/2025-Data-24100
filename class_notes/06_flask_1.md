@@ -1,5 +1,7 @@
 # Flask
 
+CHANGE THE BELOW TO PYTHON APP.PY AND NOT FLASK.APP WHICH REQUIRES ADDITIONAL ENV VARS. ALSO FIX ALL OF THIS GOING FORWARD.
+
 - During todays' class we will build a simple `Flask` server.
 - There are many different web server frame works that we could use. In the Python world `Django` and `FastAPI` are two that currently have a lot of mind share. 
 - `Flask` is a light weight and relatively simple package in Python. While `Django` is much more full featured and `FastAPI` is more performant, `Flask` offers a nice goldilocks version of a web server.

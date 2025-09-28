@@ -8,36 +8,6 @@ Office Location: Ryerson 257H
 
 How to contact: My contact information is on Canvas.
 
-<details style="padding: 10px; background-color: var(--color-canvas-subtle); border-radius: 5px;">
-<summary>💡 <strong>Updates for next year</strong></summary>
-This box contains a list of changes that should be made for next year:
-
-1. Have everyone put their data in a host location set by an environment variable rather than ZIP archives inside the repo
-2. Everyone should use a DSI Clinic repository with branch protections; do not grant admin rights.
-3. When using Flask — start with `python app.py` rather than `flask run`
-4. Use `uv` inside the container
-5. Use pyenv and Python 3.15 (or a newer version) that requires an environment
-6. Fix Part 3 to load only ~5 years; loading all years is too much for some machines.
-7. Move `pdb` to the autodocs lectures.
-8. Add information about log rotation to the logging section
-9.  Add "F" to pyproject.toml
-10. Add option: data merging
-11. Add option: GitHub Actions with testing and coding standards
-12. TDD
-13. For testing, add more on coverage; provide examples and types. End of lecture 16.
-14. Final Exam was too easy and too short.
-15. Quizzes need to be more consistent in difficulty. Include 2–3 easy questions and one hard question requiring writing Python code.
-16. Add the ability to reset accounts via Makefile in the assignment (part 5? part 6?)
-```bash
-db_truncate: build
-	docker run $(COMMON_DOCKER_FLAGS) $(IMAGE_NAME) \
-	sqlite3 $(DB_PATH) "DELETE FROM accounts; DELETE FROM stocks_owned;"
-```
-1.  Maybe lean into pyproject.toml; it's much more modern. Use it for testing and requirements.
-2.  Rewrite rubrics to help graders. Be more specific about several ongoing issues (branch protection violations, separation of concerns, unused code, inconsistent abstractions, etc.).
-3.  Learning objectives need to be expanded for each week, especially toward the end. Focus on hard skills. Per conversation with other faculty, increase prerequisite questions.
-</details>
-
 ## Course Description
 
 This course is designed to equip students with the practical skills and theoretical knowledge necessary to excel at the intersection of data science and software engineering. Through a hands-on approach, students will delve into the core tools and concepts that form the backbone of this interdisciplinary field, including data modeling, building data pipelines, and software development best practices. Emphasis will be placed on real-world applications, enabling students to work on projects that simulate professional scenarios and challenges. This course is ideal for those looking to deepen their understanding of how data-focused technologies are developed and deployed.
@@ -50,7 +20,7 @@ If you are unsure or are looking for a refresher on what is expected, please tak
 
 ## Course Overview
 
-This course is designed to expose data science students to deeper computing concepts that are likely needed throughout their careers. We will do this in a project-based approach where students will work in small groups using common data science tools to build an entire pipeline from raw data to putting the data into a relational database to serving that data through an API.
+This course is designed to expose data science students to deeper computing concepts that are likely needed throughout their careers. We will do this in a project-based approach where students will work in small groups using common data science tools to build an entire pipeline from raw data to putting the data into a relational database to serving that data through an API. We will then layer on an MCP Server so that we can access our API using tools like ChatGPT, Claude and agentic frameworks.
 
 As a by-product of this effort, after taking this course, students should have experience managing their own computing environment and be able to build software with an understanding of best practices. 
 
@@ -66,7 +36,7 @@ The final grade of this course will be determined by five components:
 | Final Project Deliverable (Group) | 15\% | 
 | Final Exam (Ind.) | 20\% | 
 
-Note that you can find historical examples of all assignments on the [previous year's Github page](https://github.com/NickRoss/2024-Data-24100). Keep in mind that nearly everything has changed. From last year I know which quizzes, exams and issues were too difficult as well as too easy and have adjusted accordingly.
+Note that you can find historical examples of all assignments on the [previous year's Github page](https://github.com/NickRoss/2024-Data-24100). Keep in mind that much has changed, but this is a good starting point. From last year I know which quizzes, exams and issues were too difficult as well as too easy and have adjusted accordingly. The material itself is also updated (assignments, notes, etc.)
 
 ### Professionalism (Ind.)
 
@@ -106,9 +76,50 @@ This grade is assigned as a group.
 
 ### Final Exam (Ind.)
 
-There will be a final exam given according to the exam calendar. This will be cumulative from the material in the quarter and will be similar in style and difficulty to the quizzes. The final will be held per the [final exam calendar](https://registrar.uchicago.edu/calendars/final-exams/).  Please make sure that you verify your availability.
+There will be a final exam given according to the exam calendar. This will be cumulative from the material in the quarter and will be similar in style and difficulty to the quizzes. The final will be held per the [final exam calendar](https://registrar.uchicago.edu/calendars/final-exams/) and be held in person.  Please make sure that you verify your availability.
 
 This grade is assigned individually. There is more information about the final [here](./lesson_plan/finals_week.md).
+
+## Expectations (How to work with me)
+
+We are all busy people and to help get everyone on the same page this section contains a bit of expectations and how to get the most out of this course.
+
+#### Material / Philosophy
+
+The material in this course is chosen based on my experience working with data scientists in both academic and industry settings. 
+
+I believe that Data Science is a vocational practice and that getting fingers to the keys repetitions and experience with the most common technologies is the number way to improve outcomes (career, job interviews, etc.).
+
+I believe that AI/LLM tools are incredibly powerful and useful. They could probably get an ``A" in this course. 
+
+I believe also that AI/LLMs are ``tools" used most effectively by people with a baseline knowledge level. Most of this course is focused on the baseline knowledge required to use these tools effectively.
+
+A _LOT_ of the material in this course was taken based off of common issues that I see when interviewing candidates for data science and data engineering roles. This is especially true for systems and tools around working collaboratively (github, code writing, abstractions, etc. ). 
+
+#### Communications
+
+Canvas is the single most important place to be for information on this course. All announcements will be made via Canvas. 
+
+When communicating with me, email is the best way to reach me. A few notes:
+
+- I have spent a lot of time putting together information on this github page. If you ask me information that can be found here it makes me grumpy. Don't be lazy and look before you ask. If I send you a screenshot of information from the course website it is _not_ a good sign and may effect your professionalism score. 
+- If you wish to ask a question about the group project, _include everyone on the project on the email_. I will not answer questions about the project that do not include your entire team.
+  - The purpose of group work is to _work as a group_. The data science curriculum at UChicago is diverse and there may be a class or experience that someone in your group has which can help.
+  - This not to say that I won't help, but scheduling time to meet with me when your teammates are able to assist more quickly will lead to more efficient learning outcomes.
+
+- During class, please ask questions! 
+
+#### Respect
+
+I do not tolerate disrespectful or unprofessional behavior. One of my values is ``Respectful Disagreement". It is okay for us to disagree, but we will do so respectfully.
+
+This is universal: when working with your teams, the TAs, etc. 
+
+#### Transparency
+
+As you will see in the next section, there is nothing hidden in this course. My goal when designing courses is to make _the material_ difficult, not the logistics and organization of the course. 
+
+If there is anything missing from the material or something that you are not sure of in my class notes -- let me know! I always want to improve these notes.
 
 ## Course Material
 
@@ -136,16 +147,16 @@ Course Notes can be found linked inside each lesson plan.
 
 | Topic | Topics | Assignments | Notes \& Plan | 
 | --- | --- | --- | --- | 
-| 1: Introduction | <ul><li>The Terminal</li><li>File Management</li><li>Environments</li></ul> | <ul><li>[Preliminaries](./assignments/prelims.md)</li><li>[Prerequisites](./docs/prerequisites.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_1.md)</li></ul>
-| 2: Docker, Make and Git | <ul><li>Docker</li><li>Make</li><li>Git</li><li>Environments</li></ul> | <ul><li>[Quiz #1A](./quiz/quiz1A.pdf)</li><li>[Quiz #1B](./quiz/quiz1B.pdf)</li><li>[Quiz #1 AK](./quiz/quiz1AK.md)</li><li>[Project Part 0 Due](./project_assignments/part_0.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_2.md)</li></ul> |
-| 3: Flask | <ul><li>REST</li><li>Flask</li><li>Requests</li></ul> | <ul><li>[Project Part I Due](./project_assignments/part_1.md)</li><li>[Project Part I Rubric](./project_assignments/part_1_rubric.md)</li><li>[Quiz #2A](./quiz/quiz2A.pdf)</li><li>[Quiz #2 AK](./quiz/quiz2AK.md)</li></ul>  | <ul><li>[Lesson Plan](./lesson_plan/week_3.md)</li></ul>
-| 4: Flask & Code Quality | <ul><li>Advanced Requests</li><li>Organizing code</li><li>DRY</li><li>Separation of Concerns</li></ul> |  <ul><li>[Project Part II Due](./project_assignments/part_2.md)</li><li>[Project Part II Rubric](./project_assignments/part_2_rubric.md)</li><li>[Quiz #3A](./quiz/quiz3A.pdf)</li><li>[Quiz #3A AK](./quiz/quiz3AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_4.md)</li></ul> |
-| 5: Code Quality Control and Organization | <ul><li>Abstraction</li><li>Linting</li></ul> | <ul><li>[Project Part III Due](./project_assignments/part_3.md)</li><li>[Project Part III Rubric](./project_assignments/part_3_rubric.md)</li><li>[Quiz #4](./quiz/quiz4A.pdf)</li><li>[Quiz #4 AK](./quiz/quiz4AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_5.md)</li></ul> | 
-| 6: Data Pipeline | <ul><li>SQLite</li><li>CRUD</li></ul> |  <ul><li>[Project Part IV Due](./project_assignments/part_4.md)</li><li>[Project Part IV Rubric](./project_assignments/part_4_rubric.md)</li><li>[Quiz #5](./quiz/quiz5A.pdf)</li><li>[Quiz #5 AK](./quiz/quiz5AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_6.md)</li></ul> |
-| 7: Data Pipeline \#2 | <ul><li>More CRUD</li><li>Testing</li></ul> | <ul><li>[Project Part V Due](./project_assignments/part_5.md)</li><li>[Project Part V Rubric](./project_assignments/part_5_rubric.md)</li></ul> |  <ul><li>[Lesson Plan](./lesson_plan/week_7.md)</li></ul> | 
-| 8: Adding Features | <ul><li>Logging in Python</li><li>Autodocs with MkDocs</li></ul> | <ul><li>[Project Part VI Due](./project_assignments/part_6.md)</li><li>[Project Part VI Rubric](./project_assignments/part_6_rubric.md)</li><li>[Quiz #6](./quiz/quiz6A.pdf)</li><li>[Quiz #6 AK](./quiz/quiz6AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_8.md)</li></ul> |
-| 9: Testing and Merging | <ul><li>pdb</li><li>pytest</li></ul> | <ul><li>[Project Part VII Due](./project_assignments/part_7.md)</li><li>[Project Part VII Rubric](./project_assignments/part_7_rubric.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_9.md)</li></ul> | 
-| 10: Finals Week |  | <ul><li>[Project Part VIII Due](./project_assignments/part_8.md)</li><li>[Project Part VIII Rubric](./project_assignments/part_8_rubric.md)</li><li>[Exam](./quiz/FinalExam.pdf)</li><li>[Exam AK](./quiz/FinalExamAK.md)</li></ul>  | <ul><li>[Finals Info](./lesson_plan/finals_week.md)</li></ul> | 
+| 1: Introduction | <ul><li>The Terminal</li><li>File Management</li><li>Environments</li></ul> | <ul><li>[Software Preliminaries](./assignments/prelims.md)</li><li>[Prerequisites](./docs/prerequisites.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_1.md)</li></ul>
+| 2: Docker, Make and Git | <ul><li>Docker</li><li>Make</li><li>Git</li><li>Environments</li></ul> | <ul><li>[Project Part 0 Due](./project_assignments/part_0.md)</li><li>Quiz \#1</li></ul> |  |
+| 3: Flask | <ul><li>REST</li><li>Flask</li><li>Requests</li></ul> | <ul><li>Project Part I</li><li>Quiz \#2</li></ul>  | |
+| 4: Flask & Code Quality | <ul><li>Advanced Requests</li><li>Organizing code</li><li>DRY</li><li>Separation of Concerns</li></ul> | <ul><li>Project Part II</li><li>Quiz \#3</li></ul>  | |
+| 5: Code Quality Control and Organization | <ul><li>Abstraction</li><li>Linting</li></ul> | <ul><li>Project Part III</li><li>Quiz \#4</li></ul>  | |
+| 6: Data Pipeline | <ul><li>SQLite</li><li>CRUD</li></ul> | <ul><li>Project Part IV</li><li>Quiz \#5</li></ul>  | |
+| 7: Adding Features | <ul><li>Logging in Python</li><li>Autodocs with MkDocs</li></ul> | <ul><li>Project Part V</li><li>Quiz \#6</li></ul>  | |
+| 8: MCP | <ul><li>MCP</li></ul> | <ul><li>Project Part VI</li><li>Quiz \#7</li></ul>  | |
+| 9: MCP (cont.) and Testing | <ul><li>MCP</li><li>Testing</li></ul> | <ul><li>Project Part VII</li><li>Quiz \#8</li></ul>  | |
+| 10: Finals Week |  | <ul><li>Final Project Assignment</li><li>In person Final</li></ul>  | |
 
 ## Canvas
 

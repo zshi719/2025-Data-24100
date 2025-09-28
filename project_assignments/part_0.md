@@ -17,3 +17,5 @@ Make sure that you _carefully_ record information about your group in the assign
 ### Join your GitHub group
 
 After the assignment is reviewed, you will receive an invite to the GitHub repository for your team. Accept the invitation to gain access to the repository.
+
+_Graders_: Refer to the admin docs about how to set up the github repo.

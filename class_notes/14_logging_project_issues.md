@@ -1,5 +1,8 @@
 # Logging in Python and some project issues
 
+THIS LECTURE WAS SHORT LAST TIME. ADD PDB HERE.
+
+
 ## Project Issues
 
 - After reviewing the assignments there were a number of issues that were arising that we should address and fix.

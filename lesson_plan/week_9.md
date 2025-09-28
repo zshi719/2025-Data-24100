@@ -1,5 +1,7 @@
 # Week #9 Lesson Plan
 
+VERIFY LEARNING OBJECTIVES ARE DEEP ENOUGH
+
 ## Overview
 
 - [Part 7](../project_assignments/part_7.md) of the project is due Wednesday at midnight.
