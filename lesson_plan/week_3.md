@@ -4,7 +4,7 @@ VERIFY LEARNING OBJECTIVES ARE DEEP ENOUGH
 
 ## Overview
 - Monday night the first part of the project is due.
-- Thursday there will be a quiz. Quizzes are cumulative and cover the material up to and including the previous week (Week 2).
+- Wednesday there will be a quiz. Quizzes are cumulative and cover the material up to and including the previous week (Week 2).
 
 ## Resources
 

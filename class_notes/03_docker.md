@@ -59,7 +59,7 @@ graph LR;
 <!-- markdown-link-check-disable -->
   - For example, consider the image provided for [python](https://hub.docker.com/_/python). On this page the tags look like `3.10.15-bookworm`. The first number in this example (`3.10.15`) represents the version of python that is going to be installed if you use the image with this tag. The second component `bookworm` is the nickname for a version of [Debian](https://wiki.debian.org/DebianReleases), one of the most common versions of Linux used to build images. 
 <!-- markdown-link-check-enable -->
-- Other common operating system designations are: `slim` and `alpine` which have different underlying operating systems. Why would people use different versions? Each operating system has different strengths and weaknesses; different systems are also different sizes. Smaller sizes mean faster performance but at the cost of features, but can make a large difference is putting into production. 
+- Other common operating system designations are: `slim` and `alpine` which have different underlying operating systems. Why would people use different versions? Each operating system has different strengths and weaknesses; different systems are also different sizes. Smaller sizes mean faster performance but at the cost of features, but can make a large difference when putting into production. 
 
 <div align="center">
 <table>

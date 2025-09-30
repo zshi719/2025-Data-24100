@@ -5,7 +5,7 @@ VERIFY LEARNING OBJECTIVES ARE DEEP ENOUGH
 ## Overview
 
 - Wednesday night the next part of the project is due (Part IV). You can find the assignment [here](../project_assignments/part_4.md).
-- Thursday will be a quiz. Note that because Lecture \#10 was a bit off we repeated it as Lecture \#11 and it will not be part of the quiz.
+- Wednesday will be a quiz. Note that because Lecture \#10 was a bit off we repeated it as Lecture \#11 and it will not be part of the quiz.
 
 ## Resources
 

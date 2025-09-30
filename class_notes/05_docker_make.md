@@ -213,7 +213,7 @@ notebook: build
 
 - This example has a few differences. First, after the `interactive` and `notebook` commands we have added the phrase `build` after the colon. This is a _dependency_. When we run `make interactive`, before the `docker run` command is run, the `build` command in the Makefile will be executed. 
 
-- This allows us to have to remember to rebuild the container ourselves! Since the `docker build` command will only run if there are changes in the files adding this will ot re-build the image every time -- only if a file changes.
+- This allows us to have to remember to rebuild the container ourselves! Since the `docker build` command will only run if there are changes in the files adding this will not re-build the image every time -- only if a file changes.
 
 - We have also added `$(shell pwd)` rather than `$(pwd)` to the volume section of the file. One thing to note about Make syntax is that it is not exactly `bash` and we sometimes will have to do something different.
 

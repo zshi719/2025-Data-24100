@@ -43,7 +43,7 @@ Other Makefile requirements:
 
 ### Flask
 
-We will be using TWO years of data in the `project_data` (2019 and 2018)directory to build the routes listed below. Make sure that you have only two years running and loaded as part of this project.
+We will be using TWO years of data in the `project_data` (2019 and 2018) directory to build the routes listed below. Make sure that you have only two years running and loaded as part of this project.
 
 **IMPORTANT NOTE** One major change is that you need to set an environment variable, similar to the `DATA_241_API_KEY` called `RAW_DATA_DIR` which should be set to a location on the user's host machine where the ZIP files are stored. Do NOT store any of the zip files in the repo (the previous ones should be removed).
 

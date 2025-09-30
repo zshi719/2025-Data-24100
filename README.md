@@ -61,7 +61,7 @@ This grade is assigned as a group. You can find the project's grading and late p
 
 ### Quizzes (Ind.)
 
-Each Thursday (starting week \#2) there will be a short quiz (15–30 minutes) given at the start of the class. These quizzes are _cumulative_ over the course of the quarter. Note that the lowest quiz grade will be dropped at the end.
+Each Wednesday (starting week \#2) there will be a short quiz (15–30 minutes) given at the start of the class. These quizzes are _cumulative_ over the course of the quarter. Note that the lowest quiz grade will be dropped at the end.
 
 More information on the quizzes is provided in the [course material](#course-material) section below.
 
@@ -88,7 +88,7 @@ We are all busy people and to help get everyone on the same page this section co
 
 The material in this course is chosen based on my experience working with data scientists in both academic and industry settings. 
 
-I believe that Data Science is a vocational practice and that getting fingers to the keys repetitions and experience with the most common technologies is the number way to improve outcomes (career, job interviews, etc.).
+I believe that Data Science is a vocational practice and that getting fingers to the keys repetitions and experience with the most common technologies is the number one way to improve outcomes (career, job interviews, etc.).
 
 I believe that AI/LLM tools are incredibly powerful and useful. They could probably get an ``A" in this course. 
 
@@ -102,7 +102,7 @@ Canvas is the single most important place to be for information on this course. 
 
 When communicating with me, email is the best way to reach me. A few notes:
 
-- I have spent a lot of time putting together information on this github page. If you ask me information that can be found here it makes me grumpy. Don't be lazy and look before you ask. If I send you a screenshot of information from the course website it is _not_ a good sign and may effect your professionalism score. 
+- I have spent a lot of time putting together information on this github page. If you ask me information that can be found here it makes me grumpy. Don't be lazy and look before you ask. If I send you a screenshot of information from the course website it is _not_ a good sign and may affect your professionalism score. 
 - If you wish to ask a question about the group project, _include everyone on the project on the email_. I will not answer questions about the project that do not include your entire team.
   - The purpose of group work is to _work as a group_. The data science curriculum at UChicago is diverse and there may be a class or experience that someone in your group has which can help.
   - This not to say that I won't help, but scheduling time to meet with me when your teammates are able to assist more quickly will lead to more efficient learning outcomes.
@@ -135,7 +135,7 @@ After each lecture (roughly) the lecture notes will be provided. Appended to the
 
 These quiz objectives _do not_ cover all of the material from the lecture but are the only material that will be asked for on the quiz.
 
-That being said, it is important to internalize these concepts because, while the list of learning objectives at the end describe the basic building blocks of what is asked, they may combined into a single quiz question.
+That being said, it is important to internalize these concepts because, while the list of learning objectives at the end describe the basic building blocks of what is asked, they may be combined into a single quiz question.
 
 For example: Consider two quiz objectives of `use wildcards to match files which follow a pattern` and another  `move files within a file system`. It is perfectly reasonable to ask a question on the quiz such as `move all .txt files from the /data subdirectory to the /text_data subdirectory` which would require using both. 
 

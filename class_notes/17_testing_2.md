@@ -177,7 +177,7 @@ def test_player_response(client):
 ### Imports: app.py vs. flask_app.py
 
 - The first section of the code is a bit complex but sets up the proper imports and import structure.
-- Be starting note that in our code base we have renamed `app.py` to `flask_app.py`. Why did we do this?
+- As a starting note, in our code base we have renamed `app.py` to `flask_app.py`. Why did we do this?
   - We needed to do this because there is a directory `app` at the same level as `app.py` which makes it difficult to import structures from.
   - If we tried to import form `app` at this level python would not know which to import from -- the directory `app` or the file `app.py`
   - To avoid this we rename `app.py` to `flask_app.py`

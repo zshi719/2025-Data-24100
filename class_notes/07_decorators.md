@@ -6,7 +6,7 @@
 - One of the principles that is nearly universally believed to help with code quality is the **DRY** principle of "Don't Repeat Yourself".
 - What this means is that you work to not have repetition, such as copy-pasting code sections.
 - DRY is one of the top-5 reasons why job applicants are rejected via a take home challenges. It is easy to spot and represents code that will be difficult for others to work with.
-- Two fo the superpowers that you get when writing code are encapsulation and abstraction, which allow for turning messy tasks into a reusable and repeatable set of processes.
+- Two of the superpowers that you get when writing code are encapsulation and abstraction, which allow for turning messy tasks into a reusable and repeatable set of processes.
 - We are already familiar with the most common way to avoid repeated code -- _Functions_, but in this lecture we will take a larger view of code repeatability by looking at functions which work on function and, in particular, python _decorators_ a meta-programming tool used to manipulate the behavior of functions.
 
 ## Functions as object
@@ -177,7 +177,7 @@ def retry_sus_func_general(f, x, max_attempts=5, wait_time=3):
 
 - These two changes mean that we can send any, single argument, function into this and have it apply the retry logic.
 
-- The downside of this is that it does _not_ handle the arguments to the function in a abstracted manner. Any function with more than one argument will not be be able to interface with this function. In the next section we'll fix this problem.
+- The downside of this is that it does _not_ handle the arguments to the function in a abstracted manner. Any function with more than one argument will not be able to interface with this function. In the next section we'll fix this problem.
 
 ## Arg & Kwargs
 

@@ -33,7 +33,7 @@
 
 ## SQLite
 
-- SQLite is a file-based database. Basically there is a single file that contains the entire database. SQLite leverages file operations in order maintain ACID compatibility. 
+- SQLite is a file-based database. Basically there is a single file that contains the entire database. SQLite leverages file operations in order to maintain ACID compatibility. 
 - [SQLite3](https://docs.python.org/3/library/sqlite3.html) is bundled with Python, so we do _not_ need to pip install anything.
 - However, there are hooks into the operating system that we do need to install in order to use this product. 
 - In our Dockerfile we can add:
@@ -48,7 +48,7 @@ which will install the program. The command `apt-get` is a command line tool for
 
 #### Running SQLite at the command line
 
-- Once the program is installed we can run this on the command line. Start with running `make inter` (e.g. enter an interactive session) and then type in, at the resulting command line `sqlite3` to star the session.
+- Once the program is installed we can run this on the command line. Start with running `make inter` (e.g. enter an interactive session) and then type in, at the resulting command line `sqlite3` to start the session.
 - To exit an interactive session we use `.q`. Commands inside the `sqlite3` interactive session begin with a `.`
 - If we type `sqlite3 test.db` this will connect to a file called `test.db`, which will store the database's data. While there is no forced file extension, we commonly use `.db`, `.sqlite`, `.sqlite3`, or `.db3` as file extensions for SQLite files.
 - Note that until you make a change (such as creating a table), the file is not created. 
@@ -243,7 +243,7 @@ insert into cls (bname, bage) values (e, 5);
 
 ## Indexes (or how to make things fast)
 
-- An idex is a data structure which trades space for speed. 
+- An index is a data structure which trades space for speed. 
   - It does this by creating a secondary physical representation of the data set up in a way to facilitate looking for data.
 - Indexes are specific to columns or sets of columns and they can be very complex structures. 
 - These structures are also dependent on the SQL variant that are you using. The available options for an index are different if you are using Postgres vs. using Sqlite. 

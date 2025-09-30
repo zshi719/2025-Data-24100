@@ -206,7 +206,7 @@ flowchart TD
 
   - Code quality:
     - Complexity measures can be calculated on code to understand how difficult it is to understand
-  - Bug Fingers:
+  - Bug Finders:
     - Identify common issues of code that does not execute as expected. Examples include unreachable branches or unused variables.
   - Security Analysis:
     - Look for packages and actions inside a code base that present a security risk.

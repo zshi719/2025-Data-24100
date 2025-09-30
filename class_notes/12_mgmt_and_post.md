@@ -85,7 +85,7 @@ db_interactive: build
 	sqlite3 -column -header $(DB_PATH)
 ```
 
-Looking at the above we can see a few changes additions from the previous examples. 
+Looking at the above we can see a few additions from the previous examples. 
 
 1. We added a variable representing the docker flags that we use on all of our commands. This helps us avoid violating te DRY principle. 
 2. We created a new environment variable `DB_PATH` which specifies a location (inside the container) where the database file will exist.

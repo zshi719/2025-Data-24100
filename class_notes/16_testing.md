@@ -310,7 +310,7 @@ def test_process_and_load():
 
 ## Demonstration & Coverage calculation
 
-- Not that we have a good understanding of foundations of testing we will take a look at the example [here](../lecture_examples/15_testing/) which contains a working example of the testing framework on our basketball API.
+- Now that we have a good understanding of foundations of testing we will take a look at the example [here](../lecture_examples/15_testing/) which contains a working example of the testing framework on our basketball API.
 - When you run `make test` in this directory you will see something like the following appear.
 
 ```

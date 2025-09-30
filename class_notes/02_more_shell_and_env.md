@@ -97,7 +97,7 @@
 - The command `head` (`tail`) will print the first (last) ten lines of a file or redirected output.
 - For example:
   - `env | head` will only return ten lines (the first ten)
-  - `end | tail` will only return the last ten lines.
+  - `env | tail` will only return the last ten lines.
 - As with other commands you can supply a filename rather than using a pipe:
   - `env > delme.txt` followed by `head delme.txt` will return the same output as `env | head`.
 

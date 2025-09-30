@@ -2,7 +2,7 @@
 
 ## Overview
 * There is no _quiz_ during week \#1.
-* However, on Thursday you will need to verify that your computer is set up according to [the preliminary assignment](../assignments/prelims.md). This will be graded as a quiz (out of 5 points).
+* However, on Wednesday you will need to verify that your computer is set up according to [the preliminary assignment](../assignments/prelims.md). This will be graded as a quiz (out of 5 points).
 * Monday and Wednesday will both be lectures.
 
 ## Resources

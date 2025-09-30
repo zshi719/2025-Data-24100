@@ -12,7 +12,7 @@
   - "It's always out of date" was a common refrain.
   - This was super-annoying, especially on larger teams.
 - There were some other solutions that people used:
-  - Require documentation to be a part of the job by baking in "no code submission" allowed time. E.g. if we wanted to launch on Thursday then we would stop call coding on Monday and require documentation tasks to be done on Tuesday and Wednesday before launch.
+  - Require documentation to be a part of the job by baking in "no code submission" allowed time. E.g. if we wanted to launch on Thursday then we would stop all coding on Monday and require documentation tasks to be done on Tuesday and Wednesday before launch.
     - Downside is that after pushing to launch something documentation wasn't exactly a priority of developers energy. Manuals were "tacked on" and on especially long projects developers may not remember the logic and details of all complex decisions.
   - Hiring technical writers (which is a job that is going away).
     - Expensive.
@@ -63,7 +63,7 @@ mkdocstrings==0.27.0
 mkdocstrings-python==1.12.2
 ```
 
-Note all of these are required, some of them are specific to the themes that we will play with.
+Not all of these are required, some of them are specific to the themes that we will play with.
 
 - There are (roughly) three sets of dependencies above:
   - Those relate to the theme will we use (`material` and `terminal`)

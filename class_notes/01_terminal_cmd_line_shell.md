@@ -20,7 +20,7 @@
 
 - Shells and terminals are the fundamental means of interacting with a computer.
 - Allow for repeatable, complex and debug-able sessions. 
-- They are lightweight and tend to be more stable that "GUI"<a href="#footnote-1">[1]</a>
+- They are lightweight and tend to be more stable than "GUI"<a href="#footnote-1">[1]</a>
 - Unix-y systems (what we will work on) have a common set of tools and language that allow for users to transfer their knowledge across a wide variety of different environments.
 - All OS have a text based interface, though some are different:
   - Windows has Powershell which is based on MS-DOS
@@ -102,10 +102,10 @@ ls: *.asdf: No such file or directory
 ### Special Locations
 There are a few special locations that you should be aware of:
 
-  1. The root (we already spoke of this), which is the head of hte file system, represented by a `/` with nothing to the left.
+  1. The root (we already spoke of this), which is the head of the file system, represented by a `/` with nothing to the left.
   2. `.` ("dot") represents the `pwd`
   3. `..` ("double-dot") represents moving "up" the file-system to the parent directory
-  4. `~` represents the users "home" directory. The home directory is a unix-y specific location that represents a user's specific space on the system. Unix-y systems are designed for multiple users. The home directory is a space that is carved out for each user. On most unix-y systems the home director takes the form of `/usr/user_name` or `/user/user_name`. On modern Macs it is `/Users/user_name`.
+  4. `~` represents the users "home" directory. The home directory is a unix-y specific location that represents a user's specific space on the system. Unix-y systems are designed for multiple users. The home directory is a space that is carved out for each user. On most unix-y systems the home directory takes the form of `/usr/user_name` or `/user/user_name`. On modern Macs it is `/Users/user_name`.
 
 We can use all of these in our paths and can combine them. Consider the following examples:
 
@@ -113,7 +113,7 @@ We can use all of these in our paths and can combine them. Consider the followin
 - `ls ./Downloads/*.txt`
 - `ls ~/Downloads/*.txt`
 
-Assuming that are `pwd` is our home directory and our home directory is `/Users/nickross` all of the above will return the same thing!
+Assuming that our `pwd` is our home directory and our home directory is `/Users/nickross` all of the above will return the same thing!
 
 ## cd
 

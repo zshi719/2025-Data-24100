@@ -2,7 +2,7 @@
 VERIFY LEARNING OBJECTIVES ARE DEEP ENOUGH
 
 
-- There will be a quiz on Thursday covering material up to and including the previous week.
+- There will be a quiz on Wednesday covering material up to and including the previous week.
 - Part 6 is also due Wednesday at midnight.
 
 ## Overview
