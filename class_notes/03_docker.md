@@ -5,14 +5,14 @@
 * Previously we spoke about how Python environment management is a complex web of different technologies: Brew, Conda, pyenv, virtual env, etc.
 * On most computers the `python` executable command points to a placeholder file which redirects the user to specific executable files based on the conditions set forth by the environment management software.
 * On the shell level, this redirect is controlled via the `PATH` environment variable. 
-  - On my computer, for example I have installed both `conda` and `pyenv`, however, `pyenv` location of Python is listed _before_ the conda version, so that when I run python in the terminal the conda version is ignored.
-  - This also means that I can type `conda install` to install things, _but they do not effect my python because `conda` is not the version of python actually installed.
+  - On my computer, for example I have installed both `conda` and `pyenv`, however, the `pyenv` location of Python is listed _before_ the conda version, so that when I run python in the terminal the conda version is ignored.
+  - This also means that I can type `conda install` to install things, _but they do not affect my python because `conda` is not the version of python actually installed.
 <!-- Add graphic here showing terminal -> path -> /user/bin/pyenv/shims/python (??) -> different pythons and numpy versions -->
 * Relying on `PATH` to control what runs puts a lot of pressure on the user to have their environment set up correctly.
-* Most people end up with a complex, unique web of environment variables, python packages and other software that is both confusing, when required to install additional software and non-transferable to other users. A lot of "This works on my computer, why doesn't it work on yours?"
-* AND, even if you get this working at the Python package level there are lots of pieces of software which require a tighter integration with the operating system and, as such complicate the above situation. Example of such software includes:
-  * [GDAL](https://gdal.org/en/latest/) for doing geospaital work
-  * [Webdrivers](https://www.selenium.dev/documentation/webdriver/) such as those used for headless web scrapping with selenium
+* Most people end up with a complex, unique web of environment variables, python packages and other software that is both confusing when required to install additional software and non-transferable to other users. A lot of "This works on my computer, why doesn't it work on yours?"
+* AND, even if you get this working at the Python package level there are lots of pieces of software which require a tighter integration with the operating system and, as such, complicate the above situation. Example of such software includes:
+  * [GDAL](https://gdal.org/en/latest/) for doing geospatial work
+  * [Webdrivers](https://www.selenium.dev/documentation/webdriver/) such as those used for headless web scraping with selenium
   * Database Adapters, such as [psycopg2](https://pypi.org/project/psycopg2/)
 * Basically anything that relies upon tighter hooks into the operating system can frequently "break" python environment management solutions. 
 * Tools like `brew` and `conda` often get around this by integrating more deeply into the operating system, but they also come with downsides.
@@ -54,10 +54,10 @@ graph LR;
 <!-- markdown-link-check-disable -->
   - We usually get base images from an image registry. The default when using docker is [dockerhub](https://www.dockerhub.com). When you install docker you are asked to register for an account from this site. 
 <!-- markdown-link-check-enable -->
-  - Images follow the the naming convention where there is a `:` followed by a _tag_. The tag denotes a specification of the image. 
+  - Images follow the naming convention where there is a `:` followed by a _tag_. The tag denotes a specification of the image. 
   - When looking at tags on a image registry such as dockerhub there are a number of common tagging structures.
 <!-- markdown-link-check-disable -->
-  - For example, consider the image provided for [python](https://hub.docker.com/_/python). On this page the tags look like `3.10.15-bookworm`. The first number in this example (`3.10.15`) represents the version of python that is going to be installed if you use the image with this tag. The second component `bookworm` is the nickname for a version of [Debian](https://wiki.debian.org/DebianReleases), one of the most common versions of Linux used to build images. 
+  - For example, consider the image provided for [python](https://hub.docker.com/_/python) or [astral's docker hub](https://hub.docker.com/r/astral/uv/tags). On this page the tags represent information about what is being installed. For example on the python page you can see something like `3.10.15-bookworm`. The first number in this example (`3.10.15`) represents the version of python that is going to be installed if you use the image with this tag. The second component `bookworm` is the nickname for a version of [Debian](https://wiki.debian.org/DebianReleases), one of the most common versions of Linux used to build images. 
 <!-- markdown-link-check-enable -->
 - Other common operating system designations are: `slim` and `alpine` which have different underlying operating systems. Why would people use different versions? Each operating system has different strengths and weaknesses; different systems are also different sizes. Smaller sizes mean faster performance but at the cost of features, but can make a large difference when putting into production. 
 
@@ -89,11 +89,11 @@ graph LR;
 
 - Below is our first Dockerfile, a few important notes:
   - The file needs to be saved as a _text_ file. Use VSC or another editor designed for working with text when editing. VSC has a pretty good Docker extension that does syntax highlighting and such.
-  - The file name needs to be `Dockerfile` with out an extension. 
+  - The file name needs to be `Dockerfile` without an extension. 
 - The second command that we used is `WORKDIR`. This command does two things: it creates the directory if it does not exist AND it sets the current working directory.
 
 ```
-FROM python:3.10.15-bookworm
+FROM astral/uv:python3.12-bookworm
 WORKDIR /app
 ```
 
@@ -108,6 +108,12 @@ docker build . -t myfirstdocker
 
 - This command needs to be executed in the directory with the Dockerfile. The `.` represents the current directory and tells the `docker` command to look in this directory for the Dockerfile
 - The `-t myfirstdocker` labels or _tags_ the image with the name `myfirstdocker`. This is how we will reference the image going forward.
+- We can see the image by typing in:
+  
+```bash
+docker image ls
+```
+
 - Once the container is built then we can run or execute it using the `docker run` command. 
 - We'll start by creating an interactive bash session inside the container by telling docker to run the container interactively and pointing to `/bin/bash` as the command to execute:
 
@@ -119,11 +125,11 @@ docker run -i -t myfirstdocker /bin/bash
 - To exit the container we type `exit` or hit `CTRL-d`.
 - Just like before you can combine options: `docker run -it myfirstdocker /bin/bash` which will do the same thing.
 - IMPORTANT (and we will talk about this later), the `-t` option does _not_ refer to the tag of the container. 
-- Running the container that we can verify that there is nothing in it by typing `ls`. While there are files in the directory in the host machine that we created the container in there are no files in the container itself -- that is because the container is isolated. 
+- Running the container we can verify that there is nothing in it by typing `ls`. While there are files in the directory in the host machine that we created the container in there are no files in the container itself -- that is because the container is isolated. 
 - The syntax of `docker run` that we are using is:
 
 ```bash
-docker run [options] image-to-build [optional executable file]
+docker run [options] image-name [optional executable file]
 ```
   
 - In the example that we just did our options are `-i` and `-t` and we gave it an optional executable, in this case the command `/bin/bash` which directs the docker engine to spin up the container and then start the process that can be found at `/bin/bash`.
@@ -131,24 +137,41 @@ docker run [options] image-to-build [optional executable file]
 ### Adding additional environment information
 
 - At this point in time we want to add the ability to print things with the `art` module in python. 
-- We will use a `requirements.txt` file and install it via `pip`.
-- To identify which version to install we can go inside the container install it, get the version and then add that to `requirements.txt`
+- Let's first figure out which version of the `art` module we want to install so that we can add it to our `pyproject.toml`
   - First enter the container if you have not already `docker run -it myfirstdocker /bin/bash`
-  - Assuming that you are inside the container then we can install the art module using `pip install art`
-  - There are many ways to get the version. My preferred method is to do `pip freeze | grep art` which returns the package version information in the format required for `requirements.txt`. Running it now I see `art==6.3`.
-  - On the host machine (_outside the container_) create a file `requirements.txt` and add the line `art==6.3` to it.
+
+  - We will be using `uv` to handle our python environment information and a `pyproject.toml` file to maintain it.
+  - To use `uv` in a location we create a virtual environment by typing `uv venv` creates the required files.
+    - You can check if they were installed by typing `ls -a` and see if you see `.venv` hidden directory.
+  - We can run commands, such as `python` and `pip` by prefixing them with `uv`
+  - Assuming that you are inside the container then we can install the art module using `uv pip install art`
+  - There are many ways to get the version. My preferred method is to do `uv pip freeze | grep art` which returns the package version information in the format required for `pyproject.toml`. Running it now I see `art==6.3`.
+  - On the host machine (_outside the container_) create a file `pyproject.toml` which looks like:
+```bash
+[project]
+name = "class 3 demo"
+version = "0.1.0"
+dependencies = [
+    "art==6.4",
+]
+```
+- In a `pyproject.toml` both `name` and `version` are required. 
+- The dependencies sections is a list and looks similar to what we would expect in a `requirements.txt` file.
 - Now that we have the file we need to incorporate it into our build process using the `Dockerfile` by adding the following lines:
 
-```
-FROM python:3.10.15-bookworm
+```bash
+FROM astral/uv:python3.12-bookworm
 WORKDIR /app
 
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+COPY pyproject.toml .
+
+RUN uv venv
+RUN uv sync
+
 ```
 
 - The `COPY` command in a Dockerfile copies a file from the host machine (outside the image) to inside the image.
-- The `RUN` command runs, inside the container the command that follows. In this case it is going to run the pip install command which should then instal the `art` package.
+- The `RUN` command runs, inside the container the command that follows. In this case it is going to run the `uv venv` to create an environment and then run `uv sync` which takes syncs the virtual environment to what is in the `pyproject.toml`
 - We can then re-build the container and verify by:
 
 ```bash
@@ -158,9 +181,11 @@ docker run -it myfirstdocker /bin/bash
 
 Once we are inside the container, execute `python` and test by checking to see if the `art module` was installed (`import art`). 
 
+- Note that if we run `python` it will _not_ be there, but if we run `uv python` it will be able to be imported!
+
 ### Using the art package and running a command
 
-- At this point lets create a python file (`print_date.py`) and put it in the same folder as the Dockerfile and the `requirements.txt` file.
+- At this point lets create a python file (`print_date.py`) and put it in the same folder as the Dockerfile and the `pyproject.toml` file.
 - We want it to print the current date using the `text2art` in the `art` package. 
 
 
@@ -179,15 +204,18 @@ if __name__ == "__main__":
 
 - To get this to run we add the following to our Dockerfile to get it to execute the python file above
 
-```
-FROM python:3.10.15-bookworm
+```bash
+FROM astral/uv:python3.12-bookworm
 WORKDIR /app
 
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+COPY pyproject.toml .
+
+RUN uv venv
+RUN uv sync
 
 COPY print_date.py .
-CMD ["python", "print_date.py"]
+
+CMD ["uv", "run", "python", "print_date.py"]
 ```
 
 - The `COPY` command we have seen before, but `CMD` is new. 
@@ -218,7 +246,7 @@ docker run myfirstdocker
   - do not provide any type of command argument to the tail of the `docker run` command
   - do not need to add `-i` or `-t` to the `docker run` command, but adding it (generally) won't make too much of a difference.
 
-- If we want to run a different command that what is specified in `CMD` then we have a few options:
+- If we want to run a different command than what is specified in `CMD` then we have a few options:
   - If we want to run something interactively, such as a `bash` session, then we need to add `-i` and `-t` as well as provide the location of the `bash` shell (usually `/bin/bash`) to the `docker run` command.
   - If we want to run another executable file _not_ interactively, but that is also in the container then we do not need to add `-i` and `-t`, but we do need to specify the location of the executable at the end of the `docker run` command.
 

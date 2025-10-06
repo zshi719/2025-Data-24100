@@ -3,7 +3,7 @@
 ## Overview
 * The first quiz is on Wednesday of this week. It will be 20 minutes and cover the material from week #1. You can find information on the quizzable material [here](../lesson_plan/week_1.md#quizzable-concepts) and [here](../lesson_plan/week_1.md#quizzable-concepts).
   - Concepts will only include material from week #1.
-* Project assignment Part I is assigned; you can find the assignment [here](../project_assignments/part_1.md). It is due next Monday at midnight.
+* Project assignment Part I is assigned; you can find the assignment [here](../project_assignments/part_1.md). It is due Monday at midnight.
 
 ## Resources
 * This week we will cover Docker, Git, and Make.
@@ -23,6 +23,13 @@
 - When to use the `-i` and `-t` flags.
 - Building and running Dockerfiles using `docker build` and `docker run`
 - Passing information into the container using environment variables at both run time and build time.
+- What is `uv`?
+  - Why do we use it?
+  - What do the commands `uv sync` and `uv venv` do?
+  - How do I run a command with `uv` using the virtual environment?
+- What is a `pyproject.toml` file?
+  - Expected Contents
+  - Comparison to a `requirements.txt` file
 
 
 ## Lecture notes
@@ -44,11 +51,12 @@
 #### Dockerfile
 
 ```
-1. FROM python:3.10.15-bookworm
+1. FROM astral/uv:python3.13-bookworm
 2. WORKDIR /app
-3. COPY quiz.py .
-4. ENV DF_ENV="Env Var set in Dockerfile"
-5. CMD ["python", "quiz.py"]
+4. RUN uv venv
+4. COPY quiz.py .
+5. ENV DF_ENV="Env Var set in Dockerfile"
+6. CMD ["uv", "run", "python", "quiz.py"]
 ```
 
 #### quiz.py

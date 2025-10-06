@@ -1,0 +1,7 @@
+[project]
+name = "class 3 demo"
+version = "0.1.0"
+dependencies = [
+    "art==6.4",
+]
+

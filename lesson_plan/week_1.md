@@ -53,6 +53,24 @@
 * Use `touch` to create an empty file.
 * Move to specific locations in the file system using absolute, relative or special location paths.
 * Be able to define the concepts mentioned in the definitions above.
+- Given a file, count the number of lines in which a pattern occurs (or does not occur); keep in mind case sensitivity.
+- Redirect terminal output using any of `|`, `>`, and `>>`.
+- Use `cat`, `head`, and `tail` to cut up pieces of a file.
+- Use any of our commands to create output and then use `grep` and `wc` to filter and count words.
+- Set an environment variable at both the `session` and `environment` level.
+- Explain the difference between `set` and `env`.
+- Explain what the environment variable `PATH` does.
+
+- Some more complex examples with answers:
+  - Use `ls` and `grep` to find all files in a directory which have `frank` in their name, but do not have `stein` in their name.
+    - Answer: `ls | grep frank | grep -v stein`
+  - Use `ls` and `grep` to find all PDF files in a directory which have `frank` in their name, but do not have `stein` in their name.
+    - Answer: `ls *.pdf | grep frank | grep -v stein`
+- The file `students.txt` contains a list of CNET IDs (one per line).
+  - Count the number of times that `nickross` appears anywhere on a line.
+  - Count the number of times `nick` appears on a line, but `ross` does not.
+  
+
 
 <table>
     <thead>
@@ -93,21 +111,4 @@
         </td>
         </tr>
         
-        </table>
-
-- Given a file, count the number of lines in which a pattern occurs (or does not occur); keep in mind case sensitivity.
-- Redirect terminal output using any of `|`, `>`, and `>>`.
-- Use `cat`, `head`, and `tail` to cut up pieces of a file.
-- Use any of our commands to create output and then use `grep` and `wc` to filter and count words.
-- Set an environment variable at both the `session` and `environment` level.
-- Explain the difference between `set` and `env`.
-- Explain what the environment variable `PATH` does.
-
-- Some more complex examples with answers:
-  - Use `ls` and `grep` to find all files in a directory which have `frank` in their name, but do not have `stein` in their name.
-    - Answer: `ls | grep frank | grep -v stein`
-  - Use `ls` and `grep` to find all PDF files in a directory which have `frank` in their name, but do not have `stein` in their name.
-    - Answer: `ls *.pdf | grep frank | grep -v stein`
-- The file `students.txt` contains a list of CNET IDs (one per line).
-  - Count the number of times that `nickross` appears anywhere on a line.
-  - Count the number of times `nick` appears on a line, but `ross` does not.
+</table>

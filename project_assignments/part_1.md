@@ -46,11 +46,11 @@ project_root/
 ├── Dockerfile
 ├── pyproject.toml
 ├── utils/
-│   └── eda_2019.py
+│   └── eda_2018.py
 └── data/
     └── raw_data/
-        ├── NYSE_2019.zip
-        └── NASDAQ_2019.zip
+        ├── NYSE_2018.zip
+        └── NASDAQ_2018.zip
 ```
 
 Other files may be appropriate, but the above should be the rough structure. Importantly, no intermediate files should be saved to the repository.
@@ -61,7 +61,8 @@ Your code should report the following information:
 
 * How many rows are in the combined dataset?
 * How many rows are sourced from each market (e.g., how many rows from the NYSE dataset and how many rows from the NASDAQ dataset)?
-* Identify the date on which the stock BRK.A recorded its highest `open` price.
+* Identify the date on which the stock BRK.A recorded its lowest `open` price. 
+* Identify the date on which the stock IBM had it's highest `close` price.
 
 ## Part #1 grading
 

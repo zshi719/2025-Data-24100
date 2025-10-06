@@ -1,8 +1,3 @@
-FROM python:3.10.15-bookworm
+FROM astral/uv:python3.13-bookworm
 WORKDIR /app
 
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-
-COPY print_date.py .
-CMD ["python", "print_date.py"]

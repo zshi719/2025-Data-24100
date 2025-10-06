@@ -106,9 +106,11 @@ Git is a complex piece of software and the first time you use it it can feel ove
 - In this section we'll demonstrate how to transfer data into a Docker container using environment variables at the time of build and at the time of run.
 - We will first start with our basic dockerfile that we have been working with this entire time.
 
-```
-FROM python:3.10.15-bookworm
+```bash
+FROM FROM astral/uv:python3.12-bookworm
 WORKDIR /app
+
+RUN uv venv
 
 ENV DF_ENV="Env Var set in Dockerfile"
 ```
@@ -159,13 +161,15 @@ if __name__ == '__main__':
 
 - If we want to run this when using `docker run` we can change the Dockerfile to the following:
 
-```
-FROM python:3.10.15-bookworm
+```bash
+FROM FROM astral/uv:python3.12-bookworm
 WORKDIR /app
+
+RUN uv venv
 COPY env_test.py .
 
 ENV DF_ENV="Env Var set in Dockerfile"
-CMD ["python", "env_test.py"]
+CMD ["uv", "run", "python", "env_test.py"]
 ```
 
 - We can then execute the command by typing:
