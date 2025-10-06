@@ -1,9 +1,9 @@
 # Week #2 Lesson Plan
 
 ## Overview
-* The first quiz is on Wednesday of this week. It will be 20 minutes and cover the material from week #1. You can find information on the quizzable material [here](../lesson_plan/week_1.md#quizzable-concepts) and [here](../lesson_plan/week_1.md#quizzable-concepts).
+* The first quiz is on Wednesday of this week. It will be 20 minutes and cover the material from week #1. You can find information on the quizzable material [here](../lesson_plan/week_1.md#quizzable-concepts).
   - Concepts will only include material from week #1.
-* Project assignment Part I is assigned; you can find the assignment [here](../project_assignments/part_1.md). It is due Monday at midnight.
+* Project assignment Part I is assigned; you can find the assignment [here](../project_assignments/part_1.md). It is due Monday at midnight. Please start early as questions on monday afternoon generally won't get a response.
 
 ## Resources
 * This week we will cover Docker, Git, and Make.
