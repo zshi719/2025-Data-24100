@@ -46,11 +46,11 @@ project_root/
 ├── Dockerfile
 ├── pyproject.toml
 ├── utils/
-│   └── eda_2018.py
+│   └── eda_2019.py
 └── data/
     └── raw_data/
-        ├── NYSE_2018.zip
-        └── NASDAQ_2018.zip
+        ├── NYSE_2019.zip
+        └── NASDAQ_2019.zip
 ```
 
 Other files may be appropriate, but the above should be the rough structure. Importantly, no intermediate files should be saved to the repository.
