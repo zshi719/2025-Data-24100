@@ -276,7 +276,7 @@ class4 /bin/bash
 
 ### Be Careful!
 
-- When we mounted the volume in the manner above we actually ended up with _two_ version of `requirements.txt` in our container! One from when we copied the file in the Dockerfile and one from when we mounted the volume in `/app/src`. In other words we have:
+- When we mounted the volume in the manner above we actually ended up with _two_ version of `env_test.py` in our container! One from when we copied the file in the Dockerfile and one from when we mounted the volume in `/app/src`. In other words we have:
   - `/app/env_test.py` <- From the Dockerfile
   - `/app/src/env_test.py` <- From the mounted volume
 - What would happen if we mounted our path into `/app` rather than `/app/src`? Bad things. When you mount a file in a location where the file already exists then you have a conflict that can result in unexpected behavior. Avoid this by only mounting containers in directories that are you are sure don't have files with similar names in them -- or only mount to new locations!
