@@ -45,22 +45,26 @@
     before computing xy={l=15pt},
   }
 [\underline{/}
-  [\underline{users}
-    [\underline{nick}
-    [zsh\_profile.rc]
-    [delme.txt]    
-      [\underline{my\_docs}
-        [LittleWomen.txt]
-        [videoA.mov]
-        [videoB.mov]
-        [oct\_info.log]
-        [nov\_info.log]
+  [\underline{home}
+    [\underline{maria}
+      [.profile]
+      [\underline{research}
+        [experiment.log]
+        [results.csv]
       ]
-      [\underline{videos}]
-      [\underline{logs}]      
+      [\underline{papers}
+        [draft.txt]
+        [outline.txt]
+        [figures.pdf]
+        [references.pdf]
+      ]
+      [\underline{archive}]
     ]
-    [\underline{tim}
-      [\underline{scripts}]
+    [\underline{john}
+      [\underline{bin}
+        [install.sh]
+      ]
+      [\underline{temp}]
     ]
   ]
 ]
@@ -91,19 +95,19 @@ The graphic on the left denotes the file system on a machine that we are using. 
 
 \begin{enumerate}
 
-\item Please delete the file \texttt{videoB.mov}. You can assume that your current working directory is \texttt{/users/nick}.
+\item Your current working directory is \texttt{/home/maria}. Please print the first ten lines in \texttt{research/experiment.log} using a relative path.
 \vspace{1.25cm}
-\item Your current working directory is \texttt{/users/nick} please move all the \texttt{.mov} files in the \texttt{my\_docs} sub-directory to the \texttt{videos} directory. Use either absolute or relative path.
+
+\item You are currently in the \texttt{/home/john} directory. Using a \emph{relative} path, list all the \texttt{.pdf} files which are in the \texttt{/home/maria/papers} directory.
 \vspace{1.25cm}
-\item Your current working directory is \texttt{/users/nick/}. Please return all \emph{lines} in \texttt{LittleWomen.txt} which have the word \texttt{love} in it. This should be a case-insensitive search.
+
+\item Your current working directory is \texttt{/home/maria}. Please copy all \texttt{.pdf} files from the \texttt{papers} sub-directory to the \texttt{archive} directory. Use relative pathing.
 \vspace{1.25cm}
-\item The directory \texttt{/users/tim/scripts} has over 200 files in it (which is why they are not shown in the diagram). Your current working directory is \texttt{/users/tim}. Please create a file \texttt{/users/tim/dir\_list.txt} which contains a list of all files (including hidden) in the \texttt{/users/tim/scripts} directory.
 
+\item Your current working directory is \texttt{/home/john}. The directory \texttt{/home/john/temp} has over 400 files in it (which is why they are not shown in the diagram). Please create a file \texttt{/home/john/temp\_list.txt} which contains a list of all files (including hidden) in the \texttt{/home/john/temp} directory.
 \vspace{1.25cm}
-\item You are currently in the \texttt{/users/nick/logs} sub-directory. Using a \emph{relative} path, list all the \texttt{.log} files which are in the \texttt{/users/nick/my\_docs} sub-directory.
 
-
-
+\item Your current working directory is \texttt{/home/maria}. Please return all \emph{lines} in \texttt{papers/draft.txt} which have the word \texttt{results} in it. This should be a case-insensitive search.
 
 \end{enumerate}
 

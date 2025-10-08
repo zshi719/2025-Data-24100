@@ -45,22 +45,26 @@
     before computing xy={l=15pt},
   }
 [\underline{/}
-  [\underline{users}
-    [\underline{launa}
-    [profile.rc]
-    [confSettings.txt]    
-      [\underline{docs}
-        [MobyDick.txt]
-        [image1.jpg]
-        [image2.jpg]
-        [form1.pdf]
-        [form2.pdf]
+  [\underline{home}
+    [\underline{alice}
+      [.bashrc]
+      [\underline{projects}
+        [report.txt]
+        [data.csv]
       ]
-      [\underline{images}]
-      [\underline{forms}]      
+      [\underline{documents}
+        [notes.txt]
+        [summary.txt]
+        [budget.pdf]
+        [invoice.pdf]
+      ]
+      [\underline{backup}]
     ]
-    [\underline{tim}
-      [\underline{scripts}]
+    [\underline{bob}
+      [\underline{scripts}
+        [setup.sh]
+      ]
+      [\underline{logs}]
     ]
   ]
 ]
@@ -91,16 +95,19 @@ The graphic on the left denotes the file system on a machine that we are using. 
 
 \begin{enumerate}
 
-\item Your current working directory is \texttt{/users/launa} please move all the \texttt{.pdf} files in the \texttt{docs} sub-directory to the \texttt{forms} directory. Use either absolute or relative pathing.
+\item Your current working directory is \texttt{/home/alice}. Please copy all \texttt{.txt} files from the \texttt{documents} sub-directory to the \texttt{backup} directory. Use relative pathing.
 \vspace{1.25cm}
-\item Your current working directory is \texttt{/users/launa/}. Please return all \emph{lines} in \texttt{MobyDick.txt} which have the word \texttt{whale} in it. This should be a case-insensitive search.
-\vspace{1.25cm}
-\item You are currently in the \texttt{/users/launa/images} sub-directory. Using a \emph{relative} path, list all the \texttt{.jpg} files which are in the \texttt{/users/launa/docs} sub-directory.
-\vspace{1.25cm}
-\item The directory \texttt{/users/tim/scripts} has over 500 files in it (which is why they are not shown in the diagram). Your current working directory is \texttt{/users/tim}. Please create a file \texttt{/users/tim/dir\_list.txt} which contains a list of all files (including hidden) in the \texttt{/users/tim/scripts} directory.
-\vspace{1.25cm}
-\item Please delete the file \texttt{image2.jpg}. You can assume that your current working directory is \texttt{/users/launa}.
 
+\item Your current working directory is \texttt{/home/alice}. Please return all \emph{lines} in \texttt{report.txt}, in the \texttt{projects} subdirectory which have the word \texttt{data} in it. This should be a case-insensitive search.
+\vspace{1.25cm}
+
+\item You are currently in the \texttt{/home/bob} directory. Using a \emph{relative} path, list all the \texttt{.pdf} files which are in the \texttt{/home/alice/documents} directory.
+\vspace{1.25cm}
+
+\item Your current working directory is \texttt{/home/bob}. The directory \texttt{/home/bob/logs} has over 300 files in it (which is why they are not shown in the diagram).  Please create a file \texttt{/home/bob/log\_list.txt} which contains a list of all files (excluding hidden) in the \texttt{/home/bob/logs} directory.
+\vspace{1.25cm}
+
+\item Your current working directory is \texttt{/home/alice}. Please print the first ten lines in \texttt{projects/data.csv} using an absolute path.
 
 \end{enumerate}
 
