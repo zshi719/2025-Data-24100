@@ -1,0 +1,9 @@
+FROM astral/uv:python3.13-bookworm
+WORKDIR /app
+
+# Put the pyproject.toml & print_date.py file into the container
+COPY pyproject.toml .
+
+# Create a virtual environment and set the location to /app/.venv
+RUN uv venv
+RUN uv sync
