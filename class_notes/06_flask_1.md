@@ -4,7 +4,7 @@ CHANGE THE BELOW TO PYTHON APP.PY AND NOT FLASK.APP WHICH REQUIRES ADDITIONAL EN
 
 - During todays' class we will build a simple `Flask` server.
 - There are many different web server frame works that we could use. In the Python world `Django` and `FastAPI` are two that currently have a lot of mind share. 
-- `Flask` is a light weight and relatively simple package in Python. While `Django` is much more full featured and `FastAPI` is more performant, `Flask` offers a nice goldilocks version of a web server.
+- `Flask` is a light weight and relatively simple package in Python. While `Django` is much more full featured and `FastAPI` is more performant, `Flask` offers a nice goldilocks version of a web server. `FastAPI` uses the async library so leverages additional computer knowledge outside of this course.
 - Importantly, the same concepts and abstractions that are used `Flask` are used in the other systems listed.
 
 ## Basics of a web sever
@@ -36,9 +36,9 @@ CHANGE THE BELOW TO PYTHON APP.PY AND NOT FLASK.APP WHICH REQUIRES ADDITIONAL EN
 
 In this section we are going to build a Flask based web app that will print (to the terminal) the header, body and query parameters of a request. We will also respond with an appropriate status code.
 
-### Requirements.txt
+### Dependencies
 
-We need to have `Flask` installed. In this example we also want to have access to Jupyter, so our requirements will look like:
+We need to have `Flask` installed. In this example we also want to have access to Jupyter, so our `pyproject.toml` will look like:
 
 ```
 jupyter==1.0.0
@@ -49,7 +49,7 @@ Flask==3.0.3
 
 We will build off the Makefile from our previous lecture
 
-```
+```makefile
 IMAGE_NAME=make_test
 
 .PHONY=build notebook interactive
@@ -87,7 +87,7 @@ flask: build
 
 There are two lines that we will add to our standard Dockerfile:
 
-```
+```dockerfile
 FROM python:3.10.15-bookworm
 
 WORKDIR /app

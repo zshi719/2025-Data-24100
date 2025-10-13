@@ -45,7 +45,7 @@
   - Other commands that we need to know: `ENV`, `FROM`, `COPY` and `WORKDIR`.
 - How to create environment variables at both run and build time, and how to access them with Python.
 - You'll need to be able to read Dockerfiles and understand the environment that they create.
-- You will _not_ be expected to know specific details about images pulled from the registry (e.g., `alpine`, `slim`, or `bookworm`). If a Dockerfile appears in the quiz, it will use the `python:3.10.15-bookworm` image we have used so far.
+- You will _not_ be expected to know specific details about images pulled from the registry (e.g., `alpine`, `slim`, or `bookworm`). If a Dockerfile appears in the quiz, it will use the `astral/uv:python3.13-bookworm` image we have used so far.
 - Given a Dockerfile, and `docker build` and `docker run` commands, describe the output. For example, consider the following, where line numbers have been added for simplification.
 
 #### Dockerfile

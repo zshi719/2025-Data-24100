@@ -42,7 +42,7 @@ VERIFY LEARNING OBJECTIVES ARE DEEP ENOUGH
 - Things I will NOT quiz: specific options to Jupyter or Flask that are required to get them started inside Docker. While I may provide code that presents this information, you will not be required to recall what they are doing.
 - Example question: The file `logs/process.log` is a text file that contains information about our process. If a line contains the phrase `ERROR`, this means that our process had an error. Given the Makefile below, please write what needs to change to add a make command `last_10_errors` that shows the last ten errors.
 
-```
+```makefile
 ENV_NAME=development
 API_KEY=12345
 
@@ -54,7 +54,7 @@ run_process:
 
 We will need to update one line and add another:
 
-```
+```makefile
 ENV_NAME=development
 API_KEY=12345
 
@@ -69,7 +69,7 @@ last_10_errors:
 
 - Example: We have a working Flask server and we wish to add a route `/check_api_status`. This should call the Python function (`api_status`) that was imported and, if it returns `True` (boolean), respond with a 200; if it returns `False` (boolean), respond with a 500. Please complete the code below. In both cases, the body and headers can be empty/None.
 
-```
+```python
 from flask import (
     Flask,
     request,
@@ -99,7 +99,7 @@ if __name__ == '__main__':
 
 Answer: We can model our answer off the `Response` object presented:
 
-```
+```python
 @app.route('/check_api_status')
 def check_api_status():
     if api_status():
@@ -112,7 +112,7 @@ def check_api_status():
 
 Updated Answer:
 
-```
+```python
 @app.route('/check_api_status')
 def check_api_status():
     if 'API-KEY' not in [key.upper() for key in request.headers.keys()]:
