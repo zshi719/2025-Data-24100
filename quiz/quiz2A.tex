@@ -1,0 +1,159 @@
+\documentclass[11pt]{article}
+\usepackage{fullpage, fancyhdr, ifthen, amssymb, amsfonts, amsmath, booktabs}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage[margin=0.25in]{geometry}
+\usepackage{forest}
+\usepackage{ulem}
+\usepackage{colortbl}
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{tabularx}{\textwidth}{X}
+\textbf{Quiz 2A} \\
+\hline
+\end{tabularx}
+
+
+\begin{table}[h]
+\centering
+\arrayrulecolor{black!10} % Very light table outline
+\begin{tabular}{|p{\textwidth}|}
+\hline
+\begin{minipage}[t]{\textwidth}
+\vspace{0pt}  % This is crucial for top alignment
+\noindent \textbf{Instructions:} Please answer the following questions making sure to write your answers legibly. If you run out of room or need to re-write use the back of this quiz. The graphic denotes the file system on a machine and the Dockerfile in \texttt{/users/maria}.
+\begin{itemize}
+    \item \underline{Directories} are underlined. Any other object should be considered a file.
+    \item \textbf{For each question assume that you are starting from the original file system}. Ignore any changes to the file system you made in previous questions.
+    \item You will be graded for being unnecessarily complex in your solutions. 
+    \item Any syntax not covered in class will be tested \emph{on my machine} for applicability.
+    \item \textbf{Do not assume a ``home" directory location.}
+\end{itemize}
+
+
+\end{minipage} \\
+\hline
+\begin{tabular}{p{0.3\textwidth}|p{0.7\textwidth}}
+\begin{minipage}[t]{\linewidth}
+\vspace{0pt}  % This is crucial for top alignment
+\begin{forest}
+  for tree={
+    font=\ttfamily,
+    grow'=0,
+    child anchor=west,
+    parent anchor=south,
+    anchor=west,
+    calign=first,
+    edge path={
+      \noexpand\path [draw, \forestoption{edge}]
+      (!u.south west) +(7.5pt,0) |- node[fill,inner sep=1.25pt] {} (.child anchor)\forestoption{edge label};
+    },
+    before typesetting nodes={
+      if n=1
+        {insert before={[,phantom]}}
+        {}
+    },
+    fit=band,
+    before computing xy={l=15pt},
+  }
+[\underline{/}
+  [\underline{users}
+    [\underline{maria}
+      [Dockerfile]
+      [pyproject.toml]
+      [\underline{src}
+        [test.py]
+      ]
+      [\underline{config}
+        [settings.txt]
+        [params.txt]
+      ]
+    ]
+  ]
+]
+\end{forest}
+\end{minipage}
+&
+\begin{minipage}[t]{\linewidth}
+\vspace{0pt}  % This is crucial for top alignment
+
+\underline{\textbf{Dockerfile}}
+\begin{verbatim}
+FROM astral/uv:python3.13-bookworm
+WORKDIR /project
+COPY pyproject.toml .
+
+RUN uv venv
+RUN uv sync
+
+COPY src/test.py .
+
+ENV ENV_A="FirstValue"
+
+CMD ["uv", "run", "python", "test.py"]
+\end{verbatim}
+
+\vspace{10pt}
+
+\underline{\textbf{test.py}}
+\begin{verbatim}
+import os
+
+if __name__ == '__main__':
+
+    # START SPACE
+    env_b = os.environ["ENV_B"]
+    print(f"ENV_B: {env_b}")
+    # END SPACE
+
+    env_a = os.environ["ENV_A"]
+    print(f"ENV_A: {env_a}")
+
+\end{verbatim}
+
+\end{minipage}
+\end{tabular} \\
+\hline
+\end{tabular}
+\end{table}
+
+\newpage
+
+\begin{tabularx}{\textwidth}{l|X}
+    \textbf{Quiz 2A} &   \textbf{Name: } \\
+    \hline 
+    \end{tabularx}
+
+
+\begin{enumerate}
+
+\item We run the following commands from the \texttt{/users/maria} directory:
+\begin{verbatim}
+docker build . -t quiz2
+docker run -e ENV_B="SecondValue" quiz2
+\end{verbatim}
+
+What will be printed to the screen (by the python command) when these commands execute? Write the exact output.
+
+\vspace{3cm}
+
+\item We want to copy \texttt{settings.txt} from the \texttt{config} directory into the container at build time. Add a line to the Dockerfile that will copy this file to \texttt{/project/settings.txt} inside the container. Use a relative path and specify \underline{where} in the Dockerfile this line should be added.
+
+\vspace{4cm}
+
+\item The lines labeled ``\# START SPACE" and ``\# END SPACE" in \texttt{test.py} prints \texttt{ENV\_B}. Rewrite these lines so that if \texttt{VAR2} is not set, it prints ``VAR2 is not set".
+
+\vspace{5cm}
+
+\item Which environment variable (\texttt{ENV\_A} or \texttt{ENV\_B}) changes only when we build the container? 
+
+\vspace{3cm}
+
+\item After the container is built using the Dockerfile above, what is the full path where \texttt{test.py} is located inside the container? 
+
+\end{enumerate}
+
+
+\end{document}
