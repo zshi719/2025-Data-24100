@@ -23,3 +23,10 @@ notebook: build
 run-env-cmd: build
 	docker run  $(COMMON_DOCKER_FLAGS) -it $(IMAGE_NAME) \
 	uv run python /app/src/env_var.py
+
+
+run-flask: build
+	docker run -p 4000:5000 \
+	$(COMMON_DOCKER_FLAGS) \
+	$(IMAGE_NAME) \
+	uv run python /app/src/app.py

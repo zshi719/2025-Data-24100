@@ -7,3 +7,6 @@ COPY pyproject.toml .
 # Create a virtual environment and set the location to /app/.venv
 RUN uv venv
 RUN uv sync
+
+ENV PYTHONUNBUFFERED=1
+CMD [ "uv", "run", "jupyter", "notebook", "--allow-root", "--no-browser", "--ip=0.0.0.0" ]

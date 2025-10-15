@@ -4,9 +4,6 @@ NOTE: Rewrite rubrics to help graders. Be more specific about several ongoing is
 
 
 ## Repository organization
-- [ ] Created group on canvas 
-- [ ] Private repository properly named, invited TA's and instructor 
-- [ ] Branch protection
 - [ ] Used only branches -- there should be no commits directly to main
 - [ ] There was a pull request
   - The branch can still exist, but we will take off points in future grading if it is reused.
@@ -18,7 +15,7 @@ NOTE: Rewrite rubrics to help graders. Be more specific about several ongoing is
   - Tells us a little about your group, and the different folders/files
 - [ ] `DockerFile`
   - Has proper instructions to run code and set up proper environment conditions (not too much for this part)
-- [ ] `requirements.txt`
+- [ ] `pyproject.toml`
   - Has any and all python/library versions
 - [ ] `utils folder`
   - All code should be in this folder
@@ -34,6 +31,7 @@ NOTE: Rewrite rubrics to help graders. Be more specific about several ongoing is
       - Rows in combined files
       - Rows from each market 
       - The date at which `BRK.A` recorded its highest open
+      - Identify the date on which the stock IBM had it's highest `close` price.
 
 ## Code quality (rough outline, read instructions for more info)
 
@@ -63,7 +61,7 @@ NOTE: Rewrite rubrics to help graders. Be more specific about several ongoing is
 | Directory / File | General Hygiene (no unnecessary files, directories, no name, v2, etc.) | 10 |
 | | data folder contains data | 2 |
 | | utils folder contains script | 2 |
-| | requirements.txt | 2 |
+| | pyproject.toml | 2 |
 | | Correct Dockerfile | 4 |
 | Code Execution | Code Run -> generates output | 20 |
 | | Output Correct | 10 |
