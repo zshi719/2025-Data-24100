@@ -48,25 +48,22 @@ NOTE: Rewrite rubrics to help graders. Be more specific about several ongoing is
 3. You will be in a detached head state. If you want to verify you are at the correct location, type in `git log -1 --format=%H` which should display the last commit. `git status` should mention that head is detached and the tree is clean.
 
 ## Rubric
+Here's the updated rubric without the grader names:
+
+## Updated Rubric for Part 1
 
 | Category | Criteria | Points |
 |----------|----------|---------|
-| Repository Setup | Group on Canvas | 5 |
-| | Private Repo Named Properly | 5 |
-| | Proper hash in Canvas | 5 |
-| | Invited TAs & Instructors | 5 |
-| | Branch Protections (not required) | 0 |
-| | No Commits to Main | 5 |
+| **Repository Setup** | Proper hash in Canvas | 5 |
+| | Review Commits -- Everything a PR on Main | 5 |
 | | README with basic info | 5 |
-| Directory / File | General Hygiene (no unnecessary files, directories, no name, v2, etc.) | 10 |
-| | data folder contains data | 2 |
-| | utils folder contains script | 2 |
-| | pyproject.toml | 2 |
-| | Correct Dockerfile | 4 |
-| Code Execution | Code Run -> generates output | 20 |
+| **Directory / File** | General Hygiene (no unnecessary files, directories, no name, v2, etc.) | 5 |
+| | pyproject.toml | 5 |
+| | Dockerfile | 5 |
+| **Code Execution** | Code Run -> generates output | 10 |
 | | Output Correct | 10 |
-| Code Quality | Everything in functions | 5 |
-| | Proper Naming Conventions (pep8) | 5 |
-| | Any comments need to be descriptive | 0 |
-| | All calling done with main block | 5 |
-| **Total** | | **95** |
+| **Code Quality** | Everything in functions | 5 |
+| | Comments exist and make sense | 5 |
+| | All calling done with main block (`if __name__ == "__main__"`) | 5 |
+| **Total** | | **65** |
+
