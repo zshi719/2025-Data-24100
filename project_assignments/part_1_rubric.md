@@ -49,7 +49,6 @@ NOTE: Rewrite rubrics to help graders. Be more specific about several ongoing is
 
 ## Rubric
 
-
 | Category | Criteria | Points |
 |----------|----------|---------|
 | **Repository Setup** | Proper hash in Canvas | 5 |
