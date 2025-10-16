@@ -4,14 +4,13 @@
 # the exact same as the remote. Handles untracked files and such
 # Array of repository URLs
 repos=(
-    "git@github.com:dsi-clinic/data_241_autumn_2024_1.git"
-    "git@github.com:dsi-clinic/data_241_autumn_2024_2.git"
-    "git@github.com:dsi-clinic/data_241_autumn_2024_3.git"
-    "git@github.com:jbendavid/data_241_autumn_2024_4.git"
-    "git@github.com:dsi-clinic/data_241_autumn_2024_GROUP_5.git"
-    "git@github.com:dsi-clinic/data_241_autumn_2024_GROUP_6.git"
-    "git@github.com:dsi-clinic/data_241_autumn_2024_GROUP_7.git"
-    "git@github.com:michelangelopagan/data_241_autumn_2024_8.git"
+    "git@github.com:dsi-clinic/2025-Data-24100-Group-1.git"
+    "git@github.com:dsi-clinic/2025-Data-24100-Group-2.git"
+    "git@github.com:dsi-clinic/2025-Data-24100-Group-3.git"
+    "git@github.com:dsi-clinic/2025-Data-24100-Group-4.git"
+    "git@github.com:dsi-clinic/2025-Data-24100-Group-5.git"
+    "git@github.com:dsi-clinic/2025-Data-24100-Group-6.git"
+    "git@github.com:dsi-clinic/2025-Data-24100-Group-7.git"
 )
 
 # Ask for user confirmation
