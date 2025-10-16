@@ -149,8 +149,8 @@ Course Notes can be found linked inside each lesson plan.
 | --- | --- | --- | --- | 
 | 1: Introduction | <ul><li>The Terminal</li><li>File Management</li><li>Environments</li></ul> | <ul><li>[Software Preliminaries](./assignments/prelims.md)</li><li>[Prerequisites](./docs/prerequisites.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_1.md)</li></ul>
 | 2: Docker, Make and Git | <ul><li>Docker</li><li>Make</li><li>Git</li><li>Environments</li></ul> | <ul><li>[Project Part 0 Due](./project_assignments/part_0.md)</li><li>[Quiz 1A](./quiz/quiz1A.pdf)/[Quiz 1B](./quiz/quiz1B.pdf)</li><li>[Answer Key](./quiz/quiz1AK.md)</li></ul> | <ul><li>[Lesson Plan](./lesson_plan/week_2.md)</li></ul> |
-| 3: Flask | <ul><li>REST</li><li>Flask</li><li>Requests</li></ul> | <ul><li>[Project Part 1 Due](./project_assignments/part_1.md)</li><li>Quiz \#2</li></ul>  | |
-| 4: Flask & Code Quality | <ul><li>Advanced Requests</li><li>Organizing code</li><li>DRY</li><li>Separation of Concerns</li></ul> | <ul><li>Project Part II</li><li>Quiz \#3</li></ul>  | |
+| 3: Flask | <ul><li>Flask</li><li>Requests</li></ul> | <ul><li>[Project Part 1 Due](./project_assignments/part_1.md)</li><li>[Quiz 2A](./quiz/quiz2A.pdf)/[Quiz 2B](./quiz/quiz2B.pdf)</li><li>[Answer Key](./quiz/quiz2AK.md)</li></ul>  | <ul><li>[Lesson Plan](./lesson_plan/week_3.md)</li></ul> |
+| 4: Flask & Code Quality | <ul><li>Advanced Requests</li><li>Organizing code</li><li>DRY</li><li>Separation of Concerns</li></ul> | <ul><li>Project Part II</li><li>Quiz \#3</li></ul>  | <ul><li>[Lesson Plan](./lesson_plan/week_4.md)</li></ul> |
 | 5: Code Quality Control and Organization | <ul><li>Abstraction</li><li>Linting</li></ul> | <ul><li>Project Part III</li><li>Quiz \#4</li></ul>  | |
 | 6: Data Pipeline | <ul><li>SQLite</li><li>CRUD</li></ul> | <ul><li>Project Part IV</li><li>Quiz \#5</li></ul>  | |
 | 7: Adding Features | <ul><li>Logging in Python</li><li>Autodocs with MkDocs</li></ul> | <ul><li>Project Part V</li><li>Quiz \#6</li></ul>  | |

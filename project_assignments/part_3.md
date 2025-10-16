@@ -8,7 +8,7 @@ During the quarter, you will be expected to adhere to the coding standards found
 
 At this point we have NOT covered `black`, `flake8`, or `pyflakes`, so you can ignore all standards regarding those concepts.
 
-However, for this assignment, docstrings are required for each function.
+However, for this assignment, docstrings _are_ required for each function.
 
 ### Branches
 
@@ -43,7 +43,7 @@ Other Makefile requirements:
 
 ### Flask
 
-We will be using TWO years of data in the `project_data` (2019 and 2018) directory to build the routes listed below. Make sure that you have only two years running and loaded as part of this project.
+We will be using all years of the data in the `project_data` (2010-2020) directory to build the routes listed below. Make sure that you have only two years running and loaded as part of this project.
 
 **IMPORTANT NOTE** One major change is that you need to set an environment variable, similar to the `DATA_241_API_KEY` called `RAW_DATA_DIR` which should be set to a location on the user's host machine where the ZIP files are stored. Do NOT store any of the zip files in the repo (the previous ones should be removed).
 
@@ -77,7 +77,7 @@ Other requirements:
 - The code needs to follow the DRY principle as described in class.
 - Your repo should use subdirectories to store Python code of differing function. There should be a single `app.py` in the root of the repository, and it should be only a few lines. It should look something like the following:
 
-```
+```python
 from flask import Flask
 from stock_app.api.v1.routes import register_v1_routes
 from stock_app.api.v1.routes import register_v2_routes
@@ -119,12 +119,13 @@ if __name__ == '__main__':
   - `make flask`
 - Testing Flask. We will run `make flask` and then send API requests to the endpoints above and verify that they return the expected values. We will also send requests that do not have the correct API key set to make sure that these errors are handled gracefully.
 - No errors or warnings should occur in normal operations.
+- The codes and routes need to be performant. After the flask server starts, nothing should take more than a few seconds to respond.
 
 ## Ways to test your requests
 
 The code below is a light framework for how we will test your results. Note that this code was tested on a slightly different project, so you may need to modify it. It will be run on the host machine.
 
-```
+```python
 import requests
 
 def make_get_request(endpoint, api_key):

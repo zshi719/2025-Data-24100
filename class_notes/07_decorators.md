@@ -46,8 +46,20 @@ sq.__name__
 ```
 
 - `__name__` will return the name of the function (`sq` in this case)
-- `__modeule__` will return the module that the function exists in (in this case `__main__` because we created it in this namespace)
+- `__module__` will return the module that the function exists in (in this case `__main__` because we created it in this namespace).
 - `__doc__` will return the doc string associated with the file (`'\n    Return the square\n    '`) 
+- Compare this to the `sin` operation in the `math` library:
+
+```python
+>>> import math
+
+>>> math.sin.__module__
+'math'
+>>> math.sin.__doc__
+'Return the sine of x (measured in radians).'
+>>> math.sin.__name__
+'sin'
+```
 
 We can also use the type command see what the object is:
 

@@ -29,7 +29,7 @@ Another command will be created `db_interactive`, which is not an official manag
 
 - Starting with our [`makefile`](../lecture_examples/10_pipeline_1/Makefile):
 
-```
+```makefile
 IMAGE_NAME=bball_app
 DB_PATH=/app/src/data/bball.db
 

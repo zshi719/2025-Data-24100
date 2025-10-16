@@ -1,4 +1,4 @@
-### Part 1 Rubric Grading Task List
+### Part 2 Rubric Grading Task List
 NOTE: Rewrite rubrics to help graders. Be more specific about several ongoing issues (branch protection violations, separation of concerns, unused code, inconsistent abstractions, etc.).
 
 

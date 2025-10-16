@@ -1,5 +1,7 @@
 ## Part 7 Rubric
 
+THIS IS NOT UPDATED FOR 2025.
+
 NOTE: Rewrite rubrics to help graders. Be more specific about several ongoing issues (branch protection violations, separation of concerns, unused code, inconsistent abstractions, etc.).
 
 

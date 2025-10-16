@@ -82,7 +82,7 @@ Other requirements:
 
 The code below is a light framework for how we will test your results. Note that this code was tested on a slightly different project, so you may need to modify it. It will be run on the host machine.
 
-```
+```python
 import requests
 
 def make_get_request(endpoint, api_key):

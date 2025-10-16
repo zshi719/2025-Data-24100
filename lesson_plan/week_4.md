@@ -1,9 +1,7 @@
 # Week #4 Lesson Plan
 
-VERIFY LEARNING OBJECTIVES ARE DEEP ENOUGH
-
 ## Overview
-- Monday night the next part of the project is due.
+- Wednesday night the next part of the project is due.
 - Wednesday there will be a quiz. Quizzes are cumulative and cover the material up to and including the previous week (Week 3).
 
 ## Resources
@@ -35,7 +33,7 @@ VERIFY LEARNING OBJECTIVES ARE DEEP ENOUGH
 - Explain what the `dir` command does and use it.
 - Use functions as objects. Example question: Please write a function `g` which takes in, as arguments, `f` and `x`, where `f` is a function and `x` is an integer. If `x` is even it should return `x`, and if `x` is odd it should return the function `f` with `x` provided as the first positional argument:
 
-```
+```python
 def g(f, x):
     if x % 2 == 0:
         return x
@@ -45,7 +43,7 @@ def g(f, x):
 
 - Use `args` and `kwargs` to work with function arguments. Example: Please write a function `g` which prints out all the keyword arguments that were provided to it. It should print them item by item in the format: `f"Keyword: {key} \t Value: {value}"` where `key` and `value` are the key-value pair associated with the argument. It should not accept any positional arguments.
 
-```
+```python
 def g(**kwargs):
     for k, v in kwargs.items():
         print(f"Keyword: {k} \t Value: {v}")
