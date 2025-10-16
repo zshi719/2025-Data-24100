@@ -55,7 +55,7 @@ def func4():
 
 ## Observation #3: Flow Control Consistency
 
-- Consider the code below, which is taken from [Quiz 3](../quiz/quiz3A.tex)
+- Consider the code below, which is similar to something we've seen elsewhere:
 
 ```python
 
