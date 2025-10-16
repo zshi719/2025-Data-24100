@@ -48,9 +48,7 @@ NOTE: Rewrite rubrics to help graders. Be more specific about several ongoing is
 3. You will be in a detached head state. If you want to verify you are at the correct location, type in `git log -1 --format=%H` which should display the last commit. `git status` should mention that head is detached and the tree is clean.
 
 ## Rubric
-Here's the updated rubric without the grader names:
 
-## Updated Rubric for Part 1
 
 | Category | Criteria | Points |
 |----------|----------|---------|
