@@ -4,24 +4,6 @@ title: "More Shell and Environments"
 
 # More Shell and Environments
 
-- [More Shell and Environments](#more-shell-and-environments)
-  - [Basic programming](#basic-programming)
-    - [Printing with echo](#printing-with-echo)
-    - [Variables](#variables)
-    - [Listing Variables](#listing-variables)
-    - [Piping output and more/less.](#piping-output-and-moreless)
-    - [Searching output with grep](#searching-output-with-grep)
-    - [Redirecting to a file](#redirecting-to-a-file)
-    - [Print the contents of a file](#print-the-contents-of-a-file)
-    - [Example](#example)
-    - [head and tail](#head-and-tail)
-    - [Counting with wc](#counting-with-wc)
-  - [Counting Frankenstein](#counting-frankenstein)
-  - [API Key and Security Discussion](#api-key-and-security-discussion)
-  - [Environments and PATH](#environments-and-path)
-  - [Python and Environments](#python-and-environments)
-    - [Python Environment Management with `uv`](#python-environment-management-with-uv)
-
 ## Basic programming
 
 ### Printing with echo
