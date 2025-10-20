@@ -110,7 +110,7 @@ result_function(5)
 ```python
 import random
 
-def sus_func(x)
+def sus_func(x):
     '''
     Returns the value most of the time
     '''
@@ -236,14 +236,14 @@ In this example  `args` only contains the 2nd and 3rd positional arguments and `
 - Using this we can update our retry function:
 
 ```python
-def retry_func(f, **args, max_attempts=5, wait_time=3, **kwargs):
+def retry_func(f, *args, max_attempts=5, wait_time=3, **kwargs):
     '''
     retry logic for sus function
     '''
     attempt_count = 1
     while True:
         try:
-            return_value = f(**args, **kwargs)
+            return_value = f(*args, **kwargs)
             return return_value
         except Exception as e:
             if attempt_count == max_attempts:
@@ -265,14 +265,14 @@ retry_func(sus_func, 3)
 
 
 ```python
-def retry_func(f, **args, max_attempts=5, wait_time=3, **kwargs):
+def retry_func(f, *args, max_attempts=5, wait_time=3, **kwargs):
     '''
     retry logic for sus function
     '''
     attempt_count = 1
     while True:
         try:
-            return_value = f(**args, **kwargs)
+            return_value = f(*args, **kwargs)
             return return_value
         except Exception as e:
             if attempt_count == max_attempts:
@@ -315,9 +315,9 @@ def retry_function(func):
                 return result
             except Exception as e:
                 if attempt == max_attempts:
-                    raise Exception(f"Max Attempts met for {f.__name__}.")
+                    raise Exception(f"Max Attempts met for {func.__name__}.")
                 attempt += 1
-                print(f'Waiting for {f.__name__}')
+                print(f'Waiting for {func.__name__}')
                 time.sleep(wait_time)
     return wrapper
 
@@ -380,7 +380,7 @@ def sus_func_2(x):
 - Take a look at the following example:
 
 ```python
-def decorator(func):
+def retry_decorator(func):
     def wrapper(*args, **kwargs):
         wait_time=3
         max_attempts=5
@@ -399,7 +399,7 @@ def decorator(func):
     return wrapper
 
 
-@decorator
+@retry_decorator
 def sus_func(x):
     '''
     Take in anything (x) and, some percent of the time return x

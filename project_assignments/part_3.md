@@ -43,7 +43,7 @@ Other Makefile requirements:
 
 ### Flask
 
-We will be using all years of the data in the `project_data` (2010-2020) directory to build the routes listed below. Make sure that you have only two years running and loaded as part of this project.
+We will be using all years of the data in the `project_data` (2010-2020) directory to build the routes listed below. Make sure that you have only all years running and loaded as part of this project.
 
 **IMPORTANT NOTE** One major change is that you need to set an environment variable, similar to the `DATA_241_API_KEY` called `RAW_DATA_DIR` which should be set to a location on the user's host machine where the ZIP files are stored. Do NOT store any of the zip files in the repo (the previous ones should be removed).
 
@@ -54,11 +54,11 @@ As in Part I, your code will need to load the data, making sure not to store any
 - `/api/v2/{YEAR}`
   - Your code should accept any of the years in question and return a `404` if a year is passed which is not in the data. There should be a message in the body explaining what the error is.
   - This should return the count of rows for the specific year.
-  - It should return as a JSON object of the form `{'year' : INT, 'count': row_count}`.
+  - It should return as a JSON object of the form `{'year' : int, 'count': int}`.
 - `/api/v2/open/{SYMBOL}`
   - This should return all the open prices for a particular stock (across all years) in the following format:
-    - `{ 'symbol': XXXX, 'price_info' : [ {'date' : date, 'open': open_price}, {'date' : date, 'open' : open_price}, ...] }`
-    - Make sure that the date is formatted as a string in `Y-m-d` format.
+    - `{ 'symbol': str, 'price_info' : [ {'date' : date, 'open': float}, {'date' : date, 'open' : float}, ...] }`
+    - Make sure that the date is formatted as a string in `Y-m-d` format and that price is a float.
   - If the symbol provided is NOT in the data then it should return a `404`.
 - `/api/v2/close/{SYMBOL}`
   - This should return all the close prices and should have a similar format as the `open` API end point, but rather than saying `open` it should say `close` and report the `close` price from the data.
@@ -66,6 +66,8 @@ As in Part I, your code will need to load the data, making sure not to store any
   - This should return all the close prices and should have a similar format as the `open` API end point, but rather than saying `open` it should say `high` and report the `high` price from the data.
 - `/api/v2/low/{SYMBOL}`
   - This should return all the close prices and should have a similar format as the `open` API end point, but rather than saying `open` it should say `low` and report the `low` price from the data.
+- `/api/v2/high_low/{SYMBOL}`
+  - This should return the `high` minus the `low` and should have a similar format as the `open` API end point, but rather than saying `open` it should say `high_low` and report the difference (`high - low`) for each day.
 
 All of these routes should _only_ respond to a GET request of the following form:
 - Has a `DATA-241-API-KEY` in the header, set from an environment variable _inside the host_, so has to be passed from the host through the `Makefile` and into the container (same as in Part 2).
@@ -107,7 +109,7 @@ if __name__ == '__main__':
 ## How will this be graded
 
 - We will check out the code at the commit hash that you submit.
-- All of the previous coding standards (as in [Part I](part_1_rubric.md) and Part II) will be checked.
+- All of the previous coding standards (as in [Part I](part_1_rubric.md) and [Part II](part_2_rubric.md)) will be checked.
 - All of the requirements listed above will be checked individually.
 - We will verify that endpoints work and generate the correct response for 2019 and 2020 data.
 - Verification of data location.

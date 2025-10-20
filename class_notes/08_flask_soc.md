@@ -138,7 +138,7 @@ def process_data(file_to_process, minimum_weight=50):
 
 - This code demonstrates a poor abstraction for two reasons:
   - The code relies upon a hard coded path that cannot be changed.
-  - The code has one magic number (125) inside in a manner that cannot be changed but has one magic number (50) as an argument.
+  - The code has one _magic number_ (125) inside in a manner that cannot be changed but has one magic number (50) as an argument.
 - We could rewrite this and it would have a much more even level of abstraction in the arguments:
 
 ```python
@@ -361,7 +361,6 @@ from app.data_utils.loading_utils import load_data
 from app.route_utils.decorators import validate_team
 
 BASE_URL = '/api/teams'
-
 
 @validate_team
 def list_players_per_team(team):
