@@ -1,6 +1,6 @@
----
+<!---
 title: "Connecting Python to a Relational Database"
----
+--->
 
 # Connecting Python to a Relational Database
 

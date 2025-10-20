@@ -1,6 +1,6 @@
----
+<!---
 title: "Logging in Python and Project Issues"
----
+--->
 
 # Logging in Python and some project issues
 

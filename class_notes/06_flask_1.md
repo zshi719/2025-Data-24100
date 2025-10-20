@@ -1,6 +1,6 @@
----
+<!---
 title: "Flask"
----
+--->
 
 # Flask
 
@@ -83,7 +83,7 @@ flask: build
 
 ### Dockerfile
 
-There are two lines that we will add to our standard Dockerfile:
+We will add a new line to our standard Dockerfile:
 
 ```dockerfile
 FROM astral/uv:python3.13-bookworm
@@ -91,6 +91,7 @@ WORKDIR /app
 
 # Put the pyproject.toml & print_date.py file into the container
 COPY pyproject.toml .
+ENV PYTHONUNBUFFERED=1
 
 # Create a virtual environment and set the location to /app/.venv
 RUN uv venv
@@ -121,7 +122,7 @@ def test():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)
 
 
 ```
@@ -129,6 +130,7 @@ if __name__ == '__main__':
 - We import three objects from `flask` -- the server, the response object and the request object.
 - The `app` is created in the global namespace on purpose. Since so much relies on the core app and we need access to the decorators that are used in the routes (the lines that begin with an `@` sign).
 - In the `main` function we start our `flask` app on port 5000, so inside the container it is running on this port.
+- Turning on `debug=True` will allow for auto-reloading when code changes. 
 - The route that we have set up is `/test` and it will respond to a GET with a status 200 message of type `text/html` that says `Hello World`.
   - if you run this using `make flask` you should be able to go to your browser and type in `http://127.0.0.1:4000/test` and see this message!
 
@@ -204,7 +206,7 @@ def print_to_screen():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)
 ```
 
 - The first function `secret_route` also demonstrates an authorization tactic for blocking users you do not want in the system.

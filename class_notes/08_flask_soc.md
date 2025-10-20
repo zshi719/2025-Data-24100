@@ -1,6 +1,6 @@
----
+<!---
 title: "Separation of Concerns/Abstraction"
----
+--->
 
 # Separation of Concerns/Abstraction
 

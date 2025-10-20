@@ -1,6 +1,6 @@
----
+<!---
 title: "Static Analysis & Code Issues"
----
+--->
 
 # Static Analysis & Code issues
 

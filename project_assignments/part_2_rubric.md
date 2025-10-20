@@ -1,6 +1,6 @@
 ### Part 2 Rubric Grading Task List
 
-THIS IS NOT UPDATED FOR 2025.
+**THIS IS NOT UPDATED FOR 2025.**
 
 ## Repository organization
 - [ ] Used only branches -- there should be no commits directly to main

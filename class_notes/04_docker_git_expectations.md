@@ -1,6 +1,6 @@
----
+<!---
 title: "Git Expectations and Docker Environment Variables"
----
+--->
 
 # Git Expectations and Docker Environment Variables
 
