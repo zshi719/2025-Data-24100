@@ -81,7 +81,7 @@ uv run jupyter notebook --ip=0.0.0.0 --allow-root --no-browser --port 8888
 
 ```bash
 docker run -it -p 8888:8888 -v $(pwd):/app/src class5 \
-    jupyter notebook --ip=0.0.0.0 --allow-root --no-browser --port 8888
+    uv run jupyter notebook --ip=0.0.0.0 --allow-root --no-browser --port 8888
 ```
 
 - This should behave as expected with a container running a jupyter server, the ports mapped properly and the volume mounted so we can save files. 
@@ -134,7 +134,7 @@ notebook: build
 	docker run -it -p 8888:8888 \
 	-v $(shell pwd):/app/src \
 	$(IMAGE_NAME) \
-	jupyter notebook --allow-root --no-browser \
+	uv run jupyter notebook --allow-root --no-browser \
 	--port 8888 --ip=0.0.0.0
 
 ```
