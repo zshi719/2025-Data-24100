@@ -66,7 +66,7 @@ docker run -it -p 8888:8888 class5 /bin/bash
 - Once the container spins up, we can run `jupyter` using the following command.
 
 ```bash
-jupyter notebook --ip=0.0.0.0 --allow-root --no-browser --port 8888
+uv run jupyter notebook --ip=0.0.0.0 --allow-root --no-browser --port 8888
 ```
 
 - What does each option do:
