@@ -1,3 +1,7 @@
+---
+title: "Separation of Concerns/Abstraction"
+---
+
 # Separation of Concerns/Abstraction
 
 - Last time we talked about the DRY principle and how we can use it to write better code.

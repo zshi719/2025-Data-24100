@@ -1,3 +1,7 @@
+---
+title: "Static Analysis & Code Issues"
+---
+
 # Static Analysis & Code issues
 
 In today's lecture we will go over a few things that I have noticed in the code when reviewing the projects and quizzes. These will be presented as a laundry list of observations that should be cleaned up.

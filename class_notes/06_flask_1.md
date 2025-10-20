@@ -1,3 +1,7 @@
+---
+title: "Flask"
+---
+
 # Flask
 
 - During today's class we will build a simple `Flask` server.

@@ -1,3 +1,7 @@
+---
+title: "Testing"
+---
+
 TO DO NOTES: For testing, add more on coverage; provide examples and types. End of lecture 16.
 
 

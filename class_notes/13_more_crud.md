@@ -1,3 +1,7 @@
+---
+title: "More CRUD"
+---
+
 # More CRUD
 
 - Todays lecture will cover building endpoints with multiple functionalities

@@ -1,3 +1,7 @@
+---
+title: "More Shell and Environments"
+---
+
 # More Shell and Environments
 
 - [More Shell and Environments](#more-shell-and-environments)

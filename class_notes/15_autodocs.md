@@ -1,3 +1,7 @@
+---
+title: "Autodocs"
+---
+
 # Autodocs
 
 ## Motivation

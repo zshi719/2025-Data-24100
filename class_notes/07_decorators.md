@@ -1,3 +1,7 @@
+---
+title: "Metaprogramming"
+---
+
 # Metaprogramming
 
 ## Code Quality & DRY Code

@@ -1,3 +1,7 @@
+---
+title: "Logging in Python and Project Issues"
+---
+
 # Logging in Python and some project issues
 
 THIS LECTURE WAS SHORT LAST TIME. ADD PDB HERE.
