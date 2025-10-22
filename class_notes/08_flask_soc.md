@@ -264,9 +264,11 @@ def list_players_per_team(team):
     if team not in df.loc[:, "team_abbreviation"].unique():
         return jsonify({"Error": f"Team {team} does not exist"}), 500
 
-    list_of_players = df.loc[
-        (df.team_abbreviation == team), "player_name"
-    ].to_list()
+    team_data = df.loc[
+        (df.team_abbreviation == team), ["player_name", "college"]
+    ]
+    
+    list_of_players = team_data.to_dict(orient="records")
 
     to_return = {team: list_of_players}
     return jsonify(to_return), 200

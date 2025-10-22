@@ -23,9 +23,11 @@ def list_colleges():
 def list_colleges_per_team(team):
     df = load_data()
 
-    list_of_players = df.loc[
-        (df.team_abbreviation == team) & ~(df.college.isna()), "college"
-    ].to_list()
+    team_data = df.loc[
+        (df.team_abbreviation == team) & ~(df.college.isna()), ["player_name", "college"]
+    ]
+    
+    list_of_players = team_data.to_dict(orient="records")
 
     to_return = {team: list_of_players}
     return jsonify(to_return), 200

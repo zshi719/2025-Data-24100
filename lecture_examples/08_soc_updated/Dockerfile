@@ -1,9 +1,12 @@
-FROM python:3.10.15-bookworm
-
+FROM astral/uv:python3.13-bookworm
 WORKDIR /app
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+
+# Put the pyproject.toml & print_date.py file into the container
+COPY pyproject.toml .
+
+# Create a virtual environment and set the location to /app/.venv
+RUN uv venv
+RUN uv sync
 
 ENV PYTHONUNBUFFERED=1
-WORKDIR /app/src
-CMD ["python", "app.py"]
+CMD [ "uv", "run", "jupyter", "notebook", "--allow-root", "--no-browser", "--ip=0.0.0.0" ]
