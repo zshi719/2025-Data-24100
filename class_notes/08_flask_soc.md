@@ -27,7 +27,7 @@ title: "Separation of Concerns/Abstraction"
   - Specific small functionality: Take a look at the function `def strip` in the function. What is it actually doing? 
   
   ```python
-      @forbid_nonstring_types(["bytes"])
+      @forbid_nonstring_types(['bytes'])
       def strip(self, to_strip=None):
           result = self._data.array._str_strip(to_strip)
           return self._wrap_result(result)
@@ -85,7 +85,7 @@ flowchart LR
 
 ### Inexperience
 
-- The largest driver of code complexity is inexperience and lack of knowledge. For example, I do not do a lot of work with PyTorch which is a complex library that, while written in python, behaves very differentially than other common Python code. 
+- The largest driver of code complexity is inexperience and lack of knowledge. For example, I do not do a lot of work with PyTorch which is a complex library that, while written in python, behaves very differently than other common Python code. 
   - When I write code in PyTorch it appears rough because of this lack of experience.
 - For students who are just getting started this is the largest source of complexity; the only way to get better is through work.
 
@@ -111,11 +111,11 @@ And compare that to:
 
 ```python
 def process_data(data_list):
-    return [2 * x for x in data if x > 0 and 2*x < 100]
+    return [x for x in data_list if x > 0 and x < 100]
 ```
 
 Both pieces of code do the same thing: 
-* Take all the numbers in a list and return 2x each, but only if they are positive and doubling them keeps it less than 100.
+* Take all the numbers in a list that are positive and less than 100.
 
 - The second uses a list comprehension with a small amount of logic to return the list. This is relatively easy to understand because you can cleanly break out that this is a map and filter on a list. 
 - The first uses two for loops to implement the same thing in a way that is much more difficult to understand as the logic on the filter exists on two different lines. 
@@ -183,14 +183,14 @@ There are many different coding styles. The two most frequently cited (that I've
 
 They have quite a bit of overlap but do have some divergences. 
 
-Does the specific style guide matter? I'd argue that it is more important to have _a_ style guide than one in particular. Good developers are able to change their coding style and so it is more important to have one laid.
+Does the specific style guide matter? I'd argue that it is more important to have _a_ style guide than which specific one. Good developers are able to change their coding style and so it is more important to have one laid.
 
 
 ## SOC & Flask
 
 - Today we are going to focus on taking a flask app and doing a separation of concerns exercise on it. 
 - The example that we will be working on can be found in [this directory](../lecture_examples/08_soc/).
-- The application that we are working on is going to server data, in an API format about NBA players. The data was downloaded from [here](https://www.kaggle.com/datasets/justinas/nba-players-data).
+- The application that we are working on is going to serve data, in an API format about NBA players. The data was downloaded from [here](https://www.kaggle.com/datasets/justinas/nba-players-data).
 - We are going to create 3 API endpoints: 
   - One that lists all players for the 2022-23 season
   - One that lists all colleges attended for anyone who played in the 2022-23 season
@@ -204,85 +204,90 @@ import pandas as pd
 app = Flask(__name__)
 
 
-@app.route("/list_players", methods=["GET"])
+@app.route('/list_players', methods=['GET'])
 def list_players_route():
-    df = pd.read_csv("/app/src/all_seasons.csv")
+    df = pd.read_csv('/app/src/all_seasons.csv')
     df = df.loc[
-        (df.season == "2022-23"),
-        ["player_name", "college", "team_abbreviation"],
+        (df.season == '2022-23'),
+        ['player_name', 'college', 'team_abbreviation'],
     ]
 
-    players_list = df["player_name"].unique().tolist()
+    players_list = df['player_name'].unique().tolist()
 
-    to_return = {"players": players_list}
+    to_return = {'players': players_list}
     return jsonify(to_return), 200
 
 
-@app.route("/list_colleges", methods=["GET"])
+@app.route('/list_colleges', methods=['GET'])
 def list_colleges_route():
-    df = pd.read_csv("/app/src/all_seasons.csv")
+    df = pd.read_csv('/app/src/all_seasons.csv')
     df = df.loc[
-        (df.season == "2022-23"),
-        ["player_name", "college", "team_abbreviation"],
+        (df.season == '2022-23'),
+        ['player_name', 'college', 'team_abbreviation'],
     ]
 
     df = df.loc[~(df.college.isna()), :]
-    college_list = df["college"].unique().tolist()
+    college_list = df['college'].unique().tolist()
 
-    to_return = {"college": college_list}
+    to_return = {'college': college_list}
     return jsonify(to_return), 200
 
 
-@app.route("/colleges_team/<team>")
+@app.route('/colleges_team/<team>')
 def list_colleges_per_team(team):
-    df = pd.read_csv("/app/src/all_seasons.csv")
+    df = pd.read_csv('/app/src/all_seasons.csv')
     df = df.loc[
-        (df.season == "2022-23"),
-        ["player_name", "college", "team_abbreviation"],
+        (df.season == '2022-23'),
+        ['player_name', 'college', 'team_abbreviation'],
     ]
 
     if team not in df.loc[:, 'team_abbreviation'].unique():
         return jsonify({'Error': f'Team {team} does not exist'})
 
-    list_of_players = (df
-                       .loc[(df.team_abbreviation == team), 'player_name']
-                       .to_list()
-                       )
+    college_list = df.loc[
+        (df.team_abbreviation == team) & ~(df.college.isna()), 'college'
+    ].unique().tolist()
 
-    to_return = {team: list_of_players}
+    to_return = {team: college_list}
     return jsonify(to_return), 200
 
 
-@app.route("/players_team/<team>")
-def list_players_per_team(team):
-    df = pd.read_csv("/app/src/all_seasons.csv")
+@app.route('/players_team/<team>')
+def list_players_and_colleges_per_team(team):
+    df = pd.read_csv('/app/src/all_seasons.csv')
     df = df.loc[
-        (df.season == "2022-23"),
-        ["player_name", "college", "team_abbreviation"],
+        (df.season == '2022-23'),
+        ['player_name', 'college', 'team_abbreviation'],
     ]
 
-    if team not in df.loc[:, "team_abbreviation"].unique():
-        return jsonify({"Error": f"Team {team} does not exist"}), 500
+    if team not in df.loc[:, 'team_abbreviation'].unique():
+        return jsonify({'Error': f'Team {team} does not exist'}), 500
 
     team_data = df.loc[
-        (df.team_abbreviation == team), ["player_name", "college"]
+        (df.team_abbreviation == team), ['player_name', 'college']
     ]
     
-    list_of_players = team_data.to_dict(orient="records")
+    list_of_players_and_colleges = [
+        {
+            'player_name': row['player_name'], 
+            'college': None if pd.isna(row['college']) else row['college']
+        } 
+        for _, row in team_data.iterrows()
+    ]
 
-    to_return = {team: list_of_players}
+    to_return = {team: list_of_players_and_colleges}
     return jsonify(to_return), 200
 
 
-if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=5000)
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=5000)
 
 ```
 
 - First, look at the command `jsonify` this is a flask command that turns a dictionary object with the correct metadata to form a `Response` object. It handles the header `Content-Type` properly and adds the additional decoration to properly respond. 
   - When we use `jsonify` we use an _implicit tuple_ to include the status code on the response. (e.g. `jsonify(to_return), 200`). While no tuple is defined the object returned from this is a tuple.
   - I personally find this gross, but it is a common flask pattern.
-- Second, look at `@app.route("/players_team/<team>")` and the resulting function call, which also specifies `team`. This type of route parameter allows us to accept _anything_ into the url and then pass that, through the route and into the function for processing.
+- Second, look at `@app.route('/players_team/<team>')` and the resulting function call, which also specifies `team`. This type of route parameter allows us to accept _anything_ into the url and then pass that, through the route and into the function for processing.
   - In the code above we check to make sure that the `team` is inside the actual teams in the data and if it is not return a 500, otherwise we filter the data and return it as a JSON object.
 - You can run this by typing `make run` in the directory.
 - This code works, but is a single file with lots of boilerplate code.
@@ -329,7 +334,7 @@ if __name__ == "__main__":
 │   └── all_seasons.csv
 ├── Dockerfile
 ├── Makefile
-└── requirements.txt
+└── pyproject.toml
 ```
 
 There are two files I want to look at to show the effect of this refactoring. First we'll start with our `app.py` file:
@@ -363,30 +368,55 @@ if __name__ == '__main__':
 
 ```python
 from flask import jsonify
+import pandas as pd
 from app.data_utils.loading_utils import load_data
 from app.route_utils.decorators import validate_team
 
-BASE_URL = '/api/teams'
+BASE_URL = '/api/colleges'
+
+
+def list_colleges():
+    try:
+        df = load_data()
+
+        college_list = (
+            df.loc[~(df.college.isna()), 'college'].unique().tolist()
+        )
+
+        return jsonify({'colleges': college_list}), 200
+
+    except Exception as e:
+        return jsonify({'error': f'An error occurred: {str(e)}'}), 500
+
 
 @validate_team
-def list_players_per_team(team):
+def list_colleges_per_team(team):
     df = load_data()
 
-    list_of_players = (df
-                       .loc[(df.team_abbreviation == team)
-                            & ~(df.college.isna()), 'player_name']
-                       .to_list()
-                       )
+    team_data = df.loc[
+        (df.team_abbreviation == team), ['player_name', 'college']
+    ]
+    
+    list_of_players_and_colleges = [
+        {
+            'player_name': row['player_name'], 
+            'college': None if pd.isna(row['college']) else row['college']
+        } 
+        for _, row in team_data.iterrows()
+    ]
 
-    to_return = {team: list_of_players}
+    to_return = {team: list_of_players_and_colleges}
     return jsonify(to_return), 200
 
 
-def register_team_routes(app):
-    @app.route(f'{BASE_URL}/players/<team>/list', methods=['GET'])
-    def list_players_per_team_route(team):
-        return list_players_per_team(team)
+def register_college_routes(app):
+    @app.route(f'{BASE_URL}/list', methods=['GET'])
+    def list_colleges_route():
+        return list_colleges()
 
+    @app.route(f'{BASE_URL}/<team>/list', methods=['GET'])
+    def list_colleges_per_team_route(team):
+        return list_colleges_per_team(team)
 ```
 
 - There are a few important things to notice:
