@@ -1,257 +1,195 @@
-# ruff: noqa: D101 D100 D107
+#!/usr/bin/env python3
+"""
+Flask API Autograder - Modular testing for different API versions.
+
+This script tests Flask API endpoints and validates responses.
+It assumes the Flask server is already running (typically via part_X_build_run.sh).
+
+Usage:
+    python flask_autograder.py --api v1 --key YOUR_KEY
+    python flask_autograder.py --api v1 --api v2 --url http://localhost:5000
+"""
+
+import argparse
+import logging
 import os
 import sys
+import warnings
 
 import requests
 from jsonschema import Draft7Validator
 
+# Suppress urllib3 header parsing warnings (they're noisy and we handle the responses fine)
+warnings.filterwarnings('ignore', message='.*Failed to parse headers.*')
+warnings.filterwarnings('ignore', module='urllib3')
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(levelname)s - %(message)s",
+)
+logger = logging.getLogger(__name__)
+
+# Suppress urllib3 connection/response warnings - they log header issues as WARNING
+logging.getLogger("urllib3.connection").setLevel(logging.ERROR)
+logging.getLogger("urllib3.connectionpool").setLevel(logging.ERROR)
+
+# Track if we've seen header issues (to report once per test run)
+_header_issues_detected = False
+
 # Schema Definitions
 API_SCHEMAS = {
-    # v1 schemas
+    # Part 2 / v1 schemas
     "row_count": {
         "type": "object",
         "required": ["row_count"],
         "properties": {"row_count": {"type": "integer", "minimum": 0}},
         "additionalProperties": False,
     },
-    "unique_stock_count": {
+    "unique_nyse_stock_count": {
         "type": "object",
-        "required": ["unique_stock_count"],
-        "properties": {"unique_stock_count": {"type": "integer", "minimum": 0}},
+        "required": ["unique_nyse_stock_count"],
+        "properties": {"unique_nyse_stock_count": {"type": "integer", "minimum": 0}},
         "additionalProperties": False,
     },
-    "row_by_market_count": {
+    "unique_nasdaq_stock_count": {
         "type": "object",
-        "required": ["NASDAQ", "NYSE"],
+        "required": ["unique_nasdaq_stock_count"],
         "properties": {
-            "NASDAQ": {"type": "integer", "minimum": 0},
-            "NYSE": {"type": "integer", "minimum": 0},
-        },
-        "additionalProperties": False,
-    },
-    # v3 schemas
-    "account_creation": {
-        "type": "object",
-        "required": ["account_id"],
-        "properties": {"account_id": {"type": "integer", "minimum": 1}},
-        "additionalProperties": False,
-    },
-    "account_holdings": {
-        "type": "object",
-        "required": ["account_id", "name", "stock_holdings"],
-        "properties": {
-            "account_id": {"type": "integer", "minimum": 1},
-            "name": {"type": "string"},
-            "stock_holdings": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "required": [
-                        "symbol",
-                        "purchase_date",
-                        "sale_date",
-                        "number_of_shares",
-                    ],
-                    "properties": {
-                        "symbol": {"type": "string"},
-                        "purchase_date": {"type": "string", "format": "date"},
-                        "sale_date": {"type": "string", "format": "date"},
-                        "number_of_shares": {"type": "integer", "minimum": 1},
-                    },
-                },
-            },
-        },
-    },
-    "stock_list": {
-        "type": "object",
-        "required": ["symbol", "holdings"],
-        "properties": {
-            "symbol": {"type": "string"},
-            "holdings": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "required": [
-                        "account_id",
-                        "purchase_date",
-                        "sale_date",
-                        "number_of_shares",
-                    ],
-                    "properties": {
-                        "account_id": {"type": "integer", "minimum": 1},
-                        "purchase_date": {"type": "string", "format": "date"},
-                        "sale_date": {"type": "string", "format": "date"},
-                        "number_of_shares": {"type": "integer", "minimum": 1},
-                    },
-                },
-            },
-        },
-    },
-    "account_return": {
-        "type": "object",
-        "required": ["account_id", "return"],
-        "properties": {
-            "account_id": {"type": "integer", "minimum": 1},
-            "return": {"type": "number"},
-        },
-    },
-    "accounts_list": {
-        "type": "array",
-        "items": {
-            "type": "object",
-            "required": ["account_id", "name"],
-            "properties": {
-                "account_id": {"type": "integer", "minimum": 1},
-                "name": {"type": "string"},
-            },
-        },
-    },
-    "back_test_response": {
-        "type": "object",
-        "required": ["return", "num_observations"],
-        "properties": {
-            "return": {"type": "number"},
-            "num_observations": {"type": "integer", "minimum": 0},
+            "unique_nasdaq_stock_count": {"type": "integer", "minimum": 0}
         },
         "additionalProperties": False,
     },
 }
 
-YEAR_RESPONSE_SCHEMA = {
-    "type": "object",
-    "required": ["year", "count"],
-    "properties": {
-        "year": {"type": "integer", "minimum": 1900, "maximum": 2100},
-        "count": {"type": "integer", "minimum": 0},
-    },
-    "additionalProperties": False,
-}
 
+class FlaskAPITester:
+    """Test harness for Flask API endpoints."""
 
-def short_output(data):
-    """Print only the first few characters of a JSON object"""
-    data_str = str(data)
-    return data_str[:150]
-
-
-def create_price_schema(price_type: str) -> dict:
-    """Create a schema for price-related endpoints."""
-    return {
-        "type": "object",
-        "required": ["symbol", "price_info"],
-        "properties": {
-            "symbol": {"type": "string"},
-            "price_info": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "required": ["date", price_type],
-                    "properties": {
-                        "date": {"type": "string", "format": "date"},
-                        price_type: {"type": "number"},
-                    },
-                    "additionalProperties": False,
-                },
-            },
-        },
-        "additionalProperties": False,
-    }
-
-
-PRICE_SCHEMAS = {
-    "open": create_price_schema("open"),
-    "close": create_price_schema("close"),
-    "high": create_price_schema("high"),
-    "low": create_price_schema("low"),
-}
-
-
-class APITester:
     def __init__(
         self,
         base_url: str = "http://localhost:4000",
         api_key: str | None = None,
+        json_output: bool = False,
     ):
+        """
+        Initialize the tester.
+
+        Args:
+            base_url: Base URL for the Flask application
+            api_key: API key for authentication
+            json_output: If True, output results as JSON instead of logs
+        """
         self.base_url = base_url
         self.api_key = api_key
+        self.json_output = json_output
+        self.test_results = {"passed": 0, "failed": 0, "total": 0}
+        self.endpoint_data = {}  # Store actual data returned from endpoints
 
     def make_request(
         self,
         endpoint: str,
         method: str = "GET",
-        data: dict | None = None,
-        expected_status_codes: list[int] = [200],
+        use_api_key: bool = True,
+        custom_api_key: str | None = None,
+        expected_status_codes: list[int] | None = None,
     ) -> tuple[dict | None, int]:
-        """Make an HTTP request to the specified endpoint."""
+        """
+        Make an HTTP request to the specified endpoint.
+
+        Args:
+            endpoint: API endpoint to call
+            method: HTTP method (default: GET)
+            use_api_key: Whether to include the API key in headers
+            custom_api_key: Custom API key to use (overrides default)
+            expected_status_codes: List of expected status codes
+
+        Returns:
+            Tuple of (response_data, status_code)
+        """
+        if expected_status_codes is None:
+            expected_status_codes = [200]
+
         headers = {"Content-Type": "application/json"}
-        if self.api_key:
-            headers["DATA-241-API-KEY"] = self.api_key
+
+        if use_api_key:
+            key = custom_api_key if custom_api_key else self.api_key
+            if key:
+                headers["DATA-241-API-KEY"] = key
+
+        url = f"{self.base_url}{endpoint}"
 
         try:
-            # Make the request
             if method == "GET":
-                response = requests.get(f"{self.base_url}{endpoint}", headers=headers)
-            elif method == "POST":
-                response = requests.post(
-                    f"{self.base_url}{endpoint}", headers=headers, json=data
-                )
-            elif method == "DELETE":
-                response = requests.delete(
-                    f"{self.base_url}{endpoint}", headers=headers, json=data
-                )
+                response = requests.get(url, headers=headers, timeout=10)
             else:
-                raise ValueError(f"Unsupported HTTP method: {method}")
+                logger.error(f"Unsupported HTTP method: {method}")
+                return None, 500
 
-            print(f"Response status code: {response.status_code}")
+            # Check for malformed headers (silently track for summary)
+            global _header_issues_detected
+            if not _header_issues_detected and hasattr(response, 'raw') and hasattr(response.raw, '_original_response'):
+                raw_response = response.raw._original_response
+                if hasattr(raw_response, 'msg') and hasattr(raw_response.msg, 'defects'):
+                    if raw_response.msg.defects:
+                        _header_issues_detected = True
 
-            # Handle response
-            if response.status_code in expected_status_codes:
-                if response.status_code in [200, 201]:
-                    try:
-                        return (response.json(), response.status_code)
-                    except ValueError as e:  # noqa 841
-                        print(
-                            "Warning: Response is not JSON decodable: "
-                            f" {response.text}"
-                        )
-                        return (None, response.status_code)
-                return (None, response.status_code)
+            # Try to parse JSON response for successful requests
+            if response.status_code in [200, 201]:
+                try:
+                    return response.json(), response.status_code
+                except ValueError:
+                    logger.debug(f"Response is not valid JSON: {response.text[:100]}")
+                    return None, response.status_code
 
-            return (None, response.status_code)
+            return None, response.status_code
 
+        except requests.exceptions.ConnectionError:
+            logger.error(
+                f"Connection error: Could not connect to {self.base_url}. "
+                "Is the Flask server running?"
+            )
+            return None, 503
+        except requests.exceptions.Timeout:
+            logger.error(f"Request timeout for {url}")
+            return None, 504
         except requests.exceptions.RequestException as e:
-            status_code = getattr(e.response, "status_code", 500)
-            return (None, status_code)
+            logger.error(f"Request failed: {e}")
+            return None, 500
 
-    def validate_response(self, data: dict, schema: dict) -> tuple[bool, list[str]]:
-        """Validate response data and collect unique errors."""
+    def validate_response(
+        self, data: dict, schema: dict
+    ) -> tuple[bool, list[str]]:
+        """
+        Validate response data against a JSON schema.
+
+        Args:
+            data: Response data to validate
+            schema: JSON schema to validate against
+
+        Returns:
+            Tuple of (is_valid, list_of_errors)
+        """
         validator = Draft7Validator(schema)
         errors = list(validator.iter_errors(data))
 
         if not errors:
             return True, []
 
-        # Create a set to store unique error messages
+        # Collect unique error messages
         unique_errors = set()
-
         for error in errors:
-            # Strip the array index from the path to identify similar errors
-            path_parts = [p for p in error.path if not str(p).isdigit()]
-            base_path = ".".join(str(p) for p in path_parts) if path_parts else ""
-
-            # Create a unique error identifier combining the path and message
-            if base_path:
-                error_msg = f"{base_path}: {error.message}"
-            else:
-                error_msg = error.message
-
+            # Create path string for context
+            path_parts = [str(p) for p in error.path if not str(p).isdigit()]
+            base_path = ".".join(path_parts) if path_parts else "root"
+            error_msg = f"{base_path}: {error.message}"
             unique_errors.add(error_msg)
 
-        # Convert to list and limit to 5 errors
+        # Limit to 5 errors for readability
         error_list = sorted(unique_errors)
-        if len(error_list) > 5:  # noqa PLR2004
+        if len(error_list) > 5:
             error_list = error_list[:5]
-            error_list.append("... more errors found")
+            error_list.append("... (additional errors omitted)")
 
         return False, error_list
 
@@ -259,442 +197,382 @@ class APITester:
         self,
         endpoint: str,
         schema: dict | None = None,
-        method: str = "GET",
-        data: dict | None = None,
-        expected_status_codes: list[int] = [200],
-    ) -> tuple[dict | None, int]:
-        """Generic endpoint testing method."""
-        print(f"\nTesting {method} {endpoint}")
-        data_response, status_code = self.make_request(
+        use_api_key: bool = True,
+        custom_api_key: str | None = None,
+        expected_status_codes: list[int] | None = None,
+        test_name: str = "",
+        endpoint_key: str | None = None,
+    ) -> tuple[bool, dict | None]:
+        """
+        Test a single endpoint.
+
+        Args:
+            endpoint: API endpoint to test
+            schema: JSON schema for validation (optional)
+            use_api_key: Whether to include API key
+            custom_api_key: Custom API key for testing
+            expected_status_codes: Expected HTTP status codes
+            test_name: Name/description of the test
+            endpoint_key: Key to store endpoint data under (for summary reporting)
+
+        Returns:
+            Tuple of (success, response_data)
+        """
+        if expected_status_codes is None:
+            expected_status_codes = [200]
+
+        self.test_results["total"] += 1
+        display_name = test_name or f"GET {endpoint}"
+
+        if not self.json_output:
+            logger.info(f"Testing: {display_name}")
+
+        data, status_code = self.make_request(
             endpoint,
-            method=method,
-            data=data,
+            use_api_key=use_api_key,
+            custom_api_key=custom_api_key,
             expected_status_codes=expected_status_codes,
         )
 
+        # Check status code
         if status_code not in expected_status_codes:
-            print(f"✗ {method} {endpoint}: " f"Unexpected status code {status_code}")
-            return
+            if not self.json_output:
+                logger.error(
+                    f"✗ FAILED: {display_name} - "
+                    f"Expected status {expected_status_codes}, got {status_code}"
+                )
+            self.test_results["failed"] += 1
+            return False, data
 
-        if status_code in [200, 201] and schema:
-            valid, errors = self.validate_response(data_response, schema)
+        # If we only care about status code, return success
+        if status_code != 200 or schema is None:
+            if not self.json_output:
+                logger.info(
+                    f"✓ PASSED: {display_name} - Status {status_code}"
+                )
+            self.test_results["passed"] += 1
+            return True, data
 
-            if errors:
-                short_response = short_output(data_response)
-                error_message = "; ".join(errors)
-                print(f"✗ {method} {endpoint}: " f"{error_message}: {short_response}")
-            else:
-                short_response = short_output(data_response)
-                print(f"✓ {method} {endpoint}: Success: {short_response}")
-        else:
-            print(f"✓ {method} {endpoint}: Status code {status_code}" " as expected")
+        # Validate response schema
+        if data is None:
+            if not self.json_output:
+                logger.error(f"✗ FAILED: {display_name} - No response data received")
+            self.test_results["failed"] += 1
+            return False, None
 
-        return data_response
+        is_valid, errors = self.validate_response(data, schema)
 
-    def run_tests(self, apis_to_test=["v1", "v2", "v3"]):
-        """Run all API tests."""
-        print("\nRunning comprehensive API tests...")
+        if not is_valid:
+            if not self.json_output:
+                logger.error(f"✗ FAILED: {display_name} - Schema validation errors:")
+                for error in errors:
+                    logger.error(f"  - {error}")
+            self.test_results["failed"] += 1
+            return False, data
+
+        # Success! Store data if endpoint_key provided
+        if endpoint_key and data:
+            self.endpoint_data[endpoint_key] = data
+            
+        if not self.json_output:
+            logger.info(f"✓ PASSED: {display_name} - {data}")
+        self.test_results["passed"] += 1
+        return True, data
+
+    def run_v1_tests(self) -> bool:
+        """
+        Run v1 API endpoint tests (Part 2).
+
+        Tests:
+        - /api/v1/row_count (with valid API key)
+        - /api/v1/unique_nyse_stock_count (with valid API key)
+        - /api/v1/unique_nasdaq_stock_count (with valid API key)
+        - Authentication on row_count (401 for missing/invalid keys)
+        - Authentication on NYSE endpoint (401 for missing key)
+        - Authentication on NASDAQ endpoint (401 for missing key)
+
+        Returns:
+            True if all tests passed, False otherwise
+        """
+        if not self.json_output:
+            logger.info("=" * 70)
+            logger.info("RUNNING V1 API TESTS (Part 2)")
+            logger.info("=" * 70)
+
+        all_passed = True
+
+        # Test 1: row_count endpoint
+        if not self.json_output:
+            logger.info("\n--- Testing /api/v1/row_count ---")
+        success, _ = self.test_endpoint(
+            "/api/v1/row_count",
+            schema=API_SCHEMAS["row_count"],
+            test_name="Row count with valid API key",
+            endpoint_key="row_count",
+        )
+        all_passed = all_passed and success
+
+        # Test 2: unique_nyse_stock_count endpoint
+        if not self.json_output:
+            logger.info("\n--- Testing /api/v1/unique_nyse_stock_count ---")
+        success, _ = self.test_endpoint(
+            "/api/v1/unique_nyse_stock_count",
+            schema=API_SCHEMAS["unique_nyse_stock_count"],
+            test_name="NYSE unique stock count with valid API key",
+            endpoint_key="unique_nyse_stock_count",
+        )
+        all_passed = all_passed and success
+
+        # Test 3: unique_nasdaq_stock_count endpoint
+        if not self.json_output:
+            logger.info("\n--- Testing /api/v1/unique_nasdaq_stock_count ---")
+        success, _ = self.test_endpoint(
+            "/api/v1/unique_nasdaq_stock_count",
+            schema=API_SCHEMAS["unique_nasdaq_stock_count"],
+            test_name="NASDAQ unique stock count with valid API key",
+            endpoint_key="unique_nasdaq_stock_count",
+        )
+        all_passed = all_passed and success
+
+        # Test 4: Authentication - missing API key on row_count
+        if not self.json_output:
+            logger.info("\n--- Testing authentication (missing API key) ---")
+        success, _ = self.test_endpoint(
+            "/api/v1/row_count",
+            use_api_key=False,
+            expected_status_codes=[401],
+            test_name="Row count without API key (should return 401)",
+        )
+        all_passed = all_passed and success
+
+        # Test 5: Authentication - invalid API key on row_count
+        if not self.json_output:
+            logger.info("\n--- Testing authentication (invalid API key) ---")
+        success, _ = self.test_endpoint(
+            "/api/v1/row_count",
+            custom_api_key="INVALID_KEY_12345",
+            expected_status_codes=[401],
+            test_name="Row count with invalid API key (should return 401)",
+        )
+        all_passed = all_passed and success
+
+        # Test 6: Authentication - missing API key on NYSE endpoint
+        success, _ = self.test_endpoint(
+            "/api/v1/unique_nyse_stock_count",
+            use_api_key=False,
+            expected_status_codes=[401],
+            test_name="NYSE count without API key (should return 401)",
+        )
+        all_passed = all_passed and success
+
+        # Test 7: Authentication - missing API key on NASDAQ endpoint
+        success, _ = self.test_endpoint(
+            "/api/v1/unique_nasdaq_stock_count",
+            use_api_key=False,
+            expected_status_codes=[401],
+            test_name="NASDAQ count without API key (should return 401)",
+        )
+        all_passed = all_passed and success
+
+        return all_passed
+
+    def run_v2_tests(self) -> bool:
+        """
+        Run v2 API endpoint tests.
+
+        Placeholder for future implementation.
+
+        Returns:
+            True (placeholder)
+        """
+        logger.info("=" * 70)
+        logger.info("RUNNING V2 API TESTS")
+        logger.info("=" * 70)
+        logger.warning("V2 tests not yet implemented")
+        return True
+
+    def run_v3_tests(self) -> bool:
+        """
+        Run v3 API endpoint tests.
+
+        Placeholder for future implementation.
+
+        Returns:
+            True (placeholder)
+        """
+        logger.info("=" * 70)
+        logger.info("RUNNING V3 API TESTS")
+        logger.info("=" * 70)
+        logger.warning("V3 tests not yet implemented")
+        return True
+
+    def run_tests(self, apis_to_test: list[str]) -> bool:
+        """
+        Run selected API tests.
+
+        Args:
+            apis_to_test: List of API versions to test (e.g., ['v1', 'v2'])
+
+        Returns:
+            True if all tests passed, False otherwise
+        """
+        if not self.json_output:
+            logger.info(f"Testing APIs: {', '.join(apis_to_test)}")
+            logger.info(f"Base URL: {self.base_url}")
+            logger.info(f"API Key: {'Set' if self.api_key else 'Not Set'}\n")
+
+        all_passed = True
+
         if "v1" in apis_to_test:
-            self.run_v1_tests()
+            all_passed = self.run_v1_tests() and all_passed
+
         if "v2" in apis_to_test:
-            self.run_v2_tests()
+            all_passed = self.run_v2_tests() and all_passed
+
         if "v3" in apis_to_test:
-            self.run_v3_tests()
-        if "v4" in apis_to_test:
-            self.run_v4_tests()
-        if "iv" in apis_to_test:
-            self.run_iv_api_tests()
-        if "test_backtest_perfect_values" in apis_to_test:
-            self.test_backtest_perfect_values()
+            all_passed = self.run_v3_tests() and all_passed
 
-    def run_v1_tests(self):
-        """Run v1 API tests"""
-        print("Running tests on api/v1")
-        v1_endpoints = {
-            "/api/v1/row_by_market_count": API_SCHEMAS["row_by_market_count"],
-            "/api/v1/row_count": API_SCHEMAS["row_count"],
-            "/api/v1/unique_stock_count": API_SCHEMAS["unique_stock_count"],
-        }
+        # Print summary
+        self.print_summary()
 
-        for endpoint, schema in v1_endpoints.items():
-            self.test_endpoint(endpoint, schema)
+        return all_passed
 
-        # TODO -- add tests to make sure that the data-241-apk-key is working
-        # TODO -- add tests to verify returns correct error if not present
+    def print_summary(self) -> None:
+        """Print a summary of test results."""
+        global _header_issues_detected
+        
+        total = self.test_results["total"]
+        passed = self.test_results["passed"]
+        failed = self.test_results["failed"]
 
-    def run_v2_tests(self):
-        """Run v2 API tests"""
-        print("Running tests on api/v2")
-        # Test invalid API key
-        print("Testing invalid key")
-        invalid_key_tester = APITester(self.base_url, "INVALID_KEY")
-        invalid_key_tester.test_endpoint("/api/v2/2019", expected_status_codes=[401])
-
-        valid_years = [2019, 2011, 2015]
-        for year in valid_years:
-            self.test_endpoint(f"/api/v2/{year}", YEAR_RESPONSE_SCHEMA)
-
-        invalid_years = [1800, 1900]
-        for year in invalid_years:
-            self.test_endpoint(f"/api/v2/{year}", expected_status_codes=[404])
-
-        # Test price endpoints
-        valid_test_cases = [
-            ("open", "AAPL"),
-            ("close", "GOOG"),
-            ("high", "MSFT"),
-            ("low", "AMZN"),
-        ]
-        for price_type, symbol in valid_test_cases:
-            endpoint = f"/api/v2/{price_type}/{symbol}"
-            self.test_endpoint(endpoint, PRICE_SCHEMAS[price_type])
-
-        invalid_test_cases = [
-            ("open", "INVALID1"),
-            ("close", "INVALID2"),
-            ("high", "XYZ"),
-            ("low", "ABC"),
-        ]
-        for price_type, symbol in invalid_test_cases:
-            endpoint = f"/api/v2/{price_type}/{symbol}"
-            self.test_endpoint(endpoint, expected_status_codes=[404])
-
-    def run_v3_tests(self):
-        """Run v3 API tests"""
-        print("\nRunning tests on api/v3")
-
-        # Test 1: Create first account
-        print("\nTesting first account creation")
-        create_account_data = {"name": "Test Account 1"}
-        account1_info = self.test_endpoint(
-            "/api/v3/accounts",
-            schema=API_SCHEMAS["account_creation"],
-            method="POST",
-            data=create_account_data,
-            expected_status_codes=[201],
-        )
-
-        account1_id = account1_info["account_id"]
-
-        # Test 2: Create second account
-        print("\nTesting second account creation")
-        create_account_data = {"name": "Test Account 2"}
-        account2_info = self.test_endpoint(
-            "/api/v3/accounts",
-            schema=API_SCHEMAS["account_creation"],
-            method="POST",
-            data=create_account_data,
-            expected_status_codes=[201],
-        )
-        account2_id = account2_info["account_id"]
-
-        self.test_account_ids = [account1_id, account2_id]
-        # Test 3: Add stock to first account
-        print("\nTesting adding stock to first account")
-        stock_data1 = {
-            "account_id": account1_id,
-            "symbol": "MSFT",
-            "purchase_date": "2018-02-20",
-            "sale_date": "2019-02-20",
-            "number_of_shares": 100,
-        }
-        self.test_endpoint(
-            "/api/v3/stocks",
-            method="POST",
-            data=stock_data1,
-            expected_status_codes=[201],
-        )
-
-        # Test 4: Add stocks to second account
-        print("\nTesting adding stocks to second account")
-        stock_data2 = {
-            "account_id": account2_id,
-            "symbol": "AAPL",
-            "purchase_date": "2016-10-19",
-            "sale_date": "2016-10-27",
-            "number_of_shares": 50,
-        }
-        self.test_endpoint(
-            "/api/v3/stocks",
-            method="POST",
-            data=stock_data2,
-            expected_status_codes=[201],
-        )
-
-        stock_data3 = {
-            "account_id": account2_id,
-            "symbol": "IBM",
-            "purchase_date": "2016-09-08",
-            "sale_date": "2016-09-14",
-            "number_of_shares": 2,
-        }
-        self.test_endpoint(
-            "/api/v3/stocks",
-            method="POST",
-            data=stock_data3,
-            expected_status_codes=[201],
-        )
-
-        # Test 5: Verify account holdings
-        print("\nTesting account holdings retrieval")
-        self.test_endpoint(
-            f"/api/v3/accounts/{account1_id}",
-            schema=API_SCHEMAS["account_holdings"],
-        )
-        self.test_endpoint(
-            f"/api/v3/accounts/{account2_id}",
-            schema=API_SCHEMAS["account_holdings"],
-        )
-
-        # Run a test to verify that the values are correct.
-        self.run_final_perfect_tests()
-
-        # Test 6: Verify stocks across all accounts
-        print("\nTesting stocks retrieval across accounts")
-        self.test_endpoint("/api/v3/stocks/MSFT", schema=API_SCHEMAS["stock_list"])
-        self.test_endpoint("/api/v3/stocks/AAPL", schema=API_SCHEMAS["stock_list"])
-        self.test_endpoint("/api/v3/stocks/IBM", schema=API_SCHEMAS["stock_list"])
-
-        # Test 7: Calculate returns for both accounts
-        print("\nTesting returns calculation schema")
-        self.test_endpoint(
-            f"/api/v3/accounts/return/{account1_id}",
-            schema=API_SCHEMAS["account_return"],
-        )
-        self.test_endpoint(
-            f"/api/v3/accounts/return/{account2_id}",
-            schema=API_SCHEMAS["account_return"],
-        )
-
-        # Test: List all accounts
-        print("\nTesting accounts list retrieval")
-
-        self.test_endpoint("/api/v3/accounts", schema=API_SCHEMAS["accounts_list"])
-
-        # Test 8: Delete IBM stock from second account
-        print("\nTesting stock deletion")
-        self.test_endpoint(
-            "/api/v3/stocks",
-            method="DELETE",
-            data=stock_data3,
-            expected_status_codes=[204],
-        )
-
-        # Test 9: Verify updated account holdings after stock deletion
-        print("\nVerifying account holdings after stock deletion")
-        self.test_endpoint(
-            f"/api/v3/accounts/{account2_id}",
-            schema=API_SCHEMAS["account_holdings"],
-        )
-        # Test 10: Delete both accounts
-        print("\nTesting account deletion")
-        delete_account1_data = {"account_id": account1_id}
-        self.test_endpoint(
-            "/api/v3/accounts",
-            method="DELETE",
-            data=delete_account1_data,
-            expected_status_codes=[204],
-        )
-
-        delete_account2_data = {"account_id": account2_id}
-        self.test_endpoint(
-            "/api/v3/accounts",
-            method="DELETE",
-            data=delete_account2_data,
-            expected_status_codes=[204],
-        )
-
-    def run_v4_tests(self):
-        """Run v4 API tests"""
-        print("\nRunning tests on api/v4")
-
-        # Test 1: Valid backtest request
-        valid_backtest_data = {
-            "value_1": "O1",
-            "value_2": "C1",
-            "operator": "LT",
-            "purchase_type": "B",
-            "start_date": "2020-01-03",
-            "end_date": "2020-01-03",
-        }
-        self.test_endpoint(
-            "/api/v4/back_test",
-            schema=API_SCHEMAS["back_test_response"],
-            method="POST",
-            data=valid_backtest_data,
-        )
-
-        # Test 2: Invalid date (non-trading day)
-        invalid_date_data = {
-            "value_1": "O1",
-            "value_2": "C1",
-            "operator": "LT",
-            "purchase_type": "B",
-            "start_date": "1990-01-01",
-            "end_date": "1990-01-02",
-        }
-        self.test_endpoint(
-            "/api/v4/back_test",
-            method="POST",
-            data=invalid_date_data,
-            expected_status_codes=[400],
-        )
-
-    def run_iv_api_tests(self):
-        """Run v2 API tests"""
-        print("Running tests on api/v2")
-        # Test invalid API key
-        print("Testing invalid key")
-        invalid_key_tester = APITester(self.base_url, "INVALID_KEY")
-        invalid_key_tester.test_endpoint("/api/v2/2019", expected_status_codes=[401])
-
-    def run_final_perfect_tests(self):
-        """Run final perfect tests to verify specific account returns."""
-        print("\nRunning Perfect Tests on Accounts")
-
-        if not hasattr(self, "test_account_ids"):
-            print("Error: No account IDs available. Run v3 tests first.")
+        if self.json_output:
+            # Output JSON format for parsing by other scripts
+            import json
+            result = {
+                "total_tests": total,
+                "passed": passed,
+                "failed": failed,
+                "all_passed": failed == 0 and total > 0,
+                "header_issues": _header_issues_detected,
+                "endpoint_data": self.endpoint_data,
+            }
+            print(json.dumps(result, indent=2))
             return
 
-        # Test first account return
-        first_account_response = self.test_endpoint(
-            f"/api/v3/accounts/return/{self.test_account_ids[0]}",
-            schema=API_SCHEMAS["account_return"],
-        )
+        logger.info("\n" + "=" * 70)
+        logger.info("TEST SUMMARY")
+        logger.info("=" * 70)
+        logger.info(f"Total tests: {total}")
+        logger.info(f"Passed: {passed}")
+        logger.info(f"Failed: {failed}")
+        
+        # Report header issues if detected
+        if _header_issues_detected:
+            logger.info("\n⚠ CODE QUALITY ISSUE:")
+            logger.info("  HTTP response headers are malformed (likely 'Content Type' instead of 'Content-Type')")
+            logger.info("  This violates HTTP standards but responses were processed successfully")
 
-        if first_account_response:
-            actual_return = first_account_response["return"]
-            expected_return = 1568.0
-            tolerance = 0.05
-
-            if abs(actual_return - expected_return) <= tolerance:
-                print(
-                    f"✓ First account (ID: {self.test_account_ids[0]}) "
-                    "return test passed: {actual_return}"
-                )
-            else:
-                print(
-                    f"✗ First account (ID: {self.test_account_ids[0]}) "
-                    f"return test failed: Expected {expected_return} ± "
-                    f"{tolerance}, got {actual_return}"
-                )
-
-        # Test second account return
-        second_account_response = self.test_endpoint(
-            f"/api/v3/accounts/return/{self.test_account_ids[1]}",
-            schema=API_SCHEMAS["account_return"],
-        )
-
-        if second_account_response:
-            actual_return = second_account_response["return"]
-            expected_return = -47.62
-            tolerance = 0.05
-
-            if abs(actual_return - expected_return) <= tolerance:
-                print(
-                    f"✓ Second account (ID: {self.test_account_ids[1]}) "
-                    "return test passed: {actual_return}"
-                )
-            else:
-                print(
-                    f"✗ Second account (ID: {self.test_account_ids[1]}) "
-                    "return test failed: Expected {expected_return} ± "
-                    "{tolerance}, got {actual_return}"
-                )
-
-    def test_backtest_perfect_values(self):
-        """Verify exact values from backtest endpoint with tolerance."""
-        print("\nTesting exact backtest values")
-
-        test_data = {
-            "value_1": "O1",
-            "value_2": "C1",
-            "operator": "LT",
-            "purchase_type": "B",
-            "start_date": "2020-01-03",
-            "end_date": "2020-01-03",
-        }
-
-        response = self.test_endpoint(
-            "/api/v4/back_test",
-            schema=API_SCHEMAS["back_test_response"],
-            method="POST",
-            data=test_data,
-        )
-
-        if not response:
-            print("✗ Backtest value verification failed: No response received")
-            return
-
-        # Check number of observations
-        expected_observations = 2033
-        actual_observations = response["num_observations"]
-        if actual_observations != expected_observations:
-            print(
-                f"✗ Observations test failed: Expected {expected_observations}, got {actual_observations}"
-            )
+        if failed == 0 and total > 0:
+            logger.info("\n✓ ALL TESTS PASSED!")
+        elif total > 0:
+            logger.warning(f"\n✗ {failed} TEST(S) FAILED")
         else:
-            print(f"✓ Observations test passed: {actual_observations}")
+            logger.info("\nNo tests were run")
 
-        # Check return value with tolerance
-        expected_return = 2188.4675
-        actual_return = response["return"]
-        tolerance = 0.05
 
-        if abs(actual_return - expected_return) <= tolerance:
-            print(f"✓ Return value test passed: {actual_return}")
-        else:
-            print(
-                f"✗ Return value test failed: Expected {expected_return} ± {tolerance}, got {actual_return}"
-            )
+def main():
+    """Main entry point for the autograder."""
+    parser = argparse.ArgumentParser(
+        description="Flask API Autograder - Test Flask endpoints",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  # Test v1 endpoints (Part 2)
+  python flask_autograder.py --api v1
+
+  # Test multiple API versions
+  python flask_autograder.py --api v1 --api v2
+
+  # Use custom URL and API key
+  python flask_autograder.py --api v1 --url http://localhost:5000 --key my_key
+
+  # Enable debug logging
+  python flask_autograder.py --api v1 --debug
+        """,
+    )
+
+    parser.add_argument(
+        "--url",
+        default="http://localhost:4000",
+        help="Base URL for the Flask application (default: http://localhost:4000)",
+    )
+
+    parser.add_argument(
+        "--key",
+        default=None,
+        help="API key for authentication (default: read from DATA_241_API_KEY env var)",
+    )
+
+    parser.add_argument(
+        "--api",
+        action="append",
+        choices=["v1", "v2", "v3"],
+        help="Specify which API version to test (can be used multiple times). "
+        "Default: v1",
+    )
+
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+        help="Enable debug logging",
+    )
+
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Output results in JSON format (for script parsing)",
+    )
+
+    args = parser.parse_args()
+
+    # Configure logging level
+    if args.debug:
+        logger.setLevel(logging.DEBUG)
+        logging.getLogger().setLevel(logging.DEBUG)
+    
+    # If JSON output is requested, suppress all logging
+    if args.json:
+        logging.getLogger().setLevel(logging.CRITICAL)
+
+    # Get API key
+    api_key = args.key or os.environ.get("DATA_241_API_KEY")
+
+    if not api_key:
+        logger.error(
+            "Error: API key not provided. Set DATA_241_API_KEY environment "
+            "variable or use --key option"
+        )
+        sys.exit(1)
+
+    # Determine which APIs to test
+    test_apis = args.api if args.api else ["v1"]
+
+    # Create tester and run tests
+    tester = FlaskAPITester(base_url=args.url, api_key=api_key, json_output=args.json)
+
+    try:
+        all_passed = tester.run_tests(test_apis)
+
+        # Exit with appropriate code
+        sys.exit(0 if all_passed else 1)
+
+    except KeyboardInterrupt:
+        logger.warning("\nTests interrupted by user")
+        sys.exit(130)
+    except Exception as e:
+        logger.exception(f"Unexpected error during testing: {e}")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
-    api_key = os.environ.get("DATA_241_API_KEY")
-    if not api_key:
-        print("Error: DATA_241_API_KEY environment variable not set")
-        sys.exit(1)
-
-    tester = APITester(api_key=api_key)
-    tester.run_tests(apis_to_test=["v1"])
-    tester.run_tests(apis_to_test=["v2"])
-    tester.run_tests(apis_to_test=["v3"])
-    tester.run_tests(apis_to_test=["v4"])
-    tester.run_tests(apis_to_test=["iv"])
-    tester.run_tests(apis_to_test=["test_backtest_perfect_values"])
-
-# Note that we accepted either 2059 or 2188 for the result
-
-# 1 ✓ POST /api/v4/back_test: Success: {'num_observations': 2033, 'return': 2188.4675000000034}
-# ✓ GET /api/v3/accounts/return/3: Success: {'account_id': 3, 'return': 1568.0000000000007}
-# ✓ GET /api/v3/accounts/return/4: Success: {'account_id': 4, 'return': -47.62499999999995}
-
-# Group 2
-# ✓ GET /api/v3/accounts/return/1: Success: {'account_id': 1, 'return': 1568.0000000000007}
-# ✓ GET /api/v3/accounts/return/2: Success: {'account_id': 2, 'return': -47.62499999999995}
-# ✓ POST /api/v4/back_test: Success: {'num_observations': 2033, 'return': 2059.37}
-
-# Group 3
-# ✗ Return value test failed: Expected 2188.4675 ± 0.05, got 2059.365400000001
-
-# Group 4
-# ✗ Return value test failed: Expected 2188.4675 ± 0.05, got 2059.37
-
-# Group 5
-# ✗ Return value test failed: Expected 2188.4675 ± 0.05, got 2059.37
-
-# Group 6
-# ✗ Return value test failed: Expected 2188.4675 ± 0.05, got 2059.365400000001
-
-# Group 7
-# N/A
-
-# Group 8
-# ✓ POST /api/v4/back_test: Success: {'num_observations': 2918, 'return': 3051.61}
-# ✗ Observations test failed: Expected 2033, got 2918
-# ✗ Return value test failed: Expected 2188.4675 ± 0.05, got 3051.61
-
-
-# db_truncate: build
-# 	docker run $(COMMON_DOCKER_FLAGS) $(IMAGE_NAME) \
-# 	sqlite3 $(DB_PATH) "DELETE FROM accounts; DELETE FROM stocks_owned;"
+    main()
