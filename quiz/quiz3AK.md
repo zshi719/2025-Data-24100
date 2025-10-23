@@ -18,6 +18,8 @@ There were a few common errors:
 
 **Question 1a:** Write a Make command that returns the number of times the `api/v1/data` endpoint is called
 
+Note that in the below you can have `wc -l` or just `wc`
+
 ```makefile
 count_endpoint_calls:
 	cat /logs/flask.log | grep "api/v1/data" | wc -l
@@ -111,4 +113,5 @@ def check_if_dark():
 - Not specifying `methods=['GET']` in the decorator
 
 ---
+
 
