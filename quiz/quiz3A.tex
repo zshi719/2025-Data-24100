@@ -1,0 +1,117 @@
+\documentclass[11pt]{article}
+\usepackage{fullpage, fancyhdr, ifthen, amssymb, amsfonts, amsmath, booktabs}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage[margin=0.25in]{geometry}
+\usepackage{upquote}
+\usepackage{forest}
+\usepackage{ulem}
+\usepackage{colortbl}
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{table}[h]
+\centering
+\arrayrulecolor{black!10} % Very light table outline
+\begin{tabular}{|p{\textwidth}|}
+\hline
+\begin{minipage}[t]{\textwidth}
+\vspace{0pt}  % This is crucial for top alignment
+\noindent \textbf{Instructions:} Please answer the following questions making sure to write your answers legibly on the second page. The code below is a segment of a Python Flask application that provides context for the questions below.
+\begin{itemize}
+\item Since we are writing Python code, please be careful about spacing/indentation. Leave enough room that it is obvious when you want things indented. 
+\item Make sure to write legibly.
+\item All questions are worth equal points unless otherwise stated.
+\item The quiz is cumulative and may include material from previous weeks.
+\end{itemize}
+\end{minipage} 
+\\
+\hline
+\end{tabular}
+\end{table}
+
+{\color{lightgray}\hrule}
+\begin{verbatim}
+from flask import (
+    Flask,
+    request,
+    Response,
+)
+
+from data_processor import (
+    is_night,
+    logger
+)
+
+app = Flask(__name__)
+
+# WHERE YOUR ANSWER WILL BE
+
+@app.route('/api/v1/data', methods=['GET'])
+def return_data_from_api_interface():
+    '''
+    Main Data route for our flask app
+    '''
+    data = 'Hello World!'
+    logger.info("REQUEST: api/v1/data endpoint")
+    return Response(data, status=200,
+                    headers={'Content-Type': 'text/html'})
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+\end{verbatim}
+{\color{lightgray}\hrule}
+
+\vspace{0.5cm}
+\noindent We also have the following Makefile. Note that the Docker image, via a \texttt{CMD} statement, starts the Flask app as the default command.
+
+\begin{verbatim}
+IMAGE_NAME=flask_app
+
+.PHONY: build run_flask 
+
+build:
+    docker build . -t $(IMAGE_NAME)
+
+run_flask: build
+    docker run -p 4000:5000 $(IMAGE_NAME)
+
+\end{verbatim}
+{\color{lightgray}\hrule}
+
+\clearpage
+
+\begin{tabularx}{\textwidth}{l|X}
+\textbf{Quiz 3A} &   \textbf{Name: } \\
+\hline
+\end{tabularx}
+
+\vspace{1cm}
+
+\begin{enumerate}
+    \item Our Flask server puts logs in the following location \texttt{/logs/flask.log} (on the host not inside the container). The command \texttt{logger.info()} writes the contents of its string argument to that log file. Each call writes a new line to the log file. You can find an example of how it is applied in the \texttt{/api/v1/data} route above.
+
+    \begin{enumerate}
+    	\item Write a Make command that returns the number of times that the \texttt{api/v1/data} endpoint is called (you can ignore the \texttt{PHONY}). 
+\vspace{4cm}
+    	\item Write another Make command that shows the newest entries (i.e., the last 10 lines in the file) from the log (you can ignore the \texttt{PHONY}).
+    \end{enumerate}
+    
+    \vspace{5cm}
+    
+    \item We want to write a route (\texttt{/api/v1/dark\_out}) which responds to a \texttt{GET} request and which tells us if it is dark out. The imported function \texttt{is\_night} returns \texttt{True} (boolean) if it is nighttime, \texttt{False} (boolean) if it is daytime, and \texttt{None} if it is dusk or dawn.
+    \begin{itemize}
+        \item Please write a complete route (including all required decorators, etc.) that can be placed into the file where indicated.
+        \item It should return status code 200 if it is nighttime (\texttt{True})
+        \item It should return status code 201 if it is daytime (\texttt{False})
+        \item It should return status code 202 if it is dusk or dawn (\texttt{None})
+        \item The body and headers can be empty.
+        \item No need for comments or docstrings.
+    \end{itemize}
+    
+\end{enumerate}
+
+\end{document}
+
