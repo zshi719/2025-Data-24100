@@ -78,7 +78,7 @@ def api_status():
 
 ```
 
-Lets focus on the inside blow. Multiple people wrote code that looked like:
+Lets focus on the inside blow. Some groups wrote code that looked like:
 
 
 ```python
@@ -229,7 +229,7 @@ flowchart TD
 
 - While Ruff is frequently celebrated for its speed, its biggest contribution, in my opinion, is centralizing all of these tools into a single configuration file.
 
-- Ruff can be installed via pip onto your host machine: `pip install ruff`.
+- Ruff can be installed via pip onto your _host_ machine: `pip install ruff`. Or if you want to use _uv_ on your host machine `uv pip install ruff`.
 
 - Ruff is controlled via a file called `pyproject.toml` 
   - [`toml`](https://en.wikipedia.org/wiki/TOML) files are a file format frequently used for configuration information. 

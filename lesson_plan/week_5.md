@@ -1,36 +1,57 @@
 # Week #5 Lesson Plan
 
-VERIFY LEARNING OBJECTIVES ARE DEEP ENOUGH
-
 ## Overview
 - Wednesday night the next part of the project is due.
 - Wednesday there will be a quiz. Quizzes are cumulative and cover the material up to and including the previous week (Week 4).
 
 ## Resources
-- The [Ruff docs](https://docs.astral.sh/ruff/) are very well written and a great place to start. 
-- Same with the docs for [pre-commit](https://pre-commit.com/).
+- Make sure you understand basic SQL commands. You can find more information on what is required for the course [in this note](../docs/prerequisites.md).
+- The [SQLite documentation](https://docs.python.org/3/library/sqlite3.html) is helpful for understanding the Python sqlite3 module.
+- The [argparse documentation](https://docs.python.org/3/library/argparse.html) provides details on command-line argument parsing.
 
 ## Learning objectives
 
-- Define static analysis tools. Why do we use them?
-- What are the things that static analysis can look for?
-- What are the different types of static analysis tools? How does `ruff` fit in?
-- What is a pre-commit hook and how does it interact with Git?
-- How do we install `ruff` and `pre-commit` and use them?
-- What is a `toml` file?
-- What is a `yaml` file?
+- What is a relational database? What is SQLite?
+- What are connections and cursors and how do we use them to query a database?
+- How do we use the following methods on the cursor:
+  - `execute`
+  - `executemany`
+  - `fetchone`
+  - `fetchall`
+  - `fetchmany` (we won't use this in this course, but it is good to know about)
+- When and why do we need to `commit`?
+- What is the format of data returned by a `fetch`-like command?
+- What are indexes and how do they improve performance?
+- What is `argparse` and how is it used?
+- Why do we use management commands?
+- What is CRUD and how does it map to HTTP request types?
+- Sending and receiving a POST request and using it to insert data into a database.
  
 ## Lecture notes
 
-[Day 9](../class_notes/09_static_analysis.md)
+[Day 9](../class_notes/09_sqlite.md)
 
-Day 10: This content of this lecture will be continued on Day 11. At that point the full notes will be uploaded.
+[Day 10](../class_notes/10_mgmt_and_post.md)
 
 
 ## Quizzable concepts
 
-- What is linting?
-- What is `ruff`?
-- What is static analysis?
-- Provide a list of examples of things that static analysis tools can do to provide feedback on your code.
-- What is a pre-commit hook and why is it useful?
+- You should be able to write a function that manipulates query results using SQL statements. For example: given a database schema, write a query that selects specific rows and columns and then prints them to the screen or lightly reshapes them.
+- Understand when to use `commit()` on a connection and what happens if you don't commit.
+- Be able to read and understand code that uses `argparse` to create management commands.
+- Know the CRUD framework and how it maps to HTTP request types (POST, GET, PUT/PATCH, DELETE).
+- Be able to write a Flask route that accepts a POST request with JSON data and inserts it into a database.
+- Example: The table `students` has two columns: `student_age` and `student_name`. Please write a function that returns the names of all students who are between 25 and 30 years old (inclusive). This function should take a SQLite connection and return only the names of the students. If there are no students who meet this criteria, the function should print "No students found" while returning an empty list.
+
+```python
+def return_25_through_30_students(conn):
+    cursor = conn.cursor()
+    cursor.execute("select student_name from students where student_age <= 30 and student_age >= 25;")
+    
+    filtered_student_name_list = cursor.fetchall()
+
+    if len(filtered_student_name_list) == 0:
+        print("No students found")
+    
+    return filtered_student_name_list
+```
