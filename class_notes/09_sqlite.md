@@ -265,6 +265,16 @@ create index idx_cls_bage on cls (bage);
 
 - Note that queries are only used if the database query optimizer (which decides how the query is run) believes that the index will make the query run faster. There are many times when adding an index will not make things faster because the query optimizer will not use it, instead choosing a different method of completing execution of the query.
 
+- We can see this by using the `EXPLAIN QUERY PLAN` SQL statement (this is only for sqlite, but every variant of SQL has something like it).
+
+| Without Index | With Index |
+| --- | --- |
+| `EXPLAIN QUERY PLAN select * from cls where bage > 25;` | `create index idx_cls_bage on cls (bage);`<br><br>`EXPLAIN QUERY PLAN select * from cls where bage > 25;` |
+| Output: `SCAN cls` | Output: `SEARCH cls USING INDEX idx_cls_bage (bage>?)` |
+
+- `SCAN` is the _least_ efficient operation on a table as it just checks row-by-row.
+- `SEARCH`, on the other hand, is more efficient because it looks up the values rather than going through the entire table.
+
 - You can have indexes on multiple columns on a table and you can create indexes on groups of columns, such as:
 
 ```sql
@@ -272,8 +282,6 @@ create index idx_cls_bage_bname on cls (bage, bname);
 ```
 
 - The index here would increase the performance of joint lookups of both `bage` and `bname`
-
-- **Note: For the project I would recommend creating an index on the year and symbol.**
 
 - An _important_ note around indexes is that they can often take time to initialize in two different ways:
   - Creating the initial index. If there is data in the table then creating the initial index can time time
@@ -297,3 +305,5 @@ create_index()
 ```
 
 can often improve your loading times significantly.
+
+- **Note: For the project I would recommend creating an index on the year and symbol.**
