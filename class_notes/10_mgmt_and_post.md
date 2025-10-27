@@ -29,9 +29,9 @@ title: "Management Commands for DB Actions and Post Requests"
 
 Another command will be created `db_interactive`, which is not an official management command but will be used to access the SQLite database.
 
-- Lets parse how this works using the example code in [this example repository](../lecture_examples/10_pipeline_1/). 
+- Lets parse how this works using the example code in [this example repository](../lecture_examples/09_sqlite/). 
 
-- Starting with our [`makefile`](../lecture_examples/10_pipeline_1/Makefile):
+- Starting with our [`makefile`](../lecture_examples/09_sqlite/Makefile):
 
 ```makefile
 IMAGE_NAME=bball_app
@@ -97,7 +97,7 @@ Looking at the above we can see a few additions from the previous examples.
 4. For the database management commands we have an argument after the command that is going to be passed that command. In the next section we'll analyze `db_manage.py` command.
 
 
-- Looking at [`db_manage.py`](../lecture_examples/10_pipeline_1/app/data_utils/db_manage.py) we find the following at the bottom inside the `main` logic:
+- Looking at [`db_manage.py`](../lecture_examples/09_sqlite/app/data_utils/db_manage.py) we find the following at the bottom inside the `main` logic:
   
 ```python
 
@@ -158,7 +158,7 @@ graph LR
     F --> G
 ```
 
-- If we look at [our loading utilities file](../lecture_examples/10_pipeline_1/app/data_utils/loading_utils.py) we can find two functions of interest:
+- If we look at [our loading utilities file](../lecture_examples/09_sqlite/app/data_utils/loading_utils.py) we can find two functions of interest:
 
 ```python
 
@@ -219,7 +219,7 @@ def load_data():
 
 - Note that the status codes for what a "good" request is aren't always 200 which means that we have to be careful when we look at a request to make sure that we accept it properly or not. We can't condition on 200 being good as there are other codes of the form 2xx which maybe returned. 
 
-- If we look at the routes file for the [player routes](../lecture_examples/10_pipeline_1/app/api/players/routes.py) we can find an example of a route that uses a `POST` request to insert data into our table. 
+- If we look at the routes file for the [player routes](../lecture_examples/09_sqlite/app/api/players/routes.py) we can find an example of a route that uses a `POST` request to insert data into our table. 
 
 - If we send a post request with a JSON object in the body, such as demonstrated in the python code below (or you can use postman or another tool for sending requests) we can see that the data is being inserted into the database and stored there. 
 

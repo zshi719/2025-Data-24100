@@ -85,7 +85,7 @@ graph LR
 
 ## Using SQLite 
 
-- Refer to the notebook [here](../lecture_examples/10_pipeline_1/notebooks/lect11.ipynb) for specifics of what was covered in class.
+- Refer to the notebook [here](../lecture_examples/09_sqlite/notebooks/lect11.ipynb) for specifics of what was covered in class.
 - To use sqlite3 in Python we import it and then set up a connection:
 
 ```python
