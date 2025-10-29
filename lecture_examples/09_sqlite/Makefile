@@ -1,11 +1,12 @@
-IMAGE_NAME=flask_app
+IMAGE_NAME=bball_app
+DB_PATH=/app/src/data/bball.db
 
-.PHONY: build notebook interactive
+.PHONY=build notebook interactive run \
+	db_clean db_create db_load db_rm db_interactive
 
 COMMON_DOCKER_FLAGS= \
 	-v $(shell pwd):/app/src \
-	-e API_KEY_IN_CONTAINER=$(API_KEY) \
-	-e DB_PATH=/app/src/data/bball.db \
+	-e DB_PATH=$(DB_PATH) \
 	-e DATA_DIR=/app/src/data \
 
 build:
@@ -20,12 +21,30 @@ notebook: build
 	docker run -it -p 8888:8888 \
 	$(COMMON_DOCKER_FLAGS) \
 	$(IMAGE_NAME) \
-	uv run jupyter notebook --allow-root --no-browser \
+	jupyter notebook --allow-root --no-browser \
 	--port 8888 --ip=0.0.0.0
 
-
-run-flask: build
+flask: build
 	docker run -p 4000:5000 \
 	$(COMMON_DOCKER_FLAGS) \
-	$(IMAGE_NAME) \
-	uv run python /app/src/app.py
+	$(IMAGE_NAME)
+
+db_create: build
+	docker run $(COMMON_DOCKER_FLAGS) $(IMAGE_NAME) \
+		uv run python /app/src/app/data_utils/db_manage.py db_create
+
+db_load: build
+	docker run $(COMMON_DOCKER_FLAGS) $(IMAGE_NAME) \
+		uv run python /app/src/app/data_utils/db_manage.py db_load
+
+db_rm: build
+	docker run $(COMMON_DOCKER_FLAGS) $(IMAGE_NAME) \
+		uv run python /app/src/app/data_utils/db_manage.py db_rm
+
+db_clean: build
+	docker run $(COMMON_DOCKER_FLAGS) $(IMAGE_NAME) \
+		uv run python /app/src/app/data_utils/db_manage.py db_clean
+
+db_interactive: build
+	docker run -it $(COMMON_DOCKER_FLAGS) $(IMAGE_NAME) \
+	sqlite3 -column -header $(DB_PATH)

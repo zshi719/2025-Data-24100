@@ -42,9 +42,6 @@ DB_PATH=/app/src/data/bball.db
 
 COMMON_DOCKER_FLAGS= \
 	-v $(shell pwd):/app/src \
-	-e FLASK_APP=/app/src/app.py \
-	-e FLASK_DEBUG=1 \
-	-e FLASK_ENV=development \
 	-e DB_PATH=$(DB_PATH) \
 	-e DATA_DIR=/app/src/data \
 
@@ -70,19 +67,19 @@ flask: build
 
 db_create: build
 	docker run $(COMMON_DOCKER_FLAGS) $(IMAGE_NAME) \
-		python /app/src/app/data_utils/db_manage.py db_create
+		uv run python /app/src/app/data_utils/db_manage.py db_create
 
 db_load: build
 	docker run $(COMMON_DOCKER_FLAGS) $(IMAGE_NAME) \
-		python /app/src/app/data_utils/db_manage.py db_load
+		uv run python /app/src/app/data_utils/db_manage.py db_load
 
 db_rm: build
 	docker run $(COMMON_DOCKER_FLAGS) $(IMAGE_NAME) \
-		python /app/src/app/data_utils/db_manage.py db_rm
+		uv run python /app/src/app/data_utils/db_manage.py db_rm
 
 db_clean: build
 	docker run $(COMMON_DOCKER_FLAGS) $(IMAGE_NAME) \
-		python /app/src/app/data_utils/db_manage.py db_clean
+		uv run python /app/src/app/data_utils/db_manage.py db_clean
 
 db_interactive: build
 	docker run -it $(COMMON_DOCKER_FLAGS) $(IMAGE_NAME) \
@@ -230,7 +227,7 @@ import json
 url = "http://127.0.0.1:4000/api/players"
 
 payload = json.dumps({
-  "player_name": "Nick Ross 3",
+  "player_name": "Nick Ross",
   "college": "UCDavis",
   "team": "GSW"
 })
