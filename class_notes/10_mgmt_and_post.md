@@ -57,7 +57,7 @@ notebook: build
 	docker run -it -p 8888:8888 \
 	$(COMMON_DOCKER_FLAGS) \
 	$(IMAGE_NAME) \
-	jupyter notebook --allow-root --no-browser \
+	uv run jupyter notebook --allow-root --no-browser \
 	--port 8888 --ip=0.0.0.0
 
 flask: build

@@ -4,13 +4,13 @@ This document outlines the requirements for the first part of the project that w
 
 During this quarter we will build a data-serving API in a number of parts. In this first part we will require you and your team to create an initial repository in GitHub, invite us (TAs and instructor) to it, set it up properly, and put some code inside.
 
-## Coding standards
+### Coding Standards
 
 During the quarter, you will be expected to adhere to the coding standards found [here](https://github.com/dsi-clinic/the-clinic/blob/main/coding-standards/coding-standards.md) and we will frequently use [this rubric](https://github.com/dsi-clinic/the-clinic/blob/main/rubrics/final-technical-cleanup.md) as a checklist for your code.
 
 However, at this point we have NOT covered `black`, `flake8`, or `pyflakes`, so you can ignore all standards regarding those concepts. We also have not covered docstrings, so that will not be graded at this point.
 
-## Branches
+### Branches
 
 During this quarter we will be using branches and pull requests in order to submit code. **Any commits directly to the main branch will result in points being deducted.** The one exception to this is the initial commit in the repo.
 
@@ -20,9 +20,9 @@ Branch protections are turned on for your branch, meaning that all commits must 
 
 Because of branch protections it is imperative (unless you like reduplicating your work) that you pull your code frequently and have intentionality around your coding practices.
 
-## Grading
+### Grading
 
-All grading will be done based on a specific commit hash off of the main branch. At the time that an assignment is due, students must submit the commit hash associated with their commit to Canvas. You need to submit the full commit hash, which is a 40-digit hash of letters and numbers. It will generally look something like this: `2a2a59af9feacbdd2cd772884b24641c3b75dff7`.
+All grading will be done based on a specific commit hash off of the main branch. At the time that an assignment is due, students must submit the commit hash associated with their commit to Canvas. You need to submit the full commit hash, which is a 40-digit-long hash of letters and numbers. It will generally look something like this: `2a2a59af9feacbdd2cd772884b24641c3b75dff7`.
 
 To find the commit hash, you can either use the command line or check GitHub’s commit history.
 
@@ -62,12 +62,12 @@ Your code should report the following information:
 * How many rows are in the combined dataset?
 * How many rows are sourced from each market (e.g., how many rows from the NYSE dataset and how many rows from the NASDAQ dataset)?
 * Identify the date on which the stock BRK.A recorded its lowest `open` price. 
-* Identify the date on which the stock IBM had it's highest `close` price.
+* Identify the date on which the stock IBM had its highest `close` price.
 
-## Part #1 grading
+## How will this be graded
 
 Code Grading:
-  - Your code will be checked out at the Git hash (on main) provided in your submission.
+  - Your code will be checked out at the git hash (on main) provided in your submission.
   - We will then run:
     - `docker build . -t data241` 
     - `docker run -t data241`

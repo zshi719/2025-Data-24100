@@ -2,7 +2,7 @@
 
 This document outlines the requirements for the next part of our data serving API.
 
-### Coding standards
+### Coding Standards
 
 During the quarter, you will be expected to adhere to the coding standards found [here](https://github.com/dsi-clinic/the-clinic/blob/main/coding-standards/coding-standards.md) and we will frequently use [this rubric](https://github.com/dsi-clinic/the-clinic/blob/main/rubrics/final-technical-cleanup.md) as a checklist for your code.
 
@@ -16,7 +16,7 @@ During this quarter we will be using branches and pull requests in order to subm
 
 ### Grading
 
-All grading will be done based on a specific commit hash off of the main branch. At the time that an assignment is due, students must submit the commit hash associated with their commit to Canvas. You need to submit the full commit hash, which is a 40-digit hash of letters and numbers. It will generally look something like this: `2a2a59af9feacbdd2cd772884b24641c3b75dff7`.
+All grading will be done based on a specific commit hash off of the main branch. At the time that an assignment is due, students must submit the commit hash associated with their commit to Canvas. You need to submit the full commit hash, which is a 40-digit-long hash of letters and numbers. It will generally look something like this: `2a2a59af9feacbdd2cd772884b24641c3b75dff7`.
 
 To find the commit hash, you can either use the command line or check GitHub’s commit history.
 
@@ -45,11 +45,11 @@ Other Makefile requirements:
 
 ### Flask
 
-We will be using all years of the data in the `project_data` (2010-2020) directory to build the routes listed below. Make sure that you have only all years running and loaded as part of this project.
+We will be using all years of the data in the `project_data` (2010-2020) directory to build the routes listed below. Make sure that you have all years loaded and running as part of this project.
 
 **IMPORTANT NOTE** One major change is that you need to set an environment variable, similar to the `DATA_241_API_KEY` called `RAW_DATA_DIR` which should be set to a location on the user's host machine where the ZIP files are stored. Do NOT store any of the zip files in the repo (the previous ones should be removed).
 
-As in Part I and II, your code will need to load the data, making sure not to store any intermediate files. Once that processing is complete, it should serve the following routes via Flask.
+As in Parts I and II, your code will need to load the data, making sure not to store any intermediate files. Once that processing is complete, it should serve the following routes via Flask.
 
 - Note: The `v1` API needs to be corrected with any feedback that was provided. Please look at [Part II](part_2.md) to verify that your code is still compliant.
 
@@ -72,7 +72,7 @@ As in Part I and II, your code will need to load the data, making sure not to st
   - This should return the `high` minus the `low` and should have a similar format as the `open` API end point, but rather than saying `open` it should say `high_low` and report the difference (`high - low`) for each day.
 
 All of these routes should _only_ respond to a GET request of the following form:
-- Has a `DATA-241-API-KEY` in the header, set from an environment variable _inside the host_, so has to be passed from the host through the `Makefile` and into the container (same as in Part 2).
+- Has a `DATA-241-API-KEY` in the header, set from an environment variable _on the host_, so has to be passed from the host through the `Makefile` and into the container (same as in Part 2).
 
 Other requirements:
 - Flask needs to be run on port 4000, and that port needs to be exposed when executing Flask through the Makefile.
@@ -130,6 +130,7 @@ if __name__ == '__main__':
 The code below is a light framework for how we will test your results. Note that this code was tested on a slightly different project, so you may need to modify it. It will be run on the host machine.
 
 ```python
+import os
 import requests
 
 def make_get_request(endpoint, api_key):
@@ -155,7 +156,7 @@ def make_get_request(endpoint, api_key):
         
         # Print the response content
         print("Response Content:")
-        print(response.json)
+        print(response.json())
         
         return response
 

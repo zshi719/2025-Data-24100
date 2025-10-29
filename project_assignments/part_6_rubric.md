@@ -13,7 +13,7 @@ NOTE: Rewrite rubrics to help graders. Be more specific about several ongoing is
 | | .pre_commit_hook.yaml in directory | 5 |
 | | README.md is up to date with all details up to Part 6, including details on v3 endpoints | 5 |
 | Linting | Passes ruff with pyproject.toml | 10 |
-| Code Execution | make build, notebook, interactive, flask (properly does all steps up until Part 4, finally initializing with app.py) | 10 |
+| Code Execution | make build, notebook, interactive, flask (properly does all steps up until Part 5, finally initializing with app.py) | 10 |
 | | make db_create Creates "accounts" and "stocks_owned" table | 10 |
 | | A db_manage.py from which make commands are accessed and executed, which now include the addition of the two new tables above | 5 |
 | API Calls | v1 and v2 calls | 4 |

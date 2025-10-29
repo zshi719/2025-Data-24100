@@ -2,7 +2,7 @@
 
 This document outlines the requirements for the next part of the project that we will be working on during this quarter. During this quarter, we will build a data-serving API in a number of parts.
 
-## Coding standards
+### Coding Standards
 
 During the quarter, you will be expected to adhere to the coding standards found [here](https://github.com/dsi-clinic/the-clinic/blob/main/coding-standards/coding-standards.md) and we will frequently use [this rubric](https://github.com/dsi-clinic/the-clinic/blob/main/rubrics/final-technical-cleanup.md) as a checklist for your code.
 
@@ -10,13 +10,13 @@ At this point we have NOT covered `black`, `flake8`, or `pyflakes`, so you can i
 
 However, for this assignment, docstrings are required for each function.
 
-## Branches
+### Branches
 
 During this quarter we will be using branches and pull requests in order to submit code. **Any commits directly to the main branch will result in points being deducted.** 
 
-## Grading
+### Grading
 
-All grading will be done based on a specific commit hash off of the main branch. At the time that an assignment is due, students must submit the commit hash associated with their commit to Canvas. You need to submit the full commit hash, which is a 40-digit hash of letters and numbers. It will generally look something like this: `2a2a59af9feacbdd2cd772884b24641c3b75dff7`.
+All grading will be done based on a specific commit hash off of the main branch. At the time that an assignment is due, students must submit the commit hash associated with their commit to Canvas. You need to submit the full commit hash, which is a 40-digit-long hash of letters and numbers. It will generally look something like this: `2a2a59af9feacbdd2cd772884b24641c3b75dff7`.
 
 To find the commit hash, you can either use the command line or check GitHub’s commit history.
 
@@ -83,6 +83,7 @@ Other requirements:
 The code below is a light framework for how we will test your results. Note that this code was tested on a slightly different project, so you may need to modify it. It will be run on the host machine.
 
 ```python
+import os
 import requests
 
 def make_get_request(endpoint, api_key):
@@ -108,7 +109,7 @@ def make_get_request(endpoint, api_key):
         
         # Print the response content
         print("Response Content:")
-        print(response.json)
+        print(response.json())
         
         return response
 
