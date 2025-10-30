@@ -1,0 +1,114 @@
+\documentclass[11pt]{article}
+\usepackage{fullpage, fancyhdr, ifthen, amssymb, amsfonts, amsmath, booktabs}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage[margin=0.25in]{geometry}
+\usepackage{upquote}
+\usepackage{forest}
+\usepackage{ulem}
+\usepackage{colortbl}
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{table}[h]
+\centering
+\arrayrulecolor{black!10} % Very light table outline
+\begin{tabular}{|p{\textwidth}|}
+\hline
+\begin{minipage}[t]{\textwidth}
+\vspace{0pt}  % This is crucial for top alignment
+\noindent \textbf{Instructions:} Please answer the following questions making sure to write your answers legibly on the second page. The code below is a segment of a Python application that provides context for the questions below.
+\begin{itemize}
+\item Since we are writing Python code, please be careful about spacing/indentation. Leave enough room that it is obvious when you want things indented. 
+\item Make sure to write legibly.
+\item All questions are worth equal points unless otherwise stated.
+\item The quiz is cumulative and may include material from previous weeks.
+\end{itemize}
+\end{minipage} 
+\\
+\hline
+\end{tabular}
+\end{table}
+
+{\color{lightgray}\hrule}
+\vspace{1cm}
+\underline{\textbf{process.py}}
+\begin{verbatim}
+from data_utils import (
+    process_data,
+    validate_input,
+    transform_output
+)
+
+def calculate_sum(a, b):
+    return a + b
+
+def calculate_product(a, b):
+    return a * b
+
+def square(x):
+    return x * x
+
+def double(x):
+    return x * 2
+
+def increment(x):
+    return x + 1
+
+if __name__ == '__main__':
+    result = calculate_sum(10, 5)
+    print(f"Result: {result}")
+\end{verbatim}
+
+
+\clearpage
+
+\begin{tabularx}{\textwidth}{l|X}
+\textbf{Quiz 4A} &   \textbf{Name: } \\
+\hline
+\end{tabularx}
+
+\vspace{1cm}
+
+\begin{enumerate}
+    \item Look at the \texttt{calculate\_sum} function above. This function should work with all numeric types. Please rewrite it so that when you enter \texttt{print(calculate\_sum.\_\_doc\_\_)} in Python, it returns the text: \texttt{Adds two numbers together}. 
+    
+%\vspace{4cm}
+    
+%    \item The function \texttt{process\_data} is imported from the \texttt{data\_utils} module. Please write Python code that prints: ``this is imported from data\_utils" (exactly as written). Your code should work regardless of what module \texttt{process\_data} is actually imported from. Use the appropriate dunder (double underscore) attribute.
+    
+\vspace{4cm}
+    
+    \item Please write a function called \texttt{apply\_to\_all} that:
+    \begin{itemize}
+        \item Takes two arguments: \texttt{func\_list} (a list of functions) and \texttt{x} (a value)
+        \item Applies each function in \texttt{func\_list} to \texttt{x}
+        \item Returns a list of results from applying each function to \texttt{x}
+    \end{itemize}
+    
+    For example: \texttt{apply\_to\_all([square, double, increment], 5)} should return \texttt{[25, 10, 6]}.
+    
+\vspace{5.5cm}
+
+    \item Please write a function called \texttt{flex\_print} that accepts any number and type of keyword arguments (but no positional arguments) and prints each key-value pair in the format: ``Key: \{key\}, Value: \{value\}" (one per line). If the value is an integer, instead print: ``Key: \{key\}, Value: Integer".
+
+\vspace{5.5cm}
+\item {[4 Points]} In class we discussed how code complexity can be broken down into two categories: {\it essential} complexity and {\it accidental} complexity. Please list two sources of accidental code complexity.
+    
+%\vspace{5cm}
+%
+%    \item Please write a function called \texttt{get\_operation} that:
+%    \begin{itemize}
+%        \item Takes a single string argument: \texttt{operation} (either \texttt{"add"} or \texttt{"multiply"})
+%        \item Returns the \texttt{calculate\_sum} function if \texttt{operation} is \texttt{"add"}
+%        \item Returns the \texttt{calculate\_product} function if \texttt{operation} is \texttt{"multiply"}
+%        \item Raises a \texttt{ValueError} with the message \texttt{"Invalid operation"} for any other input
+%    \end{itemize}
+%    
+%    For example: \texttt{get\_operation("add")(3, 5)} should return \texttt{8}.
+%    
+%\vspace{6cm}
+\end{enumerate}
+\end{document}
+

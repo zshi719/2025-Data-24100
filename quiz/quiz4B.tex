@@ -1,0 +1,98 @@
+\documentclass[11pt]{article}
+\usepackage{fullpage, fancyhdr, ifthen, amssymb, amsfonts, amsmath, booktabs}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage[margin=0.25in]{geometry}
+\usepackage{upquote}
+\usepackage{forest}
+\usepackage{ulem}
+\usepackage{colortbl}
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{table}[h]
+\centering
+\arrayrulecolor{black!10} % Very light table outline
+\begin{tabular}{|p{\textwidth}|}
+\hline
+\begin{minipage}[t]{\textwidth}
+\vspace{0pt}  % This is crucial for top alignment
+\noindent \textbf{Instructions:} Please answer the following questions making sure to write your answers legibly on the second page. The code below is a segment of a Python application that provides context for the questions below.
+\begin{itemize}
+\item Since we are writing Python code, please be careful about spacing/indentation. Leave enough room that it is obvious when you want things indented. 
+\item Make sure to write legibly.
+\item All questions are worth equal points unless otherwise stated.
+\item The quiz is cumulative and may include material from previous weeks.
+\end{itemize}
+\end{minipage} 
+\\
+\hline
+\end{tabular}
+\end{table}
+
+{\color{lightgray}\hrule}
+\vspace{1cm}
+\underline{\textbf{compute.py}}
+\begin{verbatim}
+from utils import (
+    clean_data,
+    format_output,
+    validate_params
+)
+
+def add_values(x, y):
+    return x + y
+
+def multiply_values(x, y):
+    return x * y
+
+def triple(n):
+    return n * 3
+
+def halve(n):
+    return n / 2
+
+def negate(n):
+    return -n
+
+if __name__ == '__main__':
+    result = multiply_values(4, 7)
+    print(f"Result: {result}")
+\end{verbatim}
+
+
+\clearpage
+
+\begin{tabularx}{\textwidth}{l|X}
+\textbf{Quiz 4B} &   \textbf{Name: } \\
+\hline
+\end{tabularx}
+
+\vspace{1cm}
+
+\begin{enumerate}
+    \item Please write a function called \texttt{transform\_all} that:
+    \begin{itemize}
+        \item Takes two arguments: \texttt{x} (a value) and \texttt{operations} (a list of functions)
+        \item Applies each function in \texttt{operations} to \texttt{x}
+        \item Returns a list of results from applying each function to \texttt{x}
+    \end{itemize}
+    
+    For example: \texttt{transform\_all(6, [triple, halve, negate])} should return \texttt{[18, 3.0, -6]}.
+    
+\vspace{5.5cm}
+    
+    \item Please rewrite the function \texttt{multiply\_values} so that when you enter \texttt{print(multiply\_values.\_\_doc\_\_)} in Python, it returns the text: \texttt{Multiplies two values together}. 
+    
+\vspace{4cm}
+
+    \item Please write a function called \texttt{display\_info} that accepts any number and type of keyword arguments (but no positional arguments) and prints each key-value pair in the format: ``\{key\}: \{value\}" (one per line). If the value is a string, instead print: ``\{key\}: Text".
+    
+\vspace{5.5cm}
+\item {[4 Points]} In class we discussed how code complexity can be broken down into two categories: {\it essential} complexity and {\it accidental} complexity. Please list two sources of accidental code complexity.
+    
+\end{enumerate}
+\end{document}
+
+
