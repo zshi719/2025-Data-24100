@@ -20,7 +20,6 @@
 - What is a pre-commit hook and how does it interact with Git?
 - How do we install `ruff` and `pre-commit` and use them?
 - What is a `toml` file?
-- What is a `yaml` file?
 - Using `ruff check` and `ruff format` commands
 - Using other request types (DELETE, PUT/PATCH) and combining request types to the same endpoint
 - How to access different parts of HTTP requests in Flask:
@@ -31,7 +30,7 @@
 - What is logging and why is it important?
 - Components of a log (timestamp, message, severity, source, context)
 - Python's `logging` module and how to use it
-- Severity levels: DEBUG, INFO, WARNING, ERROR, CRITICAL
+- Severity levels: `DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL`
 - Setting up custom loggers in Flask applications
 
   

@@ -1,12 +1,5 @@
 # Project Part #6
 
-Add the ability to reset accounts via Makefile in the assignment (part 5? part 6?)
-```bash
-db_truncate: build
-	docker run $(COMMON_DOCKER_FLAGS) $(IMAGE_NAME) \
-	sqlite3 $(DB_PATH) "DELETE FROM accounts; DELETE FROM stocks_owned;"
-```
-
 This document outlines the requirements for the next part of our data serving API.
 
 ### Coding standards
@@ -36,8 +29,6 @@ Specifically, we will create endpoints that:
 4. Delete accounts
 5. Calculate the return of the stocks owned by a specific account
 
-**Important note:** Depending on the age of your group members' computers you may struggle to load and use all the data. If this is the case for your group, you can create an environment variable called `DOWNSAMPLE` which, when set equal to 1, will only load data from 2016 and 2017. This smaller subset of the data should be performant on everyone's computer. Using `DOWNSAMPLE` is optional; the environment variable is a flag for the grader to know what is testable.
-
 Your code must conform to all the requirements of all previous parts, including [Part V](./part_5.md) 
 
 ### Specifications
@@ -45,20 +36,21 @@ Your code must conform to all the requirements of all previous parts, including 
 #### Updates to Make / Docker
 - In addition to existing `make` commands your `db_create` command now needs to create an `accounts` and `stocks_owned` table with the data definition spelled out below. When you create these they should be empty.
 - Implement these changes using the `db_manage.py` command.
-- Please also create a Make command (DB management) called `db_clean_account` which only resets the `accounts` and `stocks_owned` tables.
+- Please also create a Make command (DB management) called `db_clean_account` which only resets the `accounts` and `stocks_owned` tables. This should maintain the table, but delete all rows from inside of it. It should be another management command.
+
 
 #### Table definitions
 
 - There will be two tables as defined below:
 
-```
+```sql
 CREATE TABLE accounts (
     id INTEGER PRIMARY KEY,
     name TEXT NOT NULL
 );
 ```
 
-```
+```sql
 CREATE TABLE stocks_owned (
    account_id INTEGER,
    symbol TEXT NOT NULL,
@@ -103,7 +95,7 @@ $$ \mathrm{return} = \sum_{\mathrm{holdings}} \mathrm{num\_shares} \left( \mathr
 
 ### Additional fixes
 
-Please correct all of the feedback for Part V. A portion of the grade will be set to making sure that your code continues to pass those standards.
+Please correct all of the feedback for Part IV. A portion of the grade will be set to making sure that your code continues to pass those standards.
 
 ## How will this be graded
 

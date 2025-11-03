@@ -4,7 +4,6 @@ version = "0.1.0"
 description = "Template for Data 241 Submissions"
 requires-python = ">=3.13"
 dependencies = [
-    "jupyter==1.1.1",
     "flask==3.1.2",
     "pandas==2.3.3",
 ]
