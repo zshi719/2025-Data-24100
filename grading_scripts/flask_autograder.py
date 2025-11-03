@@ -14,6 +14,7 @@ import argparse
 import logging
 import os
 import sys
+import time
 import warnings
 
 import requests
@@ -60,6 +61,131 @@ API_SCHEMAS = {
         },
         "additionalProperties": False,
     },
+    # Part 3 / v2 schemas
+    "v2_year_count": {
+        "type": "object",
+        "required": ["year", "count"],
+        "properties": {
+            "year": {"type": "integer", "minimum": 2010, "maximum": 2020},
+            "count": {"type": "integer", "minimum": 0}
+        },
+        "additionalProperties": False,
+    },
+    "v2_open_price_info": {
+        "type": "object",
+        "required": ["symbol", "price_info"],
+        "properties": {
+            "symbol": {"type": "string", "minLength": 1},
+            "price_info": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "required": ["date", "open"],
+                    "properties": {
+                        "date": {
+                            "type": "string",
+                            "pattern": r"^\d{4}-\d{2}-\d{2}$"
+                        },
+                        "open": {"type": "number"}
+                    },
+                    "additionalProperties": False
+                }
+            }
+        },
+        "additionalProperties": False,
+    },
+    "v2_close_price_info": {
+        "type": "object",
+        "required": ["symbol", "price_info"],
+        "properties": {
+            "symbol": {"type": "string", "minLength": 1},
+            "price_info": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "required": ["date", "close"],
+                    "properties": {
+                        "date": {
+                            "type": "string",
+                            "pattern": r"^\d{4}-\d{2}-\d{2}$"
+                        },
+                        "close": {"type": "number"}
+                    },
+                    "additionalProperties": False
+                }
+            }
+        },
+        "additionalProperties": False,
+    },
+    "v2_high_price_info": {
+        "type": "object",
+        "required": ["symbol", "price_info"],
+        "properties": {
+            "symbol": {"type": "string", "minLength": 1},
+            "price_info": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "required": ["date", "high"],
+                    "properties": {
+                        "date": {
+                            "type": "string",
+                            "pattern": r"^\d{4}-\d{2}-\d{2}$"
+                        },
+                        "high": {"type": "number"}
+                    },
+                    "additionalProperties": False
+                }
+            }
+        },
+        "additionalProperties": False,
+    },
+    "v2_low_price_info": {
+        "type": "object",
+        "required": ["symbol", "price_info"],
+        "properties": {
+            "symbol": {"type": "string", "minLength": 1},
+            "price_info": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "required": ["date", "low"],
+                    "properties": {
+                        "date": {
+                            "type": "string",
+                            "pattern": r"^\d{4}-\d{2}-\d{2}$"
+                        },
+                        "low": {"type": "number"}
+                    },
+                    "additionalProperties": False
+                }
+            }
+        },
+        "additionalProperties": False,
+    },
+    "v2_high_low_price_info": {
+        "type": "object",
+        "required": ["symbol", "price_info"],
+        "properties": {
+            "symbol": {"type": "string", "minLength": 1},
+            "price_info": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "required": ["date", "high_low"],
+                    "properties": {
+                        "date": {
+                            "type": "string",
+                            "pattern": r"^\d{4}-\d{2}-\d{2}$"
+                        },
+                        "high_low": {"type": "number"}
+                    },
+                    "additionalProperties": False
+                }
+            }
+        },
+        "additionalProperties": False,
+    },
 }
 
 
@@ -93,7 +219,7 @@ class FlaskAPITester:
         use_api_key: bool = True,
         custom_api_key: str | None = None,
         expected_status_codes: list[int] | None = None,
-    ) -> tuple[dict | None, int]:
+    ) -> tuple[dict | None, int, float]:
         """
         Make an HTTP request to the specified endpoint.
 
@@ -105,7 +231,7 @@ class FlaskAPITester:
             expected_status_codes: List of expected status codes
 
         Returns:
-            Tuple of (response_data, status_code)
+            Tuple of (response_data, status_code, elapsed_time_ms)
         """
         if expected_status_codes is None:
             expected_status_codes = [200]
@@ -120,11 +246,13 @@ class FlaskAPITester:
         url = f"{self.base_url}{endpoint}"
 
         try:
+            start_time = time.time()
             if method == "GET":
                 response = requests.get(url, headers=headers, timeout=10)
             else:
                 logger.error(f"Unsupported HTTP method: {method}")
-                return None, 500
+                return None, 500, 0.0
+            elapsed_time = (time.time() - start_time) * 1000  # Convert to milliseconds
 
             # Check for malformed headers (silently track for summary)
             global _header_issues_detected
@@ -137,25 +265,25 @@ class FlaskAPITester:
             # Try to parse JSON response for successful requests
             if response.status_code in [200, 201]:
                 try:
-                    return response.json(), response.status_code
+                    return response.json(), response.status_code, elapsed_time
                 except ValueError:
                     logger.debug(f"Response is not valid JSON: {response.text[:100]}")
-                    return None, response.status_code
+                    return None, response.status_code, elapsed_time
 
-            return None, response.status_code
+            return None, response.status_code, elapsed_time
 
         except requests.exceptions.ConnectionError:
             logger.error(
                 f"Connection error: Could not connect to {self.base_url}. "
                 "Is the Flask server running?"
             )
-            return None, 503
+            return None, 503, 0.0
         except requests.exceptions.Timeout:
             logger.error(f"Request timeout for {url}")
-            return None, 504
+            return None, 504, 0.0
         except requests.exceptions.RequestException as e:
             logger.error(f"Request failed: {e}")
-            return None, 500
+            return None, 500, 0.0
 
     def validate_response(
         self, data: dict, schema: dict
@@ -227,7 +355,7 @@ class FlaskAPITester:
         if not self.json_output:
             logger.info(f"Testing: {display_name}")
 
-        data, status_code = self.make_request(
+        data, status_code, elapsed_time = self.make_request(
             endpoint,
             use_api_key=use_api_key,
             custom_api_key=custom_api_key,
@@ -239,7 +367,7 @@ class FlaskAPITester:
             if not self.json_output:
                 logger.error(
                     f"✗ FAILED: {display_name} - "
-                    f"Expected status {expected_status_codes}, got {status_code}"
+                    f"Expected status {expected_status_codes}, got {status_code} ({elapsed_time:.0f}ms)"
                 )
             self.test_results["failed"] += 1
             return False, data
@@ -248,7 +376,7 @@ class FlaskAPITester:
         if status_code != 200 or schema is None:
             if not self.json_output:
                 logger.info(
-                    f"✓ PASSED: {display_name} - Status {status_code}"
+                    f"✓ PASSED: {display_name} - Status {status_code} ({elapsed_time:.0f}ms)"
                 )
             self.test_results["passed"] += 1
             return True, data
@@ -256,7 +384,7 @@ class FlaskAPITester:
         # Validate response schema
         if data is None:
             if not self.json_output:
-                logger.error(f"✗ FAILED: {display_name} - No response data received")
+                logger.error(f"✗ FAILED: {display_name} - No response data received ({elapsed_time:.0f}ms)")
             self.test_results["failed"] += 1
             return False, None
 
@@ -264,7 +392,7 @@ class FlaskAPITester:
 
         if not is_valid:
             if not self.json_output:
-                logger.error(f"✗ FAILED: {display_name} - Schema validation errors:")
+                logger.error(f"✗ FAILED: {display_name} - Schema validation errors ({elapsed_time:.0f}ms):")
                 for error in errors:
                     logger.error(f"  - {error}")
             self.test_results["failed"] += 1
@@ -273,9 +401,13 @@ class FlaskAPITester:
         # Success! Store data if endpoint_key provided
         if endpoint_key and data:
             self.endpoint_data[endpoint_key] = data
-            
+
         if not self.json_output:
-            logger.info(f"✓ PASSED: {display_name} - {data}")
+            # Truncate long responses to first 60 characters
+            data_str = str(data)
+            if len(data_str) > 60:
+                data_str = data_str[:60] + "..."
+            logger.info(f"✓ PASSED: {display_name} - {data_str} ({elapsed_time:.0f}ms)")
         self.test_results["passed"] += 1
         return True, data
 
@@ -378,18 +510,175 @@ class FlaskAPITester:
 
     def run_v2_tests(self) -> bool:
         """
-        Run v2 API endpoint tests.
+        Run v2 API endpoint tests (Part 3).
 
-        Placeholder for future implementation.
+        Tests:
+        - /api/v2/{YEAR} for multiple valid years (2010, 2015, 2019, 2020)
+        - /api/v2/{YEAR} for multiple invalid years (2009, 2021, 1980, 2025)
+        - /api/v2/open/{SYMBOL} with valid symbol
+        - /api/v2/close/{SYMBOL} with valid symbol
+        - /api/v2/high/{SYMBOL} with valid symbol
+        - /api/v2/low/{SYMBOL} with valid symbol
+        - /api/v2/high_low/{SYMBOL} with valid symbol
+        - Invalid symbol tests (404)
+        - Authentication tests (401 for missing/invalid keys)
 
         Returns:
-            True (placeholder)
+            True if all tests passed, False otherwise
         """
-        logger.info("=" * 70)
-        logger.info("RUNNING V2 API TESTS")
-        logger.info("=" * 70)
-        logger.warning("V2 tests not yet implemented")
-        return True
+        if not self.json_output:
+            logger.info("=" * 70)
+            logger.info("RUNNING V2 API TESTS (Part 3)")
+            logger.info("=" * 70)
+
+        all_passed = True
+        
+        # Valid years to test (2010-2020)
+        valid_years = [2010, 2015, 2019, 2020]  # Start, middle, recent, end
+        # Invalid years to test
+        invalid_years = [2009, 2021, 1980, 2025]  # Before range, after range, far before, far after
+        
+        # Test symbols - try common ones that should exist in the data
+        test_symbols = ["AAPL", "IBM", "MSFT"]  # Common stocks likely in data
+        
+        # Test 1-4: /api/v2/{YEAR} with multiple valid years
+        if not self.json_output:
+            logger.info("\n--- Testing /api/v2/{YEAR} with valid years ---")
+        for year in valid_years:
+            success, data = self.test_endpoint(
+                f"/api/v2/{year}",
+                schema=API_SCHEMAS["v2_year_count"],
+                test_name=f"Year count for {year} with valid API key",
+                endpoint_key=f"v2_year_{year}",
+            )
+            all_passed = all_passed and success
+            
+            # Verify year matches what was requested
+            if success and data and data.get("year") != year:
+                if not self.json_output:
+                    logger.error(
+                        f"✗ FAILED: Year mismatch for /api/v2/{year} - "
+                        f"expected {year}, got {data.get('year')}"
+                    )
+                all_passed = False
+        
+        # Test 5-8: /api/v2/{YEAR} with multiple invalid years (should return 404)
+        if not self.json_output:
+            logger.info("\n--- Testing /api/v2/{YEAR} with invalid years ---")
+        for year in invalid_years:
+            success, _ = self.test_endpoint(
+                f"/api/v2/{year}",
+                expected_status_codes=[404],
+                test_name=f"Year count for invalid year {year} (should return 404)",
+            )
+            all_passed = all_passed and success
+        
+        # Test 9-13: Price endpoints for valid symbols
+        price_endpoints = [
+            ("open", "v2_open_price_info", "Open prices"),
+            ("close", "v2_close_price_info", "Close prices"),
+            ("high", "v2_high_price_info", "High prices"),
+            ("low", "v2_low_price_info", "Low prices"),
+            ("high_low", "v2_high_low_price_info", "High-Low difference"),
+        ]
+        
+        if not self.json_output:
+            logger.info("\n--- Testing /api/v2/{TYPE}/{SYMBOL} endpoints ---")
+        
+        for price_type, schema_key, description in price_endpoints:
+            # Try each test symbol until one works
+            symbol_tested = None
+            for symbol in test_symbols:
+                if not self.json_output:
+                    logger.info(f"  Testing /api/v2/{price_type}/{symbol}...")
+                
+                success, data = self.test_endpoint(
+                    f"/api/v2/{price_type}/{symbol}",
+                    schema=API_SCHEMAS[schema_key],
+                    test_name=f"{description} for {symbol} with valid API key",
+                    endpoint_key=f"v2_{price_type}_{symbol}",
+                )
+                
+                if success:
+                    symbol_tested = symbol
+                    # Verify symbol matches and price_info is non-empty
+                    if data:
+                        if data.get("symbol") != symbol:
+                            if not self.json_output:
+                                logger.error(
+                                    f"✗ FAILED: Symbol mismatch for /api/v2/{price_type}/{symbol} - "
+                                    f"expected {symbol}, got {data.get('symbol')}"
+                                )
+                            all_passed = False
+                        elif not data.get("price_info") or len(data.get("price_info", [])) == 0:
+                            if not self.json_output:
+                                logger.warning(
+                                    f"⚠ WARNING: Empty price_info for /api/v2/{price_type}/{symbol}"
+                                )
+                    break  # Found a working symbol, move to next endpoint type
+            
+            if symbol_tested:
+                all_passed = all_passed and True
+            else:
+                # None of the test symbols worked - this is a failure
+                if not self.json_output:
+                    logger.error(
+                        f"✗ FAILED: None of the test symbols ({test_symbols}) "
+                        f"worked for /api/v2/{price_type}/ endpoint"
+                    )
+                all_passed = False
+        
+        # Test 14: Invalid symbol (should return 404)
+        if not self.json_output:
+            logger.info("\n--- Testing /api/v2/open/{SYMBOL} with invalid symbol ---")
+        success, _ = self.test_endpoint(
+            "/api/v2/open/INVALID_SYMBOL_XYZ123",
+            expected_status_codes=[404],
+            test_name="Open prices for invalid symbol (should return 404)",
+        )
+        all_passed = all_passed and success
+        
+        # Test 15: Authentication - missing API key on /api/v2/{YEAR}
+        if not self.json_output:
+            logger.info("\n--- Testing v2 authentication (missing API key) ---")
+        success, _ = self.test_endpoint(
+            f"/api/v2/{valid_years[0]}",
+            use_api_key=False,
+            expected_status_codes=[401],
+            test_name="Year count without API key (should return 401)",
+        )
+        all_passed = all_passed and success
+        
+        # Test 16: Authentication - invalid API key on /api/v2/{YEAR}
+        success, _ = self.test_endpoint(
+            f"/api/v2/{valid_years[0]}",
+            custom_api_key="INVALID_KEY_12345",
+            expected_status_codes=[401],
+            test_name="Year count with invalid API key (should return 401)",
+        )
+        all_passed = all_passed and success
+        
+        # Test 17: Authentication - missing API key on price endpoint
+        # Use the first symbol that worked, or just use the first test symbol
+        test_symbol = test_symbols[0]
+        success, _ = self.test_endpoint(
+            f"/api/v2/open/{test_symbol}",
+            use_api_key=False,
+            expected_status_codes=[401],
+            test_name="Open prices without API key (should return 401)",
+        )
+        all_passed = all_passed and success
+        
+        # Test 18: Authentication - invalid API key on price endpoint
+        success, _ = self.test_endpoint(
+            f"/api/v2/open/{test_symbol}",
+            custom_api_key="INVALID_KEY_12345",
+            expected_status_codes=[401],
+            test_name="Open prices with invalid API key (should return 401)",
+        )
+        all_passed = all_passed and success
+
+        return all_passed
 
     def run_v3_tests(self) -> bool:
         """

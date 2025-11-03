@@ -16,12 +16,16 @@ def list_players_per_team(
 ):
     df = load_data()
 
-    list_of_players = df.loc[
-        (df.team_abbreviation == team),
-        "player_name",
-    ].to_list()
+    players_list = (
+        df.loc[
+            (df.team_abbreviation == team),
+            ["id", "player_name"],
+        ]
+        .drop_duplicates()
+        .to_dict("records")
+    )
 
-    to_return = {team: list_of_players}
+    to_return = {team: players_list}
     return jsonify(to_return), 200
 
 
