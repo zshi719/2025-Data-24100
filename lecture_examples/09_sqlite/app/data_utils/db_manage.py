@@ -15,7 +15,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Manage the SQLite database.")
 
     parser.add_argument(
-        "command", choices=command_list, help="Command to execute"
+        "command", choices=command_list, help="DB Command to execute"
     )
 
     args = parser.parse_args()
@@ -24,11 +24,12 @@ if __name__ == "__main__":
 
     if args.command == "db_create":
         create_empty_sqlite_db()
-    if args.command == "db_load":
+    elif args.command == "db_load":
         create_and_load_basketball_data(csv_path, table_name)
-    if args.command == "db_rm":
+    elif args.command == "db_rm":
         rm_db()
-    if args.command == "db_clean":
+    elif args.command == "db_clean":
         rm_db()
         create_empty_sqlite_db()
         create_and_load_basketball_data(csv_path, table_name)
+    

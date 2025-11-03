@@ -27,7 +27,7 @@ def load_data_pandas():
     return df
 
 
-def load_data():
+def load_data_sql():
     """
     Loading data with SQL
     """
@@ -43,6 +43,8 @@ def load_data():
 
     return df
 
+def load_data():
+    return load_data_sql()
 
 def create_db_connection(db_path=None):
     """Sqlite specific connection function
@@ -104,7 +106,6 @@ def load_csv_to_db(conn, csv_path, table_name):
         )
         # Insert all rows
         cur = conn.cursor()
-        # import pdb; pdb.set_trace()
         cur.executemany(insert_sql, reader)
         conn.commit()
     print(f"Loaded {cur.rowcount} rows to {table_name} successfully")
