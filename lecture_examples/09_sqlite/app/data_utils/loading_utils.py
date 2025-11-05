@@ -43,8 +43,10 @@ def load_data_sql():
 
     return df
 
+
 def load_data():
     return load_data_sql()
+
 
 def create_db_connection(db_path=None):
     """Sqlite specific connection function

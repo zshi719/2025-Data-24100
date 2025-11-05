@@ -36,7 +36,7 @@
   
 ## Lecture notes
 
-[Day 11](../class_notes/11_static_analysis.md)
+[Day 11](../class_notes/11_static_analysis_more_crud.md)
 
 [Day 12](../class_notes/12_crud_and_logging.md)
 

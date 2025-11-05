@@ -124,11 +124,11 @@ _Important_
 
 ## Logging Example
 
-- The code in [Example 13](../lecture_examples/13_logging/) provides an overview of the components of the logging system. 
+- The code in [Example 12](../lecture_examples/12_logging/) provides an overview of the components of the logging system. 
 - We will look at the following files:
-    - [`logger_utils/custom_logger.py`](../lecture_examples/13_logging/app/logger_utils/custom_logger.py) which contains the definition of the custom logger that we will use
-    - [`app.py`](../lecture_examples/13_logging/app.py) Which contains the start up of the log
-    - [`route_utils/decorators.py`](../lecture_examples/13_logging/app/route_utils/decorators.py) which contains an application of the logger via decorators
+    - [`logger_utils/custom_logger.py`](../lecture_examples/12_logging/app/logger_utils/custom_logger.py) which contains the definition of the custom logger that we will use
+    - [`app.py`](../lecture_examples/12_logging/app.py) Which contains the start up of the log
+    - [`route_utils/decorators.py`](../lecture_examples/12_logging/app/route_utils/decorators.py) which contains an application of the logger via decorators
 
 
 ### Custom Logger 

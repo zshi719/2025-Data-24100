@@ -70,7 +70,7 @@ title: "Static Analysis & Code Issues"
 
 - If you want to run the pre-commit on all files in your repo the command `pre-commit run --all-files` will come in handy. This will run whatever your pre commit hook is against all the files in your repo. A very useful command.
 
-## Part 3: More CRUD
+## Part 2: More CRUD
 
 ### Expected Data
 
@@ -234,11 +234,7 @@ def register_player_routes(app):
 - Is one better than the other? I'd make a slight argument that the first version is better, but both abstractions could be reasonably argued.
 - The most important factor is that this abstraction is kept across the entire code base.
 
-# Code Quality Issues
-
-In today's lecture we will go over common code quality issues that have been observed in project submissions, and then introduce static analysis tools that can help catch many of these problems automatically.
-
-## Part 1: Code Quality Issues
+## Part 3: Code Quality Issues
 
 After reviewing assignments, quizzes, and projects, several recurring issues have emerged. These issues make code harder to read, maintain, and debug. Below are the most common problems:
 

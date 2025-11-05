@@ -2,15 +2,7 @@
 title: "More CRUD and Logging in Python"
 --->
 
-## This lecture is too short. 
-
-# More CRUD and Logging in Python
-
-- Today's lecture will cover building endpoints with multiple functionalities and work through additional abstraction levels
-- We will cover logging in Python
-
-
-## Part 2: Logging
+# Logging
 
 - Logging is creating a record of events that occur in a system.
 - Logs are important for a number of reasons and they are often the primary way that we have of generating data about and from our systems.
@@ -33,7 +25,7 @@ title: "More CRUD and Logging in Python"
   - Biz Intelligence:
     - Very common data pipeline: System &rarr; Logs &rarr; Log Processor &rarr; Database/Spark &rarr; Data Scientists working on the problem
   
-### Log contents
+## Log contents
 
 A log should contain the following elements, in no particular order:
 
@@ -50,7 +42,7 @@ _Important_
   - Time stamps the same. If they are `11-10-2024 11:15 PM ...` then we don't see `2024-11-10 23:15` in a different log.
   - Order of data and organization are the same. Events should have information organized with the same words, phrases and systems of communication to minimize the logic required to process.
   
-### Log system
+## Log system
 
 - We will use the built-in `logging` system provided by python.
 - Information about it can be found [here](https://docs.python.org/3/library/logging.html).
@@ -58,7 +50,7 @@ _Important_
 - In practice I've seen very little use for libraries other than the standard one. Other, non-python, programming languages aren't so lucky and the logging libraries are more diffuse in their use.
 
 
-#### Severity Level
+### Severity Level
 
 - Logs (generally) use Severity level as a measure of what to track in different environments.
 - For example, when I am actively developing and testing things I'll want lots of logs, but when my system is in production then the amount of logs I care about will be different.
@@ -69,25 +61,25 @@ _Important_
 
 | Level | Name | Brief Description | Example |
 | --- | --- | --- | --- |
-| 10 | DEBUG | Basic info for diagnosis | Logging variable values |
-| 20 | INFO | General Info / Confirmation | "Server Started" |
-| 30 | WARNING | Something problematic, system still running | Deprecated command | 
-| 40 | ERROR | Serious issue that may prevents parts of the system from working | DB connection failed |
-| 50 | CRITICAL | Serious issue that is causing the program to terminate | Out of Memory |
+| 10 | `DEBUG` | Basic info for diagnosis | Logging variable values |
+| 20 | `INFO` | General Info / Confirmation | "Server Started" |
+| 30 | `WARNING` | Something problematic, system still running | Deprecated command | 
+| 40 | `ERROR` | Serious issue that may prevents parts of the system from working | DB connection failed |
+| 50 | `CRITICAL` | Serious issue that is causing the program to terminate | Out of Memory |
 
 - In our case, where we have a flask server we may want to log all requests and responses at the DEBUG or INFO level. When we are running code locally we can then turn this level on and receive all the requests and responses. When we put the server into production where the volume of events may be higher then we'll set the logging level to WARNING to avoid tracking these.
 
 
-### Logging Example
+## Logging Example
 
-- The code in [Example 13](../lecture_examples/13_logging/) provides an overview of the components of the logging system. 
+- The code in [Example 12](../lecture_examples/12_logging/) provides an overview of the components of the logging system. 
 - We will look at the following files:
-    - [`logger_utils/custom_logger.py`](../lecture_examples/13_logging/app/logger_utils/custom_logger.py) which contains the definition of the custom logger that we will use
-    - [`app.py`](../lecture_examples/13_logging/app.py) Which contains the start up of the log
-    - [`route_utils/decorators.py`](../lecture_examples/13_logging/app/route_utils/decorators.py) which contains an application of the logger via decorators
+    - [`logger_utils/custom_logger.py`](../lecture_examples/12_logging/app/logger_utils/custom_logger.py) which contains the definition of the custom logger that we will use
+    - [`app.py`](../lecture_examples/12_logging/app.py) Which contains the start up of the log
+    - [`route_utils/decorators.py`](../lecture_examples/12_logging/app/route_utils/decorators.py) which contains an application of the logger via decorators
 
 
-#### Custom Logger 
+### Custom Logger 
 
 - The code in our custom logger looks like the following. The purpose of this is to set up a custom logger that has the information that we want.
 - In this case we are doing the following:
@@ -114,7 +106,7 @@ def setup_logging():
 custom_logger = setup_logging()
 ```
 
-#### Initialization 
+### Initialization 
 
 - When we start the app we will initialize the custom logger. There are a number of lines of code that demonstrate how this occurs:
 
@@ -135,7 +127,7 @@ custom_logger = setup_logging()
     - It is a complex piece of software and because of that it has its own built in logging.
     - When you start a flask server the lines that look like the below are set up as logs from the Werkzeug system:
 
-```
+```bash
  * Serving Flask app 'app'
  * Debug mode: on
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
@@ -150,7 +142,7 @@ Press CTRL+C to quit
 - We want all of our logs to go through the custom logger we built, so we have to override the logging system on this other system. 
 - After updating these lines you will see that most of the lines in the flask start up now follow the logging strategy, so similar to:
 
-```
+```bash
 2024-11-22 18:16:15 | INFO | Press CTRL+C to quit
 2024-11-22 18:16:15 | INFO |  * Restarting with stat
 2024-11-22 18:16:16 | INFO | Application initialized successfully
@@ -160,7 +152,235 @@ Press CTRL+C to quit
 
 - **Note** that if we want to set a specific log level to expose we would want to se it in the `app.py`. This is where our other configuration is, so this is where you want to set it.
 
-#### Usage
+### Usage
 - In the decorators file above you can see the direct usage of the custom logger. To get it running you first need to import it.
 - To write logs you call the function `customer_logger.LOG_LEVEL( message )` which will generate the appropriately formatted log file.
+
+
+## Performance Monitoring via Decorators
+
+- One of the most powerful uses of logging combined with decorators is to monitor the performance of your API endpoints.
+- By tracking how long requests take to process, you can:
+  - Identify slow endpoints that need optimization
+  - Detect performance degradation over time as data grows
+  - Set up alerts when endpoints exceed acceptable response times
+  - Generate performance metrics for monitoring dashboards
+
+### Basic Request/Response Logging
+
+- The simplest form of logging for API endpoints is to track when requests arrive and when responses are sent.
+- Looking at the [`decorators.py`](../lecture_examples/12_logging/app/route_utils/decorators.py) file, we have a `log_request_response` decorator:
+
+```python
+def log_request_response(f):
+    """Wrapper to log all requests and responses"""
+    
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        custom_logger.debug(
+            f"Request received: {request.method} {request.path}"
+        )
+        
+        response = f(*args, **kwargs)
+        
+        custom_logger.debug(f"Response: {response[1]} - {request.path}")
+        return response
+    
+    return decorated_function
+```
+
+- This decorator:
+  - Logs when a request is received (with HTTP method and path)
+  - Executes the route function
+  - Logs the response status code
+  - Uses `DEBUG` level since this can be very verbose in production
+
+### Performance Timing Decorator
+
+- A more sophisticated approach is to measure and log execution time:
+
+```python
+def log_request_response_time(f):
+    """Wrapper to log all requests times"""
+    
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        start_time = time.time()
+        custom_logger.info(
+            f"Request received: {request.method} {request.path}"
+        )
+        
+        response = f(*args, **kwargs)
+        # Convert to milliseconds
+        execution_time = (time.time() - start_time) * 1000
+        custom_logger.info(
+            f"Response: {response[1]} - {request.path} "
+            f"- Execution time: {execution_time:.2f}ms"
+        )
+        return response
+    
+    return decorated_function
+```
+
+- Key components:
+  - `time.time()` captures the timestamp before execution
+  - The route function executes normally
+  - Calculate elapsed time in milliseconds for better readability
+  - Log at `INFO` level since performance metrics are important even in production
+  - Format the time to 2 decimal places for consistency
+
+### Using the Decorator
+
+- To use these decorators on your routes, simply add them above the route definition:
+
+```python
+@app.route('/api/players', methods=['GET'])
+@log_request_response_time
+def list_players():
+    return list_players_route()
+```
+
+- You can also stack multiple decorators:
+
+```python
+@app.route('/api/teams/<team>', methods=['GET'])
+@log_request_response_time
+@validate_team
+def get_team_info(team):
+    return get_team_info_route(team)
+```
+
+- **Important**: The order matters! Decorators are applied bottom-to-top, so the `validate_team` runs first, then the logging decorator wraps everything.
+
+### Example Log Output
+
+- When using the timing decorator, your logs will look like:
+
+```bash
+2024-11-22 14:32:15 | INFO | Request received: GET /api/players
+2024-11-22 14:32:15 | INFO | Response: 200 - /api/players - Execution time: 45.23ms
+
+2024-11-22 14:32:20 | INFO | Request received: GET /api/teams/CHI/stats
+2024-11-22 14:32:21 | INFO | Response: 200 - /api/teams/CHI/stats - Execution time: 1234.56ms
+```
+
+- From this you can immediately see that the stats endpoint is taking over a second to respond, suggesting it might need optimization.
+
+### Performance Monitoring Best Practices
+
+1. **Choose appropriate log levels**:
+   - Use `DEBUG` for detailed request/response logging in development
+   - Use `INFO` for performance timing that you want in production
+   - Use `WARNING` if response time exceeds expected thresholds
+
+2. **Be consistent with units**:
+   - Always use milliseconds for response times (humans understand it better than seconds)
+   - Always format to the same decimal places for easier parsing
+
+3. **Include context**:
+   - Log the HTTP method and path
+   - Consider logging query parameters for GET requests
+   - Log the status code to correlate failures with slow responses
+
+4. **Consider adding thresholds**:
+   - You could modify the decorator to log at different levels based on execution time
+   - Example: `WARNING` if > 1000ms, `ERROR` if > 5000ms
+
+
+## Error Handling and Logging Patterns
+
+- Proper error handling and logging is critical for debugging production issues and understanding system behavior.
+- When handling errors in Flask routes, log at appropriate severity levels and include enough context to diagnose the problem.
+- The key is to be **consistent** across your codebase - pick a pattern and use it everywhere.
+
+### Common Error Handling Patterns
+
+There are multiple ways to handle errors in Flask routes. Here are the two most common patterns:
+
+**Pattern 1: Catch-all with different error types**
+
+```python
+def get_player_route(player_id):
+    try:
+        df = load_data()
+        player = df[df['id'] == player_id]
+        
+        if player.empty:
+            custom_logger.warning(f"Player {player_id} not found")
+            return jsonify({"error": "Player not found"}), 404
+            
+        return jsonify(player.to_dict('records')[0]), 200
+        
+    except FileNotFoundError as e:
+        custom_logger.error(f"Data file missing: {str(e)}")
+        return jsonify({"error": "Data temporarily unavailable"}), 503
+        
+    except Exception as e:
+        custom_logger.error(f"Unexpected error retrieving player {player_id}: {str(e)}")
+        return jsonify({"error": "Internal server error"}), 500
+```
+
+- This pattern:
+  - Handles expected conditions (missing player) at `WARNING` level - not an error, but noteworthy
+  - Handles known error types (missing file) at `ERROR` level with specific context
+  - Catches unexpected errors and logs them
+  - Returns appropriate HTTP status codes for each case
+
+**Pattern 2: Decorator for centralized error handling**
+
+- You can create a decorator to handle errors consistently across routes:
+
+```python
+def handle_errors(f):
+    """Decorator to handle common errors in routes"""
+    
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        try:
+            return f(*args, **kwargs)
+        except ValueError as e:
+            custom_logger.warning(f"Validation error in {request.path}: {str(e)}")
+            return jsonify({"error": "Invalid input"}), 400
+        except FileNotFoundError as e:
+            custom_logger.error(f"Required file missing: {str(e)}")
+            return jsonify({"error": "Service unavailable"}), 503
+        except Exception as e:
+            custom_logger.error(f"Unexpected error in {request.path}: {str(e)}")
+            return jsonify({"error": "Internal server error"}), 500
+    
+    return decorated_function
+
+# Usage
+@app.route('/api/players/<int:player_id>', methods=['GET'])
+@handle_errors
+def get_player(player_id):
+    # Your route logic - errors handled automatically
+    return get_player_route(player_id)
+```
+
+### What NOT to Log
+
+**Security Concerns** - Never log sensitive information:
+
+```python
+# BAD - logs password in plain text
+custom_logger.info(f"User login: {username} with password {password}")
+
+# BAD - logs API keys
+custom_logger.debug(f"Making API call with key: {api_key}")
+
+# BAD - logs credit card or SSN
+custom_logger.error(f"Payment failed for card {credit_card_number}")
+
+# GOOD - log enough to debug without sensitive data
+custom_logger.info(f"User login attempt: {username}")
+custom_logger.debug(f"Making API call to {endpoint}")
+custom_logger.error(f"Payment failed for user {user_id} - card ending in {card_last_4}")
+```
+
+**Other things to avoid logging**:
+- Personally Identifiable Information (PII) - names, emails, addresses, phone numbers
+- Authentication tokens, session IDs, or any security credentials
+- Large binary data (images, files)
+- Redundant information that clutters logs without adding value
 
