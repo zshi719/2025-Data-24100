@@ -33,7 +33,8 @@ notebook: build
 flask: build
 	docker run -it -p 4000:5000 \
 	$(COMMON_DOCKER_FLAGS) \
-	$(IMAGE_NAME)
+	$(IMAGE_NAME) \
+	uv run python /app/src/app.py
 
 db_create: build
 	docker run $(COMMON_DOCKER_FLAGS) $(IMAGE_NAME) \

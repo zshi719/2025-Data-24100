@@ -1,0 +1,150 @@
+\documentclass[11pt]{article}
+\usepackage{fullpage, fancyhdr, ifthen, amssymb, amsfonts, amsmath, booktabs}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage[margin=0.25in]{geometry}
+\usepackage{upquote}
+\usepackage{forest}
+\usepackage{ulem}
+\usepackage{colortbl}
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{table}[h]
+\centering
+\arrayrulecolor{black!10} % Very light table outline
+\begin{tabular}{|p{\textwidth}|}
+\hline
+\begin{minipage}[t]{\textwidth}
+\vspace{0pt}  % This is crucial for top alignment
+\noindent \textbf{Instructions:} Please answer the following questions, making sure to write legibly on the following pages. The code below is a subsection of a Python file that runs Flask for a movie theater system.
+\begin{itemize}
+\item Since we are writing Python code, please be careful about spacing/indentation. Leave enough room that it is obvious when you want things indented. 
+\item Make sure to write legibly.
+\item All questions are worth equal points unless otherwise stated.
+\item The quiz is cumulative and may include material from previous weeks.
+\end{itemize}
+\end{minipage} 
+\\
+\hline
+\end{tabular}
+\end{table}
+
+{\color{lightgray}\hrule}
+\begin{verbatim}
+
+conn = get_db_connection() # returns an SQL Connection
+
+@app.route('/api/movies/sales/<movie_title>', methods=['GET'])
+def movie_sales(movie_title):
+    cursor = conn.cursor()
+    cursor.execute(
+        f"SELECT date, tickets_sold FROM sales WHERE movie = {movie_title}")
+    results = cursor.fetchall()
+    # Convert tickets to thousands
+    formatted_results = [(date, tickets / 1000) for date, tickets in results]
+    return jsonify({'movie': movie_title, 'sales': formatted_results}), 200
+
+@app.route('/api/movies/revenue/<movie_title>', methods=['GET'])
+def movie_revenue(movie_title):
+    cursor = conn.cursor()
+    cursor.execute(
+        f"SELECT date, revenue FROM revenue WHERE movie = {movie_title}")
+    results = cursor.fetchall()
+    # Convert revenue to thousands of dollars
+    formatted_results = [(date, rev / 1000) for date, rev in results]
+    return jsonify({'movie': movie_title, 'revenue': formatted_results}), 200
+
+@app.route('/api/movies/concessions/<movie_title>', methods=['GET'])
+def movie_concessions(movie_title):
+    cursor = conn.cursor()
+    cursor.execute(
+        f"SELECT date, concession_revenue FROM concessions WHERE movie = {movie_title}")
+    results = cursor.fetchall()
+    # Convert concessions to thousands of dollars
+    formatted_results = [(date, revenue / 1000) for date, revenue in results]
+    return jsonify({'movie': movie_title, 'concessions': formatted_results}), 200
+
+\end{verbatim}
+{\color{lightgray}\hrule}
+
+\clearpage
+
+\begin{tabularx}{\textwidth}{l|X}
+\textbf{Quiz 5A} &   \textbf{Name: } \\
+\hline
+\end{tabularx}
+
+%\vspace{1cm}
+
+\begin{enumerate}
+
+\item The function \texttt{get\_top\_movies()} queries the database and returns the top 3 movies by ticket sales in the following format:
+
+\begin{verbatim}
+[('Dune 2', 1234, 'PG-13'), 
+ ('Barbie', 1089, 'PG-13'), 
+ ('Oppenheimer', 956, 'R')]
+\end{verbatim}
+
+Note: Each tuple contains (movie\_name, tickets\_sold, rating). We want to create a \emph{Flask} route \texttt{/api/movies/top\_movies} to return this data in the format below. Please write the complete code for this route (including the decorator). You can assume that the list returned from \texttt{get\_top\_movies()} is in order from highest to lowest and that the \texttt{get\_top\_movies()} function has already been imported.
+
+\begin{verbatim}
+{"rankings": {1: "Dune 2", 2: "Barbie", 3: "Oppenheimer"},
+ "total_tickets": 3279 }
+\end{verbatim}
+
+
+\vspace{6cm}
+
+\item A movie theater applies promotional discounts to ticket prices. Write a \emph{function} called \texttt{apply\_discounts} that calculates a final price after applying multiple discounts sequentially. The function should:
+\begin{itemize}
+    \item Take a base price as the first argument
+    \item Accept {\it any number} of discount percentages as additional arguments
+    \item Apply each discount percentage in order (e.g., 10\% off, then 5\% off the new price)
+    \item Return the final price
+\end{itemize}
+
+For example, \texttt{apply\_discounts(100, 10)} should return \texttt{90}, and \texttt{apply\_discounts(100, 10, 5)} should work as follows:
+\begin{itemize}
+    \item Start with 100
+    \item Apply 10\% discount: 100 - (100 * 0.10) = 90
+    \item Apply 5\% discount: 90 - (90 * 0.05) = 85.50
+    \item Return 85.50
+\end{itemize}
+
+\vspace{6cm}
+
+\item Write a \emph{function} called \texttt{get\_popular\_showtimes} that takes a list of tuples as input. Each tuple contains \texttt{(movie, showtime, tickets\_sold, theater\_number)}. For example:
+
+\begin{verbatim}
+[('Dune 2', '14:00', 45, 3), 
+ ('Barbie', '15:30', 12, 1), 
+ ('Dune 2', '18:00', 50, 5), 
+ ('Oppenheimer', '20:00', 8, 2)]
+\end{verbatim}
+
+Your function should return a list of dictionaries containing only the title and showtime where 20 or more tickets were sold. Each dictionary should have keys \texttt{'movie'} and \texttt{'time'}. 
+
+For the example above, the function should return:
+
+\begin{verbatim}
+[{'movie': 'Dune 2', 'time': '14:00'}, {'movie': 'Dune 2', 'time': '18:00'}]
+\end{verbatim}
+
+\vspace{5cm}
+
+\item The three routes shown on the first page (\texttt{movie\_sales}, \texttt{movie\_revenue}, and \texttt{movie\_concessions}) violate the DRY principle. Note that all three routes query the database, format results, and return JSON responses with status code 200. The \texttt{get\_db\_connection()} function (also on page 1) is working correctly and does not need to be changed. 
+
+Please refactor this code to avoid the DRY violation. Then rewrite \texttt{movie\_sales} to use your helper function. Do not rewrite all 3 functions.
+
+Your answer should include:
+\begin{itemize}
+    \item The helper function
+    \item The rewritten \texttt{movie\_sales} route
+\end{itemize}
+
+\end{enumerate}
+
+\end{document}
