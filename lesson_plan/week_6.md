@@ -54,6 +54,7 @@
 - What are the different severity levels in Python's logging module and when should each be used?
 - Be able to read and understand code that sets up a custom logger
 - Example: Write a Flask route that accepts both GET and POST requests. For GET, it should return all items. For POST, it should accept JSON data and create a new item.
+- (Review) What are the parts of an HTTP request? Given code for processing and returning a request, be able to describe what the code does.
 
 ```python
 @app.route('/api/items', methods=['GET', 'POST'])

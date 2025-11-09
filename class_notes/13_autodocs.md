@@ -54,17 +54,19 @@ flowchart LR
 ## Setting up MkDocs and using it.
 
 - The directory called [autodoc](../lecture_examples/14_autodocs/) contains a working example of using autodocs. We will use this to cover how to set up `MkDocs`
-- Just like any other project we will have to add some packages to our `requirements.txt` file. In this case we added the following:
+- Just like any other project we will have to add some packages to our `pyproject.toml` file. In this case we added the following to the `dependencies` section:
 
-```
-mkdocs==1.6.1
-mkdocs-get-deps==0.2.0
-mkdocs-autorefs==1.2.0
-mkdocs-material==9.5.45
-mkdocs-material-extensions==1.3.1
-mkdocs-terminal==4.6.0
-mkdocstrings==0.27.0
-mkdocstrings-python==1.12.2
+```toml
+dependencies = [
+    "mkdocs==1.6.1",
+    "mkdocs-get-deps==0.2.0",
+    "mkdocs-autorefs==1.2.0",
+    "mkdocs-material==9.5.45",
+    "mkdocs-material-extensions==1.3.1",
+    "mkdocs-terminal==4.6.0",
+    "mkdocstrings==0.27.0",
+    "mkdocstrings-python==1.12.2",
+]
 ```
 
 Not all of these are required, some of them are specific to the themes that we will play with.
@@ -81,7 +83,7 @@ autodoc: build
 	docker run -it -p 4040:4040 \
 	$(COMMON_DOCKER_FLAGS) \
 	$(IMAGE_NAME) \
-	mkdocs serve --dev-addr 0.0.0.0:4040 -f /app/src/api-docs/mkdocs.yml
+	uv run mkdocs serve --dev-addr 0.0.0.0:4040 -f /app/src/api-docs/mkdocs.yml
 
 ```
 
@@ -89,7 +91,7 @@ autodoc: build
 
 ### Starting up a new project
 
-- Once the `requirements.txt` has been updated we can go into the container in interactive mode (using our `make interactive` command) and set up a new project by typing `mkdocs new my-project`. **Note: my-project is just a placeholder, you should not use it and instead choose a project name suitable for what you are working on, such as `api-docs`**.
+- Once the `pyproject.toml` has been updated and you've run `uv sync` to install the dependencies, we can go into the container in interactive mode (using our `make interactive` command) and set up a new project by typing `uv run mkdocs new my-project`. **Note: my-project is just a placeholder, you should not use it and instead choose a project name suitable for what you are working on, such as `api-docs`**.
 - Running this will create a set files and directories that will look (roughly) like the below text tree
 
 ```
@@ -119,7 +121,7 @@ api-docs/
     └── sitemap.xml
 ```
 
-- Note that everything in `site` is created only _after_ we have run our first build.
+- Note that everything in `site` is created only _after_ we have run our first build. It should **not** be put in the git repository.
 - The important files that we want to look at are:
     1. `mkdocs.yaml` which is the configuration information for our project.
     2. `index.md` which is our first template.
@@ -129,7 +131,7 @@ api-docs/
 - The file `mkdocs.yaml` contains the configuration information for our doc project:
 
 
-```
+```yaml
 site_name: Basketball API
 nav:
   - Home: index.md
@@ -182,7 +184,7 @@ plugins:
 - The `index.md` templates contains almost nothing while the `about.md` contains the NBA logo and some text. It also demonstrates that we can insert `html` directly into the file if we want. 
 - The most interesting of the templates is `api_docs.md` which contains the actual documentation templates. In this file we see a few blocks like this:
 
-```
+```yaml
 ::: app.api
     options:
       members: true
