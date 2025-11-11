@@ -24,9 +24,9 @@ VERIFY LEARNING OBJECTIVES ARE DEEP ENOUGH
  
 ## Lecture notes
 
-[Day 12 (Logging section)](../class_notes/12_crud_and_logging.md)
+<!-- [Day 12 (Logging section)](../class_notes/12_crud_and_logging.md) -->
 
-[Day 15](../class_notes/15_autodocs.md)
+<!-- [Day 15](../class_notes/15_autodocs.md) -->
 
 
 ## Quizzable concepts
