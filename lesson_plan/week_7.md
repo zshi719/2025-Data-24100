@@ -3,7 +3,6 @@
 ## Overview
 
 - Wednesday night the next part of the project is due (Part V). You can find the assignment [here](../project_assignments/part_5.md).
-- There will NOT be a quiz this week.
 
 ## Resources
 
