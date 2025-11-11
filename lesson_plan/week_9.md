@@ -23,9 +23,9 @@ VERIFY LEARNING OBJECTIVES ARE DEEP ENOUGH
 
 ## Lecture notes
 
-[Day 16](../class_notes/16_testing.md)
+<!-- [Day 16](../class_notes/16_testing.md) -->
 
-[Day 17](../class_notes/17_testing_2.md)
+<!-- [Day 17](../class_notes/17_testing_2.md) -->
 
 
 ## Quizzable concepts
