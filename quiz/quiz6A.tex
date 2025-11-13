@@ -1,0 +1,150 @@
+\documentclass[11pt]{article}
+\usepackage{fullpage, fancyhdr, ifthen, amssymb, amsfonts, amsmath, booktabs}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage[margin=0.25in]{geometry}
+\usepackage{upquote}
+\usepackage{forest}
+\usepackage{ulem}
+\usepackage{colortbl}
+\usepackage{enumitem}
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{table}[h]
+\centering
+\arrayrulecolor{black!10} % Very light table outline
+\begin{tabular}{|p{\textwidth}|}
+\hline
+\begin{minipage}[t]{\textwidth}
+\vspace{0pt}  % This is crucial for top alignment
+\noindent \textbf{Instructions:} Please answer the following questions, making sure to write legibly on the following pages. The code below is a subsection of a Python file that runs Flask for a library management system.
+\begin{itemize}
+\item Since we are writing Python code, please be careful about spacing/indentation. Leave enough room that it is obvious when you want things indented. 
+\item Make sure to write legibly.
+\item All questions are worth equal points unless otherwise stated.
+\item The quiz is cumulative and may include material from previous weeks.
+\end{itemize}
+\end{minipage} 
+\\
+\hline
+\end{tabular}
+\end{table}
+
+{\color{lightgray}\hrule}
+\begin{verbatim}
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/api/books/<book_id>', methods=['GET'])
+def get_book(book_id):
+    
+    print(f"{book_id}")
+    print(f"{request.args.to_dict()}")
+    print(f"{request.method}")
+    
+    return jsonify({
+        'book_id': book_id,
+        'args': request.args.to_dict(),
+        'method': request.method
+    }), 200
+
+@app.route('/api/books/search/<search_term>', methods=['GET'])
+def search_books(search_term):
+    results = get_search_results(search_term)
+    # INSERT ANSWER HERE
+
+@app.route('/api/books', methods=['POST'])
+def create_book():
+    data = request.get_json()
+    title = data.get('title')
+    author = data.get('author')
+    return jsonify({'message': f'Created book: {title} by {author}'}), 201
+
+\end{verbatim}
+{\color{lightgray}\hrule}
+
+\clearpage
+
+\begin{tabularx}{\textwidth}{l|X}
+\textbf{Quiz 6A} &   \textbf{Name: } \\
+\hline
+\end{tabularx}
+
+%\vspace{1cm}
+
+\begin{enumerate}
+
+\item An HTTP request consists of several parts. Please identify where we would expect each of the following types of information to be located in an HTTP request:
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|p{7.5cm}|p{7.5cm}|}
+\hline
+\textbf{Information Type} & \textbf{Part of HTTP Request} \\
+\hline
+Search Terms from a google query & \\
+\hline
+Information submitted for inserting data & \\
+\hline
+Authentication token for API access & \\
+\end{tabular}
+\end{table}
+
+\vspace{1cm}
+
+\item Consider the \texttt{get\_book} function shown on the first page. If a client makes a GET request to the following URL:
+
+\begin{verbatim}
+GET /api/books/12345?format=json&include_reviews=true
+\end{verbatim}
+
+What would be printed to the console? Please write the exact output that would appear.
+
+\vspace{6cm}
+\end{enumerate}
+\clearpage
+
+
+\noindent Consider the \texttt{search\_books} function shown on the first page. The function \texttt{get\_search\_results} takes a search term and returns a list of tuples, where each tuple contains a book title and its relevance score (higher is better). 
+
+\noindent For example, the function \texttt{get\_search\_results("monster books")} might return:
+
+\begin{verbatim}
+[
+    ('Frankenstein', 0.25),
+    ('Dracula', 0.75),
+    ('The Strange Case of Dr. Jekyll and Mr. Hyde', 0.45), 
+    ('The Island of Dr. Moreau', 0.90)
+]
+\end{verbatim}
+
+\noindent The results are \textbf{NOT ordered} by relevance score, so higher relevance scores can appear before or after lower ones.
+
+\begin{enumerate}[start=3]
+\item Complete the \texttt{search\_books} function by writing code at \texttt{\# INSERT ANSWER HERE}. Your code should:
+
+\begin{itemize}
+    \item Filter the results to only include books with a relevance score greater than 0.5
+    \item Create a list containing only the titles (not the scores) of the filtered books
+    \item If there are results, return them using \texttt{jsonify(\{'results': <list\_of\_titles>\})} with status code 200
+    \item If there are no relevant results return \texttt{jsonify(\{'results': []\})} with status code 200
+\end{itemize}
+
+\vspace{6cm}
+
+\item Write code that finds and returns the first result from \texttt{get\_search\_results(search\_term)} that has a relevance score greater than 1.0. Your code should:
+
+\begin{itemize}
+    \item Return the {\it first} result (book title only, not the score) that has a relevance score greater than 1.0
+    \item If a result is found, return them using \texttt{jsonify(\{'book': <title>\})} with status code 200
+    \item If there are no results with relevance greater than 1.0, return \texttt{jsonify(\{'error': 'No results found'\})} with status code 404
+\end{itemize}
+
+\end{enumerate}
+
+\end{document}
+
